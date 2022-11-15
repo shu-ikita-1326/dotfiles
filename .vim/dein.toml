@@ -1,0 +1,196 @@
+# easymotion
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map=['<Plug>(easymotion-']
+# map <Leader> <Plug>(easymotion-prefix)
+hook_add = '''
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+map s <Plug>(easymotion-bd-f2)
+nmap s <Plug>(easymotion-overwin-f2)
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+let g:EasyMotion_startofline=0
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+'''
+
+# Explorer
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+      nnoremap <silent><Leader>e :NERDTreeToggle<CR>
+
+      " 表示幅
+      let g:NERDTreeWinSize=50
+
+      " ブックマークを表示
+      let g:NERDTreeShowBookmarks=1
+
+      " ファイルを開いたらNERDTreeを閉じる
+      let g:NERDTreeQuitOnOpen=1
+
+      " 隠しファイルを表示
+      let g:NERDTreeShowHidden=1
+
+      " 非表示ファイル
+      let g:NERDTreeIgnore=['\.git$', '\.clean$', '\.swp$', '\.bak$', '\~$']
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>h :History<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+hook_add = '''
+vnoremap v <Plug>(expand_region_expand)
+vnoremap <C-v> <Plug>(expand_region_shrink)
+'''
+
+[[plugins]]
+repo = 'simeji/winresizer'
+
+[[plugins]]
+repo = 'yuttie/comfortable-motion.vim'
+
+[[plugins]]
+repo = 'machakann/vim-highlightedyank'
+hook_add = '''
+let g:highlightedyank_highlight_duration = 300
+'''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
+
+[[plugins]]
+repo = 'vim-scripts/ReplaceWithRegister'
+
+[[plugins]]
+repo = 'wellle/targets.vim'
+
+[[plugins]]
+repo = 'michaeljsmith/vim-indent-object'
+
+# LSP (Language Server Protocol)
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+nnoremap gd :LspDefinition<CR>
+nnoremap gh :LspHover<CR>
+'''
+
+# LSP settings
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_post_source = '''
+highlight link LspWarningHighlight Error
+'''
+
+[[plugins]]
+repo = 'shun/ddc-vim-lsp'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+hook_add = '''
+call ddc#custom#patch_global('ui', 'native')
+
+" Use around source.
+" https://github.com/Shougo/ddc-source-around
+call ddc#custom#patch_global('sources', ['around', 'vim-lsp'])
+
+" Use matcher_head and sorter_rank.
+" https://github.com/Shougo/ddc-matcher_head
+" https://github.com/Shougo/ddc-sorter_rank
+call ddc#custom#patch_global('sourceOptions', {
+		\ '_': {
+		\   'matchers': ['matcher_head'],
+		\   'sorters': ['sorter_rank']},
+		\ })
+
+" Change source options
+call ddc#custom#patch_global('sourceOptions', {
+		\ 'around': {'mark': 'A'},
+		\ })
+call ddc#custom#patch_global('sourceOptions', {
+		\ 'vim-lsp': {'mark': 'Lsp',
+		\ 'matchers':['matcher_head'],
+		\ }
+		\ })
+call ddc#custom#patch_global('sourceParams', {
+		\ 'around': {'maxSize': 500},
+		\ })
+
+" Customize settings on a filetype
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+		\ 'clangd': {'mark': 'C'},
+		\ })
+call ddc#custom#patch_filetype('markdown', 'sourceParams', {
+		\ 'around': {'maxSize': 100},
+		\ })
+
+" Mappings
+
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<TAB>' : ddc#map#manual_complete()
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
+
+	" Use ddc.
+call ddc#enable()
+'''
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+hook_add = '''
+nnoremap <Leader>to <C-w>s<C-w>j:Tnew<CR>
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+# theme
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'sickill/vim-monokai'
+

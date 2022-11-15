@@ -1,0 +1,14 @@
+/*
+/.**
+
+!/.config/
+!/.config/nvim/
+!/.config/nvim/init.vim
+!/.config/nvim/rc/
+!/.config/nvim/rc/**
+!/.vim/
+!/.vim/*.toml
+!/.bash_aliases
+!/.tmux.conf
+
+!.gitignore
