@@ -10,5 +10,6 @@
 !/.vim/*.toml
 !/.bash_aliases
 !/.tmux.conf
+!/.zshrc
 
 !.gitignore

@@ -57,8 +57,8 @@ vnoremap <C-v> <Plug>(expand_region_shrink)
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'yuttie/comfortable-motion.vim'
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim'
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
@@ -193,4 +193,10 @@ repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'sickill/vim-monokai'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
