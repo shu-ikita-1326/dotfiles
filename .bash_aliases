@@ -13,10 +13,6 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
 
-# docker
-alias dox='docker exec -it `docker ps --format "{{.Names}}" | fzf` bash'
-alias dol='docker logs -f --until=2s `docker ps --format "{{.Names}}" | fzf`'
-
 # docker-compose
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
