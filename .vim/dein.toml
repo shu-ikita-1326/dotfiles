@@ -40,8 +40,8 @@ hook_add = '''
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 hook_add = '''
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>h :History<CR>
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>fh :History<CR>
 '''
 
 [[plugins]]

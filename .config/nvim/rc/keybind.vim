@@ -4,3 +4,6 @@ inoremap <C-b> <LEFT>
 inoremap <C-f> <RIGHT>
 nnoremap <Leader>_ :source $MYVIMRC<CR>
 nnoremap <Leader>w :w<CR>
+noremap H ^
+noremap L $
+noremap <Leader>n :noh
