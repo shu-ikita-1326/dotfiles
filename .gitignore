@@ -12,5 +12,6 @@
 !/.tmux.conf
 !/.zshrc
 !/.tigrc
+!/install_tools.sh
 
 !.gitignore
