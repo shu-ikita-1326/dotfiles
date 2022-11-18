@@ -11,5 +11,6 @@
 !/.bash_aliases
 !/.tmux.conf
 !/.zshrc
+!/.tigrc
 
 !.gitignore
