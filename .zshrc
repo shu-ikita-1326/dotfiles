@@ -7,7 +7,11 @@ fi
 
 PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
+#---------------------------------------------------------------------#
+#                   base setting                                      #
+#---------------------------------------------------------------------#
 
+# 履歴設定
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -15,13 +19,30 @@ setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
 
-# stty -ixon
-
+# キーバインド
 bindkey -e
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+
+export SHELL=/usr/bin/zsh
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#---------------------------------------------------------------------#
+#                   base setting fin                                  #
+#---------------------------------------------------------------------#
+
+#---------------------------------------------------------------------#
+#                   plugins                                           #
+#---------------------------------------------------------------------#
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -47,15 +68,16 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/history-search-multi-word
 
-export SHELL=/usr/bin/zsh
+#---------------------------------------------------------------------#
+#                   plugins fin                                       #
+#---------------------------------------------------------------------#
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+#---------------------------------------------------------------------#
+#                   function                                          #
+#---------------------------------------------------------------------#
 
+# fzfをパスに追加
 export PATH=$PATH:~/.fzf/bin
-
-source ~/.bash_aliases
 
 # fzfを使用したgit branchの切り替え
 function select-git-switch() {
@@ -74,3 +96,52 @@ fi
 }
 zle -N select-git-switch
 bindkey "^g" select-git-switch # 「control + G」で実行
+
+# fzfを使用してファイルをnvimで開く
+function fnv() {
+	local file
+	file=$(find . | fzf)
+	if [ -n "$file" ]; then
+		nvim "$file"
+	fi
+}
+
+# fzfを使用してパターンを含むファイルをnvimで開く
+function fnvrg() {
+	local file
+	file=$(rg $1 | fzf | cut -d ":" -f 1)
+	if [ -n "$file" ]; then
+		nvim "$file"
+	fi
+}
+
+# fzfを使用してコンテナ名を指定してdocker execを実行する
+function dox() {
+	local cname
+	cname=$(docker ps --format "{{.Names}}" | fzf)
+	if [ -n "$cname" ]; then
+	docker exec -it "$cname" bash
+	fi
+}
+
+# fzfを使用してコンテナ名を指定してdocker logを出力する
+function dol() {
+	local cname
+	cname=$(docker ps --format "{{.Names}}" | fzf)
+	if [ -n "$cname" ]; then
+	docker logs --tail=500 "$cname"
+	fi
+}
+
+# fzfを使用してコンテナ名を指定してdocker logを-fオプションで出力する
+function dolf() {
+	local cname
+	cname=$(docker ps --format "{{.Names}}" | fzf)
+	if [ -n "$cname" ]; then
+	docker logs -f "$cname"
+	fi
+}
+
+#---------------------------------------------------------------------#
+#                   functions fin                                     #
+#---------------------------------------------------------------------#
