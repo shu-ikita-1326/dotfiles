@@ -8,6 +8,8 @@
 !/.config/nvim/rc/**
 !/.vim/
 !/.vim/*.toml
+!/.vim/rc/
+!/.vim/rc/**
 !/.bash_aliases
 !/.tmux.conf
 !/.zshrc
