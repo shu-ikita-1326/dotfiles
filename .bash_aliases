@@ -1,8 +1,10 @@
 # editor
 alias n='nvim'
+alias v='vim'
 
 # tmux
-alias ide='tmux split-window -v -p 15; tmux split-window -h -p 66; tmux split-window -h -p 50; tmux select-pane -U; nvim;'
+alias ide_v='tmux split-window -h -p 15; tmux split-window -v -p 66; tmux split-window -v -p 50; tmux select-pane -L; nvim;'
+alias ide_s='tmux split-window -v -p 15; tmux split-window -h -p 66; tmux split-window -h -p 50; tmux select-pane -U; nvim;'
 
 # git
 alias ga='git add'
