@@ -40,6 +40,9 @@ hook_add = '''
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 hook_add = '''
+if exists('$TMUX')
+	let g:fzf_layout = { 'tmux': '-p80%' }
+endif
 nnoremap <silent> <Leader>ff :Files<CR>
 nnoremap <silent> <Leader>fh :History<CR>
 '''

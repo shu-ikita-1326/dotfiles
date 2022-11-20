@@ -78,6 +78,13 @@ zinit light zdharma/history-search-multi-word
 
 # fzfをパスに追加
 export PATH=$PATH:~/.fzf/bin
+source ~/.fzf.zsh
+
+# tmuxで使用している場合tmuxのポップアップでfzfを使用する
+if [ -n "$TMUX" ]; then
+	export FZF_TMUX=1
+	export FZF_TMUX_OPTS="-p 80%"
+fi
 
 # fzfを使用したgit branchの切り替え
 function select-git-switch() {
@@ -118,7 +125,7 @@ function fnvrg() {
 # fzfを使用してコンテナ名を指定してdocker execを実行する
 function dox() {
 	local cname
-	cname=$(docker ps --format "{{.Names}}" | fzf)
+	cname=$(docker ps --format "{{.Names}}" | fzf --reverse)
 	if [ -n "$cname" ]; then
 	docker exec -it "$cname" bash
 	fi
@@ -127,7 +134,7 @@ function dox() {
 # fzfを使用してコンテナ名を指定してdocker logを出力する
 function dol() {
 	local cname
-	cname=$(docker ps --format "{{.Names}}" | fzf)
+	cname=$(docker ps --format "{{.Names}}" | fzf --reverse)
 	if [ -n "$cname" ]; then
 	docker logs --tail=500 "$cname"
 	fi
@@ -136,7 +143,7 @@ function dol() {
 # fzfを使用してコンテナ名を指定してdocker logを-fオプションで出力する
 function dolf() {
 	local cname
-	cname=$(docker ps --format "{{.Names}}" | fzf)
+	cname=$(docker ps --format "{{.Names}}" | fzf --reverse)
 	if [ -n "$cname" ]; then
 	docker logs -f "$cname"
 	fi
@@ -145,7 +152,7 @@ function dolf() {
 # fzfを使用して停止中のコンテナ名を任意の個数指定してdocker startする
 function dostart() {
 	local cnames
-	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all --reverse)
 	if [ -n "$cnames" ]; then
 		echo "$cnames" | xargs docker start
 	fi
@@ -154,7 +161,7 @@ function dostart() {
 # fzfを使用して起動中のコンテナ名を任意の個数指定してdocker stopする
 function dostop() {
 	local cnames
-	cnames=$(docker ps --all --filter "status=running" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	cnames=$(docker ps --all --filter "status=running" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all --reverse)
 	if [ -n "$cnames" ]; then
 		echo "$cnames" | xargs docker stop
 	fi
@@ -163,7 +170,7 @@ function dostop() {
 # fzfを使用して停止中のコンテナ名を任意の個数指定してdocker rmする
 function dorm() {
 	local cnames
-	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all --reverse)
 	if [ -n "$cnames" ]; then
 		echo "$cnames" | xargs docker rm
 	fi
