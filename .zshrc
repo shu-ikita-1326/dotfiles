@@ -142,6 +142,33 @@ function dolf() {
 	fi
 }
 
+# fzfを使用して停止中のコンテナ名を任意の個数指定してdocker startする
+function dostart() {
+	local cnames
+	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	if [ -n "$cnames" ]; then
+		echo "$cnames" | xargs docker start
+	fi
+}
+
+# fzfを使用して起動中のコンテナ名を任意の個数指定してdocker stopする
+function dostop() {
+	local cnames
+	cnames=$(docker ps --all --filter "status=running" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	if [ -n "$cnames" ]; then
+		echo "$cnames" | xargs docker stop
+	fi
+}
+
+# fzfを使用して停止中のコンテナ名を任意の個数指定してdocker rmする
+function dorm() {
+	local cnames
+	cnames=$(docker ps --all --filter "status=exited" --filter "status=paused" --format "{{.Names}}" | fzf -m --bind=ctrl-a:toggle-all)
+	if [ -n "$cnames" ]; then
+		echo "$cnames" | xargs docker rm
+	fi
+}
+
 #---------------------------------------------------------------------#
 #                   functions fin                                     #
 #---------------------------------------------------------------------#

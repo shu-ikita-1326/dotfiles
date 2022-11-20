@@ -13,6 +13,9 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
 
+# docker
+alias dowatch='watch -t \''docker ps --all --format \"{{.Names}}: {{.Status}}\"\'''
+
 # docker-compose
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
