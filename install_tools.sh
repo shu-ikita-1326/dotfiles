@@ -16,7 +16,7 @@ apt install zsh
 apt install ripgrep
 
 # tmuxをインストール
-apt install tmux
+installer/tmux_3_2.sh
 
 # fzfをインストール
 # zshでもキーバインドを有効化する場合はzshで~/.fzf/installを実行する

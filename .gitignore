@@ -16,5 +16,7 @@
 !/.zshrc
 !/.tigrc
 !/install_tools.sh
+!/installer/
+!/installer/**
 
 !.gitignore
