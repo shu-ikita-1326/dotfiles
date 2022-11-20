@@ -6,6 +6,7 @@
 !/.config/nvim/init.vim
 !/.config/nvim/rc/
 !/.config/nvim/rc/**
+!/.vimrc
 !/.vim/
 !/.vim/*.toml
 !/.vim/rc/
