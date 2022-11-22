@@ -22,3 +22,11 @@ installer/tmux_3_2.sh
 # zshでもキーバインドを有効化する場合はzshで~/.fzf/installを実行する
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+# batをインストール
+apt install bat
+
+# batがbatcatとしてインストールされた場合にbatで呼び出せるようにする
+if [ -f /usr/bin/batcat ]; then
+	ln -s /usr/bin/batcat ~/.local/bin/cat
+fi
