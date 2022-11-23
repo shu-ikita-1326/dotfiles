@@ -12,7 +12,7 @@ PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 #---------------------------------------------------------------------#
 
 # 履歴設定
-HISTFILE=~/.zsh_history
+HISTFILE="${ZDATADIR}/zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 setopt append_history

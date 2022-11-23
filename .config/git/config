@@ -1,0 +1,15 @@
+[alias]
+	st = status -s
+	br = branch
+	bra = branch -avv
+	co = checkout
+	cm = commit
+	sh = stash
+	shs = stash save
+	sw = switch
+	df = diff
+	ps = push
+	pl = pull
+	br = branch
+	graph = log --pretty=format:'%Cgreen[%cd] %Cblue%h %Cred<%cn> %Creset%s' --date=short  --decorate --graph --branches --tags --remotes
+	diffw = diff --word-diff
