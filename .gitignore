@@ -7,7 +7,7 @@
 !/.config/nvim/rc/
 !/.config/nvim/rc/**
 !/.config/git/
-!/.config/git/*
+!/.config/git/**
 !/.config/tig/
 !/.config/tig/*
 !/.config/tmux/

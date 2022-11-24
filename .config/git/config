@@ -13,3 +13,5 @@
 	br = branch
 	graph = log --pretty=format:'%Cgreen[%cd] %Cblue%h %Cred<%cn> %Creset%s' --date=short  --decorate --graph --branches --tags --remotes
 	diffw = diff --word-diff
+[commit]
+	template = ~/.config/git/gitmessage
