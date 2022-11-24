@@ -28,5 +28,5 @@ apt install bat
 
 # batがbatcatとしてインストールされた場合にbatで呼び出せるようにする
 if [ -f /usr/bin/batcat ]; then
-	ln -s /usr/bin/batcat ~/.local/bin/cat
+	ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
