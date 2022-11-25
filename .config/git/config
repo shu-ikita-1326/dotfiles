@@ -15,3 +15,11 @@
 	diffw = diff --word-diff
 [commit]
 	template = ~/.config/git/gitmessage
+[merge]
+	ff = false
+[pull]
+	ff = only
+[core]
+	autocrlf = false
+	ignorecase = false
+	quotepath = false
