@@ -1,6 +1,10 @@
-# scoopをインストール
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-iwr -useb get.scoop.sh | iex
+# scoopがインストールされていなかったらインストールする
+if (where.exe scoop 2> $null) {
+	echo 'scoop is already.'
+} else {
+	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+	iwr -useb get.scoop.sh | iex
+}
 
 # git
 scoop install git
