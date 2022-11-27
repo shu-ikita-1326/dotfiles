@@ -27,3 +27,6 @@ scoop install fzf
 
 # python
 scoop install python
+
+# windows terminal
+scoop install windows-terminal
