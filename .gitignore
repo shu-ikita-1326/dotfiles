@@ -25,5 +25,7 @@
 !/install_tools.sh
 !/installer/
 !/installer/**
+!/.windows/
+!/.windows/**
 
 !.gitignore
