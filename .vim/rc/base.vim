@@ -20,3 +20,15 @@ set wrapscan
 set hlsearch
 " Leader + nでハイライトを消す
 noremap <silent><Leader>n :noh<CR>
+
+" インサートモードから抜けたときに半角入力に戻す
+" 環境変数zenhanにwindows側のzenhan実行ファイルのpathを記入しておく
+if exists('$zenhan')
+	let &shell='/usr/bin/zsh --login'
+	autocmd InsertLeave * :call system("${zenhan} 0")
+	autocmd CmdlineLeave * :call system("${zenhan} 0")
+endif
+
+" ctrl + cでInsertLeaveがフックするようにキーマップ
+inoremap <C-c> <C-[>
+inoremap <C-[> <C-c>
