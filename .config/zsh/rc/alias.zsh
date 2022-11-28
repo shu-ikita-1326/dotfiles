@@ -10,6 +10,7 @@ if [ -n "$TMUX" ]; then
 fi
 
 # git
+alias g='git'
 alias ga='git add'
 alias gst='git status'
 
