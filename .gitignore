@@ -3,9 +3,15 @@
 
 !/.config/
 !/.config/nvim/
-!/.config/nvim/init.vim
+!/.config/nvim/_init.vim
+!/.config/nvim/init.lua
 !/.config/nvim/rc/
 !/.config/nvim/rc/**
+!/.config/nvim/lua/
+!/.config/nvim/lua/**
+!/.config/nvim/plugin/
+!/.config/nvim/plugin/**
+/.config/nvim/plugin/packer_compiled.lua
 !/.config/git/
 !/.config/git/**
 !/.config/tig/

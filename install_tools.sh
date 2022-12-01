@@ -30,3 +30,6 @@ apt install bat
 if [ -f /usr/bin/batcat ]; then
 	ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
+
+# for Telescope in nvim
+apt install sqlite3 libsqlite3-dev
