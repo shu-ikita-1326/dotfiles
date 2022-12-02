@@ -90,6 +90,10 @@ return packer.startup(function(use)
   -- Filer
   use({ "lambdalisue/fern.vim" })
 
+  -- Git
+  use({ "airblade/vim-gitgutter" })
+  use({ "tpope/vim-fugitive" })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
