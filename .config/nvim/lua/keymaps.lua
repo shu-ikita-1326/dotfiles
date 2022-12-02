@@ -11,6 +11,8 @@ vim.keymap.set("n", "K", "5k")
 vim.keymap.set("v", "J", "5j")
 vim.keymap.set("v", "K", "5k")
 
+vim.keymap.set("n", "<Leader>P", "\"0P")
+vim.keymap.set("n", "<Leader>p", "\"0p")
 vim.keymap.set("n", "<Leader>r", "ciw<C-r>0<Esc>b")
 
 vim.keymap.set("i", "<C-c>", "<C-[>")
