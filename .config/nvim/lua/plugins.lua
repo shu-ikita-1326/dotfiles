@@ -94,6 +94,9 @@ return packer.startup(function(use)
   use({ "airblade/vim-gitgutter" })
   use({ "tpope/vim-fugitive" })
 
+  -- easymotion
+  use({ "easymotion/vim-easymotion" })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
