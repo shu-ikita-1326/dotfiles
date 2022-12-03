@@ -5,3 +5,8 @@ if vim.env.zenhan then
     command = ":call system('${zenhan} 0')",
   })
 end
+
+autocmd("TextYankPost", {
+  pattern = "*",
+  command = ":lua vim.highlight.on_yank {higroup='IncSearch', timeout=300, on_visual=true}"
+})
