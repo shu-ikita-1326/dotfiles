@@ -11,6 +11,12 @@ autocmd("TextYankPost", {
   command = ":lua vim.highlight.on_yank {higroup='IncSearch', timeout=300, on_visual=true}"
 })
 
+-- Todo: osによって動作を切り替える
+autocmd("TextYankPost", {
+  pattern = "*",
+  command = ":call system('clip.exe', @0)"
+})
+
 autocmd("QuickfixCmdPost", {
   pattern = "*",
   command = "cwindow"
