@@ -21,7 +21,16 @@ cmp.setup({
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
-  })
+  }),
+  snippet = {
+    expand = function(args)
+      local luasnip = require('luasnip')
+      if not luasnip then
+        return
+      end
+      luasnip.lsp_expand(args.body)
+    end
+  }
 })
 
 -- Set configuration for specific filetype.

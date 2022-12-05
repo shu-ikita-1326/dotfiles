@@ -78,8 +78,6 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
-	use({ "nvim-telescope/telescope-frecency.nvim" })
-	use({ "kkharji/sqlite.lua" })
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
@@ -95,7 +93,13 @@ return packer.startup(function(use)
   use({ "tpope/vim-fugitive" })
 
   -- easymotion
-  use({ "easymotion/vim-easymotion" })
+  use({ "phaazon/hop.nvim" })
+
+  -- comment
+  use({ "numToStr/Comment.nvim" })
+
+  -- utility
+  use({ "machakann/vim-sandwich" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
