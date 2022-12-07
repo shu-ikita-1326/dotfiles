@@ -89,7 +89,7 @@ return packer.startup(function(use)
   use({ "lambdalisue/fern.vim" })
 
   -- Git
-  use({ "airblade/vim-gitgutter" })
+  use({ "lewis6991/gitsigns.nvim" })
   use({ "tpope/vim-fugitive" })
 
   -- easymotion
