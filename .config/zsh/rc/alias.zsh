@@ -13,6 +13,7 @@ fi
 alias g='git'
 alias ga='git add'
 alias gst='git status'
+alias gsf='git-switch-fzf'
 
 # ls
 alias ls='ls --color=auto'

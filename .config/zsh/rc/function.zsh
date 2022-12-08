@@ -60,7 +60,7 @@ function dox() {
 # fzfを使用してコンテナ名を指定してdocker logを出力する
 function dol() {
 	local cname
-	cname=$(docker ps --format "{{.Names}}" | fzf --reverse)
+	cname=$(docker ps --all --format "{{.Names}}" | fzf --reverse)
 	if [ -n "$cname" ]; then
 	docker logs --tail=500 "$cname"
 	fi
@@ -100,6 +100,15 @@ function dorm() {
 	if [ -n "$cnames" ]; then
 		echo "$cnames" | xargs docker rm
 	fi
+}
+
+# Using fzf for git switch
+function git-switch-fzf() {
+  local branchname
+  branchname=$(g --no-pager branch -a | grep -v HEAD | fzf --preview "echo {} | sed 's/^.* //g' | xargs git --no-pager log --oneline --graph -20 --color=always" | sed -e "s/^.* //g" -e "s/remotes\/[^\/]*\///g")
+  if [ -n "$branchname" ]; then
+    git switch "$branchname"
+  fi
 }
 
 # fzfを使用してメイン作業ディレクトリリストから選択して移動する
