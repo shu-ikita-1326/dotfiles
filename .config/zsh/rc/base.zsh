@@ -27,12 +27,17 @@ bindkey '^Y' autosuggest-accept
 
 export SHELL=/usr/bin/zsh
 export LAB=~/lab
+export MEMODIR=~/memo
 
 # labディレクトリが存在していなかったら作成する
 if [ ! -d ~/lab ]; then
 	mkdir ~/lab
 fi
 
+# memoディレクトリが存在していなかったら作成する
+if [ ! -d "$MEMODIR" ]; then
+	mkdir "$MEMODIR" 
+fi
 #---------------------------------------------------------------------#
 #                   base setting fin                                  #
 #---------------------------------------------------------------------#

@@ -110,6 +110,35 @@ function desk() {
 		cd "$LAB/$dirname"
 	fi
 }
+
+# メモ機能
+function memo() {
+  local filename
+  if [ -n "$1" ]; then
+    case "$1" in
+      "-n")
+        if [ -n "$2" ]; then
+          filename="$MEMODIR/$2"
+          if [ -f "$filename" ]; then
+            echo "$filename" is exists.
+          else
+            nvim "$filename"
+          fi
+        fi
+        ;;
+      "-l")
+        filename=$(ls $MEMODIR | fzf --reverse)
+        if [ -n "$filename" ]; then
+            nvim "$filename"
+        fi
+        ;;
+      *)
+        echo "option is undefined."
+    esac
+  else
+    echo "option require."
+  fi
+}
 #---------------------------------------------------------------------#
 #                   functions fin                                     #
 #---------------------------------------------------------------------#
