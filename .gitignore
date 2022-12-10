@@ -22,6 +22,8 @@
 !/.config/tmux/*
 !/.config/zsh/
 !/.config/zsh/**
+!/.config/lazygit/
+!/.config/lazygit/config.yml
 /.config/zsh/.zcompdump
 !/.vimrc
 !/.vim/
