@@ -18,6 +18,15 @@ if !(type "zsh" > /dev/null 2>&1); then
   apt install zsh
 fi
 
+# neovim
+if !(type "nvim" > /dev/null 2>&1); then
+  apt install python3-neovim
+  add-apt-repository ppa:neovim-ppa/unstable
+  apt-get update
+  apt-get install neovim
+  apt-get install python-dev python-pip python3-dev python3-pip
+fi
+
 # ripgrepをインストール
 if !(type "rg" > /dev/null 2>&1); then
   apt install ripgrep
