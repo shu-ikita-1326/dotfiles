@@ -138,7 +138,7 @@ function memo() {
       "-l")
         filename=$(ls $MEMODIR | fzf --reverse)
         if [ -n "$filename" ]; then
-            nvim "$filename"
+            nvim "$MEMODIR/$filename"
         fi
         ;;
       *)
