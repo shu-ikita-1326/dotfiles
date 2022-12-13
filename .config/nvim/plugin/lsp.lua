@@ -9,6 +9,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
     vim.keymap.set('n', 'gh', ':Lspsaga hover_doc<CR>', bufopts)
     vim.keymap.set('n', 'gd', ':Lspsaga lsp_finder<CR>', bufopts)
     vim.keymap.set('n', 'gp', ':Lspsaga peek_definition<CR>', bufopts)
+    vim.keymap.set('n', 'gn', ':Lspsaga rename<CR>', bufopts)
   end
   nvim_lsp[server_name].setup(opts)
 end})
