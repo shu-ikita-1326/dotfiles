@@ -26,3 +26,8 @@ source $ZRCDIR/function.zsh
 if [ -f ~/.localenv.zsh ]; then
 	source ~/.localenv.zsh
 fi
+
+# localfunction
+if [ -f ~/.localfunction.zsh ]; then
+	source ~/.localfunction.zsh
+fi
