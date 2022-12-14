@@ -1,4 +1,8 @@
-require('gitsigns').setup()
+require('gitsigns').setup({
+  numhl = true,
+  linehl = true,
+  word_diff = true
+})
 
 vim.keymap.set("n", "[c", ":Gitsigns prev_hunk<CR>")
 vim.keymap.set("n", "]c", ":Gitsigns next_hunk<CR>")
