@@ -103,6 +103,9 @@ return packer.startup(function(use)
   use({ "akinsho/toggleterm.nvim" })
   use({ "skanehira/translate.vim" })
 
+  -- outline
+  use({ "stevearc/aerial.nvim" })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
