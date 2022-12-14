@@ -14,8 +14,8 @@ My dotfiles
       ```
 2. Install
       ```
-      sudo ./install.sh
-      sudo ./install_tools.sh
+      ./install.sh
+      ./install_tools.sh
       ```
 3. Change shell
       ```
