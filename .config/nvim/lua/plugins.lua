@@ -102,6 +102,7 @@ return packer.startup(function(use)
   use({ "machakann/vim-sandwich" })
   use({ "akinsho/toggleterm.nvim" })
   use({ "skanehira/translate.vim" })
+  use({ "junegunn/goyo.vim" })
 
   -- outline
   use({ "stevearc/aerial.nvim" })
