@@ -6,5 +6,8 @@ return {
       t("#!/usr/bin/zsh"),
     })
   }
-  )
+  ),
+  s("today", {
+    extras.partial(os.date, "%Y/%m/%d")
+  })
 }
