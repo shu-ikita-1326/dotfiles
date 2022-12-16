@@ -12,29 +12,27 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-n>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.choice_active() then
+      if luasnip.choice_active() then
         luasnip.change_choice(1)
+      elseif cmp.visible() then
+        cmp.select_next_item()
       else
         fallback()
       end
     end, {"i", "s"}
         ),
     ['<C-p>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.choice_active() then
+      if luasnip.choice_active() then
         luasnip.change_choice(-1)
+      elseif cmp.visible() then
+        cmp.select_prev_item()
       else
         fallback()
       end
     end, {"i", "s"}
         ),
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm()
-      elseif luasnip.expand_or_jumpable() then
+      if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump(1)
       else
         fallback()
