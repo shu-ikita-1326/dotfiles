@@ -47,6 +47,7 @@ return packer.startup(function(use)
 
 	-- Colorschemes
 	use({ "EdenEast/nightfox.nvim" }) -- Color scheme
+	use({ "tomasr/molokai" }) -- Color scheme
 
 	use({ "nvim-lualine/lualine.nvim" }) -- Statusline
 	use({ "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }) -- Autopairs, integrates with both cmp and treesitter
