@@ -34,6 +34,15 @@ if [ ! -d ~/lab ]; then
 	mkdir ~/lab
 fi
 
+# golang
+export PATH=$PATH:~/go/bin
+export GOPATH=~/go
+
+# go/srcディレクトリが存在していなかったら作成する
+if [ ! -d ~/go/src ]; then
+	mkdir -p ~/go/src
+fi
+
 # memoディレクトリが存在していなかったら作成する
 if [ ! -d "$MEMODIR" ]; then
 	mkdir "$MEMODIR" 

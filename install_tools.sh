@@ -96,3 +96,17 @@ if !(type "lazydocker" > /dev/null 2>&1); then
   ./lazydocker_install_update_linux.sh > /dev/null 2>&1
   rm ./lazydocker_install_update_linux.sh > /dev/null 2>&1
 fi
+
+# go
+if !(type "go" > /dev/null 2>&1); then
+  echo 'Installing golang...'
+    sudo add-apt-repository -y ppa:longsleep/golang-backports
+    sudo apt update -y
+    sudo apt install -y golang-go
+fi
+
+# ghq
+if !(type "ghq" > /dev/null 2>&1); then
+  echo 'Installing ghq...'
+    go install github.com/x-motemen/ghq@latest
+fi

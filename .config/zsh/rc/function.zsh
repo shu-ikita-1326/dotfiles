@@ -120,6 +120,15 @@ function desk() {
 	fi
 }
 
+# fzfを使用してghqが管理しているディレクトリを選択して移動する
+function ghq-fzf() {
+  local dirname
+  dirname=$(ghq list -p | fzf --reverse)
+  if [ -n "$dirname" ]; then
+    cd "$dirname"
+  fi
+}
+
 # メモ機能
 function memo() {
   local filename
