@@ -31,5 +31,3 @@ scoop install python
 # windows terminal
 scoop install windows-terminal
 
-# lazygit
-scoop install lazygit
