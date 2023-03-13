@@ -72,7 +72,7 @@ return packer.startup(function(use)
 	use({ "williamboman/mason.nvim" }) -- simple to use language server installer
 	use({ "williamboman/mason-lspconfig.nvim" }) -- simple to use language server installer
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-	use({ "glepnir/lspsaga.nvim" }) -- LSP UIs
+	use({ "glepnir/lspsaga.nvim", config = function() require("lspsaga").setup({})end, }) -- LSP UIs
 
 	-- Formatter
 	use({ "MunifTanjim/prettier.nvim" })
