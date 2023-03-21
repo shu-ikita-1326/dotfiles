@@ -196,7 +196,7 @@ return packer.startup(function(use)
       mason_lspconfig.setup_handlers({ function(server_name)
         local opts = {}
         opts.on_attach = function(_, bufnr)
-          local bufopts = { silent = ture, buffer = bufnr }
+          local bufopts = { silent = true, buffer = bufnr }
           vim.keymap.set('n', 'gf', vim.lsp.buf.format, bufopts)
           vim.keymap.set('n', 'gh', ':Lspsaga hover_doc<CR>', bufopts)
           vim.keymap.set('n', 'gd', ':Lspsaga lsp_finder<CR>', bufopts)
@@ -291,6 +291,39 @@ return packer.startup(function(use)
       "nvim-telescope/telescope.nvim"
     }
   })
+
+  use({
+  "folke/noice.nvim",
+    config = function()
+      require("noice").setup({
+        -- add any options here
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          command_palette = false, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+    })
+  end,
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    }
+})
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
