@@ -1,5 +1,6 @@
-vim.keymap.set("n", "<Leader>w", ":w<CR>")
-vim.keymap.set("n", "<Leader>o", "<C-w><C-w>")
+local opt = { silent=true, noremap=true }
+vim.keymap.set("n", "<Leader>w", ":w<CR>", opt)
+vim.keymap.set("n", "<Leader>o", "<C-w><C-w>", opt)
 
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("n", "H", "^")

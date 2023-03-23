@@ -59,7 +59,7 @@ return packer.startup(function(use)
     requires = {
       { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
       { "hrsh7th/cmp-path", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-cmdline", event = { "InsertEnter" } },
+      { "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
       { "saadparwaiz1/cmp_luasnip", event = { "InsertEnter" } },
       { "hrsh7th/cmp-nvim-lua", event = { "InsertEnter" } },
       { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
@@ -196,12 +196,16 @@ return packer.startup(function(use)
       mason_lspconfig.setup_handlers({ function(server_name)
         local opts = {}
         opts.on_attach = function(_, bufnr)
-          local bufopts = { silent = true, buffer = bufnr }
+          local bufopts = { silent = true, buffer = bufnr, noremap = true }
           vim.keymap.set('n', 'gf', vim.lsp.buf.format, bufopts)
           vim.keymap.set('n', 'gh', ':Lspsaga hover_doc<CR>', bufopts)
+          vim.keymap.set('n', 'gk', ':Lspsaga hover_doc ++keep<CR>', bufopts)
           vim.keymap.set('n', 'gd', ':Lspsaga lsp_finder<CR>', bufopts)
           vim.keymap.set('n', 'gp', ':Lspsaga peek_definition<CR>', bufopts)
+          vim.keymap.set('n', '<Leader>ca', ':Lspsaga code_action<CR>', bufopts)
           vim.keymap.set('n', 'gn', ':Lspsaga rename<CR>', bufopts)
+          vim.keymap.set('n', '[e', ':Lspsaga diagnostic_jump_prev<CR>', bufopts)
+          vim.keymap.set('n', ']e', ':Lspsaga diagnostic_jump_next<CR>', bufopts)
         end
         nvim_lsp[server_name].setup(opts)
       end})
@@ -275,7 +279,8 @@ return packer.startup(function(use)
   use({ "stevearc/aerial.nvim" })
 
   -- chatGpt
-  use({ "jackMort/ChatGPT.nvim",
+  use({ "shutils/ChatGPT.nvim",
+    commit = "485eecb",
     event = { "VimEnter" },
     config = function()
       require("chatgpt").setup({
