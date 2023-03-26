@@ -1,6 +1,6 @@
-local opt = { silent=true, noremap=true }
+local opt = { silent = true, noremap = true }
 vim.keymap.set("n", "<Leader>w", ":w<CR>", opt)
-vim.keymap.set("n", "<Leader>o", "<C-w><C-w>", opt)
+vim.keymap.set("n", "<Leader>o", ":wincmd p<CR>", opt)
 
 vim.keymap.set("n", "<Leader>n", ":nohl<CR>", opt)
 
@@ -18,8 +18,8 @@ vim.keymap.set("v", "K", "5k")
 vim.keymap.set("s", "J", "J")
 vim.keymap.set("s", "K", "K")
 
-vim.keymap.set("n", "<Leader>P", "\"0P")
-vim.keymap.set("n", "<Leader>p", "\"0p")
+vim.keymap.set("n", "<Leader>P", '"0P')
+vim.keymap.set("n", "<Leader>p", '"0p')
 vim.keymap.set("n", "<Leader>r", "ciw<C-r>0<Esc>b")
 
 vim.keymap.set("i", "<C-c>", "<C-[>")

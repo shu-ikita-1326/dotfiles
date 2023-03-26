@@ -1,6 +1,6 @@
-local ts = require('nvim-treesitter.configs')
+local ts = require("nvim-treesitter.configs")
 
-ts.setup {
+ts.setup({
   highlight = {
     enable = true,
     disable = {},
@@ -11,8 +11,8 @@ ts.setup {
   },
   autotag = {
     enable = true,
-  }
-}
+  },
+})
 
-local paser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
-paser_config.tsx.filetype_to_parsername = { 'javascript', 'typescript.tsx'}
+local paser_config = require("nvim-treesitter.parsers").get_parser_configs()
+paser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }

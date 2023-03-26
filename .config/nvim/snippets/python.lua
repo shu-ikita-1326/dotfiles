@@ -1,26 +1,28 @@
 return {
-  s("def",
-  fmta(
-  [[
+  s(
+    "def",
+    fmta(
+      [[
   def <>(<>):
   ]],
-  {
-    i(1, "myFunc"),
-    i(2, "arg")
-  }
-  )
+      {
+        i(1, "myFunc"),
+        i(2, "arg"),
+      }
+    )
   ),
-  s("ifmain",
-  fmta(
-  [[
+  s(
+    "ifmain",
+    fmta(
+      [[
   if __name__ == "__main__":
       main()<>
     ]],
-    {
-      i(0)
-    }
+      {
+        i(0),
+      }
     )
-    ),
+  ),
   s("froute", {
     t('@app.route("/'),
     i(1),
@@ -32,13 +34,13 @@ return {
       t("DELETE"),
     }),
     t('"])'),
-    t({"", "def "}),
+    t({ "", "def " }),
     i(3, "myFunc"),
     t("("),
     i(4, "args"),
     t("):"),
-    t({"", "\t"}),
+    t({ "", "\t" }),
     i(5, "pass"),
-    i(0)
-  })
-  }
+    i(0),
+  }),
+}

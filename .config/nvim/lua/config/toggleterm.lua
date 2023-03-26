@@ -1,6 +1,6 @@
-require('toggleterm').setup()
+require("toggleterm").setup()
 
-local Terminal = require('toggleterm.terminal').Terminal
+local Terminal = require("toggleterm.terminal").Terminal
 local tig = Terminal:new({ cmd = "tig", hidden = true, direction = "float" })
 
 function _tig_toggle()
