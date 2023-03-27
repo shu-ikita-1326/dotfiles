@@ -110,7 +110,7 @@ return packer.startup(function(use)
   })
 
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate", config = [[require('config.treesitter')]] } })
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('config.treesitter')]] } )
 
   -- Filer
   use({ "nvim-tree/nvim-tree.lua", config = [[require('config.nvim-tree')]] })
@@ -118,6 +118,7 @@ return packer.startup(function(use)
   -- Git
   use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
   use({ "tpope/vim-fugitive" })
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- easymotion
   use({ "ggandor/leap.nvim", config = [[require('config.leap')]] })
@@ -138,7 +139,7 @@ return packer.startup(function(use)
     end,
   })
   use({ "akinsho/toggleterm.nvim", config = [[require('config.toggleterm')]] })
-  use({ "skanehira/translate.vim", config = [[require('config.translate')]] })
+  use({ "uga-rosa/translate.nvim", config = [[require('config.translate')]] })
   use({ "junegunn/goyo.vim" })
   use({ "windwp/nvim-ts-autotag" })
   use({ "petertriho/nvim-scrollbar", config = [[require('config.nvim-scrollbar')]] })
