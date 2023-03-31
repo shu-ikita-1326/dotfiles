@@ -1,6 +1,16 @@
 local nvim_lsp = require("lspconfig")
 require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
+mason_lspconfig.setup({
+  ensure_installed = {
+    "lua_ls",
+    "jedi_language_server",
+    "pylsp",
+    "tsserver",
+    "html",
+    "gopls",
+  },
+})
 mason_lspconfig.setup_handlers({
   function(server_name)
     local opts = {}
@@ -11,12 +21,14 @@ mason_lspconfig.setup_handlers({
   end,
 })
 
-vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format)
-vim.keymap.set("n", "gh", ":Lspsaga hover_doc<CR>")
-vim.keymap.set("n", "gH", ":Lspsaga hover_doc ++keep<CR>")
-vim.keymap.set("n", "gd", ":Lspsaga lsp_finder<CR>")
-vim.keymap.set("n", "gp", ":Lspsaga peek_definition<CR>")
-vim.keymap.set("n", "ga", ":Lspsaga code_action<CR>")
-vim.keymap.set("n", "gn", ":Lspsaga rename<CR>")
-vim.keymap.set("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>")
-vim.keymap.set("n", "]e", ":Lspsaga diagnostic_jump_next<CR>")
+local opt = { silent = true, noremap = true }
+
+vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
+vim.keymap.set("n", "gh", ":Lspsaga hover_doc<CR>", opt)
+vim.keymap.set("n", "gH", ":Lspsaga hover_doc ++keep<CR>", opt)
+vim.keymap.set("n", "gd", ":Lspsaga lsp_finder<CR>", opt)
+vim.keymap.set("n", "gp", ":Lspsaga peek_definition<CR>", opt)
+vim.keymap.set({ "n", "v" }, "ga", ":Lspsaga code_action<CR>", opt)
+vim.keymap.set("n", "gn", ":Lspsaga rename<CR>", opt)
+vim.keymap.set("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opt)
+vim.keymap.set("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opt)

@@ -42,7 +42,7 @@ return packer.startup(function(use)
   use({ "nvim-lua/plenary.nvim" }) -- Common utilities
 
   -- Colorschemes
-  use({ "EdenEast/nightfox.nvim" }) -- Color scheme
+  use({ "EdenEast/nightfox.nvim" })
 
   use({ "nvim-lualine/lualine.nvim", config = [[require('config.lualine')]] }) -- Statusline
   use({
@@ -50,7 +50,7 @@ return packer.startup(function(use)
     config = function()
       require("nvim-autopairs").setup({})
     end,
-  }) -- Autopairs, integrates with both cmp and treesitter
+  })                                      -- Autopairs, integrates with both cmp and treesitter
   use({ "kyazdani42/nvim-web-devicons" }) -- File icons
   use({
     "akinsho/bufferline.nvim",
@@ -64,13 +64,13 @@ return packer.startup(function(use)
     "hrsh7th/nvim-cmp",
     module = { "cmp" },
     requires = {
-      { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-path", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
+      { "hrsh7th/cmp-buffer",       event = { "InsertEnter" } },
+      { "hrsh7th/cmp-path",         event = { "InsertEnter" } },
+      { "hrsh7th/cmp-cmdline",      event = { "CmdlineEnter" } },
       { "saadparwaiz1/cmp_luasnip", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-nvim-lua", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
-      { "onsails/lspkind-nvim", event = { "InsertEnter" } },
+      { "hrsh7th/cmp-nvim-lua",     event = { "InsertEnter" } },
+      { "hrsh7th/cmp-nvim-lsp",     event = { "InsertEnter" } },
+      { "onsails/lspkind-nvim",     event = { "InsertEnter" } },
     },
     config = [[require('config.cmp')]],
   }) -- The completion plugin
@@ -83,7 +83,7 @@ return packer.startup(function(use)
     "williamboman/mason.nvim",
     event = { "VimEnter" },
     requires = {
-      { "neovim/nvim-lspconfig", opt = true },
+      { "neovim/nvim-lspconfig",             opt = true },
       { "williamboman/mason-lspconfig.nvim", opt = true },
     },
     wants = {
@@ -92,7 +92,14 @@ return packer.startup(function(use)
     },
     config = [[require('config.mason')]],
   }) -- simple to use language server installer
-  use({ "jose-elias-alvarez/null-ls.nvim", config = [[require('null-ls')]] }) -- for formatters and linters
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = {
+      "ThePrimeagen/refactoring.nvim",
+      "lewis6991/gitsigns.nvim",
+    },
+    config = [[require('config.null-ls')]],
+  })                                                                      -- for formatters and linters
   use({ "glepnir/lspsaga.nvim", config = [[require('config.lspsaga')]] }) -- LSP UIs
 
   -- Formatter
@@ -110,7 +117,7 @@ return packer.startup(function(use)
   })
 
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('config.treesitter')]] } )
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('config.treesitter')]] })
 
   -- Filer
   use({ "nvim-tree/nvim-tree.lua", config = [[require('config.nvim-tree')]] })
@@ -118,7 +125,7 @@ return packer.startup(function(use)
   -- Git
   use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
   use({ "tpope/vim-fugitive" })
-  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.diffview')]] })
 
   -- easymotion
   use({ "ggandor/leap.nvim", config = [[require('config.leap')]] })
@@ -145,14 +152,14 @@ return packer.startup(function(use)
   use({ "petertriho/nvim-scrollbar", config = [[require('config.nvim-scrollbar')]] })
   use({ "xiyaowong/nvim-cursorword", config = [[require('config/nvim-cursorword')]] })
   use({ "lukas-reineke/indent-blankline.nvim", config = [[require('config.indent-blankline')]] })
+  use({ "karb94/neoscroll.nvim", config = [[require('config.neoscroll')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })
 
   -- chatGpt
   use({
-    "shutils/ChatGPT.nvim",
-    commit = "485eecb",
+    "jackMort/ChatGPT.nvim",
     event = { "VimEnter" },
     config = [[require('config.ChatGPT')]],
     requires = {
@@ -172,6 +179,7 @@ return packer.startup(function(use)
     },
   })
 
+  -- diagnostic manager
   use({
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
@@ -183,7 +191,14 @@ return packer.startup(function(use)
   -- quickfix
   use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 
-  use({ "karb94/neoscroll.nvim", config = [[require('config.neoscroll')]] })
+  -- refactoring
+  use({
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

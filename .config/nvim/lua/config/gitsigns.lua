@@ -4,9 +4,11 @@ require("gitsigns").setup({
   word_diff = false,
 })
 
-vim.keymap.set("n", "[c", ":Gitsigns prev_hunk<CR>")
-vim.keymap.set("n", "]c", ":Gitsigns next_hunk<CR>")
-vim.keymap.set("n", "<Leader>gb", ":Gitsigns blame_line<CR>")
-vim.keymap.set("n", "<Leader>tb", ":Gitsigns toggle_current_line_blame<CR>")
-vim.keymap.set("n", "<Leader>td", ":Gitsigns toggle_deleted<CR>")
-vim.keymap.set("n", "<Leader>gd", ":Gitsigns diffthis<CR>")
+local opt = { silent = true, noremap = true }
+
+vim.keymap.set("n", "[c", ":Gitsigns prev_hunk<CR>", opt)
+vim.keymap.set("n", "]c", ":Gitsigns next_hunk<CR>", opt)
+vim.keymap.set("n", "<Leader>gb", ":Gitsigns blame_line<CR>", opt)
+vim.keymap.set("n", "<Leader>tb", ":Gitsigns toggle_current_line_blame<CR>", opt)
+vim.keymap.set("n", "<Leader>td", ":Gitsigns toggle_deleted<CR>", opt)
+vim.keymap.set("n", "<Leader>gd", ":Gitsigns diffthis<CR>", opt)
