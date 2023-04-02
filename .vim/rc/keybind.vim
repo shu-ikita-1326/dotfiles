@@ -13,6 +13,8 @@ inoremap <C-b> <LEFT>
 inoremap <C-f> <RIGHT>
 noremap H ^
 noremap L $
+noremap J 5j
+noremap K 5k
 
 " 特殊
 nnoremap <Leader>_ :source $MYVIMRC<CR>

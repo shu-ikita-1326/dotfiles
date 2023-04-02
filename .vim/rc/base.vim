@@ -7,6 +7,9 @@ let mapleader = "\<Space>"
 " スワップファイルを作らない
 set noswapfile
 
+" ビープ音を消す
+set belloff=all
+
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別せず検索する
 set ignorecase
@@ -20,6 +23,12 @@ set wrapscan
 set hlsearch
 " Leader + nでハイライトを消す
 noremap <silent><Leader>n :noh<CR>
+
+filetype on
+
+" インサートモードのカーソル形状制御
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 " インサートモードから抜けたときに半角入力に戻す
 " 環境変数zenhanにwindows側のzenhan実行ファイルのpathを記入しておく

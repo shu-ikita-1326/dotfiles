@@ -74,6 +74,9 @@ repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'skanehira/translate.vim'
+hook_add = '''
+vnoremap <Leader>tr :Translate<CR>
+'''
 
 [[plugins]]
 repo = 'vim-scripts/ReplaceWithRegister'
@@ -121,13 +124,16 @@ repo = 'Shougo/ddc-matcher_head'
 repo = 'Shougo/ddc-sorter_rank'
 
 [[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+
+[[plugins]]
 repo = 'Shougo/ddc.vim'
 hook_add = '''
 call ddc#custom#patch_global('ui', 'native')
 
 " Use around source.
 " https://github.com/Shougo/ddc-source-around
-call ddc#custom#patch_global('sources', ['around', 'vim-lsp'])
+call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'cmdline'])
 
 " Use matcher_head and sorter_rank.
 " https://github.com/Shougo/ddc-matcher_head
@@ -149,6 +155,11 @@ call ddc#custom#patch_global('sourceOptions', {
 		\ })
 call ddc#custom#patch_global('sourceParams', {
 		\ 'around': {'maxSize': 500},
+		\ })
+call ddc#custom#patch_global('sourceOptions', #{
+		\ cmdline: #{
+		\ mark: 'cmdline',
+		\ },
 		\ })
 
 " Customize settings on a filetype
@@ -202,4 +213,77 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+hook_add = '''
+call ddu#custom#patch_global({
+		\   'ui': 'ff',
+		\   'sources': [{'name': 'file_rec', 'params': {}}],
+		\   'sourceOptions': {
+		\     '_': {
+		\       'matchers': ['matcher_substring'],
+		\     },
+		\   },
+		\   'kindOptions': {
+		\     'file': {
+		\       'defaultAction': 'open',
+		\     },
+		\   },
+		\   'uiParams': {
+		\     'ff': {
+		\       'startFilter': v:true,
+		\     },
+		\   },
+		\	})
+nnoremap <Leader>fd :call ddu#start({})<CR>
+
+autocmd FileType ddu-ff call s:ddu_my_settings()
+function! s:ddu_my_settings() abort
+nnoremap <buffer> <CR>
+\ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+nnoremap <buffer> i
+\ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+nnoremap <buffer> q
+\ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+endfunction
+
+autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+function! s:ddu_filter_my_settings() abort
+inoremap <buffer> <CR>
+\ <Esc><Cmd>call ddu#ui#ff#do_action('leaveFilterWindow')<CR>
+nnoremap <buffer> <CR>
+\ <Cmd>call ddu#ui#ff#do_action('leaveFilterWindow')<CR>
+nnoremap <buffer> q
+\ <Cmd>call ddu#ui#ff#do_action('leaveFilterWindow')<CR>
+endfunction
+'''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+hook_add = '''
+augroup floaterm
+autocmd!
+autocmd FileType floaterm call s:floaterm_settings()
+function! s:floaterm_settings() abort
+tnoremap <silent> <C-c> <C-\><C-n>:FloatermHide<CR>
+endfunction
+autocmd QuitPre * FloatermKill!
+autocmd VimEnter * FloatermNew --height=0.8 --width=0.8 --silent --name=lazygit lazygit
+augroup END
+
+nnoremap <silent> <Leader>lg :FloatermShow lazygit<CR>
+'''
 
