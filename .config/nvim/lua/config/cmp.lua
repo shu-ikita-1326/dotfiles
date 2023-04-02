@@ -3,6 +3,14 @@ local luasnip = require("luasnip")
 
 cmp.setup({
   window = {
+    completion = {
+      border = 'rounded',
+      scrollbar = '║',
+    },
+    documentation = {
+      border = nil,
+      scrollbar = '',
+    }
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
   },
@@ -48,6 +56,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" }, -- For luasnip users.
+    { name = "cmdline" },
   }, {
     { name = "buffer" },
   }),
