@@ -140,10 +140,13 @@ repo = 'Shougo/ddc-source-cmdline'
 repo = 'Shougo/ddc-source-cmdline-history'
 
 [[plugins]]
+repo = 'tani/ddc-fuzzy'
+
+[[plugins]]
 repo = 'Shougo/pum.vim'
 hook_source = '''
   call pum#set_option(#{
-    \   auto_confirm_time: 1500,
+    \   auto_confirm_time: 0,
     \   horizontal_menu: v:false,
     \   max_width: 80,
     \   use_setline: v:false,
@@ -157,12 +160,11 @@ inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
-inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
 '''
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+depends = ['denops.vim', 'pum.vim']
 hook_source = '''
 call ddc#custom#patch_global('ui', 'pum')
 	call ddc#custom#patch_global('autoCompleteEvents',
@@ -170,8 +172,7 @@ call ddc#custom#patch_global('ui', 'pum')
 	nnoremap :       <Cmd>call CommandlinePre()<CR>:
 	
 	function! CommandlinePre() abort
-	  cnoremap <Tab> <Cmd>call pum#map#select_relative(1)<CR>
-	  cnoremap <S-Tab> <Cmd>call pum#map#select_relative(-1)<CR>
+	  cnoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
 	  cnoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
 	  cnoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
 	  cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
@@ -225,8 +226,10 @@ call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'cmdline'])
 " https://github.com/Shougo/ddc-sorter_rank
 call ddc#custom#patch_global('sourceOptions', {
 		\ '_': {
-		\   'matchers': ['matcher_head'],
-		\   'sorters': ['sorter_rank']},
+		\   'matchers': ['matcher_fuzzy'],
+		\   'sorters': ['sorter_fuzzy'],
+		\   'converters': ['converter_fuzzy'],
+		\ },
 		\ })
 
 " Change source options
@@ -333,6 +336,8 @@ repo = 'yuki-yano/ddu-filter-fzf'
 
 [[plugins]]
 repo = 'Shougo/ddu.vim'
+depends = ['denops.vim']
+on_source = ['denops.vim']
 hook_add = '''
 call ddu#custom#patch_global({
 		\   'ui': 'ff',
