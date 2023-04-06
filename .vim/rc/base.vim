@@ -7,6 +7,9 @@ let mapleader = "\<Space>"
 " スワップファイルを作らない
 set noswapfile
 
+" 別のバッファを開くときに自動でhideする
+set hidden
+
 " ビープ音を消す
 set belloff=all
 
