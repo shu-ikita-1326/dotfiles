@@ -27,8 +27,6 @@ if [ -n "$target_br"  ]; then
 fi
 
 }
-zle -N select-git-switch
-bindkey "^g" select-git-switch # 「control + G」で実行
 
 # fzfを使用してファイルをnvimで開く
 function fnv() {
@@ -157,6 +155,9 @@ function memo() {
     echo "option require."
   fi
 }
+
+zle -N ghq-fzf
+bindkey "^g" ghq-fzf # 「control + G」で実行
 #---------------------------------------------------------------------#
 #                   functions fin                                     #
 #---------------------------------------------------------------------#

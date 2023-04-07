@@ -53,9 +53,6 @@ vnoremap <Leader>tr :Translate<CR>
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-hook_source = '''
-let g:denops_server_addr = '127.0.0.1:32123'
-'''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -110,6 +107,9 @@ repo = 'Shougo/ddc-matcher_head'
 repo = 'Shougo/ddc-sorter_rank'
 
 [[plugins]]
+repo = 'matsui54/ddc-buffer'
+
+[[plugins]]
 repo = 'Shougo/ddc-source-cmdline'
 
 [[plugins]]
@@ -124,6 +124,7 @@ hook_source = '''
   call pum#set_option(#{
     \   auto_confirm_time: 0,
     \   horizontal_menu: v:false,
+    \   max_height: 10,
     \   max_width: 80,
     \   use_setline: v:false,
     \ })
@@ -146,6 +147,8 @@ call ddc#custom#patch_global('ui', 'pum')
 	call ddc#custom#patch_global('autoCompleteEvents',
 	\ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'])
 	nnoremap :       <Cmd>call CommandlinePre()<CR>:
+	nnoremap /       <Cmd>call CommandlinePre()<CR>/
+	nnoremap ?       <Cmd>call CommandlinePre()<CR>?
 	
 	function! CommandlinePre() abort
 	  cnoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
@@ -184,22 +187,17 @@ call ddc#custom#patch_global('ui', 'pum')
 	  endif
 	endfunction
   call ddc#custom#patch_global('cmdlineSources', {
-      \   ':': ['cmdline-history', 'cmdline', 'around'],
-      \   '@': ['cmdline-history', 'input', 'file', 'around'],
-      \   '>': ['cmdline-history', 'input', 'file', 'around'],
-      \   '/': ['around', 'line'],
-      \   '?': ['around', 'line'],
-      \   '-': ['around', 'line'],
-      \   '=': ['input'],
+      \   ':': ['cmdline-history', 'cmdline'],
+      \   '@': ['cmdline-history', 'around'],
+      \   '>': ['cmdline-history', 'around'],
+      \   '/': ['buffer', 'around'],
+      \   '?': ['around'],
+      \   '-': ['around'],
+      \   '=': [],
       \ })
 
-" Use around source.
-" https://github.com/Shougo/ddc-source-around
-call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'cmdline'])
+call ddc#custom#patch_global('sources', ['vim-lsp', 'buffer', 'cmdline'])
 
-" Use matcher_head and sorter_rank.
-" https://github.com/Shougo/ddc-matcher_head
-" https://github.com/Shougo/ddc-sorter_rank
 call ddc#custom#patch_global('sourceOptions', {
 		\ '_': {
 		\   'matchers': ['matcher_fuzzy'],
@@ -211,6 +209,9 @@ call ddc#custom#patch_global('sourceOptions', {
 " Change source options
 call ddc#custom#patch_global('sourceOptions', {
 		\ 'around': {'mark': 'A'},
+		\ })
+call ddc#custom#patch_global('sourceOptions', {
+		\ 'buffer': {'mark': 'Buf'},
 		\ })
 call ddc#custom#patch_global('sourceOptions', {
 		\ 'vim-lsp': {'mark': 'Lsp',
@@ -233,12 +234,6 @@ call ddc#custom#patch_global('sourceOptions', #{
 		\ cmdline-history: #{
 		\   mark: 'history',
 		\   sorters: [],
-		\ },
-		\ input: #{
-		\   mark: 'input',
-		\   forceCompletionPattern: '\S/\S*',
-		\   isVolatile: v:true,
-		\   dup: 'force',
 		\ },
 		\ })
 
@@ -264,6 +259,7 @@ inoremap <silent><expr> <TAB>
 
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
+inoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
 '''
 
 [[plugins]]
@@ -391,3 +387,10 @@ highlight link LspWarningHighlight Error
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+nnoremap <silent> ff :Files .<CR>
+nnoremap <silent> fh :History <CR>
+'''
