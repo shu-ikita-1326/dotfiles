@@ -9,7 +9,7 @@ My dotfiles
 1. Download<br>
       ```
       cd ~
-      git clone https://github.com/tohoho-2614/dotfiles.git
+      git clone https://github.com/shutils/dotfiles.git
       cd dotfiles
       ```
 2. Install
