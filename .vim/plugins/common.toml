@@ -76,10 +76,10 @@ augroup floaterm
 autocmd!
 autocmd FileType floaterm call s:floaterm_settings()
 function! s:floaterm_settings() abort
-tnoremap <silent> <C-c> <C-\><C-n>:FloatermHide<CR>
+tnoremap <buffer><silent> <C-c> <C-\><C-n>:FloatermHide<CR>
 endfunction
 autocmd QuitPre * FloatermKill!
-autocmd VimEnter * FloatermNew --height=0.8 --width=0.8 --silent --name=lazygit lazygit
+autocmd VimEnter * FloatermNew --height=0.9 --width=0.9 --silent --name=lazygit lazygit
 augroup END
 
 nnoremap <silent> <Leader>lg :FloatermShow lazygit<CR>
@@ -332,7 +332,7 @@ let historyOption = {
 \ },
 \}
 nnoremap <Leader>fd :call ddu#start({})<CR>
-nnoremap <Leader>h :call ddu#start(historyOption)<CR>
+nnoremap <Leader>fh :call ddu#start(historyOption)<CR>
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
@@ -389,8 +389,19 @@ highlight link LspWarningHighlight Error
 repo = 'shun/ddc-vim-lsp'
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
+repo = 'yuki-yano/fzf-preview.vim'
+branch = 'release/rpc'
 hook_add = '''
-nnoremap <silent> ff :Files .<CR>
-nnoremap <silent> fh :History <CR>
+augroup fzf
+autocmd!
+autocmd FileType fzf call s:fzf_settings()
+function! s:fzf_settings() abort
+tnoremap <buffer><silent> <C-c> <Esc>
+endfunction
+augroup END
+
+nnoremap <silent> <Leader>ff :FzfPreviewDirectoryFilesRpc<CR>
+nnoremap <silent> <Leader>h :FzfPreviewMruFilesRpc<CR>
+nnoremap <silent> <Leader>fb :FzfPreviewAllBuffersRpc<CR>
 '''
+
