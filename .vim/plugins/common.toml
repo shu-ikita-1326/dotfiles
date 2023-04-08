@@ -122,7 +122,7 @@ repo = 'tani/ddc-fuzzy'
 repo = 'Shougo/pum.vim'
 hook_source = '''
   call pum#set_option(#{
-    \   auto_confirm_time: 0,
+    \   auto_confirm_time: 3000,
     \   horizontal_menu: v:false,
     \   max_height: 10,
     \   max_width: 80,
@@ -152,8 +152,8 @@ call ddc#custom#patch_global('ui', 'pum')
 	
 	function! CommandlinePre() abort
 	  cnoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
-	  cnoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-	  cnoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+	  cnoremap <expr> <C-p> pum#visible() ? pum#map#insert_relative(-1) : "<Up>"
+	  cnoremap <expr> <C-n> pum#visible() ? pum#map#select_relative(+1) : "<Down>"
 	  cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
 	  cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 	
@@ -391,6 +391,9 @@ repo = 'shun/ddc-vim-lsp'
 [[plugins]]
 repo = 'yuki-yano/fzf-preview.vim'
 branch = 'release/rpc'
+hook_source = '''
+let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages -g "!{**/.git/*}"'
+'''
 hook_add = '''
 augroup fzf
 autocmd!

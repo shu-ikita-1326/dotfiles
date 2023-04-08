@@ -13,6 +13,23 @@ set hidden
 " ビープ音を消す
 set belloff=all
 
+" タブをスペース二つに変換
+set softtabstop=2
+set tabstop=2
+
+" undoファイルを~/.vim/undo/に作成する
+set undofile
+
+let s:undodir='~/.cache/vim/undo/'
+function! s:init_undofile_dir()
+  if !isdirectory(expand(s:undodir))
+    call mkdir(expand(s:undodir), 'p')
+  endif
+endfunction
+call s:init_undofile_dir()
+
+set undodir=~/.cache/vim/undo/ 
+
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別せず検索する
 set ignorecase
