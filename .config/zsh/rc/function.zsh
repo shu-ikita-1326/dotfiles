@@ -124,6 +124,7 @@ function ghq-fzf() {
   dirname=$(ghq list -p | fzf --reverse)
   if [ -n "$dirname" ]; then
     cd "$dirname"
+    zle accept-line
   fi
 }
 
