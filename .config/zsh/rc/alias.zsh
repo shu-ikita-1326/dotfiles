@@ -36,3 +36,4 @@ alias dcd='docker-compose down'
 # cd
 alias lab='cd ~/lab'
 alias dot='cd ~/dotfiles'
+alias cdd='zd'

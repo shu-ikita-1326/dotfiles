@@ -34,6 +34,11 @@ if [ ! -d ~/lab ]; then
 	mkdir ~/lab
 fi
 
+# zsh cdr履歴ディレクトリが存在していないかったら作成する
+if [ ! -d ~/.cache/shell ]; then
+  mkdir -p ~/.cache/shell
+fi
+
 # golang
 export PATH=$PATH:~/go/bin
 export GOPATH=~/go
