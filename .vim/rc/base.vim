@@ -54,8 +54,11 @@ let &t_EI = "\e[2 q"
 " 環境変数zenhanにwindows側のzenhan実行ファイルのpathを記入しておく
 if exists('$zenhan')
 	let &shell='/usr/bin/zsh --login'
-	autocmd InsertLeave * :call system("${zenhan} 0")
-	autocmd CmdlineLeave * :call system("${zenhan} 0")
+	augroup zenhan
+					autocmd!
+					autocmd InsertLeave * :call system("${zenhan} 0")
+					autocmd CmdlineLeave * :call system("${zenhan} 0")
+	augroup END
 endif
 
 " ctrl + cでInsertLeaveがフックするようにキーマップ
