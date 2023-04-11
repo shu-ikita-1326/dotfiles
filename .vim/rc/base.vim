@@ -17,6 +17,8 @@ set belloff=all
 set softtabstop=2
 set tabstop=2
 
+set shiftwidth=2
+
 " undoファイルを~/.vim/undo/に作成する
 set undofile
 
