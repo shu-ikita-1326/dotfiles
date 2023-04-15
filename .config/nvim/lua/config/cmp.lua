@@ -8,7 +8,7 @@ cmp.setup({
       scrollbar = '║',
     },
     documentation = {
-      border = nil,
+      border = 'rounded',
       scrollbar = '',
     }
     -- completion = cmp.config.window.bordered(),

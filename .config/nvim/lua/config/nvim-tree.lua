@@ -24,3 +24,8 @@ local config = {
 vim.keymap.set("n", "<Leader>e", ":NvimTreeFindFile<CR>:NvimTreeFocus<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<Leader>b", ":NvimTreeClose<CR>", { silent = true, noremap = true })
 require("nvim-tree").setup(config)
+
+-- autoclose
+vim.api.nvim_create_autocmd("QuitPre", {
+  command = "NvimTreeClose",
+})

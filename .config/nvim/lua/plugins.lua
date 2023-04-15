@@ -153,6 +153,7 @@ return packer.startup(function(use)
   use({ "xiyaowong/nvim-cursorword", config = [[require('config/nvim-cursorword')]] })
   use({ "lukas-reineke/indent-blankline.nvim", config = [[require('config.indent-blankline')]] })
   use({ "karb94/neoscroll.nvim", config = [[require('config.neoscroll')]] })
+  use({ "ray-x/lsp_signature.nvim", config = [[require('config.signature')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })
