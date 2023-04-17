@@ -8,6 +8,8 @@ mason_lspconfig.setup({
     "tsserver",
     "html",
     "gopls",
+    "docker_compose_language_service",
+    "dockerls",
   },
 })
 mason_lspconfig.setup_handlers({
