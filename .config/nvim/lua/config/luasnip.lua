@@ -5,3 +5,7 @@ ls.filetype_extend("vue", { "javascript" })
 ls.filetype_extend("typescript", { "javascript" })
 ls.filetype_extend("javascriptreact", { "javascript" })
 ls.filetype_extend("typescriptreact", { "javascriptreact" })
+
+ls.config.setup({
+  updateevents = "TextChanged, TextChangedI"
+})

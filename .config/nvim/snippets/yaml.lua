@@ -27,7 +27,7 @@ return {
       t("service_completed_successfully"),
     })
   }),
-  s({trig = "depends_on", regTrig = true}, {
+  s("depends_on", {
     t({ "depends_on:", "\t" }),
     c(1, {
       sn(nil, {

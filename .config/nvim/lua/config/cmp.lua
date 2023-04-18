@@ -20,19 +20,19 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<C-n>"] = cmp.mapping(function(fallback)
-      if luasnip.choice_active() then
-        luasnip.change_choice(1)
-      elseif cmp.visible() then
+      if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.choice_active() then
+        luasnip.change_choice(1)
       else
         fallback()
       end
     end, { "i", "s" }),
     ["<C-p>"] = cmp.mapping(function(fallback)
-      if luasnip.choice_active() then
-        luasnip.change_choice(-1)
-      elseif cmp.visible() then
+      if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.choice_active() then
+        luasnip.change_choice(-1)
       else
         fallback()
       end
