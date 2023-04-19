@@ -44,20 +44,10 @@ return packer.startup(function(use)
   -- Colorschemes
   use({ "EdenEast/nightfox.nvim" })
 
-  use({ "nvim-lualine/lualine.nvim", config = [[require('config.lualine')]] }) -- Statusline
-  use({
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup({})
-    end,
-  })                                      -- Autopairs, integrates with both cmp and treesitter
-  use({ "kyazdani42/nvim-web-devicons" }) -- File icons
-  use({
-    "akinsho/bufferline.nvim",
-    config = function()
-      require("bufferline").setup({})
-    end,
-  })
+  use({ "nvim-lualine/lualine.nvim", config = [[require('config.lualine')]] })                   -- Statusline
+  use({ "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup({}) end, }) -- Autopairs, integrates with both cmp and treesitter
+  use({ "kyazdani42/nvim-web-devicons" })                                                        -- File icons
+  use({ "akinsho/bufferline.nvim", config = [[require('config.bufferline')]] })
 
   -- cmp plugins
   use({

@@ -26,3 +26,13 @@ vim.keymap.set("n", "<Leader>r", "ciw<C-r>0<Esc>b")
 
 vim.keymap.set("i", "<C-c>", "<C-[>")
 vim.keymap.set("i", "<C-[>", "<C-c>")
+
+vim.keymap.set("c", "<C-f>", "<Right>")
+vim.keymap.set("c", "<C-b>", "<Left>")
+vim.keymap.set("c", "<C-a>", "<Home>")
+vim.keymap.set("c", "<C-e>", "<End>")
+
+vim.keymap.set("n", "<", "<<")
+vim.keymap.set("n", ">", ">>")
+vim.keymap.set("v", "<", "<<<Esc>gv")
+vim.keymap.set("v", ">", ">><Esc>gv")

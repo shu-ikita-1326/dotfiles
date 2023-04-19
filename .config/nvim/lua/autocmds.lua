@@ -21,3 +21,13 @@ autocmd("QuickfixCmdPost", {
   pattern = "*",
   command = "cwindow",
 })
+
+autocmd("WinEnter", {
+  pattern = "*",
+  command = "set cursorline",
+})
+
+autocmd("WinLeave", {
+  pattern = "*",
+  command = "set nocursorline",
+})
