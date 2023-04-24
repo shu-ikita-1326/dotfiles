@@ -43,10 +43,11 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use({ "EdenEast/nightfox.nvim" })
+  use({ "rebelot/kanagawa.nvim" })
 
   use({ "nvim-lualine/lualine.nvim", config = [[require('config.lualine')]] })                   -- Statusline
   use({ "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup({}) end, }) -- Autopairs, integrates with both cmp and treesitter
-  use({ "kyazdani42/nvim-web-devicons" })                                                        -- File icons
+  use({ "kyazdani42/nvim-web-devicons", config = [[require('config.devicons')]] })               -- File icons
   use({ "akinsho/bufferline.nvim", config = [[require('config.bufferline')]] })
 
   -- cmp plugins
@@ -110,11 +111,20 @@ return packer.startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('config.treesitter')]] })
 
   -- Filer
-  use({ "nvim-tree/nvim-tree.lua", config = [[require('config.nvim-tree')]] })
+  use({
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    config = [[require('config.neo-tree')]],
+  })
 
   -- Git
   use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
-  use({ "tpope/vim-fugitive" })
+  use({ "TimUntersberger/neogit", config = [[require('config.neogit')]], requires = { "sindrets/diffview.nvim" } })
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.diffview')]] })
 
   -- easymotion
@@ -144,6 +154,7 @@ return packer.startup(function(use)
   use({ "lukas-reineke/indent-blankline.nvim", config = [[require('config.indent-blankline')]] })
   use({ "karb94/neoscroll.nvim", config = [[require('config.neoscroll')]] })
   use({ "ray-x/lsp_signature.nvim", config = [[require('config.signature')]] })
+  use({ "stevearc/oil.nvim", config = function() require("oil").setup() end })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })
@@ -190,6 +201,10 @@ return packer.startup(function(use)
       "nvim-treesitter/nvim-treesitter",
     },
   })
+
+  -- markdown
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
