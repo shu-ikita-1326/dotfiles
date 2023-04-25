@@ -1,5 +1,6 @@
 local neotree = require("neo-tree")
 neotree.setup({
+  close_if_last_window = true,
   window = {
     mappings = {
       ["l"] = { "open" },
@@ -23,7 +24,7 @@ neotree.setup({
   },
   source_selector = {
     winbar = true,
-  }
+  },
 })
 
 vim.keymap.set("n", "<Leader>e", ":Neotree reveal=true<CR>", { silent = true, noremap = true })

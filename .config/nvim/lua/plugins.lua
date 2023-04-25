@@ -155,6 +155,8 @@ return packer.startup(function(use)
   use({ "karb94/neoscroll.nvim", config = [[require('config.neoscroll')]] })
   use({ "ray-x/lsp_signature.nvim", config = [[require('config.signature')]] })
   use({ "stevearc/oil.nvim", config = function() require("oil").setup() end })
+  use({ "wellle/targets.vim" })
+  use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })
@@ -182,13 +184,7 @@ return packer.startup(function(use)
   })
 
   -- diagnostic manager
-  use({
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup({})
-    end,
-  })
+  use({ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons", config = [[require('config.trouble')]] })
 
   -- quickfix
   use({ "kevinhwang91/nvim-bqf", ft = "qf" })
@@ -203,6 +199,8 @@ return packer.startup(function(use)
   })
 
   -- markdown
+  -- install without yarn or npm
+  use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, })
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
