@@ -51,7 +51,10 @@ function dox() {
 	local cname
 	cname=$(docker ps --format "{{.Names}}" | fzf --reverse)
 	if [ -n "$cname" ]; then
-	docker exec -it "$cname" bash
+    shell=$(echo 'bash\nsh' | fzf --reverse)
+    if [ -n "$shell" ]; then
+      docker exec -it "$cname" "$shell"
+    fi
 	fi
 }
 
