@@ -126,6 +126,7 @@ return packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
   use({ "TimUntersberger/neogit", config = [[require('config.neogit')]], requires = { "sindrets/diffview.nvim" } })
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.diffview')]] })
+  use({ "tpope/vim-fugitive" })
 
   -- easymotion
   use({ "ggandor/leap.nvim", config = [[require('config.leap')]] })
@@ -157,6 +158,7 @@ return packer.startup(function(use)
   use({ "stevearc/oil.nvim", config = function() require("oil").setup() end })
   use({ "wellle/targets.vim" })
   use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] })
+  use({ "szw/vim-maximizer", config = [[require('config.maximizer')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })

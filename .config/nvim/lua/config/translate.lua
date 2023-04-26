@@ -1,4 +1,12 @@
-require("translate").setup({})
+require("translate").setup({
+  preset = {
+    output = {
+      floating = {
+        zindex = 300
+      }
+    }
+  }
+})
 local opt = { silent = true, noremap = true }
 vim.keymap.set("v", "<Leader>tl", ":Translate ja<CR>", opt)
 vim.keymap.set("v", "<Leader>tle", ":Translate en -output=replace<CR>", opt)
