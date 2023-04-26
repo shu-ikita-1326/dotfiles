@@ -1,12 +1,6 @@
 require("chatgpt").setup({
-  keymaps = {
+  popup_input = {
     submit = "<C-s>",
-  },
-  chat_window = {
-    win_options = {
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-      wrap = true,
-    },
-  },
+  }
 })
 vim.keymap.set("n", "tk", ":ChatGPT<CR>")
