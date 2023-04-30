@@ -157,6 +157,7 @@ return packer.startup(function(use)
   use({ "ray-x/lsp_signature.nvim", config = [[require('config.signature')]] })
   use({ "stevearc/oil.nvim", config = function() require("oil").setup() end })
   use({ "wellle/targets.vim" })
+  use({ "tpope/vim-repeat" })
   use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] })
   use({ "szw/vim-maximizer", config = [[require('config.maximizer')]] })
 
@@ -200,11 +201,18 @@ return packer.startup(function(use)
     },
   })
 
+  -- browser
+  use({ "tyru/open-browser.vim", config = [[require('config.open-browser')]] })
+
   -- markdown
   -- install without yarn or npm
   use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, })
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
