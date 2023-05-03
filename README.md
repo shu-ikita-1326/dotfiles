@@ -12,24 +12,38 @@ My dotfiles
       git clone https://github.com/shutils/dotfiles.git
       cd dotfiles
       ```
-2. Install
+2. Install Homebrew
+      Check the Homebrew homepage for details
+      ```
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH' >> .bashrc
+      exec bash
+      ```
+3. Install zsh
+      ```
+      sudo apt update
+      sudo apt install zsh
+      ```
+4. Change shell
+      Note: If you make a mistake, the shell may not start.
+      ```
+      chsh /usr/bin/zsh
+      zsh
+      ```
+3. Install other
       ```
       ./install.sh
       ./install_tools.sh
       ```
-3. Change shell
-      ```
-      chsh /usr/bin/zsh
-      ```
-4. Change font<br>
+5. Change font<br>
   Please change the font to NerdFonts.<br>
   I use [HackGen](https://github.com/yuru7/HackGen) which is like to NerdFonts.<br>
-5. Setup zsh
+6. Setup zsh
       ```
       exec zsh
       ```
       Please complete setting [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
-6. neovim plugin install
+7. neovim plugin install
       ```
       nvim +PackerSync +qall
       ```
