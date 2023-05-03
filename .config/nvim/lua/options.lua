@@ -3,7 +3,6 @@ local options = {
   fileencoding = "utf-8",
   title = true,
   backup = false,
-  clipboard = "unnamedplus",
   cmdheight = 1,
   completeopt = { "menuone", "noselect" },
   conceallevel = 0,

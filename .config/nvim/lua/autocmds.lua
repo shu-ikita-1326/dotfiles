@@ -13,8 +13,8 @@ autocmd("TextYankPost", {
 
 -- Todo: osによって動作を切り替える
 autocmd("TextYankPost", {
-  pattern = "*",
-  command = ":call system('clip.exe', @0)",
+ pattern = "*",
+  command = ":call system('iconv -f UTF-8 -t UTF-16 | clip.exe', @0)",
 })
 
 autocmd("QuickfixCmdPost", {
