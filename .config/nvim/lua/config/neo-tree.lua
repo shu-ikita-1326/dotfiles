@@ -6,6 +6,8 @@ neotree.setup({
       ["l"] = { "open" },
       ["h"] = { "close_node" },
       ["i"] = { "node_info" },
+      ["P"] = { "preview_img" },
+      ["E"] = { "edit_drawio" },
     }
   },
   filesystem = {
@@ -20,6 +22,19 @@ neotree.setup({
       local node = state.tree:get_node()
       local path = node:get_id()
       print(vim.fn.getfsize(path))
+    -- Display image. depends on feh.
+    preview_img = function(state)
+      local node = state.tree:get_node()
+      local path = node:get_id()
+      local cmd = '!feh ' .. path
+      vim.cmd(cmd)
+    end,
+    -- Edit drawio file. It depends on draio.
+    edit_drawio = function(state)
+      local node = state.tree:get_node()
+      local path = node:get_id()
+      local cmd = '!drawio ' .. path
+      vim.cmd(cmd)
     end
   },
   source_selector = {
