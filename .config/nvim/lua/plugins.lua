@@ -160,6 +160,7 @@ return packer.startup(function(use)
   use({ "tpope/vim-repeat" })
   use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] })
   use({ "szw/vim-maximizer", config = [[require('config.maximizer')]] })
+  use({ "xiyaowong/transparent.nvim", config = [[require('config.transparent')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })
