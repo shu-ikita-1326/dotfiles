@@ -27,7 +27,7 @@ My dotfiles
 4. Change shell
       Note: If you make a mistake, the shell may not start.
       ```
-      chsh /usr/bin/zsh
+      chsh -s /usr/bin/zsh
       zsh
       ```
 3. Install other
