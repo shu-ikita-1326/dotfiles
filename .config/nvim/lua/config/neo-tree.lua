@@ -22,6 +22,7 @@ neotree.setup({
       local node = state.tree:get_node()
       local path = node:get_id()
       print(vim.fn.getfsize(path))
+    end,
     -- Display image. depends on feh.
     preview_img = function(state)
       local node = state.tree:get_node()
