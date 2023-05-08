@@ -5,17 +5,33 @@ local keybindings = require("config.keybindings")
 
 local config = {}
 
+local enable_wez_mux_key = false
+
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+wezterm.on("activate-wez-mux-key", function()
+  enable_wez_mux_key = true
+end)
+
+wezterm.on("deactivate-wez-mux-key", function()
+  enable_wez_mux_key = false
+end)
+
+
 wezterm.on('update-right-status', function(window, pane)
   local date = wezterm.strftime '%Y-%m-%d %H:%M:%S'
 
+  local mode = "TMUX"
+  if enable_wez_mux_key then
+    mode = "WEZMUX"
+  end
+  window:set_left_status(wezterm.format {
+    { Text = " " .. mode .. " " },
+  })
   -- Make it italic and underlined
   window:set_right_status(wezterm.format {
-    { Attribute = { Underline = 'Single' } },
-    { Attribute = { Italic = true } },
     { Text = " " .. date .. " " },
   })
 end)
@@ -75,6 +91,11 @@ config.launch_menu = {
     label = "zsh",
     args = { "zsh", "-l" }
   },
+}
+
+config.inactive_pane_hsb = {
+  saturation = 0.7,
+  brightness = 0.4
 }
 
 return config

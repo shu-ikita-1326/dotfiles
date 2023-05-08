@@ -7,17 +7,13 @@ M.keys = {
   {
     key = "T",
     mods = "CTRL",
-    action = wezterm.action.ActivateKeyTable {
-      name = "use_real_tmux",
-      one_shot = false,
-    },
-  },
-  {
-    key = "j",
-    mods = "CTRL",
-    action = wezterm.action.ActivateKeyTable {
-      name = "tmux_keybind",
-    },
+    action = wezterm.action.Multiple {
+      wezterm.action.EmitEvent "activate-wez-mux-key",
+      wezterm.action.ActivateKeyTable {
+        name = "use_wez_mux",
+        one_shot = false,
+      },
+    }
   },
   {
     key = "L",
@@ -59,19 +55,21 @@ M.keys = {
 }
 
 M.key_tables = {
-  use_real_tmux = {
+  use_wez_mux = {
     {
       key = "j",
       mods = "CTRL",
-      action = wezterm.action.SendKey {
-        key = "j",
-        mods = "CTRL",
+      action = wezterm.action.ActivateKeyTable {
+        name = "tmux_keybind",
       },
     },
     {
       key = "T",
       mods = "CTRL",
-      action = wezterm.action.PopKeyTable
+      action = wezterm.action.Multiple {
+        wezterm.action.EmitEvent "deactivate-wez-mux-key",
+        wezterm.action.PopKeyTable
+      }
     },
   },
   tmux_keybind = {
