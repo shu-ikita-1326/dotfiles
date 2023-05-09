@@ -161,6 +161,7 @@ return packer.startup(function(use)
   use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = [[require('config.todo-comments')]] })
   use({ "szw/vim-maximizer", config = [[require('config.maximizer')]] })
   use({ "xiyaowong/transparent.nvim", config = [[require('config.transparent')]] })
+  use({ "monaqa/dial.nvim", config = [[require('config.dial')]] })
 
   -- outline
   use({ "stevearc/aerial.nvim", config = [[require('config.aerial')]] })

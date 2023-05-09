@@ -37,5 +37,3 @@ vim.keymap.set("n", ">", ">>")
 vim.keymap.set("v", "<", "<<<Esc>gv")
 vim.keymap.set("v", ">", ">><Esc>gv")
 
-vim.keymap.set({"n", "v"}, "<C-n>", "<C-a>")
-vim.keymap.set({"n", "v"}, "<C-p>", "<C-x>")
