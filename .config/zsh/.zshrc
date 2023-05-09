@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# for wezterm
+source $ZRCDIR/wezterm.sh
+
 PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
 # base
@@ -31,3 +34,4 @@ fi
 if [ -f ~/.localfunction.zsh ]; then
 	source ~/.localfunction.zsh
 fi
+
