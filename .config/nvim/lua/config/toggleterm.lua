@@ -15,7 +15,7 @@ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "floa
 
 function _lazygit_toggle()
   if vim.env.TMUX then
-    os.execute('tmux popup -w90% -h90% -E "lazygit"')
+    os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'lazygit'")
   else
     lazygit:toggle()
   end
