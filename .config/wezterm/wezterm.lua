@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
-local utils = wezterm.utils
+local utils = require("config.utils")
 local keybindings = require("config.keybindings")
 
 local config = {}
@@ -97,5 +97,13 @@ config.inactive_pane_hsb = {
   saturation = 0.7,
   brightness = 0.4
 }
+
+-- local settings
+
+if utils.file_exists(wezterm.config_dir .. "/localconf.lua") then
+  for k, v in pairs(require("localconf")) do
+    config[k] = v
+  end
+end
 
 return config

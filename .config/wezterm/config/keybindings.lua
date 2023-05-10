@@ -1,11 +1,12 @@
 local wezterm = require("wezterm")
+local utils = require("config.utils")
 local mux = wezterm.mux
 local M = {}
 
 -- keybindings
 M.keys = {
   {
-    key = "T",
+    key = "m",
     mods = "CTRL",
     action = wezterm.action.Multiple {
       wezterm.action.EmitEvent "activate-wez-mux-key",
@@ -43,6 +44,26 @@ M.keys = {
     action = wezterm.action.ActivateCommandPalette,
   },
   {
+    key = "F",
+    mods = "CTRL",
+    action = wezterm.action.QuickSelect,
+  },
+  {
+    key = 'O',
+    mods = "CTRL",
+    action = wezterm.action.QuickSelectArgs {
+      label = 'open url',
+      patterns = {
+        'https?://\\S+',
+      },
+      action = wezterm.action_callback(function(window, pane)
+        local url = window:get_selection_text_for_pane(pane)
+        wezterm.log_info('opening: ' .. url)
+        wezterm.open_with(url)
+      end),
+    },
+  },
+  {
     key = ";",
     mods = "CTRL",
     action = wezterm.action.IncreaseFontSize,
@@ -64,7 +85,7 @@ M.key_tables = {
       },
     },
     {
-      key = "T",
+      key = "m",
       mods = "CTRL",
       action = wezterm.action.Multiple {
         wezterm.action.EmitEvent "deactivate-wez-mux-key",
@@ -85,14 +106,14 @@ M.key_tables = {
     },
     { key = "v", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
     { key = "s", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" } },
-    { key = "h", action = wezterm.action.ActivatePaneDirection "Left", },
-    { key = "l", action = wezterm.action.ActivatePaneDirection "Right" },
-    { key = "k", action = wezterm.action.ActivatePaneDirection "Up" },
-    { key = "j", action = wezterm.action.ActivatePaneDirection "Down", },
-    { key = "H", action = wezterm.action.AdjustPaneSize { "Left", 5 } },
-    { key = "L", action = wezterm.action.AdjustPaneSize { "Right", 5 } },
-    { key = "K", action = wezterm.action.AdjustPaneSize { "Up", 5 } },
-    { key = "J", action = wezterm.action.AdjustPaneSize { "Down", 5 } },
+    utils.set_move_pane_key("h", "Left", 500),
+    utils.set_move_pane_key("l", "Right", 500),
+    utils.set_move_pane_key("k", "Up", 500),
+    utils.set_move_pane_key("j", "Down", 500),
+    utils.set_resize_pane_key("H", "Left", 500, 5),
+    utils.set_resize_pane_key("L", "Right", 500, 5),
+    utils.set_resize_pane_key("K", "Up", 500, 3),
+    utils.set_resize_pane_key("J", "Down", 500, 3),
     { key = "n", action = wezterm.action.ActivateTabRelative(-1) },
     { key = "p", action = wezterm.action.ActivateTabRelative(1) },
     { key = "z", action = wezterm.action.TogglePaneZoomState },
@@ -115,20 +136,6 @@ M.key_tables = {
         one_shot = false,
         timeout_milliseconds = 500
       }
-    },
-    {
-      key = 'o',
-      action = wezterm.action.QuickSelectArgs {
-        label = 'open url',
-        patterns = {
-          'https?://\\S+',
-        },
-        action = wezterm.action_callback(function(window, pane)
-          local url = window:get_selection_text_for_pane(pane)
-          wezterm.log_info('opening: ' .. url)
-          wezterm.open_with(url)
-        end),
-      },
     },
     {
       key = ",",
