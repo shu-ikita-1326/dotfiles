@@ -29,4 +29,12 @@ function M.set_resize_pane_key(key, direction, timeout_msec, num)
   }
 end
 
+function M.file_exists(path)
+  local f = io.open(path, "r")
+  if f ~= nil then
+    io.close(f)
+    return true else return false
+  end
+end
+
 return M
