@@ -1,4 +1,11 @@
-require("toggleterm").setup()
+local autocmd = vim.api.nvim_create_autocmd
+require("toggleterm").setup({
+  highlights = {
+    Normal = {
+      link = 'Normal'
+    }
+  }
+})
 
 local Terminal = require("toggleterm.terminal").Terminal
 local tig = Terminal:new({ cmd = "tig", hidden = true, direction = "float" })
@@ -56,3 +63,15 @@ vim.keymap.set("n", "<Leader>lg", ":lua _lazygit_toggle()<CR>", { noremap = true
 vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>ch", ":lua _gocheat_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>to", ":lua _term_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>tt", ":ToggleTerm<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>tv", ":ToggleTerm size=80 direction=vertical<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>ts", ":ToggleTerm direction=horizontal<CR>", { noremap = true, silent = true })
+
+function _G.set_terminal_keymaps()
+  vim.keymap.set("t", "<C-\\>", "<C-\\><C-N>")
+end
+
+autocmd("TermOpen", {
+  pattern = "*",
+  command = "lua set_terminal_keymaps()",
+})
