@@ -39,8 +39,8 @@ M.keys = {
     action = wezterm.action.ShowDebugOverlay,
   },
   {
-    key = "P",
-    mods = "CTRL",
+    key = "p",
+    mods = "ALT",
     action = wezterm.action.ActivateCommandPalette,
   },
   {
@@ -49,12 +49,22 @@ M.keys = {
     action = wezterm.action.QuickSelect,
   },
   {
+    key = "P",
+    mods = "CTRL",
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+  {
+    key = "N",
+    mods = "CTRL",
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  {
     key = 'O',
     mods = "CTRL",
     action = wezterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
-        'https?://\\S+',
+        '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
       },
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)

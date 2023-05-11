@@ -42,7 +42,7 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
-config.font = wezterm.font("HackGen Console NFJ", { italic = false })
+config.font = wezterm.font("Cica", { italic = false })
 config.font_size = 11.0
 config.background = {
   {
@@ -79,6 +79,7 @@ config.key_tables = keybindings.key_tables
 
 -- other
 config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
 
 -- launch_menu
 config.launch_menu = {
@@ -101,7 +102,7 @@ config.inactive_pane_hsb = {
 -- local settings
 
 if utils.file_exists(wezterm.config_dir .. "/localconf.lua") then
-  for k, v in pairs(require("localconf")) do
+  for k, v in pairs(require("localconf") or {}) do
     config[k] = v
   end
 end
