@@ -31,3 +31,13 @@ autocmd("WinLeave", {
   pattern = "*",
   command = "set nocursorline",
 })
+
+autocmd("TermOpen", {
+  pattern = "term://*",
+  command = "startinsert | set nonumber",
+})
+
+autocmd("WinEnter", {
+  pattern = "term://*",
+  command = "startinsert",
+})

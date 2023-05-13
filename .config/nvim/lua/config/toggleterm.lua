@@ -4,7 +4,10 @@ require("toggleterm").setup({
     Normal = {
       link = 'Normal'
     }
-  }
+  },
+  auto_scroll = true,
+  start_in_insert = true,
+  open_mapping = [[<C-\><C-n>]]
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
@@ -63,15 +66,23 @@ vim.keymap.set("n", "<Leader>lg", ":lua _lazygit_toggle()<CR>", { noremap = true
 vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>ch", ":lua _gocheat_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>to", ":lua _term_toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>tt", ":ToggleTerm<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>tt", ":ToggleTermToggleAll<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>t1", ":ToggleTerm<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>t2", "<Cmd>ToggleTerm<CR><Cmd>2ToggleTerm<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>t3", "<Cmd>ToggleTerm<CR><Cmd>2ToggleTerm<CR><Cmd>3ToggleTerm<CR>",
+  { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tv", ":ToggleTerm size=80 direction=vertical<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>ts", ":ToggleTerm direction=horizontal<CR>", { noremap = true, silent = true })
 
 function _G.set_terminal_keymaps()
-  vim.keymap.set("t", "<C-\\>", "<C-\\><C-N>")
+  local opts = { buffer = 0 }
+  vim.keymap.set('n', '<C-j>h', "i<Cmd>wincmd h<CR>", opts)
+  vim.keymap.set('n', '<C-j>j', "i<Cmd>wincmd j<CR>", opts)
+  vim.keymap.set('n', '<C-j>k', "i<Cmd>wincmd k<CR>", opts)
+  vim.keymap.set('n', '<C-j>l', "i<Cmd>wincmd l<CR>", opts)
 end
 
 autocmd("TermOpen", {
-  pattern = "*",
+ pattern = "term://*",
   command = "lua set_terminal_keymaps()",
 })
