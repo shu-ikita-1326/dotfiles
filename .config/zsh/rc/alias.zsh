@@ -22,6 +22,12 @@ alias lg='lazygit'
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
+if command -v exa >/dev/null 2>&1; then
+  alias ll='exa -lamh --color=auto --icons --octal-permissions --time-style=long-iso --git'
+  alias lt='exa -lamhT --level=2 --color=always --icons --octal-permissions --time-style=long-iso --git'
+  # normal ll
+  alias lln='ls -la'
+fi
 
 # docker
 alias dowatch='watch -t \''docker ps --all --format \"{{.Names}}: {{.Status}}\"\'''

@@ -84,3 +84,9 @@ if !(type "onefetch" > /dev/null 2>&1); then
   brew install onefetch > /dev/null
 fi
 
+# sheldon
+if !(type "sheldon" > /dev/null 2>&1); then
+  echo 'Installing sheldon...'
+  brew install sheldon > /dev/null
+fi
+

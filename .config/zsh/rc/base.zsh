@@ -23,6 +23,8 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+bindkey '^ ' autosuggest-execute
+bindkey '^U' forward-word
 bindkey '^Y' autosuggest-accept
 
 export SHELL=/usr/bin/zsh

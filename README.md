@@ -37,7 +37,7 @@ My dotfiles
       ```
 5. Change font<br>
   Please change the font to NerdFonts.<br>
-  I use [HackGen](https://github.com/yuru7/HackGen) which is like to NerdFonts.<br>
+  I use [Cica](https://github.com/miiton/Cica) which is like to NerdFonts.<br>
 6. Setup zsh
       ```
       exec zsh

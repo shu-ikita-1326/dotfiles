@@ -124,7 +124,11 @@ function desk() {
 # fzfを使用してghqが管理しているディレクトリを選択して移動する
 function ghq-fzf() {
   local dirname
-  dirname=$(ghq list -p | fzf --reverse)
+  if command -v onefetch >/dev/null 2>&1; then
+    dirname=$(ghq list -p | fzf --reverse --preview 'onefetch {}')
+  else
+    dirname=$(ghq list -p | fzf --reverse)
+  fi
   if [ -n "$dirname" ]; then
     cd "$dirname"
     zle accept-line
