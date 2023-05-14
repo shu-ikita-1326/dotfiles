@@ -1,6 +1,8 @@
 " 行番号を表示
 set number
 
+set encoding=utf-8
+
 " Leaderキーをスペースに変更
 let mapleader = "\<Space>"
 
