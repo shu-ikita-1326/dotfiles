@@ -52,7 +52,7 @@ config.background = {
     opacity = 0.95
   },
   {
-    source = { File = wezterm.config_dir .. "/background/background.png" },
+    source = { File = wezterm.config_dir .. "/background/img/background.png" },
     repeat_x = "NoRepeat",
     height = "Contain",
     width = "Contain",

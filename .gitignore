@@ -26,6 +26,10 @@
 !/.config/sheldon/**
 !/.config/wezterm/
 !/.config/wezterm/**
+/.config/wezterm/localconf.lua
+/.config/wezterm/background/settings.lua
+/.config/wezterm/background/img/**
+!/.config/wezterm/background/img/background.png
 !/.config/lazygit/
 !/.config/lazygit/config.yml
 /.config/zsh/.zcompdump

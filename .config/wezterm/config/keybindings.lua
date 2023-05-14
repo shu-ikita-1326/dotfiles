@@ -2,11 +2,12 @@ local wezterm = require("wezterm")
 local utils = require("config.utils")
 local mux = wezterm.mux
 local M = {}
+local bg = require("background")
 
 -- keybindings
 M.keys = {
   {
-    key = "m",
+    key = "J",
     mods = "CTRL",
     action = wezterm.action.Multiple {
       wezterm.action.EmitEvent "activate-wez-mux-key",
@@ -83,6 +84,33 @@ M.keys = {
     mods = "CTRL",
     action = wezterm.action.DecreaseFontSize,
   },
+  {
+    key = "B",
+    mods = "CTRL",
+    action = wezterm.action.InputSelector {
+      action = wezterm.action_callback(function(window, pane, id, label)
+        if not id and not label then
+          wezterm.log_info("cancelled")
+        else
+          for k, v in pairs(bg.settings) do
+            if label == k then
+              local overrides = window:get_config_overrides() or {}
+              overrides.background = v
+              wezterm.log_info("changed background.")
+              window:set_config_overrides(overrides)
+            end
+          end
+        end
+      end),
+      title = "Choice background.",
+      choices = bg.list
+    }
+  },
+  {
+    key = "R",
+    mods = "CTRL",
+    action = wezterm.action.ReloadConfiguration
+  },
 }
 
 M.key_tables = {
@@ -95,7 +123,7 @@ M.key_tables = {
       },
     },
     {
-      key = "m",
+      key = "J",
       mods = "CTRL",
       action = wezterm.action.Multiple {
         wezterm.action.EmitEvent "deactivate-wez-mux-key",
