@@ -217,6 +217,23 @@ return packer.startup(function(use)
     ft = { "markdown" },
   })
 
+  -- org mode
+  use({
+    "nvim-orgmode/orgmode",
+    config = function()
+      require("orgmode").setup({
+        org_agenda_files = {"~/org/*.org"},
+        win_split_mode = {'float', 0.9},
+        org_default_notes_file = "~/org/refile.org",
+      })
+      require("orgmode").setup_ts_grammar()
+    end,
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

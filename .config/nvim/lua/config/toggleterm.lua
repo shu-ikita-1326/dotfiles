@@ -11,44 +11,70 @@ require("toggleterm").setup({
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
-local tig = Terminal:new({ cmd = "tig", hidden = true, direction = "float" })
 
-function _tig_toggle()
-  if vim.env.TMUX then
-    os.execute('tmux popup -w90% -h90% -E "tig"')
-  else
-    tig:toggle()
+if vim.fn.executable("tig") == 1 then
+  local tig = Terminal:new({ cmd = "tig", hidden = true, direction = "float" })
+  function _tig_toggle()
+    if vim.env.TMUX then
+      os.execute('tmux popup -w90% -h90% -E "tig"')
+    else
+      tig:toggle()
+    end
   end
+
+  vim.keymap.set("n", "<Leader>tig", ":lua _tig_toggle()<CR>", { noremap = true, silent = true })
 end
 
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
-
-function _lazygit_toggle()
-  if vim.env.TMUX then
-    os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'lazygit'")
-  else
-    lazygit:toggle()
+if vim.fn.executable("lazygit") == 1 then
+  local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+  function _lazygit_toggle()
+    if vim.env.TMUX then
+      os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'lazygit'")
+    else
+      lazygit:toggle()
+    end
   end
+
+  vim.keymap.set("n", "<Leader>lg", ":lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 end
 
-local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
-
-function _lazydocker_toggle()
-  if vim.env.TMUX then
-    os.execute('tmux popup -w90% -h90% -E "lazydocker"')
-  else
-    lazydocker:toggle()
+if vim.fn.executable("lazydocker") == 1 then
+  local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
+  function _lazydocker_toggle()
+    if vim.env.TMUX then
+      os.execute('tmux popup -w90% -h90% -E "lazydocker"')
+    else
+      lazydocker:toggle()
+    end
   end
+
+  vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 end
 
-local gocheat = Terminal:new({ cmd = "gocheat", hidden = true, direction = "float" })
-
-function _gocheat_toggle()
-  if vim.env.TMUX then
-    os.execute('tmux popup -w90% -h90% -E "gocheat"')
-  else
-    gocheat:toggle()
+if vim.fn.executable("gocheat") == 1 then
+  local gocheat = Terminal:new({ cmd = "gocheat", hidden = true, direction = "float" })
+  function _gocheat_toggle()
+    if vim.env.TMUX then
+      os.execute('tmux popup -w90% -h90% -E "gocheat"')
+    else
+      gocheat:toggle()
+    end
   end
+
+  vim.keymap.set("n", "<Leader>ch", ":lua _gocheat_toggle()<CR>", { noremap = true, silent = true })
+end
+
+if vim.fn.executable("emacs") == 1 then
+  local org = Terminal:new({ cmd = "emacs", hidden = true, direction = "float" })
+  function _org_toggle()
+    if vim.env.TMUX then
+      os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'emacs'")
+    else
+      org:toggle()
+    end
+  end
+
+  vim.keymap.set("n", "<Leader>org", ":lua _org_toggle()<CR>", { noremap = true, silent = true })
 end
 
 local term = Terminal:new({ hidden = true, direction = "float" })
@@ -61,10 +87,6 @@ function _term_toggle()
   end
 end
 
-vim.keymap.set("n", "<Leader>tig", ":lua _tig_toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>lg", ":lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>ch", ":lua _gocheat_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>to", ":lua _term_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", ":ToggleTermToggleAll<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>t1", ":ToggleTerm<CR>", { noremap = true, silent = true })
@@ -83,6 +105,6 @@ function _G.set_terminal_keymaps()
 end
 
 autocmd("TermOpen", {
- pattern = "term://*",
+  pattern = "term://*",
   command = "lua set_terminal_keymaps()",
 })

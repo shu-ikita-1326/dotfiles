@@ -16,6 +16,7 @@ ts.setup({
     "vim",
     "regex",
     "bash",
+    "org",
   },
   highlight = {
     enable = true,

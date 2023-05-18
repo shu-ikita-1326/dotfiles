@@ -2,10 +2,6 @@
 #                   function                                          #
 #---------------------------------------------------------------------#
 
-# fzfをパスに追加
-export PATH=$PATH:~/.fzf/bin
-source ~/.fzf.zsh
-
 # tmuxで使用している場合tmuxのポップアップでfzfを使用する
 if [ -n "$TMUX" ]; then
 	export FZF_TMUX=1
