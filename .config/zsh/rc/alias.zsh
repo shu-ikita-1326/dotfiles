@@ -43,3 +43,7 @@ alias dcd='docker-compose down'
 alias lab='cd ~/lab'
 alias dot='cd ~/dotfiles'
 alias cdd='zd'
+
+# emacs
+alias emacsc="emacsclient -t -a ''"
+alias emacsk="emacsclient -e '(kill-emacs)'"
