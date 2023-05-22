@@ -85,7 +85,7 @@ require("lazy").setup({
     config = function()
       require("config.mason")
     end,
-    event = "LspAttach",
+    event = "VimEnter",
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -259,7 +259,7 @@ require("lazy").setup({
     config = function()
       require("config.dial")
     end,
-    keys = { { "<C-a>", mode = "n" }, { "<C-x>", mode = "n" } },
+    event = "VimEnter",
   },
   {
     "stevearc/aerial.nvim",
