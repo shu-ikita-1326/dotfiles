@@ -65,16 +65,16 @@ if vim.fn.executable("gocheat") == 1 then
 end
 
 if vim.fn.executable("emacs") == 1 then
-  local org = Terminal:new({ cmd = "emacs", hidden = true, direction = "float" })
+  local org = Terminal:new({ cmd = "emacsclient -t -a '' ~/org/tasks.org", hidden = true, direction = "float" })
   function _org_toggle()
     if vim.env.TMUX then
-      os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'emacs'")
+      os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'emacsclient -t -a \"\" ~/org/tasks.org'")
     else
       org:toggle()
     end
   end
 
-  vim.keymap.set("n", "<Leader>org", ":lua _org_toggle()<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<Leader><C-o>", ":lua _org_toggle()<CR>", { noremap = true, silent = true })
 end
 
 local term = Terminal:new({ hidden = true, direction = "float" })
