@@ -33,6 +33,8 @@
 !/.config/lazygit/
 !/.config/lazygit/config.yml
 /.config/zsh/.zcompdump
+!/scripts
+!/scripts/**
 !/.vimrc
 !/.vim/
 !/.vim/*.toml
