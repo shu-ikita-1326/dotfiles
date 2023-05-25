@@ -271,7 +271,7 @@ require("lazy").setup({
 
   -- ChatGPT
   {
-    "jackMort/ChatGPT.nvim",
+    "shutils/ChatGPT.nvim",
     dependancies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
@@ -280,7 +280,7 @@ require("lazy").setup({
     config = function()
       require("config.ChatGPT")
     end,
-    event = "VimEnter",
+    branch = "customize",
   },
 
   -- refactoring

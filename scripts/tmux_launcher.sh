@@ -21,9 +21,12 @@ options=(
   "Create tmux session from z directory"
   "Create tmux session for ssh connection"
   "Create tmux session for dotfiles"
+  "Launch cheat.sh"
+  "Launch man"
   "Launch tldr"
   "Launch lazygit"
   "Launch lazydocker"
+  "Launch ChatGPT on nvim"
   "Toggle tmux synchronize panes"
 )
 
@@ -57,6 +60,30 @@ case $selected_option in
     fi
     '
     ;;
+  "Launch cheat.sh")
+    # tldrの起動
+    tmux popup -E -h 80% -w 120 'trap "echo exit" 2
+    read -p "Enter chaet query (foo/buzz): " query
+    if [ -n "$query" ]; then
+      curl -s cheat.sh/$query | less -R
+    fi
+    '
+    ;;
+  "Launch man")
+    # manのインストールを確認
+    if ! command -v man >/dev/null 2>&1; then
+      echo "man is not installed. Please install man."
+      exit 1
+    fi
+    # manの起動
+    # TODO:存在しないコマンドを入力されたときのハンドリング
+    tmux popup -E -h 80% -w 80%  'trap "echo exit" 2
+    read -p "Enter man words: " words
+    if [ -n "$words" ]; then
+      man $words
+    fi
+    '
+    ;;
   "Launch tldr")
     # tldrのインストールを確認
     if ! command -v tldr >/dev/null 2>&1; then
@@ -64,7 +91,7 @@ case $selected_option in
       exit 1
     fi
     # tldrの起動
-    tmux popup -E -h 80% -w 120 'trap "echo exit" 2
+    tmux popup -E -h 80% -w 80%  'trap "echo exit" 2
     read -p "Enter tldr words: " words
     if [ -n "$words" ]; then
       tldr $words | less -R
@@ -161,6 +188,16 @@ case $selected_option in
       tmux new-session -Dd -s "$session_name" -c "$directory"
       tmux switch-client -t "$session_name"
     fi
+    ;;
+  "Launch ChatGPT on nvim")
+    # nvimのインストールを確認
+    if ! command -v nvim >/dev/null 2>&1; then
+      echo "nvim is not installed. Please install nvim."
+      exit 1
+    fi
+    # ChatGPTの起動
+    # TODO:ChatGPTがnvimに入っていない場合のハンドリング
+    tmux popup -E -h 80% -w 80% "nvim --cmd 'let from_shell=v:true' -c ChatGPT"
     ;;
   *) echo "Invalid option";;
 esac
