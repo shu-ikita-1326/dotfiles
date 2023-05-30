@@ -1,0 +1,1 @@
+../../../nvim/lua/config/aerial.lua
