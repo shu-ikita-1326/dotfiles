@@ -129,10 +129,19 @@ function create_session_from_ssh () {
   # .ssh/configからHostを選択して接続する
   host=$(awk '/^Host/ {print $2}' ~/.ssh/config | fzf-tmux -w 60 -h 20 --reverse)
   if [ -n "$host" ]; then
+    exists=false
+    for session in $(tmux ls | awk '{print $1}' | sed 's/://'); do
+      if [ "$session" = "$host"]; then
+        exists=true
+        break
+      fi
+    done
     session_name=$(basename "$host")
     tmux new-session -Dd -s "$session_name"
     tmux switch-client -t "$session_name"
-    tmux send-keys "ssh $host" C-m
+    if ! "${exists}"; then
+      tmux send-keys "ssh $host" C-m
+    fi
   fi
 }
 
@@ -143,6 +152,20 @@ function create_session_for_dotfiles () {
   fi
   # .ssh/configからHostを選択して接続する
   directory=$(echo ~/dotfiles)
+  if [ -n "$directory" ]; then
+    session_name=$(basename "$directory")
+    tmux new-session -Dd -s "$session_name" -c "$directory"
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+function create_session_for_org () {
+  if [ ! -d ~/org ]; then
+    echo "The ~/org directory does not exist. Please create the directory."
+    exit 1
+  fi
+  # .ssh/configからHostを選択して接続する
+  directory=$(echo ~/org)
   if [ -n "$directory" ]; then
     session_name=$(basename "$directory")
     tmux new-session -Dd -s "$session_name" -c "$directory"
@@ -205,6 +228,7 @@ options=(
   "Create tmux session from z directory"
   "Create tmux session for ssh connection"
   "Create tmux session for dotfiles"
+  "Create tmux session for org"
   "Launch cheat.sh"
   "Launch man"
   "Launch tldr"
@@ -253,6 +277,9 @@ case $selected_option in
     ;;
   "Create tmux session for dotfiles")
     create_session_for_dotfiles
+    ;;
+  "Create tmux session for org")
+    create_session_for_org
     ;;
   "Toggle tmux synchronize panes")
     toggle_tmux_synchronize
