@@ -6,6 +6,9 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 vim.keymap.set("n", "<Leader>n", ":nohl<CR>", opt)
 
+-- メモファイルを開く
+vim.keymap.set("n", "<Leader>me", ":e ~/memo/note.md<CR>", opt)
+
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("v", "L", "$")

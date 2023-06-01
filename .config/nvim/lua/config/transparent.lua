@@ -1,7 +1,11 @@
 local transparent = require("transparent")
 transparent.setup({
   extra_groups = {
-    "NeoTreeNormal"
+    "NeoTreeNormal",
+    "LspTroubleNormal",
+    "TroubleNormal",
+    "Normal",
+    "NormalFloat",
   }
 })
 

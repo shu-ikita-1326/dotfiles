@@ -17,15 +17,16 @@ autocmd("QuickfixCmdPost", {
   command = "cwindow",
 })
 
-autocmd("WinEnter", {
-  pattern = "*",
-  command = "set cursorline",
-})
-
-autocmd("WinLeave", {
-  pattern = "*",
-  command = "set nocursorline",
-})
+-- dduとの相性により無効化中
+-- autocmd("WinEnter", {
+--   pattern = "*",
+--   command = "set cursorline",
+-- })
+--
+-- autocmd("WinLeave", {
+--   pattern = "*",
+--   command = "set nocursorline",
+-- })
 
 autocmd("TermOpen", {
   pattern = "term://*",

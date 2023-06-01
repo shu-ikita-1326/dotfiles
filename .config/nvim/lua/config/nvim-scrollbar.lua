@@ -7,4 +7,8 @@ require("scrollbar").setup({
   handlers = {
     gitsigns = true,
   },
+  excluded_filetypes = {
+    "neo-tree",
+    "sagacodeaction",
+  },
 })

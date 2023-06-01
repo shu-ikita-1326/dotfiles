@@ -354,4 +354,53 @@ require("lazy").setup({
     end,
     -- run this command "call mkdp#util#install"
   },
+
+  "vim-denops/denops.vim",
+  "Shougo/ddu-ui-ff",
+  "Shougo/ddu-ui-filer",
+  "Shougo/ddu-kind-file",
+  "Shougo/ddu-kind-word",
+  "Shougo/ddu-source-file",
+  "Shougo/ddu-source-file_rec",
+  "Shougo/ddu-source-file_old",
+  "Shougo/ddu-source-register",
+  "matsui54/ddu-source-help",
+  "matsui54/ddu-source-file_external",
+  "matsui54/ddu-source-command_history",
+  "tennashi/ddu-source-git",
+  "mikanIchinose/ddu-source-markdown",
+  "kuuote/ddu-source-git_diff",
+  "shun/ddu-source-buffer",
+  "shun/ddu-source-rg",
+  "Shougo/ddu-filter-matcher_substring",
+  "uga-rosa/ddu-filter-converter_devicon",
+
+  -- ddu
+  {
+    "Shougo/ddu.vim",
+    dependancies = {
+      "vim-denops/denops.vim",
+      "Shougo/ddu-ui-ff",
+      "Shougo/ddu-ui-filer",
+      "Shougo/ddu-kind-file",
+      "Shougo/ddu-kind-word",
+      "Shougo/ddu-source-file",
+      "Shougo/ddu-source-file_rec",
+      "Shougo/ddu-source-file_old",
+      "Shougo/ddu-source-register",
+      "matsui54/ddu-source-help",
+      "matsui54/ddu-source-file_external",
+      "matsui54/ddu-source-command_history",
+      "tennashi/ddu-source-git",
+      "mikanIchinose/ddu-source-markdown",
+      "kuuote/ddu-source-git_diff",
+      "shun/ddu-source-buffer",
+      "shun/ddu-source-rg",
+      "Shougo/ddu-filter-matcher_substring",
+      "uga-rosa/ddu-filter-converter_devicon",
+    },
+    config = function()
+      vim.cmd("source ~/.config/nvim/lua/config/ddu.vim")
+    end
+  },
 })
