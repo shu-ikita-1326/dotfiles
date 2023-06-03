@@ -92,12 +92,13 @@ require("lazy").setup({
     dependancies = {
       "ThePrimeagen/refactoring.nvim",
       "lewis6991/gitsigns.nvim",
+      "jay-babu/mason-null-ls.nvim",
     },
     config = function()
       require("config.null-ls")
     end,
-    event = "LspAttach",
   },
+  "jay-babu/mason-null-ls.nvim",
   {
     "glepnir/lspsaga.nvim",
     config = function()
@@ -403,4 +404,5 @@ require("lazy").setup({
       vim.cmd("source ~/.config/nvim/lua/config/ddu.vim")
     end
   },
+  "dhruvasagar/vim-table-mode",
 })

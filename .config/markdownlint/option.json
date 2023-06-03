@@ -1,0 +1,10 @@
+{
+  "defauilt": true,
+  "html": {
+    "allowed_elements": [
+      "div",
+      "summary",
+      "details"
+    ]
+  }
+}

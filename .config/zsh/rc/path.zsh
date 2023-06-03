@@ -4,6 +4,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$PATH:~/.local/bin
 
-export DENO_INSTALL=~/.deno
-export PATH="$DENO_INSTALL/bin:$PATH"
+# export DENO_INSTALL=~/.deno
+# export PATH="$DENO_INSTALL/bin:$PATH"
 

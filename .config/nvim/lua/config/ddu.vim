@@ -146,6 +146,14 @@ call ddu#custom#patch_local("help", {
 		\  'uiParams': {
 		\    'ff': {
 		\      'startFilter': v:true,
+		\      'winCol': (&columns / 2) - &columns / 3 - 2,
+		\      'winRow': 6,
+		\      'winWidth': &columns / 3,
+		\      'winHeight': &lines - 12,
+		\      'previewCol': &columns / 2,
+		\      'previewRow': 6,
+		\      'previewWidth': &columns / 3,
+		\      'previewHeight': &lines - 12,
 		\    },
 		\  },
 		\})

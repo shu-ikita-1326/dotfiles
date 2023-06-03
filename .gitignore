@@ -26,6 +26,8 @@
 !/.config/tig/*
 !/.config/tmux/
 !/.config/tmux/*
+!/.config/markdownlint/
+!/.config/markdownlint/option.json
 !/.config/zsh/
 !/.config/zsh/**
 !/.config/sheldon/

@@ -15,7 +15,7 @@ fifo="/tmp/tmux_input"
 
 function tmux_input () {
   mkfifo -m o+w "$fifo"
-  echo `cat "$fifo"` &
+  cat "$fifo" &
   tmux popup -E -T "$1" -h 3 "
   bash -c \"trap 'echo \\\"\\\" > $fifo; exit' INT; read -e input; echo \\\$input > $fifo\"
   "
@@ -40,7 +40,7 @@ function delete_sessions () {
 
 function create_new_session () {
   # ユーザーに入力を求めて新しいtmuxセッションを作成
-  session_name=`tmux_input 'Enter new session name'`
+  session_name=$(tmux_input 'Enter new session name')
   if [ ! "$session_name" = "" ]; then
     tmux new-session -d -s "$session_name"
     tmux switch-client -t "$session_name"
@@ -48,7 +48,7 @@ function create_new_session () {
 }
 
 function launch_cheat () {
-  query=`tmux_input 'Enter query ex)foo/buzz'`
+  query=$(tmux_input 'Enter query ex)foo/buzz')
   # tldrの起動
   if [ ! "$query" = "" ]; then
     tmux popup -E -h 80% -w 80% "curl -s cheat.sh/$query | less -R"
@@ -61,7 +61,7 @@ function launch_man () {
     echo "man is not installed. Please install man."
     exit 1
   fi
-  command_name=`tmux_input 'Enter command name'`
+  command_name=$(tmux_input 'Enter command name')
   # manの起動
   # TODO:存在しないコマンドを入力されたときのハンドリング
   if [ ! "$command_name" = "" ]; then
@@ -76,7 +76,7 @@ function launch_tldr () {
     exit 1
   fi
   # tldrの起動
-  command_name=`tmux_input 'Enter command name'`
+  command_name=$(tmux_input 'Enter command name')
   if [ ! "$command_name" = "" ]; then
     tmux popup -E -h 80% -w 80% "tldr $command_name | less -R"
   fi
@@ -131,7 +131,7 @@ function create_session_from_ssh () {
   if [ -n "$host" ]; then
     exists=false
     for session in $(tmux ls | awk '{print $1}' | sed 's/://'); do
-      if [ "$session" = "$host"]; then
+      if [ "$session" = "$host" ]; then
         exists=true
         break
       fi
@@ -151,7 +151,7 @@ function create_session_for_dotfiles () {
     exit 1
   fi
   # .ssh/configからHostを選択して接続する
-  directory=$(echo ~/dotfiles)
+  directory="$HOME/dotfiles"
   if [ -n "$directory" ]; then
     session_name=$(basename "$directory")
     tmux new-session -Dd -s "$session_name" -c "$directory"
@@ -165,7 +165,7 @@ function create_session_for_org () {
     exit 1
   fi
   # .ssh/configからHostを選択して接続する
-  directory=$(echo ~/org)
+  directory="$HOME/org"
   if [ -n "$directory" ]; then
     session_name=$(basename "$directory")
     tmux new-session -Dd -s "$session_name" -c "$directory"
