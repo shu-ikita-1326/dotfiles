@@ -16,6 +16,11 @@ require("dial.config").augends:register_group({
 		  types = {"camelCase", "snake_case", "kebab-case", "PascalCase", "SCREAMING_SNAKE_CASE"},
 		  cyclic = true,
 		},
+    augend.constant.new({
+      elements = { "True", "False" },
+      word = true,
+      cyclic = true,
+    }),
   },
 })
 require("dial.config").augends:on_filetype {

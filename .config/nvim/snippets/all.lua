@@ -7,6 +7,17 @@ return {
     }),
   }),
   s("today", {
-    extras.partial(os.date, "%Y/%m/%d"),
+    c(1, {
+      t(os.date("%Y-%m-%d")),
+      t(os.date("%Y-%m-%d %a")),
+      t(os.date("<%Y-%m-%d %a>")),
+    }),
+  }),
+  s("now", {
+    c(1, {
+      t(os.date("%Y-%m-%d %H:%M:%S")),
+      t(os.date("%Y-%m-%d %a %H:%M:%S")),
+      t(os.date("<%Y-%m-%d %a %H:%M:%S>")),
+    }),
   }),
 }
