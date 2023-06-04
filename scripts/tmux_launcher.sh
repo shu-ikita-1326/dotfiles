@@ -150,7 +150,6 @@ function create_session_for_dotfiles () {
     echo "The ~/dotfiles directory does not exist. Please create the directory."
     exit 1
   fi
-  # .ssh/configからHostを選択して接続する
   directory="$HOME/dotfiles"
   if [ -n "$directory" ]; then
     session_name=$(basename "$directory")
@@ -164,8 +163,20 @@ function create_session_for_org () {
     echo "The ~/org directory does not exist. Please create the directory."
     exit 1
   fi
-  # .ssh/configからHostを選択して接続する
   directory="$HOME/org"
+  if [ -n "$directory" ]; then
+    session_name=$(basename "$directory")
+    tmux new-session -Dd -s "$session_name" -c "$directory"
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+function create_session_for_note () {
+  if [ ! -d ~/note ]; then
+    echo "The ~/note directory does not exist. Please create the directory."
+    exit 1
+  fi
+  directory="$HOME/note"
   if [ -n "$directory" ]; then
     session_name=$(basename "$directory")
     tmux new-session -Dd -s "$session_name" -c "$directory"
@@ -229,6 +240,7 @@ options=(
   "Create tmux session for ssh connection"
   "Create tmux session for dotfiles"
   "Create tmux session for org"
+  "Create tmux session for note"
   "Launch cheat.sh"
   "Launch man"
   "Launch tldr"
@@ -280,6 +292,9 @@ case $selected_option in
     ;;
   "Create tmux session for org")
     create_session_for_org
+    ;;
+  "Create tmux session for note")
+    create_session_for_note
     ;;
   "Toggle tmux synchronize panes")
     toggle_tmux_synchronize
