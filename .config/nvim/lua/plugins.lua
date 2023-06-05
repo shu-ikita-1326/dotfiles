@@ -119,6 +119,8 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",
     dependancies = {
       "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-ghq.nvim",
+      "tsakirist/telescope-lazy.nvim",
     },
     config = function()
       require("config.telescope")
@@ -127,6 +129,8 @@ require("lazy").setup({
     cmd = "Telescope",
   },
   "nvim-telescope/telescope-file-browser.nvim",
+  "nvim-telescope/telescope-ghq.nvim",
+  "tsakirist/telescope-lazy.nvim",
 
   -- treesitter
   {
