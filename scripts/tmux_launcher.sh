@@ -251,11 +251,16 @@ options=(
   "Open tmux popup"
 )
 
-# 機能の選択
-selected_option=$(printf '%s\n' "${options[@]}" | fzf-tmux -w 60 -h 20 --reverse)
-if [ -z "$selected_option" ]; then
-  exit 0
+if [ -z "$1" ]; then
+  # 機能の選択
+  selected_option=$(printf '%s\n' "${options[@]}" | fzf-tmux -w 60 -h 20 --reverse)
+  if [ -z "$selected_option" ]; then
+    exit 0
+  fi
+else
+  selected_option="$1"
 fi
+
 case $selected_option in
   "Switch to existing tmux session")
     switch_session
