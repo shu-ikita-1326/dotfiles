@@ -18,8 +18,13 @@ require("lualine").setup({
     },
   },
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_a = {
+      "mode",
+      {
+        require("noice").api.statusline.mode.get,
+        cond = require("noice").api.statusline.mode.has
+      } },
+    lualine_b = { "branch", "diff" },
     lualine_c = { "filename" },
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },

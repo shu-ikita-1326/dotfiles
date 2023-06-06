@@ -34,6 +34,7 @@ vim.keymap.set({ "i", "c" }, "<C-f>", "<Right>")
 vim.keymap.set({ "i", "c" }, "<C-b>", "<Left>")
 vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>")
 vim.keymap.set({ "i", "c" }, "<C-e>", "<End>")
+vim.keymap.set({ "i", "c" }, "<C-d>", "<Delete>")
 
 vim.keymap.set("n", "<", "<<")
 vim.keymap.set("n", ">", ">>")
