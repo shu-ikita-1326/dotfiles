@@ -71,7 +71,16 @@ My dotfiles
    Install [node](https://github.com/nodejs/node) by any method.
    I am using [nvm](https://github.com/nvm-sh/nvm).
 
-9. neovim plugin install  
+9. Setup ghq root  
+
+   Set ghq root in your .gitconfig as below
+
+   ```config
+   [ghq]
+       root=~/go/src
+   ```
+
+10. neovim plugin install  
 
       ```sh
       nvim
