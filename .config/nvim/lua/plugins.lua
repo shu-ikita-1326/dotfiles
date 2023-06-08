@@ -409,4 +409,8 @@ require("lazy").setup({
     end
   },
   "dhruvasagar/vim-table-mode",
-})
+}, {
+    ui = {
+      border = "rounded"
+    }
+  })

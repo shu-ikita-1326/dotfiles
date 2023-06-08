@@ -1,5 +1,9 @@
 local nvim_lsp = require("lspconfig")
-require("mason").setup()
+require("mason").setup({
+  ui = {
+    border = "rounded"
+  }
+})
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
   ensure_installed = {

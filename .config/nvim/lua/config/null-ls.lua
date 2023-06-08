@@ -15,6 +15,17 @@ null_ls.setup({
     null_ls.builtins.code_actions.refactoring,
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.textlint.with({
+      condition = function(utils)
+        return utils.root_has_file {
+          '.textlintrc',
+          '.textlintrc.js',
+          '.textlintrc.json',
+          '.textlintrc.yml',
+          '.textlintrc.yaml',
+        }
+      end
+    }),
     null_ls.builtins.diagnostics.markdownlint.with({
       extra_args = {
         "--config",

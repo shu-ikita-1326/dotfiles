@@ -7,7 +7,11 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<Leader>n", ":nohl<CR>", opt)
 
 -- メモファイルを開く
-vim.keymap.set("n", "<Leader>no", ":e ~/note/note.md<CR>", opt)
+local note = "~/note/note.md"
+if vim.env.OBSIDIAN then
+  note = vim.env.OBSIDIAN
+end
+vim.keymap.set("n", "<Leader>no", ":e " .. note .. "<CR>", opt)
 
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("n", "H", "^")

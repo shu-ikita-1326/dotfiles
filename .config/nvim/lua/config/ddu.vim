@@ -151,9 +151,10 @@ call ddu#custom#patch_local("help", {
 		\      'winWidth': &columns / 3,
 		\      'winHeight': &lines - 12,
 		\      'previewCol': &columns / 2,
-		\      'previewRow': 6,
+		\      'previewRow': &lines - 4,
+		\      'previewSplit': 'horizontal',
 		\      'previewWidth': &columns / 3,
-		\      'previewHeight': &lines - 12,
+		\      'previewHeight': &lines - 9,
 		\    },
 		\  },
 		\})
@@ -276,6 +277,10 @@ nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR>
 nnoremap <buffer> p
 \ <Cmd>call ddu#ui#do_action('preview')<CR>
+nnoremap <buffer> <C-n>
+\ <Cmd>call ddu#ui#multi_actions([['cursorNext'], ['preview']])<CR>
+nnoremap <buffer> <C-p>
+\ <Cmd>call ddu#ui#multi_actions([['cursorPrevious'], ['preview']])<CR>
 endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
@@ -290,6 +295,10 @@ inoremap <buffer> <C-p>
 \ <Cmd>call ddu#ui#multi_actions([['cursorPrevious'], ['preview']])<CR>
 nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
+nnoremap <buffer> <C-n>
+\ <Cmd>call ddu#ui#multi_actions([['cursorNext'], ['preview']])<CR>
+nnoremap <buffer> <C-p>
+\ <Cmd>call ddu#ui#multi_actions([['cursorPrevious'], ['preview']])<CR>
 nnoremap <buffer> p
 \ <Cmd>call ddu#ui#do_action('preview')<CR>
 endfunction
