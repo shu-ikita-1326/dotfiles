@@ -39,5 +39,11 @@ require('nvim-web-devicons').setup({
       cterm_color = "68",
       name = "Log",
     },
+    ["txt"] = {
+      icon = "",
+      color = "#447028",
+      cterm_color = "22",
+      name = "Txt",
+    },
   }
 })

@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'Shougo/dein.vim'
-
-[[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
 
 [[plugins]]
@@ -13,359 +10,350 @@ repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 # filer
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
+hook_add = 'source ~/.vim/rc/config/fern.vim'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
 hook_add = '''
-let g:fern#default_hidden=1
-let g:fern#renderer = "nerdfont"
-
-nnoremap <silent><Leader>e :Fern . -drawer<CR>
-nnoremap <silent><Leader>b :Fern . -drawer -toggle<CR>
-
-augroup fern_group
-autocmd!
-autocmd QuitPre :Fern . -drawer -toggle<CR>
-autocmd FileType fern setlocal nonumber
-augroup END
+colorscheme gruvbox
+set background=dark
+highlight SignColumn ctermbg=NONE
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
-hook_add = '''
-if exists('$TMUX')
-	let g:fzf_layout = { 'tmux': '-p80%' }
-endif
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <Leader>fh :History<CR>
-'''
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'terryma/vim-expand-region'
-hook_add = '''
-vnoremap v <Plug>(expand_region_expand)
-vnoremap <C-v> <Plug>(expand_region_shrink)
-'''
-
-[[plugins]]
-repo = 'simeji/winresizer'
-
-# [[plugins]]
-# repo = 'yuttie/comfortable-motion.vim'
-
-[[plugins]]
-repo = 'machakann/vim-highlightedyank'
-hook_add = '''
-let g:highlightedyank_highlight_duration = 300
-'''
-
-[[plugins]]
-repo = 'tpope/vim-commentary'
-
-[[plugins]]
-repo = 'skanehira/translate.vim'
-hook_add = '''
-vnoremap <Leader>tr :Translate<CR>
-'''
-
-[[plugins]]
-repo = 'vim-scripts/ReplaceWithRegister'
-
-[[plugins]]
-repo = 'wellle/targets.vim'
-
-[[plugins]]
-repo = 'michaeljsmith/vim-indent-object'
-
-# LSP (Language Server Protocol)
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-nnoremap gd :LspDefinition<CR>
-nnoremap gh :LspHover<CR>
-'''
-
-# LSP settings
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
-hook_post_source = '''
-highlight link LspWarningHighlight Error
-'''
-
-[[plugins]]
-repo = 'shun/ddc-vim-lsp'
+repo = 'lambdalisue/mr.vim'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'Shougo/ddc-ui-native'
-
-[[plugins]]
-repo = 'Shougo/ddc-ui-pum'
-
-[[plugins]]
-repo = 'Shougo/ddc-source-around'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'Shougo/ddc-source-cmdline'
-
-[[plugins]]
-repo = 'Shougo/ddc-source-cmdline-history'
-
-[[plugins]]
-repo = 'tani/ddc-fuzzy'
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-hook_source = '''
-  call pum#set_option(#{
-    \   auto_confirm_time: 0,
-    \   horizontal_menu: v:false,
-    \   max_width: 80,
-    \   use_setline: v:false,
-    \ })
-  call pum#set_local_option('c', #{
-    \   horizontal_menu: v:false,
-    \ })
-'''
-hook_add = '''
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-'''
-
-[[plugins]]
-repo = 'Shougo/ddc.vim'
-depends = ['denops.vim', 'pum.vim']
-hook_source = '''
-call ddc#custom#patch_global('ui', 'pum')
-	call ddc#custom#patch_global('autoCompleteEvents',
-	\ ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'])
-	nnoremap :       <Cmd>call CommandlinePre()<CR>:
-	
-	function! CommandlinePre() abort
-	  cnoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
-	  cnoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-	  cnoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
-	  cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-	  cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-	
-	  " Overwrite sources
-	  if !exists('b:prev_buffer_config')
-	    let b:prev_buffer_config = ddc#custom#get_buffer()
-	  endif
-	  call ddc#custom#patch_buffer('sources',
-          \ ['cmdline', 'cmdline-history', 'around'])
-	
-	  autocmd User DDCCmdlineLeave ++once call CommandlinePost()
-	  autocmd InsertEnter <buffer> ++once call CommandlinePost()
-	
-	  " Enable command line completion
-	call ddc#enable_cmdline_completion()
-	endfunction
-	function! CommandlinePost() abort
-	  silent! cunmap <Tab>
-	  silent! cunmap <S-Tab>
-	  silent! cunmap <C-n>
-	  silent! cunmap <C-p>
-	  silent! cunmap <C-y>
-	  silent! cunmap <C-e>
-	
-	  " Restore sources
-	  if exists('b:prev_buffer_config')
-	    call ddc#custom#set_buffer(b:prev_buffer_config)
-	    unlet b:prev_buffer_config
-	  else
-	    call ddc#custom#set_buffer({})
-	  endif
-	endfunction
-  call ddc#custom#patch_global('cmdlineSources', {
-      \   ':': ['cmdline-history', 'cmdline', 'around'],
-      \   '@': ['cmdline-history', 'input', 'file', 'around'],
-      \   '>': ['cmdline-history', 'input', 'file', 'around'],
-      \   '/': ['around', 'line'],
-      \   '?': ['around', 'line'],
-      \   '-': ['around', 'line'],
-      \   '=': ['input'],
-      \ })
-
-" Use around source.
-" https://github.com/Shougo/ddc-source-around
-call ddc#custom#patch_global('sources', ['around', 'vim-lsp', 'cmdline'])
-
-" Use matcher_head and sorter_rank.
-" https://github.com/Shougo/ddc-matcher_head
-" https://github.com/Shougo/ddc-sorter_rank
-call ddc#custom#patch_global('sourceOptions', {
-		\ '_': {
-		\   'matchers': ['matcher_fuzzy'],
-		\   'sorters': ['sorter_fuzzy'],
-		\   'converters': ['converter_fuzzy'],
-		\ },
-		\ })
-
-" Change source options
-call ddc#custom#patch_global('sourceOptions', {
-		\ 'around': {'mark': 'A'},
-		\ })
-call ddc#custom#patch_global('sourceOptions', {
-		\ 'vim-lsp': {'mark': 'Lsp',
-		\ 'matchers':['matcher_head'],
-		\ }
-		\ })
-call ddc#custom#patch_global('sourceParams', {
-		\ 'around': {'maxSize': 500},
-		\ })
-call ddc#custom#patch_global('sourceOptions', #{
-		\ cmdline: #{
-		\ mark: 'cmdline',
-		\ },
-		\ file: #{
-		\   mark: 'F',
-		\   isVolatile: v:true,
-		\   minAutoCompleteLength: 1000,
-		\   forceCompletionPattern: '\S/\S*',
-		\ },
-		\ cmdline-history: #{
-		\   mark: 'history',
-		\   sorters: [],
-		\ },
-		\ input: #{
-		\   mark: 'input',
-		\   forceCompletionPattern: '\S/\S*',
-		\   isVolatile: v:true,
-		\   dup: 'force',
-		\ },
-		\ })
-
-" Customize settings on a filetype
-call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
-call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
-		\ 'clangd': {'mark': 'C'},
-		\ })
-call ddc#custom#patch_filetype('markdown', 'sourceParams', {
-		\ 'around': {'maxSize': 100},
-		\ })
-'''
-hook_add = '''
-" Mappings
-
-" <TAB>: completion.
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? '<C-n>' :
-\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-\ '<TAB>' : ddc#map#manual_complete()
-
-" <S-TAB>: completion back.
-inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
-
-	" Use ddc.
-call ddc#enable()
-'''
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'kassio/neoterm'
-hook_add = '''
-nnoremap <Leader>to <C-w>s<C-w>j:Tnew<CR>
-'''
-
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-
-# theme
-[[plugins]]
-repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'sickill/vim-monokai'
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-word'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-source-file_rec'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_old'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kuuote/ddu-source-mr'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-register'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'tennashi/ddu-source-git'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = '4513ECHO/vim-readme-viewer'
+on_source = 'ddu.vim'
+hook_add = '''
+let g:readme_viewer#plugin_manager = 'dein.vim'
+'''
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'uga-rosa/ddu-filter-converter_devicon'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-depends = ['denops.vim']
-on_source = ['denops.vim']
 hook_add = '''
 call ddu#custom#patch_global({
-		\   'ui': 'ff',
-		\   'sources': [{'name': 'file_rec', 'params': {}}],
-		\   'sourceOptions': {
-		\     '_': {
-		\       'matchers': ['matcher_fzf'],
-		\     },
-		\   },
-		\   'kindOptions': {
-		\     'file': {
-		\       'defaultAction': 'open',
-		\     },
-		\   },
-		\   'uiParams': {
-		\     'ff': {
-		\       'startFilter': v:true,
-		\       'split': 'floating',
-		\     },
-		\   },
-		\	})
-nnoremap <Leader>fd :call ddu#start({})<CR>
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'file_rec', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\      'converters': ['converter_devicon'],
+		\    },
+		\  },
+		\  'kindOptions': {
+		\    'file': {
+		\      'defaultAction': 'open',
+		\    },
+		\    'word': {
+		\      'defaultAction': 'append',
+		\    },
+		\    'command_history': {
+		\      'defaultAction': 'execute',
+		\    },
+		\    'git_status': {
+		\      'defaultAction': 'open',
+		\    },
+		\    'git_tag': {
+		\      'defaultAction': 'switch',
+		\    },
+		\    'git_branch': {
+		\      'defaultAction': 'switch',
+		\    },
+		\    'git_working_tree': {
+		\      'defaultAction': 'add',
+		\    },
+		\    'git_index': {
+		\      'defaultAction': 'commitAll',
+		\    },
+		\    'help': {
+		\      'defaultAction': 'open',
+		\    },
+		\    'readme_viewer': {
+		\      'defaultAction': 'open',
+		\    },
+		\  },
+		\  'uiParams': {
+		\    'ff': {
+		\      'previewSplit': 'vertical',
+		\      'previewWidth': &columns / 2,
+		\      'autoAction': {
+		\        'name': 'preview'
+		\      },
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("files", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'file_rec', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\  'uiParams': {
+		\    'ff': {
+		\      'winCol': (&columns / 2) - &columns / 3 - 2,
+		\      'winRow': 6,
+		\      'winWidth': &columns / 3,
+		\      'winHeight': &lines - 12,
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("history", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'mr', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\  'uiParams': {
+		\    'ff': {
+		\      'winCol': (&columns / 2) - &columns / 3 - 2,
+		\      'winRow': 6,
+		\      'winWidth': &columns / 3,
+		\      'winHeight': &lines - 12,
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("filer", {
+		\  'ui': 'filer',
+		\  'sources': [{'name': 'file', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\      'columns': ['filename'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("reg", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'register', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("file_external", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'file_external'}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\  'sourceParams': {
+		\    'file_external': {
+		\      'cmd': ['git', 'ls-files', '-m'],
+		\    },
+		\  },
+		\  'kindParams': {
+		\    'file': {
+		\    }
+		\  },
+		\})
+
+call ddu#custom#patch_local("buffer", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'buffer', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("help", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'help', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("command_history", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'command_history', 'params': {}}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("git_status", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'git_status'}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("readme_viewer", {
+		\  'ui': 'ff',
+		\  'sources': [{'name': 'readme_viewer'}],
+		\  'sourceOptions': {
+		\    '_': {
+		\      'matchers': ['matcher_substring'],
+		\    },
+		\  },
+		\})
+
+call ddu#custom#patch_local("live_rg", {
+		\  'ui': 'ff',
+		\  'sources': [{
+    \    'name': 'rg',
+    \    'options': {
+    \      'matchers': [],
+    \      'volatile': v:true,
+    \    }
+    \  }],
+		\  'uiParams': {
+		\    'ff': {
+		\      'ignoreEmpty': v:false,
+		\      'autoResize': v:false,
+		\      'winCol': (&columns / 2) - &columns / 3 - 2,
+		\      'winRow': 6,
+		\      'winWidth': &columns / 3,
+		\      'winHeight': &lines - 12,
+		\    },
+		\  },
+		\})
+
+nnoremap <silent> <Leader>fe :call ddu#start({ 'name': 'filer' })<CR>
+nnoremap <silent> <Leader>ff :call ddu#start({ 'name': 'files' })<CR>
+nnoremap <silent> <Leader>h :call ddu#start({ 'name': 'history' })<CR>
+nnoremap <silent> <Leader>fr :call ddu#start({ 'name': 'reg' })<CR>
+nnoremap <silent> <Leader>gr :call ddu#start({ 'name': 'live_rg' })<CR>
+nnoremap <silent> <Leader>fb :call ddu#start({ 'name': 'buffer' })<CR>
+nnoremap <silent> <Leader>fh :call ddu#start({ 'name': 'help' })<CR>
+nnoremap <silent> <Leader>fc :call ddu#start({ 'name': 'command_history' })<CR>
+nnoremap <silent> <Leader>fm :call ddu#start({ 'name': 'readme_viewer' })<CR>
+nnoremap <silent> <Leader>gs :call ddu#start({ 'name': 'git_status' })<CR>
+nnoremap <silent> <Leader>fx :call ddu#start({ 'name': 'file_external' })<CR>
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
 setlocal cursorline
 nnoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
 nnoremap <buffer> i
-\ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+\ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
 nnoremap <buffer> q
-\ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+\ <Cmd>call ddu#ui#do_action('quit')<CR>
 nnoremap <buffer> <C-c>
-\ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+\ <Cmd>call ddu#ui#do_action('quit')<CR>
+nnoremap <buffer> p
+\ <Cmd>call ddu#ui#do_action('preview')<CR>
 endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
 inoremap <buffer> <CR>
-\ <Esc><Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
 inoremap <buffer> <C-c>
-\ <Esc><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 inoremap <buffer> <C-n>
-\ <Cmd>call win_execute(ddu#ui#winid('default'), ['call setpos(".", [0, getcurpos()[1] + 1, 1, 0])', 'redraw'])<CR>
+\ <Cmd>call ddu#ui#do_action('cursorNext')<CR>
 inoremap <buffer> <C-p>
-\ <Cmd>call win_execute(ddu#ui#winid('default'), ['call setpos(".", [0, getcurpos()[1] - 1, 1, 0])', 'redraw'])<CR>
+\ <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+inoremap <buffer> <Esc>
+\ <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR><Esc>
+nnoremap <buffer> <C-c>
+\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 endfunction
-'''
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
@@ -375,11 +363,16 @@ autocmd!
 autocmd FileType floaterm call s:floaterm_settings()
 function! s:floaterm_settings() abort
 tnoremap <silent> <C-c> <C-\><C-n>:FloatermHide<CR>
+autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+function! s:ddu_filer_my_settings() abort
+nnoremap <buffer> <CR>
+\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
+nnoremap <buffer> <C-c>
+\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
+nnoremap <buffer> h
+\ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
+nnoremap <buffer> l
+\ <Cmd>call ddu#ui#do_action('expandItem')<CR>
 endfunction
-autocmd QuitPre * FloatermKill!
-autocmd VimEnter * FloatermNew --height=0.8 --width=0.8 --silent --name=lazygit lazygit
-augroup END
-
-nnoremap <silent> <Leader>lg :FloatermShow lazygit<CR>
 '''
 

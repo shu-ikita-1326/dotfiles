@@ -244,7 +244,12 @@ require("lazy").setup({
       require("config.transparent")
     end
   },
-  "rcarriga/nvim-notify",
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("config.nvim-notify")
+    end
+  },
   {
     "folke/noice.nvim",
     dependancies = {
@@ -340,7 +345,9 @@ require("lazy").setup({
   {
     "windwp/nvim-autopairs",
     config = function()
-      require("nvim-autopairs").setup({})
+      require("nvim-autopairs").setup({
+        map_c_h = true
+      })
     end,
     event = { "InsertEnter" },
   }, -- Autopairs, integrates with both cmp and treesitter
@@ -410,7 +417,7 @@ require("lazy").setup({
   },
   "dhruvasagar/vim-table-mode",
 }, {
-    ui = {
-      border = "rounded"
-    }
-  })
+  ui = {
+    border = "rounded"
+  }
+})
