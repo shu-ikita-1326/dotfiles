@@ -355,14 +355,6 @@ nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 endfunction
 
-[[plugins]]
-repo = 'voldikss/vim-floaterm'
-hook_add = '''
-augroup floaterm
-autocmd!
-autocmd FileType floaterm call s:floaterm_settings()
-function! s:floaterm_settings() abort
-tnoremap <silent> <C-c> <C-\><C-n>:FloatermHide<CR>
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
 nnoremap <buffer> <CR>
@@ -376,3 +368,16 @@ nnoremap <buffer> l
 endfunction
 '''
 
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+hook_add = '''
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+augroup floaterm
+autocmd!
+autocmd FileType floaterm call s:floaterm_settings()
+function! s:floaterm_settings() abort
+" tnoremap <silent> <C-c> <C-\><C-n>:FloatermHide<CR>
+endfunction
+nnoremap <Leader>lg :FloatermNew lazygit<CR>
+'''
