@@ -216,6 +216,15 @@ require("lazy").setup({
         desc = "Treesitter Search",
       }
     },
+    config = function()
+      require("flash").setup({
+        modes = {
+          search = {
+            enabled = false
+          }
+        }
+      })
+    end,
   },
 
   -- Appearance
