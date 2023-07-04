@@ -127,7 +127,7 @@ function create_session_from_ssh () {
     exit 1
   fi
   # .ssh/configからHostを選択して接続する
-  host=$(awk '/^Host/ {print $2}' ~/.ssh/config | fzf-tmux -w 60 -h 20 --reverse)
+  host=$(awk '/Host / { host=$2 } /Hostname/ { hostname=$2 } /User/ { print host, $2 "@" hostname }' ~/.ssh/config | fzf-tmux -w 60 -h 20 --reverse)
   if [ -n "$host" ]; then
     exists=false
     for session in $(tmux ls | awk '{print $1}' | sed 's/://'); do
