@@ -347,6 +347,8 @@ autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 # cdr config
 zstyle ':completion:*' recent-dirs-insert both
+zstyle ':completion:*:*:docker' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
