@@ -1,4 +1,4 @@
-# scoopがインストールされていなかったらインストールする
+# Install scoop if it is not installed
 if (where.exe scoop 2> $null) {
 	echo 'scoop is already.'
 } else {
@@ -9,7 +9,7 @@ if (where.exe scoop 2> $null) {
 # git
 scoop install git
 
-#bucketを追加
+# add bucket
 scoop bucket add versions
 scoop bucket add extras
 
@@ -17,7 +17,7 @@ scoop bucket add extras
 scoop install vscode
 
 # neovim
-scoop install neovim
+scoop install neovim-nightly
 
 # zenhan
 scoop install zenhan
@@ -31,3 +31,8 @@ scoop install python
 # windows terminal
 scoop install windows-terminal
 
+# for nvim-treesitter
+scoop install zig
+
+# for telescope
+scoop install ripgrep
