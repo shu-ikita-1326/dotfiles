@@ -11,11 +11,5 @@ bufferline.setup({
     },
     separator_style = "slant",
     buffer_close_icon = '',
-    custom_filter = function(buf_number, buf_numbers)
-        -- filter out by buffer name
-        if vim.fn.bufname(buf_number) ~= "" then
-            return true
-        end
-    end,
   }
 })

@@ -269,12 +269,6 @@ require("lazy").setup({
     end
   },
   {
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("config.neoscroll")
-    end
-  },
-  {
     "folke/todo-comments.nvim",
     dependancies = {
       "nvim-lua/plenary.nvim",
