@@ -13,8 +13,23 @@ repo = 'lewis6991/gitsigns.nvim'
 lua_add = 'require("config.gitsigns")'
 
 [[plugins]]
+repo = 'mattn/vim-sonictemplate'
+hook_source = '''
+let g:sonictemplate_vim_template_dir = '$HOME/.config/template'
+'''
+
+[[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
 lua_add = 'require("config.lualine")'
+
+[[plugins]]
+repo = 'folke/noice.nvim'
+depends = ['nui.nvim', 'nvim-notify']
+lua_add = 'require("config.noice")'
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+lua_add = 'require("config.nvim-notify")'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
@@ -29,6 +44,9 @@ lua_add = 'require("config.ChatGPT")'
 
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
+
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
@@ -127,7 +145,7 @@ hook_source = '''
 set termguicolors
 '''
 lua_add = '''
-require("bufferline").setup({})
+require("config.bufferline")
 '''
 
 [[plugins]]
@@ -137,9 +155,14 @@ nnoremap <Leader>tl V:Translate JA<CR>
 nnoremap <Leader>tw viw:Translate JA<CR>
 vnoremap <Leader>tl :Translate JA<CR>
 '''
+lua_add = 'require("config.translate")'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -163,6 +186,10 @@ repo = 'Shougo/ddu-source-file'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'Shougo/ddu-source-action'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'Shougo/ddu-source-file_rec'
 on_source = 'ddu.vim'
 
@@ -171,11 +198,50 @@ repo = 'Shougo/ddu-source-file_old'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'Shougo/ddu-source-dummy'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kamecha/ddu-source-jumplist'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kamecha/ddu-filter-converter_highlight'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kuuote/ddu-source-mr'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kuuote/ddu-source-git_diff'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kuuote/ddu-source-git_status'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kyoh86/ddu-source-git_log'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'Shougo/ddu-source-register'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'Shougo/ddu-source-line'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'matsui54/ddu-source-help'
+on_source = 'ddu.vim'
+
+repo = 'matsui54/ddu-source-dein_update'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-man'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -184,10 +250,6 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'matsui54/ddu-source-command_history'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'tennashi/ddu-source-git'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -206,7 +268,23 @@ let g:readme_viewer#plugin_manager = 'dein.vim'
 '''
 
 [[plugins]]
+repo = '4513ECHO/ddu-source-ghq'
+
+[[plugins]]
+repo = '4513ECHO/ddu-source-source'
+
+[[plugins]]
+repo = '4513ECHO/ddu-source-colorscheme'
+
+[[plugins]]
+repo = 'k-ota106/ddu-source-marks'
+
+[[plugins]]
 repo = 'Shougo/ddu-column-filename'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -218,306 +296,353 @@ repo = 'uga-rosa/ddu-filter-converter_devicon'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'yuki-yano/ddu-source-nvim-notify'
 on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu.vim'
 hook_add = '''
+highlight DduRed guifg=red
+highlight DduLightBlue guifg=lightblue
+highlight DduYellow guifg=yellow
+highlight DduGreen guifg=green
+
+call ddu#custom#patch_global('columnParams', {
+    \  'icon_filename': {
+    \    'customFileIcons': {
+    \      'lua': { 'icon': '' },
+    \      'txt': { 'icon': '' },
+    \      'vue': { 'icon': '' },
+    \     },
+    \    'pathDisplayOption': "relative",
+    \   }
+    \ })
+call ddu#custom#alias('ui', 'ff-ghq', 'ff')
+
+call ddu#custom#patch_global('uiParams', {
+		\  'ff': {
+		\    'filterSplitDirection': 'floating',
+		\    'split': 'floating',
+		\    'filterFloatingPosition': 'top',
+		\    'floatingBorder': 'single',
+		\    'previewFloating': v:true,
+		\    'previewSplit': 'vertical',
+		\    'previewFloatingBorder': 'single',
+		\    'previewFloatingTitle': 'Preview',
+		\    'previewFloatingTitlePos': 'center',
+		\    'floatingTitle': 'Result',
+		\    'floatingTitlePos': 'center',
+		\    'autoAction': {
+		\      'name': 'preview',
+		\    },
+		\  },
+		\  'ff-ghq': {
+		\    'filterSplitDirection': 'floating',
+		\    'split': 'floating',
+		\    'filterFloatingPosition': 'top',
+		\    'floatingBorder': 'single',
+		\    'previewFloating': v:true,
+		\    'previewSplit': 'vertical',
+		\    'previewFloatingBorder': 'single',
+		\    'previewFloatingTitle': 'Preview',
+		\    'previewFloatingTitlePos': 'center',
+		\    'floatingTitle': 'Result',
+		\    'floatingTitlePos': 'center',
+		\    'autoAction': {
+		\      'name': 'preview',
+		\      'params': {
+		\        'previewCmds': ['onefetch', '%s']
+		\      },
+		\    },
+		\  },
+    \ })
+
+function! s:set_size() abort
+  let s:winCol = (&columns - (&columns * 0.9)) / 2
+  let s:winWidth = &columns * 0.9
+  let s:winRow = 6
+  let s:winHeight = &lines - 10
+  let s:previewCol = &columns / 2
+  let s:previewWidth = (&columns * 0.9) / 2 - 1
+  let s:previewRow = 7
+  let s:previewHeight = &lines - 12
+endfunction
+
+function! s:set_layout() abort
+call ddu#custom#patch_global('uiParams', {
+		\  'ff': {
+		\    'winCol': s:winCol,
+		\    'winRow': s:winRow,
+		\    'winWidth': s:winWidth,
+		\    'winHeight': s:winHeight,
+		\    'previewCol': s:previewCol,
+		\    'previewWidth': s:previewWidth,
+		\    'previewRow': s:previewRow,
+		\    'previewHeight': s:previewHeight,
+		\  },
+		\  'filer': {
+		\    'winCol': s:winCol,
+		\    'winRow': s:winRow,
+		\    'winWidth': s:winWidth,
+		\    'winHeight': s:winHeight,
+		\    'previewCol': s:previewCol,
+		\    'previewWidth': s:previewWidth,
+		\    'previewRow': s:previewRow,
+		\    'previewHeight': s:previewHeight,
+		\  },
+		\  'ff-ghq': {
+		\    'winCol': s:winCol,
+		\    'winRow': s:winRow,
+		\    'winWidth': s:winWidth,
+		\    'winHeight': s:winHeight,
+		\    'previewCol': s:previewCol,
+		\    'previewWidth': s:previewWidth,
+		\    'previewRow': s:previewRow,
+		\    'previewHeight': s:previewHeight,
+		\  },
+    \ })
+endfunction
+
+function! s:layout() abort
+  call s:set_size()
+  call s:set_layout()
+endfunction
+
+call s:layout()
+
+autocmd VimResized * call s:layout()
+
 call ddu#custom#patch_global({
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'file_rec', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\      'converters': ['converter_devicon'],
-		\    },
-		\  },
-		\  'kindOptions': {
-		\    'file': {
-		\      'defaultAction': 'open',
-		\    },
-		\    'word': {
-		\      'defaultAction': 'append',
-		\    },
-		\    'command_history': {
-		\      'defaultAction': 'execute',
-		\    },
-		\    'git_status': {
-		\      'defaultAction': 'open',
-		\    },
-		\    'git_tag': {
-		\      'defaultAction': 'switch',
-		\    },
-		\    'git_branch': {
-		\      'defaultAction': 'switch',
-		\    },
-		\    'git_working_tree': {
-		\      'defaultAction': 'add',
-		\    },
-		\    'git_index': {
-		\      'defaultAction': 'commitAll',
-		\    },
-		\    'help': {
-		\      'defaultAction': 'open',
-		\    },
-		\    'readme_viewer': {
-		\      'defaultAction': 'open',
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:true,
-		\      'filterSplitDirection': 'floating',
-		\      'split': 'floating',
-		\      'filterFloatingPosition': 'top',
-		\      'floatingBorder': 'single',
-		\      'previewFloating': v:true,
-		\      'previewSplit': 'vertical',
-		\      'previewFloatingBorder': 'single',
-		\      'previewFloatingTitle': 'Preview',
-		\      'previewFloatingTitlePos': 'center',
-		\      'floatingTitle': 'Result',
-		\      'floatingTitlePos': 'center',
-		\    },
-		\    'filer': {
-		\      'split': 'floating',
-		\      'filterFloatingPosition': 'top',
-		\      'floatingBorder': 'single',
-		\      'previewFloating': v:true,
-		\      'previewSplit': 'vertical',
-		\      'previewFloatingBorder': 'single',
-		\      'previewFloatingTitle': 'Preview',
-		\      'previewFloatingTitlePos': 'center',
-		\      'floatingTitle': 'Result',
-		\      'floatingTitlePos': 'center',
-		\    },
-		\  },
-		\})
+    \  'ui': 'ff',
+    \  'sources': [{'name': 'file_rec', 'params': {}}],
+    \  'sourceParams': {
+    \    'file_external': {
+    \      'cmd': ['fd', '.', '-H', '-E', '__pycache__', '-t', 'f'],
+    \    },
+    \  },
+    \  'sourceOptions': {
+    \    '_': {
+    \      'matchers': ['matcher_substring'],
+    \    },
+    \    'lsp_diagnostic': {
+    \      'converters': ['converter_lsp_diagnostic'],
+    \    },
+    \    'lsp_documentSymbol': {
+    \      'converters': ['converter_lsp_symbol'],
+    \    },
+    \    'lsp_workspaceSymbol': {
+    \      'converters': ['converter_lsp_symbol'],
+    \    },
+    \    'git_status': {
+    \      'converters': ['converter_git_status'],
+    \    },
+    \    'file_rec': {
+    \      'columns': ['icon_filename'],
+    \    },
+    \    'mr': {
+    \      'columns': ['icon_filename'],
+    \    },
+    \  },
+    \  'kindOptions': {
+    \    'file': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'man': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'word': {
+    \      'defaultAction': 'append',
+    \    },
+    \    'command_history': {
+    \      'defaultAction': 'execute',
+    \    },
+    \    'help': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'readme_viewer': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'git_status': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'ghq': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'lsp': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'lsp_codeAction': {
+    \      'defaultAction': 'apply',
+    \    },
+    \    'action': {
+    \      'defaultAction': 'do',
+    \    },
+    \    'nvim-notify': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'source': {
+    \      'defaultAction': 'execute',
+    \    },
+    \    'colorscheme': {
+    \      'defaultAction': 'set',
+    \    },
+    \    'dein_update': {
+    \      'defaultAction': 'viewDiff',
+    \    },
+    \  },
+    \  'actionOptions': {
+    \    'echo': {
+    \      'quit': v:false,
+    \    },
+    \    'echoDiff': {
+    \      'quit': v:false,
+    \    },
+    \  },
+    \})
 
-call ddu#custom#patch_local("files", {
+call ddu#custom#patch_local("lsp_def", {
 		\  'ui': 'ff',
-		\  'sources': [{'name': 'file_rec', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
 		\  'uiParams': {
 		\    'ff': {
-		\      'startFilter': v:true,
-		\      'winCol': (&columns / 2) - &columns / 3 - 2,
-		\      'winRow': 6,
-		\      'winWidth': &columns / 3,
-		\      'winHeight': &lines - 12,
-		\      'previewCol': &columns / 2,
-		\      'previewRow': 6,
-		\      'previewWidth': &columns / 3,
-		\      'previewHeight': &lines - 12,
+		\      'startAutoAction': v:true,
 		\      'autoAction': {
 		\        'name': 'preview'
 		\      },
 		\    },
 		\  },
-		\})
-
-call ddu#custom#patch_local("history", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'file_old', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:true,
-		\      'winCol': (&columns / 2) - &columns / 3 - 2,
-		\      'winRow': 6,
-		\      'winWidth': &columns / 3,
-		\      'winHeight': &lines - 12,
-		\      'previewCol': &columns / 2,
-		\      'previewRow': 6,
-		\      'previewWidth': &columns / 3,
-		\      'previewHeight': &lines - 12,
-		\      'autoAction': {
-		\        'name': 'preview'
+		\  'sources': [
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduRed' } },
+		\        ],
 		\      },
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("filer", {
-		\  'ui': 'filer',
-		\  'sources': [{'name': 'file', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\      'columns': ['filename'],
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("reg", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'register', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:false,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("file_external", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'file_external'}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'sourceParams': {
-		\    'file_external': {
-		\      'cmd': ['git', 'ls-files', '-m'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:false,
-		\      'autoAction': {
-		\        'name': 'preview',
-		\      },
-		\    },
-		\  },
-		\  'kindParams': {
-		\    'file': {
-		\      'preview': {
-		\        'previewCmds': ['git', 'diff', '%s']
+		\      'params': {
+		\        'display': '>>Definition<<',
 		\      }
-		\    }
-		\  },
+		\    },
+		\    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/definition' }},
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduLightBlue' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>typeDefinition<<',
+		\      },
+		\    },
+		\    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/typeDefinition' }},
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduYellow' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>declaration<<',
+		\      }
+		\    },
+		\    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/declaration' }},
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduGreen' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>Implementation<<',
+		\      }
+		\    },
+		\    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/implementation' }},
+		\  ],
 		\})
 
-call ddu#custom#patch_local("buffer", {
+call ddu#custom#patch_local("lsp_hie", {
 		\  'ui': 'ff',
-		\  'sources': [{'name': 'buffer', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
 		\  'uiParams': {
 		\    'ff': {
-		\      'startFilter': v:false,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("help", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'help', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:true,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("command_history", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'command_history', 'params': {}}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:true,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("git_status", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'git_status'}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:false,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("readme_viewer", {
-		\  'ui': 'ff',
-		\  'sources': [{'name': 'readme_viewer'}],
-		\  'sourceOptions': {
-		\    '_': {
-		\      'matchers': ['matcher_substring'],
-		\    },
-		\  },
-		\  'uiParams': {
-		\    'ff': {
-		\      'startFilter': v:true,
-		\    },
-		\  },
-		\})
-
-call ddu#custom#patch_local("live_rg", {
-		\  'ui': 'ff',
-		\  'sources': [{
-    \    'name': 'rg',
-    \    'options': {
-    \      'matchers': [],
-    \      'volatile': v:true,
-    \    }
-    \  }],
-		\  'uiParams': {
-		\    'ff': {
-		\      'ignoreEmpty': v:false,
-		\      'autoResize': v:false,
-		\      'startFilter': v:true,
-		\      'winCol': (&columns / 2) - &columns / 3 - 2,
-		\      'winRow': 6,
-		\      'winWidth': &columns / 3,
-		\      'winHeight': &lines - 12,
-		\      'previewCol': &columns / 2,
-		\      'previewRow': 6,
-		\      'previewWidth': &columns / 3,
-		\      'previewHeight': &lines - 12,
+		\      'startAutoAction': v:true,
 		\      'autoAction': {
 		\        'name': 'preview'
 		\      },
 		\    },
 		\  },
+		\  'sources': [
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduRed' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>incomingCalls<<',
+		\      }
+		\    },
+		\    { 'name': 'lsp_callHierarchy', 'params': { 'method': 'callHierarchy/incomingCalls' }},
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduLightBlue' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>outgoingCalls<<',
+		\      }
+		\    },
+		\    { 'name': 'lsp_callHierarchy', 'params': { 'method': 'callHierarchy/outgoingCalls' }},
+		\    {
+		\      'name': 'dummy',
+		\      'options': {
+		\        'converters': [
+		\          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduYellow' } },
+		\        ],
+		\      },
+		\      'params': {
+		\        'display': '>>Reference<<',
+		\      }
+		\    },
+		\    { 'name': 'lsp_references' },
+		\  ],
 		\})
 
-nnoremap <silent> <Leader>fe :call ddu#start({ 'name': 'filer' })<CR>
-nnoremap <silent> <Leader>ff :call ddu#start({ 'name': 'files' })<CR>
-nnoremap <silent> <Leader>h :call ddu#start({ 'name': 'history' })<CR>
-nnoremap <silent> <Leader>fr :call ddu#start({ 'name': 'reg' })<CR>
-nnoremap <silent> <Leader>gr :call ddu#start({ 'name': 'live_rg' })<CR>
-nnoremap <silent> <Leader>fb :call ddu#start({ 'name': 'buffer' })<CR>
-nnoremap <silent> <Leader>fh :call ddu#start({ 'name': 'help' })<CR>
-nnoremap <silent> <Leader>fc :call ddu#start({ 'name': 'command_history' })<CR>
-nnoremap <silent> <Leader>fm :call ddu#start({ 'name': 'readme_viewer' })<CR>
-nnoremap <silent> <Leader>gs :call ddu#start({ 'name': 'git_status' })<CR>
-nnoremap <silent> <Leader>fx :call ddu#start({ 'name': 'file_external' })<CR>
+nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
+nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-volatile=v:true -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
+nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-path=`expand('%:p')` -source-option-converter='converter_git_status' -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-path=`expand('%:p')`<CR>
+nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff-ghq'<CR>
+nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-startFilter=v:true -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-startAutoAction -ui-param-ignoreEmpty -source-param-input=`('<cword>'->expand())`<CR>
+nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
+nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
+nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-startAutoAction<CR>
+nnoremap <silent> ca :Ddu -ui=ff lsp_codeAction -ui-param-startAutoAction<CR>
+nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-startAutoAction<CR>
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
@@ -528,26 +653,50 @@ nnoremap <buffer> i
 \ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
 nnoremap <buffer> q
 \ <Cmd>call ddu#ui#do_action('quit')<CR>
+nnoremap <buffer> a
+\ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
 nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR>
 nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('preview')<CR>
+\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+nnoremap <buffer> <C-t>
+\ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
+nnoremap <buffer> <C-u>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
+nnoremap <buffer> <C-d>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
+nnoremap <buffer> <C-n>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
+nnoremap <buffer> <C-p>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
+nnoremap <buffer> L
+\ <Cmd>call ddu#ui#do_action('expandItem')<CR>
+nnoremap <buffer> H
+\ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
+nnoremap <buffer> <Tab>
+\ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+nnoremap <buffer> A
+\ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
 endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
 inoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
+\ <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR><Esc>
 inoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 inoremap <buffer> <C-n>
-\ <Cmd>call ddu#ui#multi_actions([['cursorNext'], ['preview']])<CR>
+\ <Cmd>call ddu#ui#do_action('cursorNext')<CR>
 inoremap <buffer> <C-p>
-\ <Cmd>call ddu#ui#multi_actions([['cursorPrevious'], ['preview']])<CR>
+\ <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+inoremap <buffer> <Esc>
+\ <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
 nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('preview')<CR>
+\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+nnoremap <buffer> <C-t>
+\ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
 endfunction
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
@@ -562,6 +711,8 @@ nnoremap <buffer> h
 \ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
 nnoremap <buffer> l
 \ <Cmd>call ddu#ui#do_action('expandItem')<CR>
+nnoremap <buffer> a
+\ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
 endfunction
 '''
 
@@ -606,6 +757,7 @@ hook_source = '''
     \   horizontal_menu: v:false,
     \   max_width: 80,
     \   use_setline: v:false,
+    \   border: 'rounded',
     \ })
   call pum#set_local_option('c', #{
     \   horizontal_menu: v:false,
@@ -667,9 +819,9 @@ call ddc#custom#patch_global('ui', 'pum')
       \   ':': ['cmdline-history', 'cmdline', 'around'],
       \   '@': ['cmdline-history', 'input', 'file', 'around'],
       \   '>': ['cmdline-history', 'input', 'file', 'around'],
-      \   '/': ['around', 'line'],
-      \   '?': ['around', 'line'],
-      \   '-': ['around', 'line'],
+      \   '/': ['around'],
+      \   '?': ['around'],
+      \   '-': ['around'],
       \   '=': ['input'],
       \ })
 
