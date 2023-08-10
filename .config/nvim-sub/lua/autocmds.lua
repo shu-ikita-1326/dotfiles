@@ -28,15 +28,15 @@ autocmd("QuickfixCmdPost", {
 --   command = "set nocursorline",
 -- })
 
-autocmd("TermOpen", {
-  pattern = "term://*",
-  command = "startinsert | set nonumber",
-})
+-- autocmd("TermOpen", {
+--   pattern = "term://*",
+--   command = "startinsert | set nonumber",
+-- })
 
-autocmd("WinEnter", {
-  pattern = "term://*",
-  command = "startinsert",
-})
+-- autocmd("WinEnter", {
+--   pattern = "term://*",
+--   command = "startinsert",
+-- })
 
 augroup("YankSetup", { clear = true })
 autocmd("VimEnter", {
