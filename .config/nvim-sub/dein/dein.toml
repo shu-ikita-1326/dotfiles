@@ -9,6 +9,32 @@ colorscheme nightfox
 '''
 
 [[plugins]]
+repo = 'cohama/lexima.vim'
+hook_source = '''
+let g:lexima_ctrlh_as_backspace=1
+'''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+hook_source = '''
+let g:floaterm_borderchars='─│─│╭╮╯╰'
+'''
+hook_add = '''
+command! Lg FloatermNew --name=lazygit --width=0.9 --height=0.9 --autoclose=2 lazygit
+nnoremap <Leader>lt <Cmd>Lg<CR>
+nnoremap <Leader>T <Cmd>FloatermNew --width=0.9 --height=0.9 --autoclose=2<CR>
+nnoremap <Leader>trt <Cmd>FloatermNew --width=0.3 --height=0.5 --autoclose=2 --position=topright<CR>
+nnoremap <Leader>trb <Cmd>FloatermNew --width=0.3 --height=0.5 --autoclose=2 --position=bottomright<CR>
+function! s:set_floaterm_map() abort
+  nnoremap <buffer> <silent> q <Cmd>FloatermHide<CR>
+endfunction
+autocmd User FloatermOpen call s:set_floaterm_map()
+'''
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
 repo = 'monaqa/dial.nvim'
 lua_add = 'require("config.dial")'
 
@@ -76,15 +102,6 @@ TSUpdate
 [[plugins]]
 repo = 'akinsho/toggleterm.nvim'
 lua_add = 'require("config.toggleterm")'
-
-[[plugins]]
-repo = 'Shougo/deol.nvim'
-hook_post_source = '''
-g:deol#floating_border='round'
-'''
-hook_add = '''
-nnoremap <Leader>to <Cmd>Deol -split=floating<CR>
-'''
 
 [[plugins]]
 repo = 'nvim-tree/nvim-web-devicons'
@@ -155,9 +172,9 @@ require("config.bufferline")
 [[plugins]]
 repo = 'uga-rosa/translate.nvim'
 hook_add = '''
-nnoremap <Leader>tl V:Translate JA<CR>
-nnoremap <Leader>tw viw:Translate JA<CR>
-vnoremap <Leader>tl :Translate JA<CR>
+nnoremap <silent> <Leader>tl V:Translate JA<CR>
+nnoremap <silent> <Leader>tw viw:Translate JA<CR>
+vnoremap <silent> <Leader>tl :Translate JA<CR>
 '''
 lua_add = 'require("config.translate")'
 
@@ -207,6 +224,14 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'kamecha/ddu-source-jumplist'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kamecha/ddu-source-floaterm'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'kamecha/ddu-source-window'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -327,7 +352,6 @@ call ddu#custom#patch_global('columnParams', {
     \      'txt': { 'icon': '' },
     \      'vue': { 'icon': '' },
     \     },
-    \    'pathDisplayOption': "relative",
     \   }
     \ })
 call ddu#custom#alias('ui', 'ff-ghq', 'ff')
@@ -337,10 +361,10 @@ call ddu#custom#patch_global('uiParams', {
 		\    'filterSplitDirection': 'floating',
 		\    'split': 'floating',
 		\    'filterFloatingPosition': 'top',
-		\    'floatingBorder': 'single',
+		\    'floatingBorder': 'rounded',
 		\    'previewFloating': v:true,
 		\    'previewSplit': 'vertical',
-		\    'previewFloatingBorder': 'single',
+		\    'previewFloatingBorder': 'rounded',
 		\    'previewFloatingTitle': 'Preview',
 		\    'previewFloatingTitlePos': 'center',
 		\    'floatingTitle': 'Result',
@@ -353,10 +377,10 @@ call ddu#custom#patch_global('uiParams', {
 		\    'filterSplitDirection': 'floating',
 		\    'split': 'floating',
 		\    'filterFloatingPosition': 'top',
-		\    'floatingBorder': 'single',
+		\    'floatingBorder': 'rounded',
 		\    'previewFloating': v:true,
 		\    'previewSplit': 'vertical',
-		\    'previewFloatingBorder': 'single',
+		\    'previewFloatingBorder': 'rounded',
 		\    'previewFloatingTitle': 'Preview',
 		\    'previewFloatingTitlePos': 'center',
 		\    'floatingTitle': 'Result',
@@ -367,6 +391,20 @@ call ddu#custom#patch_global('uiParams', {
 		\        'previewCmds': ['onefetch', '%s']
 		\      },
 		\    },
+		\  },
+		\  'filer': {
+		\    'filterSplitDirection': 'floating',
+		\    'split': 'floating',
+		\    'filterFloatingPosition': 'top',
+		\    'floatingBorder': 'rounded',
+		\    'previewFloating': v:true,
+		\    'previewSplit': 'vertical',
+		\    'previewFloatingBorder': 'rounded',
+		\    'previewFloatingTitle': 'Preview',
+		\    'previewFloatingTitlePos': 'center',
+		\    'floatingTitle': 'Result',
+		\    'floatingTitlePos': 'center',
+		\    'sortTreesFirst': v:true,
 		\  },
     \ })
 
@@ -425,6 +463,11 @@ call s:layout()
 
 autocmd VimResized * call s:layout()
 
+call ddu#custom#action('source', 'floaterm', 'close',
+    \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufnr)\n endfor") })
+call ddu#custom#action('source', 'buffer', 'close',
+    \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufNr)\n endfor") })
+
 call ddu#custom#patch_global({
     \  'ui': 'ff',
     \  'sources': [{'name': 'file_rec', 'params': {}}],
@@ -449,11 +492,17 @@ call ddu#custom#patch_global({
     \    'git_status': {
     \      'converters': ['converter_git_status'],
     \    },
-    \    'file_rec': {
+    \    'file': {
     \      'columns': ['icon_filename'],
     \    },
+    \    'file_rec': {
+    \      'columns': [{'name': 'icon_filename', 'params': { 'pathDisplayOption': 'relative' }}],
+    \    },
     \    'mr': {
-    \      'columns': ['icon_filename'],
+    \      'columns': [{'name': 'icon_filename', 'params': { 'pathDisplayOption': 'relative' }}],
+    \    },
+    \    'file_external': {
+    \      'columns': [{'name': 'icon_filename', 'params': { 'pathDisplayOption': 'relative' }}],
     \    },
     \  },
     \  'kindOptions': {
@@ -501,6 +550,12 @@ call ddu#custom#patch_global({
     \    },
     \    'dein_update': {
     \      'defaultAction': 'viewDiff',
+    \    },
+    \    'floaterm': {
+    \      'defaultAction': 'open',
+    \    },
+    \    'window': {
+    \      'defaultAction': 'open',
     \    },
     \  },
     \  'actionOptions': {
@@ -625,6 +680,8 @@ call ddu#custom#patch_local("lsp_hie", {
 		\  ],
 		\})
 
+nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
+nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-startAutoAction<CR>
 nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
 nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-startAutoAction<CR>
 nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-startAutoAction<CR>
@@ -642,6 +699,7 @@ nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-showGraph -ui-par
 nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff-ghq' -ui-param-startAutoAction<CR>
 nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-startFilter=v:true<CR>
 nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-startFilter=v:true -ui-param-startAutoAction<CR>
+nnoremap <silent> <Leader>ft :Ddu -ui=ff floaterm -ui-param-startAutoAction<CR>
 nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-startAutoAction -ui-param-ignoreEmpty -source-param-input=`('<cword>'->expand())`<CR>
 nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
 nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
@@ -710,14 +768,24 @@ nnoremap <buffer> <CR>
 \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
 nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
-nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('preview')<CR>
 nnoremap <buffer> h
 \ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
 nnoremap <buffer> l
 \ <Cmd>call ddu#ui#do_action('expandItem')<CR>
 nnoremap <buffer> a
 \ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
+nnoremap <buffer> p
+\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+nnoremap <buffer> <Tab>
+\ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+nnoremap <buffer> <C-u>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
+nnoremap <buffer> <C-d>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
+nnoremap <buffer> <C-n>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
+nnoremap <buffer> <C-p>
+\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
 endfunction
 '''
 
@@ -773,7 +841,7 @@ function! s:pum_set_option() abort
 endfunction
 call s:pum_set_option()
 
-autocmd! VimResized * call s:pum_set_option()
+autocmd VimResized * call s:pum_set_option()
 '''
 hook_add = '''
 inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
@@ -828,7 +896,7 @@ function! CommandlinePost() abort
 endfunction
 
 call ddc#custom#patch_global('cmdlineSources', {
-    \   ':': ['cmdline-history', 'cmdline', 'file', 'around'],
+    \   ':': ['cmdline', 'cmdline-history', 'file', 'around'],
     \   '@': ['cmdline-history', 'input', 'file', 'around'],
     \   '>': ['cmdline-history', 'input', 'file', 'around'],
     \   '/': ['around'],
