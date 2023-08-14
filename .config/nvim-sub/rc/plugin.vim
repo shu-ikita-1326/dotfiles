@@ -26,6 +26,8 @@ execute 'set runtimepath+=' .. '/home/linuxbrew/.linuxbrew/bin'
 " Call dein initialization (required)
 call dein#begin(s:dein_base)
 call dein#load_toml($HOME . '/.config/nvim-sub/dein/dein.toml')
+call dein#load_toml($HOME . '/.config/nvim-sub/dein/ddu.toml')
+call dein#load_toml($HOME . '/.config/nvim-sub/dein/ddc.toml')
 
 call dein#add(s:dein_src)
 call dein#end()
