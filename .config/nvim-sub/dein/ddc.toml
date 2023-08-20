@@ -1,35 +1,46 @@
 [[plugins]]
 repo = 'Shougo/ddc-source-nvim-lsp'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-native'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-around'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-cmdline'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-cmdline-history'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-source-file'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
@@ -38,13 +49,18 @@ function! s:pum_set_option() abort
   call pum#set_option(#{
     \   auto_confirm_time: 0,
     \   horizontal_menu: v:false,
-    \   max_width: 80,
+    \   max_width: [(&columns / 3), 50]->min(),
     \   max_height: (&lines / 3),
     \   use_setline: v:false,
     \   border: 'rounded',
     \   scrollbar_char: '',
+    \   preview: v:true,
+    \   preview_border: "rounded",
+    \   preview_height: (&lines / 2),
+    \   preview_width: (&columns / 2),
     \ })
 endfunction
+
 call s:pum_set_option()
 
 autocmd VimResized * call s:pum_set_option()

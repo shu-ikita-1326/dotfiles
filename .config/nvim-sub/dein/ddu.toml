@@ -458,31 +458,31 @@ call ddu#custom#patch_local("lsp_hie", {
 		\})
 
 nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
-nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
-nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-volatile=v:true -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
-nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-startAutoAction -ui-param-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
+nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-ff-volatile=v:true -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
 nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
-nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-path=`expand('%:p')` -source-option-converter='converter_git_status' -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-path=`expand('%:p')`<CR>
-nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-showGraph -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff-ghq' -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-startFilter=v:true<CR>
-nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-startFilter=v:true -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>ft :Ddu -ui=ff floaterm -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-startAutoAction -ui-param-ignoreEmpty -source-param-input=`('<cword>'->expand())`<CR>
+nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-ff-path=`expand('%:p')` -source-option-ff-converter='converter_git_status' -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-ff-path=`expand('%:p')`<CR>
+nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff-ghq' -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
+nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>ft :Ddu -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
 nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
 nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
-nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-startAutoAction<CR>
-nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-startAutoAction<CR>
-nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-startAutoAction<CR>
+nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort

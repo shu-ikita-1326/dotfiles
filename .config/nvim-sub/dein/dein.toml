@@ -189,3 +189,7 @@ lua_add = 'require("config.translate")'
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'xiyaowong/nvim-cursorword'
+lua_add = 'vim.api.nvim_command("hi default CursorWord cterm=underline gui=underline")'
