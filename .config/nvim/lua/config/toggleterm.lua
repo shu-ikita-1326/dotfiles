@@ -29,7 +29,9 @@ if vim.fn.executable("lazygit") == 1 then
   local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
   function _lazygit_toggle()
     if vim.env.TMUX then
-      os.execute("tmux popup -d '#{pane_current_path}' -w90% -h90% -E 'lazygit'")
+      local git_root = vim.fn.system("git rev-parse --show-toplevel")
+      git_root = string.gsub(git_root, "\n", "")
+      os.execute("tmux popup -d '"..git_root:sub(1, -1).."' -w90% -h90% -E 'lazygit'")
     else
       lazygit:toggle()
     end
