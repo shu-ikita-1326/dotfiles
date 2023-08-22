@@ -1,4 +1,5 @@
-source ~/.config/nvim-sub/rc/option.vim
-source ~/.config/nvim-sub/rc/keymap.vim
-source ~/.config/nvim-sub/rc/plugin.vim
-source ~/.config/nvim-sub/rc/lua.vim
+let $BASE_DIR=expand('~/.config/nvim-sub')
+source $BASE_DIR/rc/option.vim
+source $BASE_DIR/rc/keymap.vim
+source $BASE_DIR/rc/plugin.vim
+source $BASE_DIR/rc/lua.vim
