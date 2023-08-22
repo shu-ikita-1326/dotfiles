@@ -10,7 +10,7 @@ call ddc#custom#patch_global(#{
       \     '-': ['around'],
       \     '=': ['input'],
       \   },
-      \   sources: ['nvim-lsp', 'around', 'cmdline'],
+      \   sources: ['vsnip', 'nvim-lsp', 'around', 'cmdline'],
       \   sourceOptions: #{
 		  \     _: #{
 		  \       matchers: ['matcher_fuzzy'],
@@ -20,6 +20,7 @@ call ddc#custom#patch_global(#{
 		  \     around: #{mark: '[around]'},
 		  \     nvim-lsp: #{mark: '[Lsp]'},
 		  \     cmdline: #{mark: '[cmdline]'},
+		  \     vsnip: #{mark: '[vsnip]'},
 		  \     file: #{
 		  \       mark: '[file]',
 		  \       isVolatile: v:true,

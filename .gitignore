@@ -24,6 +24,8 @@
 !/.config/nvim-sub/rc/**
 !/.config/nvim-sub/config/
 !/.config/nvim-sub/config/**
+!/.config/vsnip/
+!/.config/vsnip/**
 !/.config/git/
 !/.config/git/**
 !/.config/tig/

@@ -1,0 +1,20 @@
+{
+  "fn": {
+    "prefix": "fn",
+    "body": [
+      "function! $1($2) abort",
+      "\t$0",
+      "endfunction"
+    ],
+    "description": "vim's function"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if $1 == $2",
+      "\t$0",
+      "endif"
+    ],
+    "description": "vim's if"
+  }
+}

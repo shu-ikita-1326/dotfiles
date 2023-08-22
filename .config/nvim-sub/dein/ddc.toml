@@ -35,6 +35,10 @@ repo = 'Shougo/ddc-source-cmdline-history'
 on_source = 'ddc.vim'
 
 [[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'LumaKernel/ddc-source-file'
 on_source = 'ddc.vim'
 

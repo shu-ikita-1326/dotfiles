@@ -51,12 +51,6 @@ repo = 'lewis6991/gitsigns.nvim'
 lua_add = 'require("config.gitsigns")'
 
 [[plugins]]
-repo = 'mattn/vim-sonictemplate'
-hook_source = '''
-let g:sonictemplate_vim_template_dir = '$HOME/.config/template'
-'''
-
-[[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
 lua_add = 'require("config.lualine")'
 
@@ -81,10 +75,27 @@ depends = ['nui.nvim', 'plenary.nvim', 'telescope.nvim']
 lua_add = 'require("config.ChatGPT")'
 
 [[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+hook_source = 'let g:vsnip_snippet_dir=expand("$CONF_DIR/vsnip")'
+hook_add = '''
+inoremap <expr> <Tab> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+inoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+'''
+
+[[plugins]]
 repo = 'lambdalisue/gin.vim'
 
 [[plugins]]
 repo = 'lambdalisue/mr.vim'
+
+[[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+
+[[plugins]]
+repo = 'lambdalisue/kensaku-search.vim'
+hook_add = '''
+cnoremap <CR> <Plug>(kensaku-search-replace)<CR>
+'''
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'

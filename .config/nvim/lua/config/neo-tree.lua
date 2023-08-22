@@ -40,6 +40,38 @@ neotree.setup({
   },
   source_selector = {
     winbar = true,
+    sources = {                    -- table
+      {
+        source = "filesystem",     -- string
+        display_name = "  Files " -- string | nil
+      },
+      {
+        source = "buffers",          -- string
+        display_name = "  Buffers " -- string | nil
+      },
+      {
+        source = "git_status",   -- string
+        display_name = " 󰊢 Git " -- string | nil
+      },
+    },
+  },
+  default_component_configs = {
+    git_status = {
+      symbols = {
+        -- Change type
+        added     = "✚", -- NOTE: you can set any of these to an empty string to not show them
+        deleted   = "✖",
+        modified  = "",
+        renamed   = "",
+        -- Status type
+        untracked = "",
+        ignored   = "",
+        unstaged  = "",
+        staged    = "",
+        conflict  = "",
+      },
+      align = "right",
+    },
   },
 })
 

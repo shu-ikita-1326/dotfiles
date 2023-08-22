@@ -17,6 +17,11 @@ call ddu#custom#action('source', 'buffer', 'close',
 " global settings
 call ddu#custom#patch_global(#{
     \  ui: 'ff',
+    \  filterParams: #{
+    \    matcher_fzf: #{
+    \      highlightMatched: 'Search',
+    \    },
+    \  },
     \  sources: [{'name': 'file_rec', 'params': {}}],
     \  sourceParams: #{
     \    file_external: #{
@@ -27,6 +32,7 @@ call ddu#custom#patch_global(#{
     \    _: #{
     \      matchers: ['matcher_fzf'],
     \      sorters: ['sorter_fzf'],
+    \      ignoreCase: v:true,
     \    },
     \    lsp_diagnostic: #{
     \      converters: ['converter_lsp_diagnostic'],
@@ -127,40 +133,41 @@ call ddu#custom#patch_global(#{
     \     },
     \  },
     \  uiParams: #{
-		\    _: #{
-		\      filterSplitDirection: 'floating',
-		\      split: 'floating',
-		\      filterFloatingPosition: 'top',
-		\      floatingBorder: 'rounded',
-		\      previewFloating: v:true,
-		\      previewSplit: 'vertical',
-		\      previewFloatingBorder: 'rounded',
-		\      previewFloatingTitle: 'Preview',
-		\      previewFloatingTitlePos: 'center',
-		\      floatingTitle: 'Result',
-		\      floatingTitlePos: 'center',
-		\    },
-		\    ff: #{
-		\      autoAction: #{
-		\        name: 'preview',
-		\      },
-		\    },
-		\    ff_colorscheme: #{
-		\      autoAction: #{
-		\        name: 'itemAction',
-		\      },
-		\    },
-		\    ff_ghq: #{
-		\      autoAction: #{
-		\        name: 'preview',
-		\        params: #{
-		\          previewCmds: ['onefetch', '%s']
-		\        },
-		\      },
-		\    },
-		\    filer: #{
-		\      sortTreesFirst: v:true,
-		\    },
+    \    _: #{
+    \      filterSplitDirection: 'floating',
+    \      split: 'floating',
+    \      filterFloatingPosition: 'top',
+    \      floatingBorder: 'rounded',
+    \      previewFloating: v:true,
+    \      previewSplit: 'vertical',
+    \      previewFloatingBorder: 'rounded',
+    \      previewFloatingTitle: 'Preview',
+    \      previewFloatingTitlePos: 'center',
+    \      floatingTitle: 'Result',
+    \      floatingTitlePos: 'center',
+    \      filterFloatingTitle: 'matcher: fzf',
+    \    },
+    \    ff: #{
+    \      autoAction: #{
+    \        name: 'preview',
+    \      },
+    \    },
+    \    ff_colorscheme: #{
+    \      autoAction: #{
+    \        name: 'itemAction',
+    \      },
+    \    },
+    \    ff_ghq: #{
+    \      autoAction: #{
+    \        name: 'preview',
+    \        params: #{
+    \          previewCmds: ['onefetch', '%s']
+    \        },
+    \      },
+    \    },
+    \    filer: #{
+    \      sortTreesFirst: v:true,
+    \    },
     \  },
     \})
 
@@ -178,16 +185,16 @@ endfunction
 
 function! s:set_layout() abort
 call ddu#custom#patch_global('uiParams', #{
-		\  _: #{
-		\    winCol: s:winCol,
-		\    winRow: s:winRow,
-		\    winWidth: s:winWidth,
-		\    winHeight: s:winHeight,
-		\    previewCol: s:previewCol,
-		\    previewWidth: s:previewWidth,
-		\    previewRow: s:previewRow,
-		\    previewHeight: s:previewHeight,
-		\  },
+    \  _: #{
+    \    winCol: s:winCol,
+    \    winRow: s:winRow,
+    \    winWidth: s:winWidth,
+    \    winHeight: s:winHeight,
+    \    previewCol: s:previewCol,
+    \    previewWidth: s:previewWidth,
+    \    previewRow: s:previewRow,
+    \    previewHeight: s:previewHeight,
+    \  },
     \ })
 endfunction
 
@@ -202,116 +209,116 @@ autocmd VimResized * call s:layout()
 
 " local settings
 call ddu#custom#patch_local("lsp_def", #{
-		\  ui: 'ff',
-		\  uiParams: #{
-		\    ff: #{
-		\      startAutoAction: v:true,
-		\      autoAction: #{
-		\        name: 'preview'
-		\      },
-		\    },
-		\  },
-		\  sources: [
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>Definition<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_definition', params: #{ method: 'textDocument/definition' }},
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>typeDefinition<<',
-		\      },
-		\    },
-		\    #{ name: 'lsp_definition', params: #{ method: 'textDocument/typeDefinition' }},
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>declaration<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_definition', params: #{ method: 'textDocument/declaration' }},
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduGreen' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>Implementation<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_definition', params: #{ method: 'textDocument/implementation' }},
-		\  ],
-		\})
+    \  ui: 'ff',
+    \  uiParams: #{
+    \    ff: #{
+    \      startAutoAction: v:true,
+    \      autoAction: #{
+    \        name: 'preview'
+    \      },
+    \    },
+    \  },
+    \  sources: [
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>Definition<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/definition' }},
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>typeDefinition<<',
+    \      },
+    \    },
+    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/typeDefinition' }},
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>declaration<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/declaration' }},
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduGreen' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>Implementation<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/implementation' }},
+    \  ],
+    \})
 
 call ddu#custom#patch_local("lsp_hie", #{
-		\  ui: 'ff',
-		\  uiParams: #{
-		\    ff: #{
-		\      startAutoAction: v:true,
-		\      autoAction: #{
-		\        name: 'preview'
-		\      },
-		\    },
-		\  },
-		\  sources: [
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>incomingCalls<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/incomingCalls' }},
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>outgoingCalls<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/outgoingCalls' }},
-		\    #{
-		\      name: 'dummy',
-		\      options: #{
-		\        converters: [
-		\          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
-		\        ],
-		\      },
-		\      params: #{
-		\        display: '>>Reference<<',
-		\      }
-		\    },
-		\    #{ name: 'lsp_references' },
-		\  ],
-		\})
+    \  ui: 'ff',
+    \  uiParams: #{
+    \    ff: #{
+    \      startAutoAction: v:true,
+    \      autoAction: #{
+    \        name: 'preview'
+    \      },
+    \    },
+    \  },
+    \  sources: [
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>incomingCalls<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/incomingCalls' }},
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>outgoingCalls<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/outgoingCalls' }},
+    \    #{
+    \      name: 'dummy',
+    \      options: #{
+    \        converters: [
+    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+    \        ],
+    \      },
+    \      params: #{
+    \        display: '>>Reference<<',
+    \      }
+    \    },
+    \    #{ name: 'lsp_references' },
+    \  ],
+    \})
 
 " key mapping
 nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
@@ -377,10 +384,46 @@ nnoremap <buffer> A
 \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
 endfunction
 
+" toggle matchers function
+function! g:Ddu_toggle_matchers(name) abort
+  let s:current_options = ddu#custom#get_current(a:name)
+  if s:current_options.sourceOptions._.matchers == ['matcher_fzf']
+      call ddu#ui#do_action('updateOptions', #{
+      \  sourceOptions: #{
+      \    _: #{
+      \      matchers: ['matcher_substring'],
+      \      sorters: [],
+      \    },
+      \  },
+      \  uiParams: #{
+      \    _: #{
+      \      startFilter: v:true,
+      \      filterFloatingTitle: 'matcher: substring',
+      \    },
+      \  },
+      \ })
+    else
+      call ddu#ui#do_action('updateOptions', #{
+      \  sourceOptions: #{
+      \    _: #{
+      \      matchers: ['matcher_fzf'],
+      \      sorters: [],
+      \    },
+      \  },
+      \  uiParams: #{
+      \    _: #{
+      \      startFilter: v:true,
+      \      filterFloatingTitle: 'matcher: fzf',
+      \    },
+      \  },
+      \ })
+  endif
+endfunction
+
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
 inoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR><Esc>
+\ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR><Esc>
 inoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 inoremap <buffer> <C-n>
@@ -388,7 +431,8 @@ inoremap <buffer> <C-n>
 inoremap <buffer> <C-p>
 \ <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
 inoremap <buffer> <Esc>
-\ <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
+\ <Esc><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+inoremap <buffer> <C-f> <Esc><Cmd>call g:Ddu_toggle_matchers('default')<CR>
 nnoremap <buffer> <C-c>
 \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
 nnoremap <buffer> p
