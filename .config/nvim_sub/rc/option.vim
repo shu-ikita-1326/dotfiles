@@ -2,6 +2,7 @@ set number
 set nobackup
 set nowritebackup
 set virtualedit=block
+set nowrap
 
 set undofile
 set ignorecase

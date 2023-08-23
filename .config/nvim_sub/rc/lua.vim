@@ -1,1 +1,1 @@
-luafile $HOME/.config/nvim_sub/lua/autocmds.lua
+luafile $BASE_DIR/lua/autocmds.lua
