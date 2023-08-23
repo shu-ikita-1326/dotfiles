@@ -10,166 +10,166 @@ call ddu#custom#alias('ui', 'ff_colorscheme', 'ff')
 
 " custom actions
 call ddu#custom#action('source', 'floaterm', 'close',
-    \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufnr)\n endfor") })
+      \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufnr)\n endfor") })
 call ddu#custom#action('source', 'buffer', 'close',
-    \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufNr)\n endfor") })
+      \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufNr)\n endfor") })
 
 " global settings
 call ddu#custom#patch_global(#{
-    \  ui: 'ff',
-    \  filterParams: #{
-    \    matcher_fzf: #{
-    \      highlightMatched: 'Search',
-    \    },
-    \  },
-    \  sources: [{'name': 'file_rec', 'params': {}}],
-    \  sourceParams: #{
-    \    file_external: #{
-    \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-t', 'f'],
-    \    },
-    \  },
-    \  sourceOptions: #{
-    \    _: #{
-    \      matchers: ['matcher_fzf'],
-    \      sorters: ['sorter_fzf'],
-    \      ignoreCase: v:true,
-    \    },
-    \    lsp_diagnostic: #{
-    \      converters: ['converter_lsp_diagnostic'],
-    \    },
-    \    lsp_documentSymbol: #{
-    \      converters: ['converter_lsp_symbol'],
-    \    },
-    \    lsp_workspaceSymbol: #{
-    \      converters: ['converter_lsp_symbol'],
-    \    },
-    \    git_status: #{
-    \      converters: ['converter_git_status'],
-    \    },
-    \    file: #{
-    \      columns: ['icon_filename'],
-    \    },
-    \    file_rec: #{
-    \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-    \    },
-    \    mr: #{
-    \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-    \    },
-    \    file_external: #{
-    \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-    \    },
-    \  },
-    \  kindOptions: #{
-    \    file: #{
-    \      defaultAction: 'open',
-    \    },
-    \    man: #{
-    \      defaultAction: 'open',
-    \    },
-    \    word: #{
-    \      defaultAction: 'append',
-    \    },
-    \    command_history: #{
-    \      defaultAction: 'execute',
-    \    },
-    \    help: #{
-    \      defaultAction: 'open',
-    \    },
-    \    readme_viewer: #{
-    \      defaultAction: 'open',
-    \    },
-    \    git_status: #{
-    \      defaultAction: 'open',
-    \    },
-    \    ghq: #{
-    \      defaultAction: 'open',
-    \    },
-    \    lsp: #{
-    \      defaultAction: 'open',
-    \    },
-    \    lsp_codeAction: #{
-    \      defaultAction: 'apply',
-    \    },
-    \    action: #{
-    \      defaultAction: 'do',
-    \    },
-    \    nvim-notify: #{
-    \      defaultAction: 'open',
-    \    },
-    \    source: #{
-    \      defaultAction: 'execute',
-    \    },
-    \    colorscheme: #{
-    \      defaultAction: 'set',
-    \    },
-    \    dein_update: #{
-    \      defaultAction: 'viewDiff',
-    \    },
-    \    floaterm: #{
-    \      defaultAction: 'open',
-    \    },
-    \    window: #{
-    \      defaultAction: 'open',
-    \    },
-    \  },
-    \  actionOptions: #{
-    \    echo: #{
-    \      quit: v:false,
-    \    },
-    \    echoDiff: #{
-    \      quit: v:false,
-    \    },
-    \    set: #{
-    \      quit: v:false,
-    \    },
-    \  },
-    \  columnParams: #{
-    \    icon_filename: #{
-    \      customFileIcons: #{
-    \        lua: #{ icon: '' },
-    \        txt: #{ icon: '' },
-    \        vue: #{ icon: '' },
-    \       },
-    \     },
-    \  },
-    \  uiParams: #{
-    \    _: #{
-    \      filterSplitDirection: 'floating',
-    \      split: 'floating',
-    \      filterFloatingPosition: 'top',
-    \      floatingBorder: 'rounded',
-    \      previewFloating: v:true,
-    \      previewSplit: 'vertical',
-    \      previewFloatingBorder: 'rounded',
-    \      previewFloatingTitle: 'Preview',
-    \      previewFloatingTitlePos: 'center',
-    \      floatingTitle: 'Result',
-    \      floatingTitlePos: 'center',
-    \      filterFloatingTitle: 'matcher: fzf',
-    \    },
-    \    ff: #{
-    \      autoAction: #{
-    \        name: 'preview',
-    \      },
-    \    },
-    \    ff_colorscheme: #{
-    \      autoAction: #{
-    \        name: 'itemAction',
-    \      },
-    \    },
-    \    ff_ghq: #{
-    \      autoAction: #{
-    \        name: 'preview',
-    \        params: #{
-    \          previewCmds: ['onefetch', '%s']
-    \        },
-    \      },
-    \    },
-    \    filer: #{
-    \      sortTreesFirst: v:true,
-    \    },
-    \  },
-    \})
+      \  ui: 'ff',
+      \  filterParams: #{
+      \    matcher_fzf: #{
+      \      highlightMatched: 'Search',
+      \    },
+      \  },
+      \  sources: [{'name': 'file_rec', 'params': {}}],
+      \  sourceParams: #{
+      \    file_external: #{
+      \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-t', 'f'],
+      \    },
+      \  },
+      \  sourceOptions: #{
+      \    _: #{
+      \      matchers: ['matcher_fzf'],
+      \      sorters: ['sorter_fzf'],
+      \      ignoreCase: v:true,
+      \    },
+      \    lsp_diagnostic: #{
+      \      converters: ['converter_lsp_diagnostic'],
+      \    },
+      \    lsp_documentSymbol: #{
+      \      converters: ['converter_lsp_symbol'],
+      \    },
+      \    lsp_workspaceSymbol: #{
+      \      converters: ['converter_lsp_symbol'],
+      \    },
+      \    git_status: #{
+      \      converters: ['converter_git_status'],
+      \    },
+      \    file: #{
+      \      columns: ['icon_filename'],
+      \    },
+      \    file_rec: #{
+      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+      \    },
+      \    mr: #{
+      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+      \    },
+      \    file_external: #{
+      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+      \    },
+      \  },
+      \  kindOptions: #{
+      \    file: #{
+      \      defaultAction: 'open',
+      \    },
+      \    man: #{
+      \      defaultAction: 'open',
+      \    },
+      \    word: #{
+      \      defaultAction: 'append',
+      \    },
+      \    command_history: #{
+      \      defaultAction: 'execute',
+      \    },
+      \    help: #{
+      \      defaultAction: 'open',
+      \    },
+      \    readme_viewer: #{
+      \      defaultAction: 'open',
+      \    },
+      \    git_status: #{
+      \      defaultAction: 'open',
+      \    },
+      \    ghq: #{
+      \      defaultAction: 'open',
+      \    },
+      \    lsp: #{
+      \      defaultAction: 'open',
+      \    },
+      \    lsp_codeAction: #{
+      \      defaultAction: 'apply',
+      \    },
+      \    action: #{
+      \      defaultAction: 'do',
+      \    },
+      \    nvim-notify: #{
+      \      defaultAction: 'open',
+      \    },
+      \    source: #{
+      \      defaultAction: 'execute',
+      \    },
+      \    colorscheme: #{
+      \      defaultAction: 'set',
+      \    },
+      \    dein_update: #{
+      \      defaultAction: 'viewDiff',
+      \    },
+      \    floaterm: #{
+      \      defaultAction: 'open',
+      \    },
+      \    window: #{
+      \      defaultAction: 'open',
+      \    },
+      \  },
+      \  actionOptions: #{
+      \    echo: #{
+      \      quit: v:false,
+      \    },
+      \    echoDiff: #{
+      \      quit: v:false,
+      \    },
+      \    set: #{
+      \      quit: v:false,
+      \    },
+      \  },
+      \  columnParams: #{
+      \    icon_filename: #{
+      \      customFileIcons: #{
+      \        lua: #{ icon: '' },
+      \        txt: #{ icon: '' },
+      \        vue: #{ icon: '' },
+      \       },
+      \     },
+      \  },
+      \  uiParams: #{
+      \    _: #{
+      \      filterSplitDirection: 'floating',
+      \      split: 'floating',
+      \      filterFloatingPosition: 'top',
+      \      floatingBorder: 'rounded',
+      \      previewFloating: v:true,
+      \      previewSplit: 'vertical',
+      \      previewFloatingBorder: 'rounded',
+      \      previewFloatingTitle: 'Preview',
+      \      previewFloatingTitlePos: 'center',
+      \      floatingTitle: 'Result',
+      \      floatingTitlePos: 'center',
+      \      filterFloatingTitle: 'matcher: fzf',
+      \    },
+      \    ff: #{
+      \      autoAction: #{
+      \        name: 'preview',
+      \      },
+      \    },
+      \    ff_colorscheme: #{
+      \      autoAction: #{
+      \        name: 'itemAction',
+      \      },
+      \    },
+      \    ff_ghq: #{
+      \      autoAction: #{
+      \        name: 'preview',
+      \        params: #{
+      \          previewCmds: ['onefetch', '%s']
+      \        },
+      \      },
+      \    },
+      \    filer: #{
+      \      sortTreesFirst: v:true,
+      \    },
+      \  },
+      \})
 
 " layout settings
 function! s:set_size() abort
@@ -185,17 +185,17 @@ endfunction
 
 function! s:set_layout() abort
 call ddu#custom#patch_global('uiParams', #{
-    \  _: #{
-    \    winCol: s:winCol,
-    \    winRow: s:winRow,
-    \    winWidth: s:winWidth,
-    \    winHeight: s:winHeight,
-    \    previewCol: s:previewCol,
-    \    previewWidth: s:previewWidth,
-    \    previewRow: s:previewRow,
-    \    previewHeight: s:previewHeight,
-    \  },
-    \ })
+      \  _: #{
+      \    winCol: s:winCol,
+      \    winRow: s:winRow,
+      \    winWidth: s:winWidth,
+      \    winHeight: s:winHeight,
+      \    previewCol: s:previewCol,
+      \    previewWidth: s:previewWidth,
+      \    previewRow: s:previewRow,
+      \    previewHeight: s:previewHeight,
+      \  },
+      \ })
 endfunction
 
 function! s:layout() abort
@@ -209,116 +209,116 @@ autocmd VimResized * call s:layout()
 
 " local settings
 call ddu#custom#patch_local("lsp_def", #{
-    \  ui: 'ff',
-    \  uiParams: #{
-    \    ff: #{
-    \      startAutoAction: v:true,
-    \      autoAction: #{
-    \        name: 'preview'
-    \      },
-    \    },
-    \  },
-    \  sources: [
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>Definition<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/definition' }},
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>typeDefinition<<',
-    \      },
-    \    },
-    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/typeDefinition' }},
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>declaration<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/declaration' }},
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduGreen' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>Implementation<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/implementation' }},
-    \  ],
-    \})
+      \  ui: 'ff',
+      \  uiParams: #{
+      \    ff: #{
+      \      startAutoAction: v:true,
+      \      autoAction: #{
+      \        name: 'preview'
+      \      },
+      \    },
+      \  },
+      \  sources: [
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>Definition<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/definition' }},
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>typeDefinition<<',
+      \      },
+      \    },
+      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/typeDefinition' }},
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>declaration<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/declaration' }},
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduGreen' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>Implementation<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/implementation' }},
+      \  ],
+      \})
 
 call ddu#custom#patch_local("lsp_hie", #{
-    \  ui: 'ff',
-    \  uiParams: #{
-    \    ff: #{
-    \      startAutoAction: v:true,
-    \      autoAction: #{
-    \        name: 'preview'
-    \      },
-    \    },
-    \  },
-    \  sources: [
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>incomingCalls<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/incomingCalls' }},
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>outgoingCalls<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/outgoingCalls' }},
-    \    #{
-    \      name: 'dummy',
-    \      options: #{
-    \        converters: [
-    \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
-    \        ],
-    \      },
-    \      params: #{
-    \        display: '>>Reference<<',
-    \      }
-    \    },
-    \    #{ name: 'lsp_references' },
-    \  ],
-    \})
+      \  ui: 'ff',
+      \  uiParams: #{
+      \    ff: #{
+      \      startAutoAction: v:true,
+      \      autoAction: #{
+      \        name: 'preview'
+      \      },
+      \    },
+      \  },
+      \  sources: [
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>incomingCalls<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/incomingCalls' }},
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>outgoingCalls<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/outgoingCalls' }},
+      \    #{
+      \      name: 'dummy',
+      \      options: #{
+      \        converters: [
+      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+      \        ],
+      \      },
+      \      params: #{
+      \        display: '>>Reference<<',
+      \      }
+      \    },
+      \    #{ name: 'lsp_references' },
+      \  ],
+      \})
 
 " key mapping
 nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
@@ -351,118 +351,118 @@ nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
-setlocal cursorline
-nnoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
-nnoremap <buffer> i
-\ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-nnoremap <buffer> q
-\ <Cmd>call ddu#ui#do_action('quit')<CR>
-nnoremap <buffer> a
-\ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
-nnoremap <buffer> <C-c>
-\ <Cmd>call ddu#ui#do_action('quit')<CR>
-nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
-nnoremap <buffer> <C-t>
-\ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
-nnoremap <buffer> <C-u>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
-nnoremap <buffer> <C-d>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
-nnoremap <buffer> <C-n>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
-nnoremap <buffer> <C-p>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
-nnoremap <buffer> L
-\ <Cmd>call ddu#ui#do_action('expandItem')<CR>
-nnoremap <buffer> H
-\ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
-nnoremap <buffer> <Tab>
-\ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-nnoremap <buffer> A
-\ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
+  setlocal cursorline
+  nnoremap <buffer> <CR>
+        \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
+  nnoremap <buffer> i
+        \ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+  nnoremap <buffer> q
+        \ <Cmd>call ddu#ui#do_action('quit')<CR>
+  nnoremap <buffer> a
+        \ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
+  nnoremap <buffer> <C-c>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR>
+  nnoremap <buffer> p
+        \ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+  nnoremap <buffer> <C-t>
+        \ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
+  nnoremap <buffer> <C-u>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
+  nnoremap <buffer> <C-d>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
+  nnoremap <buffer> <C-n>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
+  nnoremap <buffer> <C-p>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
+  nnoremap <buffer> L
+        \ <Cmd>call ddu#ui#do_action('expandItem')<CR>
+  nnoremap <buffer> H
+        \ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
+  nnoremap <buffer> <Tab>
+        \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer> A
+        \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
 endfunction
 
 " toggle matchers function
 function! g:Ddu_toggle_matchers(name) abort
   let s:current_options = ddu#custom#get_current(a:name)
   if s:current_options.sourceOptions._.matchers == ['matcher_fzf']
-      call ddu#ui#do_action('updateOptions', #{
-      \  sourceOptions: #{
-      \    _: #{
-      \      matchers: ['matcher_substring'],
-      \      sorters: [],
-      \    },
-      \  },
-      \  uiParams: #{
-      \    _: #{
-      \      startFilter: v:true,
-      \      filterFloatingTitle: 'matcher: substring',
-      \    },
-      \  },
-      \ })
-    else
-      call ddu#ui#do_action('updateOptions', #{
-      \  sourceOptions: #{
-      \    _: #{
-      \      matchers: ['matcher_fzf'],
-      \      sorters: [],
-      \    },
-      \  },
-      \  uiParams: #{
-      \    _: #{
-      \      startFilter: v:true,
-      \      filterFloatingTitle: 'matcher: fzf',
-      \    },
-      \  },
-      \ })
+    call ddu#ui#do_action('updateOptions', #{
+          \  sourceOptions: #{
+          \    _: #{
+          \      matchers: ['matcher_substring'],
+          \      sorters: [],
+          \    },
+          \  },
+          \  uiParams: #{
+          \    _: #{
+          \      startFilter: v:true,
+          \      filterFloatingTitle: 'matcher: substring',
+          \    },
+          \  },
+          \ })
+  else
+    call ddu#ui#do_action('updateOptions', #{
+          \  sourceOptions: #{
+          \    _: #{
+          \      matchers: ['matcher_fzf'],
+          \      sorters: [],
+          \    },
+          \  },
+          \  uiParams: #{
+          \    _: #{
+          \      startFilter: v:true,
+          \      filterFloatingTitle: 'matcher: fzf',
+          \    },
+          \  },
+          \ })
   endif
 endfunction
 
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
-inoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR><Esc>
-inoremap <buffer> <C-c>
-\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
-inoremap <buffer> <C-n>
-\ <Cmd>call ddu#ui#do_action('cursorNext')<CR>
-inoremap <buffer> <C-p>
-\ <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
-inoremap <buffer> <Esc>
-\ <Esc><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
-inoremap <buffer> <C-f> <Esc><Cmd>call g:Ddu_toggle_matchers('default')<CR>
-nnoremap <buffer> <C-c>
-\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
-nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
-nnoremap <buffer> <C-t>
-\ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
+  inoremap <buffer> <CR>
+        \ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR><Esc>
+  inoremap <buffer> <C-c>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
+  inoremap <buffer> <C-n>
+        \ <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+  inoremap <buffer> <C-p>
+        \ <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+  inoremap <buffer> <Esc>
+        \ <Esc><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+  inoremap <buffer> <C-f> <Esc><Cmd>call g:Ddu_toggle_matchers('default')<CR>
+  nnoremap <buffer> <C-c>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
+  nnoremap <buffer> p
+        \ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+  nnoremap <buffer> <C-t>
+        \ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
 endfunction
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
-nnoremap <buffer> <CR>
-\ <Cmd>call ddu#ui#do_action('itemAction')<CR>
-nnoremap <buffer> <C-c>
-\ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
-nnoremap <buffer> h
-\ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
-nnoremap <buffer> l
-\ <Cmd>call ddu#ui#do_action('expandItem')<CR>
-nnoremap <buffer> a
-\ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
-nnoremap <buffer> p
-\ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
-nnoremap <buffer> <Tab>
-\ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-nnoremap <buffer> <C-u>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
-nnoremap <buffer> <C-d>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
-nnoremap <buffer> <C-n>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
-nnoremap <buffer> <C-p>
-\ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
+  nnoremap <buffer> <CR>
+        \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
+  nnoremap <buffer> <C-c>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR><Esc>
+  nnoremap <buffer> h
+        \ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
+  nnoremap <buffer> l
+        \ <Cmd>call ddu#ui#do_action('expandItem')<CR>
+  nnoremap <buffer> a
+        \ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
+  nnoremap <buffer> p
+        \ <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+  nnoremap <buffer> <Tab>
+        \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer> <C-u>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-u>"})<CR>
+  nnoremap <buffer> <C-d>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-d>"})<CR>
+  nnoremap <buffer> <C-n>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-e>"})<CR>
+  nnoremap <buffer> <C-p>
+        \ <Cmd>call ddu#ui#do_action('previewExecute', { 'command': "normal! \<C-y>"})<CR>
 endfunction

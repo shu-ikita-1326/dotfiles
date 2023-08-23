@@ -16,6 +16,7 @@ call ddc#custom#patch_global(#{
 		  \       matchers: ['matcher_fuzzy'],
 		  \       sorters: ['sorter_fuzzy'],
 		  \       converters: ['converter_fuzzy'],
+		  \       ignoreCase: v:true,
 		  \     },
 		  \     around: #{mark: '[around]'},
 		  \     nvim-lsp: #{mark: '[Lsp]'},
