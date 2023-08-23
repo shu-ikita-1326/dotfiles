@@ -174,11 +174,11 @@ call ddu#custom#patch_global(#{
 " layout settings
 function! s:set_size() abort
   let s:winCol = (&columns - (&columns * 0.9)) / 2
-  let s:winWidth = &columns * 0.9
+  let s:winWidth = floor(&columns * 0.9)
   let s:winRow = 6
   let s:winHeight = &lines - 10
-  let s:previewCol = &columns / 2
-  let s:previewWidth = (&columns * 0.9) / 2 - 1
+  let s:previewCol = floor(&columns / 2)
+  let s:previewWidth = floor((&columns * 0.9) / 2 - 1)
   let s:previewRow = 7
   let s:previewHeight = &lines - 12
 endfunction
