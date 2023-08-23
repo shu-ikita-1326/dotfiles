@@ -9,8 +9,6 @@ call ddu#custom#alias('ui', 'ff_ghq', 'ff')
 call ddu#custom#alias('ui', 'ff_colorscheme', 'ff')
 
 " custom actions
-call ddu#custom#action('source', 'floaterm', 'close',
-      \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufnr)\n endfor") })
 call ddu#custom#action('source', 'buffer', 'close',
       \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufNr)\n endfor") })
 
@@ -341,7 +339,7 @@ nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-
 nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
 nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
 nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>ft :Ddu -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
 nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
 nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
 nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
@@ -382,6 +380,10 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
   nnoremap <buffer> A
         \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
+  if split(bufname(), '-')[-1] == 'floaterm'
+    nnoremap <buffer> d
+          \ <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'close' })<CR>
+  endif
 endfunction
 
 " toggle matchers function

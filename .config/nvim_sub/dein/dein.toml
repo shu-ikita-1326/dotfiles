@@ -31,6 +31,7 @@ nnoremap <Leader>trt <Cmd>FloatermNew --width=0.3 --height=0.5 --autoclose=2 --p
 nnoremap <Leader>trb <Cmd>FloatermNew --width=0.3 --height=0.5 --autoclose=2 --position=bottomright<CR>
 function! s:set_floaterm_map() abort
   nnoremap <buffer> <silent> q <Cmd>FloatermHide<CR>
+  tnoremap <buffer> <silent> <C-\><C-\> <Cmd>FloatermHide<CR>
 endfunction
 autocmd User FloatermOpen call s:set_floaterm_map()
 '''
