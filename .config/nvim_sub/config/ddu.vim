@@ -323,6 +323,7 @@ nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
 nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-ff-startAutoAction<CR>
 nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
 nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-ff-startAutoAction<CR>
+nnoremap <silent> <Leader>hp :Ddu -ui=ff mr -source-param-ff-kind=mrr<CR>
 nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-ff-startAutoAction<CR>
 nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-ff-volatile=v:true -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
 nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-ff-startAutoAction<CR>
