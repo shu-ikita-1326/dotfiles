@@ -38,10 +38,10 @@ call ddc#custom#patch_global(#{
 
 
 function! CommandlinePre() abort
-  cnoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-  cnoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+  cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+  cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-  cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+  cnoremap <C-o>   <Cmd>call pum#map#confirm_word()<CR>
   cnoremap <C-Space>   <Cmd>call ddc#map#manual_complete()<CR>
 
   " Overwrite sources
@@ -73,3 +73,8 @@ endfunction
 nnoremap : <Cmd>call CommandlinePre()<CR>:
 inoremap <silent> <C-Space> <Cmd>call ddc#map#manual_complete()<CR>
 call ddc#enable()
+
+inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
+inoremap <C-o> <Cmd>call pum#map#confirm_word()<CR>

@@ -3,6 +3,7 @@ set nobackup
 set nowritebackup
 set virtualedit=block
 set nowrap
+set signcolumn=yes
 
 set undofile
 set ignorecase

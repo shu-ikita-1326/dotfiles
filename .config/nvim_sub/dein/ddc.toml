@@ -61,19 +61,13 @@ function! s:pum_set_option() abort
     \   preview: v:true,
     \   preview_border: "rounded",
     \   preview_height: (&lines / 2),
-    \   preview_width: (&columns / 2),
+    \   preview_width: (&columns / 3),
     \ })
 endfunction
 
 call s:pum_set_option()
 
 autocmd VimResized * call s:pum_set_option()
-'''
-hook_add = '''
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 '''
 
 [[plugins]]
