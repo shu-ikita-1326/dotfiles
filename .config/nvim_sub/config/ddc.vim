@@ -1,3 +1,26 @@
+" ui settings
+highlight PumUiSBar guifg=yellow
+function! s:pum_set_option() abort
+  call pum#set_option(#{
+    \   auto_confirm_time: 0,
+    \   horizontal_menu: v:false,
+    \   max_width: [(&columns / 3), 50]->min(),
+    \   max_height: (&lines / 3),
+    \   use_setline: v:false,
+    \   border: 'rounded',
+    \   scrollbar_char: '┃',
+    \   highlight_scrollbar: 'PumUiSBar',
+    \   preview: v:true,
+    \   preview_border: "rounded",
+    \   preview_height: (&lines / 2),
+    \   preview_width: (&columns / 3),
+    \ })
+endfunction
+
+call s:pum_set_option()
+
+autocmd VimResized * call s:pum_set_option()
+
 " global settings
 call ddc#custom#patch_global(#{
       \   ui: 'pum',

@@ -7,6 +7,8 @@ nnoremap <silent> <Leader>o :wincmd p<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+nnoremap <Leader>n :nohlsearch<CR>
+
 nnoremap J 5j
 nnoremap K 5k
 nnoremap L $

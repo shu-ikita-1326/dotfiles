@@ -7,7 +7,7 @@ require("toggleterm").setup({
   },
   auto_scroll = true,
   start_in_insert = true,
-  open_mapping = [[<C-\><C-n>]]
+  open_mapping = [[<C-\><C-\>]]
 })
 
 local Terminal = require("toggleterm.terminal").Terminal

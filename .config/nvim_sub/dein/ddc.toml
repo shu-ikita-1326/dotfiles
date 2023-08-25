@@ -48,27 +48,6 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
-hook_source = '''
-function! s:pum_set_option() abort
-  call pum#set_option(#{
-    \   auto_confirm_time: 0,
-    \   horizontal_menu: v:false,
-    \   max_width: [(&columns / 3), 50]->min(),
-    \   max_height: (&lines / 3),
-    \   use_setline: v:false,
-    \   border: 'rounded',
-    \   scrollbar_char: '',
-    \   preview: v:true,
-    \   preview_border: "rounded",
-    \   preview_height: (&lines / 2),
-    \   preview_width: (&columns / 3),
-    \ })
-endfunction
-
-call s:pum_set_option()
-
-autocmd VimResized * call s:pum_set_option()
-'''
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
