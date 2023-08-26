@@ -44,6 +44,9 @@ repo = 'monaqa/dial.nvim'
 lua_add = 'require("config.dial")'
 
 [[plugins]]
+repo = 'simeji/winresizer'
+
+[[plugins]]
 repo = 'stevearc/aerial.nvim'
 lua_add = 'require("config.aerial")'
 
@@ -205,3 +208,8 @@ on_source = 'ddu.vim'
 [[plugins]]
 repo = 'xiyaowong/nvim-cursorword'
 lua_add = 'vim.api.nvim_command("hi default CursorWord cterm=underline gui=underline")'
+
+[[plugins]]
+repo = 'folke/trouble.nvim'
+depends = 'nvim-web-devicons'
+lua_add = 'require("config.trouble")'
