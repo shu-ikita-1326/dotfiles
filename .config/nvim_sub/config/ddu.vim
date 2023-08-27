@@ -112,6 +112,9 @@ function! s:ddu_global_setting() abort
         \    custom-list: #{
         \      defaultAction: 'callback',
         \    },
+        \    go_task: #{
+        \      defaultAction: 'execute',
+        \    },
         \  },
         \  actionOptions: #{
         \    echo: #{
@@ -398,6 +401,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
 endfunction
 call s:ddu_key_mapping()
 

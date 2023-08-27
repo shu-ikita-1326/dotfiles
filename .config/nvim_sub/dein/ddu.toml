@@ -103,6 +103,10 @@ repo = 'matsui54/ddu-source-command_history'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'shutils/ddu-source-go_task'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'shun/ddu-source-buffer'
 on_source = 'ddu.vim'
 
