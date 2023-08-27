@@ -339,7 +339,7 @@ function! Ddu_gitsigns_actions() abort
   endfunction
 
   function! s:get_gitsigns_actions() abort
-    return s:convertDictToList("require('gitsigns.actions').get_actions()"->luaeval())
+    return s:convert_dict_to_list("require('gitsigns.actions').get_actions()"->luaeval())
   endfunction
 
   let s:ddu_custom_list_id = denops#callback#register(
