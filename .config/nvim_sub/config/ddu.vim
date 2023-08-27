@@ -1,173 +1,178 @@
 " for lsp
-highlight DduRed guifg=red
-highlight DduLightBlue guifg=lightblue
-highlight DduYellow guifg=yellow
-highlight DduGreen guifg=green
+function! s:ddu_highlight() abort
+  highlight DduRed guifg=red
+  highlight DduLightBlue guifg=lightblue
+  highlight DduYellow guifg=yellow
+  highlight DduGreen guifg=green
+endfunction
+call s:ddu_highlight()
 
 " alias
 call ddu#custom#alias('ui', 'ff_ghq', 'ff')
 call ddu#custom#alias('ui', 'ff_colorscheme', 'ff')
 
-" custom actions
-call ddu#custom#action('source', 'buffer', 'close',
-      \ { args -> execute("for item in args.items\n execute('bdelete! ' . item.action.bufNr)\n endfor") })
-
 " global settings
-call ddu#custom#patch_global(#{
-      \  ui: 'ff',
-      \  filterParams: #{
-      \    matcher_fzf: #{
-      \      highlightMatched: 'Search',
-      \    },
-      \  },
-      \  sources: [{'name': 'file_rec', 'params': {}}],
-      \  sourceParams: #{
-      \    file_external: #{
-      \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-t', 'f'],
-      \    },
-      \  },
-      \  sourceOptions: #{
-      \    _: #{
-      \      matchers: ['matcher_fzf'],
-      \      sorters: ['sorter_fzf'],
-      \      ignoreCase: v:true,
-      \    },
-      \    lsp_diagnostic: #{
-      \      converters: ['converter_lsp_diagnostic'],
-      \    },
-      \    lsp_documentSymbol: #{
-      \      converters: ['converter_lsp_symbol'],
-      \    },
-      \    lsp_workspaceSymbol: #{
-      \      converters: ['converter_lsp_symbol'],
-      \    },
-      \    git_status: #{
-      \      converters: ['converter_git_status'],
-      \    },
-      \    file: #{
-      \      columns: ['icon_filename'],
-      \    },
-      \    file_rec: #{
-      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-      \    },
-      \    mr: #{
-      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-      \    },
-      \    file_external: #{
-      \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
-      \    },
-      \  },
-      \  kindOptions: #{
-      \    file: #{
-      \      defaultAction: 'open',
-      \    },
-      \    man: #{
-      \      defaultAction: 'open',
-      \    },
-      \    word: #{
-      \      defaultAction: 'append',
-      \    },
-      \    command_history: #{
-      \      defaultAction: 'execute',
-      \    },
-      \    help: #{
-      \      defaultAction: 'open',
-      \    },
-      \    readme_viewer: #{
-      \      defaultAction: 'open',
-      \    },
-      \    git_status: #{
-      \      defaultAction: 'open',
-      \    },
-      \    ghq: #{
-      \      defaultAction: 'open',
-      \    },
-      \    lsp: #{
-      \      defaultAction: 'open',
-      \    },
-      \    lsp_codeAction: #{
-      \      defaultAction: 'apply',
-      \    },
-      \    action: #{
-      \      defaultAction: 'do',
-      \    },
-      \    nvim-notify: #{
-      \      defaultAction: 'open',
-      \    },
-      \    source: #{
-      \      defaultAction: 'execute',
-      \    },
-      \    colorscheme: #{
-      \      defaultAction: 'set',
-      \    },
-      \    dein_update: #{
-      \      defaultAction: 'viewDiff',
-      \    },
-      \    floaterm: #{
-      \      defaultAction: 'open',
-      \    },
-      \    window: #{
-      \      defaultAction: 'open',
-      \    },
-      \  },
-      \  actionOptions: #{
-      \    echo: #{
-      \      quit: v:false,
-      \    },
-      \    echoDiff: #{
-      \      quit: v:false,
-      \    },
-      \    set: #{
-      \      quit: v:false,
-      \    },
-      \  },
-      \  columnParams: #{
-      \    icon_filename: #{
-      \      customFileIcons: #{
-      \        lua: #{ icon: '' },
-      \        txt: #{ icon: '' },
-      \        vue: #{ icon: '' },
-      \       },
-      \     },
-      \  },
-      \  uiParams: #{
-      \    _: #{
-      \      filterSplitDirection: 'floating',
-      \      split: 'floating',
-      \      filterFloatingPosition: 'top',
-      \      floatingBorder: 'rounded',
-      \      previewFloating: v:true,
-      \      previewSplit: 'vertical',
-      \      previewFloatingBorder: 'rounded',
-      \      previewFloatingTitle: 'Preview',
-      \      previewFloatingTitlePos: 'center',
-      \      floatingTitle: 'Result',
-      \      floatingTitlePos: 'center',
-      \      filterFloatingTitle: 'matcher: fzf',
-      \    },
-      \    ff: #{
-      \      autoAction: #{
-      \        name: 'preview',
-      \      },
-      \    },
-      \    ff_colorscheme: #{
-      \      autoAction: #{
-      \        name: 'itemAction',
-      \      },
-      \    },
-      \    ff_ghq: #{
-      \      autoAction: #{
-      \        name: 'preview',
-      \        params: #{
-      \          previewCmds: ['onefetch', '%s']
-      \        },
-      \      },
-      \    },
-      \    filer: #{
-      \      sortTreesFirst: v:true,
-      \    },
-      \  },
-      \})
+function! s:ddu_global_setting() abort
+  call ddu#custom#patch_global(#{
+        \  ui: 'ff',
+        \  filterParams: #{
+        \    matcher_fzf: #{
+        \      highlightMatched: 'Search',
+        \    },
+        \  },
+        \  sources: [{'name': 'file_rec', 'params': {}}],
+        \  sourceParams: #{
+        \    file_external: #{
+        \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-E', '.git', '-t', 'f'],
+        \    },
+        \  },
+        \  sourceOptions: #{
+        \    _: #{
+        \      matchers: ['matcher_fzf'],
+        \      sorters: ['sorter_fzf'],
+        \      ignoreCase: v:true,
+        \    },
+        \    lsp_diagnostic: #{
+        \      converters: ['converter_lsp_diagnostic'],
+        \    },
+        \    lsp_documentSymbol: #{
+        \      converters: ['converter_lsp_symbol'],
+        \    },
+        \    lsp_workspaceSymbol: #{
+        \      converters: ['converter_lsp_symbol'],
+        \    },
+        \    git_status: #{
+        \      converters: ['converter_git_status'],
+        \    },
+        \    file: #{
+        \      columns: ['icon_filename'],
+        \    },
+        \    file_rec: #{
+        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \    },
+        \    mr: #{
+        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \    },
+        \    file_external: #{
+        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \    },
+        \  },
+        \  kindOptions: #{
+        \    file: #{
+        \      defaultAction: 'open',
+        \    },
+        \    man: #{
+        \      defaultAction: 'open',
+        \    },
+        \    word: #{
+        \      defaultAction: 'append',
+        \    },
+        \    command_history: #{
+        \      defaultAction: 'execute',
+        \    },
+        \    help: #{
+        \      defaultAction: 'open',
+        \    },
+        \    readme_viewer: #{
+        \      defaultAction: 'open',
+        \    },
+        \    git_status: #{
+        \      defaultAction: 'open',
+        \    },
+        \    ghq: #{
+        \      defaultAction: 'open',
+        \    },
+        \    lsp: #{
+        \      defaultAction: 'open',
+        \    },
+        \    lsp_codeAction: #{
+        \      defaultAction: 'apply',
+        \    },
+        \    action: #{
+        \      defaultAction: 'do',
+        \    },
+        \    nvim-notify: #{
+        \      defaultAction: 'open',
+        \    },
+        \    source: #{
+        \      defaultAction: 'execute',
+        \    },
+        \    colorscheme: #{
+        \      defaultAction: 'set',
+        \    },
+        \    dein_update: #{
+        \      defaultAction: 'viewDiff',
+        \    },
+        \    floaterm: #{
+        \      defaultAction: 'open',
+        \    },
+        \    window: #{
+        \      defaultAction: 'open',
+        \    },
+        \    custom-list: #{
+        \      defaultAction: 'callback',
+        \    },
+        \  },
+        \  actionOptions: #{
+        \    echo: #{
+        \      quit: v:false,
+        \    },
+        \    echoDiff: #{
+        \      quit: v:false,
+        \    },
+        \    set: #{
+        \      quit: v:false,
+        \    },
+        \  },
+        \  columnParams: #{
+        \    icon_filename: #{
+        \      customFileIcons: #{
+        \        lua: #{ icon: '' },
+        \        txt: #{ icon: '' },
+        \        vue: #{ icon: '' },
+        \       },
+        \     },
+        \  },
+        \  uiParams: #{
+        \    _: #{
+        \      filterSplitDirection: 'floating',
+        \      split: 'floating',
+        \      filterFloatingPosition: 'top',
+        \      floatingBorder: 'rounded',
+        \      previewFloating: v:true,
+        \      previewSplit: 'vertical',
+        \      previewFloatingBorder: 'rounded',
+        \      previewFloatingTitle: 'Preview',
+        \      previewFloatingTitlePos: 'center',
+        \      floatingTitle: 'Result',
+        \      floatingTitlePos: 'center',
+        \      filterFloatingTitle: 'matcher: fzf',
+        \    },
+        \    ff: #{
+        \      autoAction: #{
+        \        name: 'preview',
+        \      },
+        \    },
+        \    ff_colorscheme: #{
+        \      autoAction: #{
+        \        name: 'itemAction',
+        \      },
+        \    },
+        \    ff_ghq: #{
+        \      autoAction: #{
+        \        name: 'preview',
+        \        params: #{
+        \          previewCmds: ['onefetch', '%s']
+        \        },
+        \      },
+        \    },
+        \    filer: #{
+        \      sortTreesFirst: v:true,
+        \    },
+        \  },
+        \})
+endfunction
+call s:ddu_global_setting()
 
 " layout settings
 function! s:set_size() abort
@@ -318,35 +323,83 @@ call ddu#custom#patch_local("lsp_hie", #{
       \  ],
       \})
 
+function! Ddu_gitsigns_actions() abort
+  function! s:convert_dict_to_list(dict)
+    if type(a:dict) != v:t_dict
+      return []
+    endif
+    let result = []
+    for key in keys(a:dict)
+      call add(result, key)
+    endfor
+    return result
+  endfunction
+
+  function! s:get_gitsigns_actions() abort
+    return s:convertDictToList("require('gitsigns.actions').get_actions()"->luaeval())
+  endfunction
+
+  let s:ddu_custom_list_id = denops#callback#register(
+        \ { s -> execute(printf('Gitsigns "%s"', s), '') },
+        \ { 'once': v:true },
+        \)
+
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   custom-list: #{
+        \     texts: s:get_gitsigns_actions(),
+        \     callbackId: s:ddu_custom_list_id,
+        \   },
+        \ },
+        \ sources: [#{ name: 'custom-list' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     autoResize: v:true,
+        \     winRow: screenrow() - 1,
+        \     winCol: screencol(),
+        \     winWidth: 20,
+        \     floatingTitle: 'Actions',
+        \     floatingTitlePos: 'left',
+        \     ignoreEmpty: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
 " key mapping
-nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
-nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
-nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>hp :Ddu -ui=ff mr -source-param-ff-kind=mrr<CR>
-nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-ff-volatile=v:true -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
-nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
-nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
-nnoremap <silent> <Leader>co :Ddu -ui=ff_colorscheme colorscheme<CR>
-nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-ff-path=`expand('%:p')` -source-option-ff-converter='converter_git_status' -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-ff-path=`expand('%:p')`<CR>
-nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
-nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
-nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
-nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
-nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
-nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
-nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
+function! s:ddu_key_mapping() abort
+  nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
+  nnoremap <silent> <Leader>fw :Ddu -ui=ff window -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>ff :Ddu -ui=ff file_external -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
+  nnoremap <silent> <Leader>h :Ddu -ui=ff mr -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>hp :Ddu -ui=ff mr -source-param-ff-kind=mrr<CR>
+  nnoremap <silent> <Leader>fr :Ddu -ui=ff register -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>/ :Ddu -ui=ff rg -source-option-ff-volatile=v:true -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
+  nnoremap <silent> <Leader>fb :Ddu -ui=ff buffer -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
+  nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
+  nnoremap <silent> <Leader>co :Ddu -ui=ff_colorscheme colorscheme<CR>
+  nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-ff-path=`expand('%:p')` -source-option-ff-converter='converter_git_status' -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-ff-path=`expand('%:p')`<CR>
+  nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
+  nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
+  nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
+  nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('word:')`<CR>
+  nnoremap <silent> <Leader>ga :call Ddu_gitsigns_actions()<CR>
+  nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
+  nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
+  nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
+endfunction
+call s:ddu_key_mapping()
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
