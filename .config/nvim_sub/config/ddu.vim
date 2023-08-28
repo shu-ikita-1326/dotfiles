@@ -113,7 +113,13 @@ function! s:ddu_global_setting() abort
         \      defaultAction: 'callback',
         \    },
         \    go_task: #{
-        \      defaultAction: 'execute',
+        \      defaultAction: 'run',
+        \    },
+        \  },
+        \  kindParams: #{
+        \    go_task: #{
+        \      prefix: "!tmux send -t 1 '",
+        \      sufix: "' Enter",
         \    },
         \  },
         \  actionOptions: #{
@@ -326,20 +332,68 @@ call ddu#custom#patch_local("lsp_hie", #{
       \  ],
       \})
 
+function! Ddu_line_diagnostic() abort
+  let s:diagnostics = "vim.lsp.diagnostic.get_line_diagnostics(0)"->luaeval()
+  let s:texts = []
+  for s:diagnostic in s:diagnostics
+    call add(s:texts, s:diagnostic.message)
+  endfor
+  let s:len = 0
+  for s:text in s:texts
+    let s:len = [s:len, s:text->len()]->max()
+  endfor
+
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   custom-list: #{
+        \     texts: s:texts,
+        \   },
+        \ },
+        \ sources: [#{ name: 'custom-list' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     autoResize: v:true,
+        \     winRow: screenrow() - 1,
+        \     winCol: screencol(),
+        \     winWidth: s:len + 3,
+        \     floatingTitle: 'Diagnostics',
+        \     floatingTitlePos: 'left',
+        \     ignoreEmpty: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
 function! Ddu_gitsigns_actions() abort
   function! s:convert_dict_to_list(dict)
     if type(a:dict) != v:t_dict
       return []
     endif
-    let result = []
-    for key in keys(a:dict)
-      call add(result, key)
+    let s:result = []
+    for s:key in keys(a:dict)
+      call add(s:result, s:key)
     endfor
-    return result
+    return s:result
   endfunction
+
+  function! s:get_key_max_len(dict) abort
+    let s:result = 0
+    if type(a:dict) != v:t_dict
+      return 0
+    endif
+    for s:key in keys(a:dict)
+      let s:result = [s:result, s:key->len()]->max()
+    endfor
+    return s:result
+  endfunction
+
 
   function! s:get_gitsigns_actions() abort
     return s:convert_dict_to_list("require('gitsigns.actions').get_actions()"->luaeval())
+  endfunction
+
+  function! s:get_gitsigns_actions_max_len() abort
+    return s:get_key_max_len("require('gitsigns.actions').get_actions()"->luaeval())
   endfunction
 
   let s:ddu_custom_list_id = denops#callback#register(
@@ -360,7 +414,7 @@ function! Ddu_gitsigns_actions() abort
         \     autoResize: v:true,
         \     winRow: screenrow() - 1,
         \     winCol: screencol(),
-        \     winWidth: 20,
+        \     winWidth: s:get_gitsigns_actions_max_len() + 3,
         \     floatingTitle: 'Actions',
         \     floatingTitlePos: 'left',
         \     ignoreEmpty: v:true,
@@ -393,9 +447,11 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
   nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
   nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('word:')`<CR>
   nnoremap <silent> <Leader>ga :call Ddu_gitsigns_actions()<CR>
+  nnoremap <silent> <Leader>le :call Ddu_line_diagnostic()<CR>
   nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
   nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
   nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
