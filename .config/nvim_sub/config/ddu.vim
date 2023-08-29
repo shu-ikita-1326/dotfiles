@@ -118,8 +118,8 @@ function! s:ddu_global_setting() abort
         \  },
         \  kindParams: #{
         \    go_task: #{
-        \      prefix: "!tmux send -t 1 '",
-        \      sufix: "' Enter",
+        \      prefix: "silent !tmux send -t 1 '",
+        \      suffix: "' Enter",
         \    },
         \  },
         \  actionOptions: #{
