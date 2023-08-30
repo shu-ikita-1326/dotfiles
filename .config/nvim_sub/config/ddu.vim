@@ -19,6 +19,33 @@ function! s:ddu_global_setting() abort
         \    matcher_fzf: #{
         \      highlightMatched: 'Search',
         \    },
+        \    converter_dir_omit_middle: #{
+        \      maxDirLength: 30,
+        \    },
+        \    converter_devicon: #{
+        \      specificFileIcons: #{
+        \        devDockerfile: #{
+        \          icon: '',
+        \        },
+        \      },
+        \      customIcons: #{
+        \        txt: #{
+        \          icon: '',
+        \        },
+        \        Dockerfile: #{
+        \          icon: '',
+        \        },
+        \        svg: #{
+        \          icon: '',
+        \        },
+        \        ps1: #{
+        \          icon: '',
+        \        },
+        \        log: #{
+        \          icon: '',
+        \        },
+        \      },
+        \    },
         \  },
         \  sources: [{'name': 'file_rec', 'params': {}}],
         \  sourceParams: #{
@@ -45,16 +72,16 @@ function! s:ddu_global_setting() abort
         \      converters: ['converter_git_status'],
         \    },
         \    file: #{
-        \      columns: ['icon_filename'],
+        \      converters: ['converter_relativepath', 'converter_devicon'],
         \    },
         \    file_rec: #{
-        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \      converters: ['converter_relativepath', 'converter_devicon'],
         \    },
         \    mr: #{
-        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \      converters: ['converter_relativepath', 'converter_dir_omit_middle', 'converter_devicon'],
         \    },
         \    file_external: #{
-        \      columns: [#{name: 'icon_filename', params: #{ pathDisplayOption: 'relative' }}],
+        \      converters: ['converter_relativepath', 'converter_devicon'],
         \    },
         \  },
         \  kindOptions: #{
