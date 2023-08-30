@@ -107,6 +107,10 @@ repo = 'shutils/ddu-source-go_task'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'shutils/ddu-filter-converter_dir_omit_middle'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'shun/ddu-source-buffer'
 on_source = 'ddu.vim'
 
