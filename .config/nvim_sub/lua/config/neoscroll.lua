@@ -1,1 +1,11 @@
-../../../nvim/lua/config/neoscroll.lua
+require("neoscroll").setup({
+  mappings = {
+    "<C-u>",
+    "<C-d>",
+    "<C-b>",
+    "<C-f>",
+    "zt",
+    "zz",
+    "zb",
+  },
+})

@@ -14,7 +14,6 @@ mason_lspconfig.setup({
     "gopls",
     "docker_compose_language_service",
     "dockerls",
-    "denols",
   },
 })
 mason_lspconfig.setup_handlers({
@@ -29,15 +28,12 @@ mason_lspconfig.setup_handlers({
 
 local opt = { silent = true, noremap = true }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "single",
-    -- add the title in hover float window
-    title = "hover"
-  }
-)
-
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
-vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
-vim.keymap.set("n", "gn", ":lua vim.lsp.buf.rename()<CR>", opt)
+vim.keymap.set("n", "gh", ":Lspsaga hover_doc<CR>", opt)
+vim.keymap.set("n", "gH", ":Lspsaga hover_doc ++keep<CR>", opt)
+vim.keymap.set("n", "gd", ":Lspsaga lsp_finder<CR>", opt)
+vim.keymap.set("n", "gp", ":Lspsaga peek_definition<CR>", opt)
+vim.keymap.set({ "n", "v" }, "ga", ":Lspsaga code_action<CR>", opt)
+vim.keymap.set("n", "gn", ":Lspsaga rename<CR>", opt)
+vim.keymap.set("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opt)
+vim.keymap.set("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opt)

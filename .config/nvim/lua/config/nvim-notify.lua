@@ -1,6 +1,1 @@
--- Transparency setting of notify
-require("notify").setup({
-  background_colour = "#000000",
-  top_down = false,
-})
-
+../../../nvim_sub/lua/config/nvim-notify.lua

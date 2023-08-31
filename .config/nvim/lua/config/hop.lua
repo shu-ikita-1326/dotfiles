@@ -1,3 +1,1 @@
-require("hop").setup()
-
-vim.keymap.set("n", "<Leader>s", ":HopChar2<CR>")
+../../../nvim_sub/lua/config/hop.lua

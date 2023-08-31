@@ -90,3 +90,8 @@ if ! (type "sheldon" > /dev/null 2>&1); then
   brew install sheldon > /dev/null
 fi
 
+# deno
+if ! (type "deno" > /dev/null 2>&1); then
+  echo 'Installing deno...'
+  brew install deno > /dev/null
+fi

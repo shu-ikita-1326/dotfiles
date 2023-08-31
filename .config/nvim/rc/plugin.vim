@@ -5,7 +5,7 @@ endif
 if &runtimepath !~# '/dein.vim'
   let s:dein_dir = fnamemodify('dein.vim', ':p')
   if !isdirectory(s:dein_dir)
-    let s:dein_dir = $CACHE .. '/nvim_sub/dein/repos/github.com/Shougo/dein.vim'
+    let s:dein_dir = $CACHE .. '/nvim/dein/repos/github.com/Shougo/dein.vim'
     if !isdirectory(s:dein_dir)
       execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
     endif
@@ -14,10 +14,10 @@ if &runtimepath !~# '/dein.vim'
         \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
 endif
 
-let s:dein_base = '~/.cache/nvim_sub/dein/'
+let s:dein_base = '~/.cache/nvim/dein/'
 
 " Set dein source path (required)
-let s:dein_src = '~/.cache/nvim_sub/dein/repos/github.com/Shougo/dein.vim'
+let s:dein_src = '~/.cache/nvim/dein/repos/github.com/Shougo/dein.vim'
 
 " Set dein runtime path (required)
 execute 'set runtimepath+=' .. s:dein_src

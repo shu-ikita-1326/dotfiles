@@ -1,0 +1,11 @@
+{
+  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
+  "ddu-source-command_history": { "branch": "main", "commit": "63840ec2d0e5678881f3473bb4649219b11a4232" },
+  "ddu-source-file_external": { "branch": "main", "commit": "54fb945d0b4d25f8d36582a07893de6ffa0112d5" },
+  "ddu-source-file_old": { "branch": "main", "commit": "c10f2744739341554c595064a6827d293690bd5a" },
+  "ddu-source-markdown": { "branch": "main", "commit": "3c676588a1967f6ffe9670da39d88e5f20e2b9a1" },
+  "ddu-source-register": { "branch": "main", "commit": "3fb8ee88317655f99101cbfdca63934c595e627e" },
+  "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
+  "telescope-lazy.nvim": { "branch": "main", "commit": "686cbcfc384f3874bc7f7e55f85ce9b7a08921a0" },
+  "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" }
+}
