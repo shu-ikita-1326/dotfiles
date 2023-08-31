@@ -1,13 +1,13 @@
 " keymap
 let mapleader = " "
-nnoremap <Leader>_ :source $MYVIMRC<CR>
-nnoremap <Leader>w :w<CR>
+nnoremap <silent> <Leader>_ :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>w :w<CR>
 
 nnoremap <silent> <Leader>o :wincmd p<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-nnoremap <Leader>n :nohlsearch<CR>
+nnoremap <silent> <Leader>n :nohlsearch<CR>
 
 nnoremap J 5j
 nnoremap K 5k

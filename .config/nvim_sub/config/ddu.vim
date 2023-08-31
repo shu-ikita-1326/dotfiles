@@ -27,13 +27,13 @@ function! s:ddu_global_setting() abort
         \        devDockerfile: #{
         \          icon: '',
         \        },
-        \      },
-        \      customIcons: #{
-        \        txt: #{
-        \          icon: '',
-        \        },
         \        Dockerfile: #{
         \          icon: '',
+        \        },
+        \      },
+        \      extentionIcons: #{
+        \        txt: #{
+        \          icon: '',
         \        },
         \        svg: #{
         \          icon: '',

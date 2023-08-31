@@ -5,7 +5,6 @@ neotree.setup({
     mappings = {
       ["l"] = { "open" },
       ["h"] = { "close_node" },
-      ["i"] = { "node_info" },
       ["P"] = { "preview_img" },
       ["E"] = { "edit_drawio" },
     }
@@ -18,11 +17,6 @@ neotree.setup({
     }
   },
   commands = {
-    node_info = function(state)
-      local node = state.tree:get_node()
-      local path = node:get_id()
-      print(vim.fn.getfsize(path))
-    end,
     -- Display image. depends on feh.
     preview_img = function(state)
       local node = state.tree:get_node()
@@ -76,4 +70,5 @@ neotree.setup({
 })
 
 vim.keymap.set("n", "<Leader>e", ":Neotree reveal=true<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<Leader>E", ":Neotree toggle<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<Leader>b", ":Neotree close<CR>", { silent = true, noremap = true })

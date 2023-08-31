@@ -200,11 +200,6 @@ require("config.bufferline")
 
 [[plugins]]
 repo = 'uga-rosa/translate.nvim'
-hook_add = '''
-nnoremap <silent> <Leader>tl V:Translate JA<CR>
-nnoremap <silent> <Leader>tw viw:Translate JA<CR>
-vnoremap <silent> <Leader>tl :Translate JA<CR>
-'''
 lua_add = 'require("config.translate")'
 
 [[plugins]]
@@ -219,3 +214,7 @@ lua_add = 'vim.api.nvim_command("hi default CursorWord cterm=underline gui=under
 repo = 'folke/trouble.nvim'
 depends = 'nvim-web-devicons'
 lua_add = 'require("config.trouble")'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+lua_add = 'require("config.open-browser")'
