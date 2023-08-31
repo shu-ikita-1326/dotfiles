@@ -143,12 +143,6 @@ function! s:ddu_global_setting() abort
         \      defaultAction: 'run',
         \    },
         \  },
-        \  kindParams: #{
-        \    go_task: #{
-        \      prefix: "silent !tmux send -t 1 '",
-        \      suffix: "' Enter",
-        \    },
-        \  },
         \  actionOptions: #{
         \    echo: #{
         \      quit: v:false,
@@ -158,6 +152,12 @@ function! s:ddu_global_setting() abort
         \    },
         \    set: #{
         \      quit: v:false,
+        \    },
+        \  },
+        \  actionParams: #{
+        \    run: #{
+        \      prefix: "silent !tmux send -t 1 '",
+        \      suffix: "' Enter",
         \    },
         \  },
         \  columnParams: #{
@@ -499,6 +499,8 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer> a
         \ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
+  nnoremap <buffer> d
+        \ <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'delete' })<CR>
   nnoremap <buffer> <C-c>
         \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer> p
