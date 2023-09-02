@@ -2,6 +2,9 @@ local autocmd = vim.api.nvim_create_autocmd
 local base_layout = {
   popup_input = {
     submit = "<C-s>",
+  },
+  actions_paths = {
+    "~/.config/ChatGPT/actions.json"
   }
 }
 local from_shell_layout = {

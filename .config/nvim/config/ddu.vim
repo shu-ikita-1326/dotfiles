@@ -465,6 +465,50 @@ function! Ddu_gitsigns_actions() abort
         \})
 endfunction
 
+function! DduChatGPTRun() abort
+  function! s:get_text_max_len(list) abort
+    let s:result = 0
+    if type(a:list) != v:t_list
+      return 0
+    endif
+    for s:text in a:list
+      let s:result = [s:result, s:text->len()]->max()
+    endfor
+    return s:result
+  endfunction
+
+
+  function! s:get_chatgptrun_args() abort
+    return getcompletion('ChatGPTRun ', 'cmdline')
+  endfunction
+
+  let s:ddu_custom_list_id = denops#callback#register(
+        \ { s -> execute(printf("'<,'>ChatGPTRun %s", s), '') },
+        \ { 'once': v:true },
+        \)
+
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   custom-list: #{
+        \     texts: s:get_chatgptrun_args(),
+        \     callbackId: s:ddu_custom_list_id,
+        \   },
+        \ },
+        \ sources: [#{ name: 'custom-list' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     autoResize: v:true,
+        \     winRow: screenrow() - 1,
+        \     winCol: screencol(),
+        \     winWidth: s:get_text_max_len(s:get_chatgptrun_args()) + 3,
+        \     floatingTitle: 'ChatGPTRun actions',
+        \     floatingTitlePos: 'left',
+        \     ignoreEmpty: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
 " key mapping
 function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
@@ -498,6 +542,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
   nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
+  vnoremap <silent> <Leader>cr <Esc><Cmd>call DduChatGPTRun()<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
 endfunction

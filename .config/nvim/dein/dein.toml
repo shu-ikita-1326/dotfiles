@@ -86,7 +86,7 @@ repo = 'nvim-lua/plenary.nvim'
 repo = 'nvim-telescope/telescope.nvim'
 
 [[plugins]]
-repo = 'shutils/ChatGPT.nvim'
+repo = 'jackMort/ChatGPT.nvim'
 depends = ['nui.nvim', 'plenary.nvim', 'telescope.nvim']
 lua_add = 'require("config.ChatGPT")'
 
