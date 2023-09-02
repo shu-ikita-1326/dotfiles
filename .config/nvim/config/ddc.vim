@@ -65,6 +65,7 @@ function! CommandlinePre() abort
   cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
   cnoremap <C-o>   <Cmd>call pum#map#confirm_word()<CR>
+  cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
   cnoremap <C-Space>   <Cmd>call ddc#map#manual_complete()<CR>
 
   " Overwrite sources
@@ -101,3 +102,4 @@ inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
 inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 inoremap <C-o> <Cmd>call pum#map#confirm_word()<CR>
+inoremap <C-e> <Cmd>call pum#map#cancel()<CR>

@@ -214,12 +214,23 @@ call s:ddu_global_setting()
 function! s:set_size() abort
   let s:winCol = (&columns - (&columns * 0.9)) / 2
   let s:winWidth = floor(&columns * 0.9)
-  let s:winRow = 6
-  let s:winHeight = &lines - 10
+  let s:winRow = 5
+  let s:winHeight = &lines - 8
   let s:previewCol = floor(&columns / 2)
   let s:previewWidth = floor((&columns * 0.9) / 2 - 1)
-  let s:previewRow = 7
-  let s:previewHeight = &lines - 12
+  let s:previewRow = 6
+  let s:previewHeight = &lines - 10
+endfunction
+
+function! s:set_size_narrow() abort
+  let s:winCol = floor(&columns - (&columns * 0.9)) / 2
+  let s:winWidth = floor(&columns * 0.9)
+  let s:winRow = 5
+  let s:winHeight = floor(&lines * 0.4)
+  let s:previewCol = floor(&columns - (&columns * 0.9)) / 2
+  let s:previewWidth = floor(&columns * 0.9)
+  let s:previewRow = s:winHeight + s:winRow + 2
+  let s:previewHeight = &lines - s:previewRow - 3
 endfunction
 
 function! s:set_layout() abort
@@ -238,7 +249,11 @@ call ddu#custom#patch_global('uiParams', #{
 endfunction
 
 function! s:layout() abort
-  call s:set_size()
+  if &columns < 200
+    call s:set_size_narrow()
+  else
+    call s:set_size()
+  endif
   call s:set_layout()
 endfunction
 
@@ -488,6 +503,19 @@ function! s:ddu_key_mapping() abort
 endfunction
 call s:ddu_key_mapping()
 
+function! DduMultiLineAction(action, ...) abort
+  let params = get(a:, 1, {})
+  let [start_line, end_line] = [line("'<"), line("'>")]
+  for i in range(start_line, end_line)
+    call setpos('.', [0, i, 0, 0])
+    if params == {}
+      call ddu#ui#do_action(a:action)
+    else
+      call ddu#ui#do_action(a:action, params)
+    endif
+  endfor
+endfunction
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
   setlocal cursorline
@@ -521,6 +549,9 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('collapseItem')<CR>
   nnoremap <buffer> <Tab>
         \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+  " NOTE: autoAction must be turned off.
+  vnoremap <buffer> <Tab>
+        \ <Esc><Cmd>call DduMultiLineAction('toggleSelectItem')<CR>
   nnoremap <buffer> A
         \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
   if split(bufname(), '-')[-1] == 'floaterm'

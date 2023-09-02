@@ -7,10 +7,16 @@ repo = 'numToStr/Comment.nvim'
 lua_add = 'require("Comment").setup()'
 
 [[plugins]]
-repo = 'EdenEast/nightfox.nvim'
+repo = 'catppuccin/nvim'
 hook_add = '''
-colorscheme nightfox
+colorscheme catppuccin-mocha
 '''
+
+[[plugins]]
+repo = 'rebelot/kanagawa.nvim'
+
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
