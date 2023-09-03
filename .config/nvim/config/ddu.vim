@@ -457,7 +457,7 @@ function! Ddu_gitsigns_actions() abort
         \     winRow: screenrow() - 1,
         \     winCol: screencol(),
         \     winWidth: s:get_gitsigns_actions_max_len() + 3,
-        \     floatingTitle: 'Actions',
+        \     floatingTitle: 'Git actions',
         \     floatingTitlePos: 'left',
         \     ignoreEmpty: v:true,
         \   }
@@ -465,7 +465,7 @@ function! Ddu_gitsigns_actions() abort
         \})
 endfunction
 
-function! DduChatGPTRun() abort
+function! Ddu_chatgpt_run() abort
   function! s:get_text_max_len(list) abort
     let s:result = 0
     if type(a:list) != v:t_list
@@ -535,20 +535,20 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
-  nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('word:')`<CR>
+  nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('Pattern: ')`<CR>
   nnoremap <silent> <Leader>ga :call Ddu_gitsigns_actions()<CR>
   nnoremap <silent> <Leader>le :call Ddu_line_diagnostic()<CR>
   nnoremap <silent> gd :call ddu#start({ 'name': 'lsp_def' })<CR>
   nnoremap <silent> gs :call ddu#start({ 'name': 'lsp_hie' })<CR>
   nnoremap <silent> ge :Ddu -ui=ff lsp_diagnostic -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
-  vnoremap <silent> <Leader>cr <Esc><Cmd>call DduChatGPTRun()<CR>
+  vnoremap <silent> <Leader>cr <Esc><Cmd>call Ddu_chatgpt_run()<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
 endfunction
 call s:ddu_key_mapping()
 
-function! DduMultiLineAction(action, ...) abort
+function! Ddu_multi_line_action(action, ...) abort
   let params = get(a:, 1, {})
   let [start_line, end_line] = [line("'<"), line("'>")]
   for i in range(start_line, end_line)
@@ -596,7 +596,7 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
   " NOTE: autoAction must be turned off.
   vnoremap <buffer> <Tab>
-        \ <Esc><Cmd>call DduMultiLineAction('toggleSelectItem')<CR>
+        \ <Esc><Cmd>call Ddu_multi_line_action('toggleSelectItem')<CR>
   nnoremap <buffer> A
         \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
   if split(bufname(), '-')[-1] == 'floaterm'

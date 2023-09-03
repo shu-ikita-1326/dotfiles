@@ -5,7 +5,18 @@ local base_layout = {
   },
   actions_paths = {
     "~/.config/ChatGPT/actions.json"
-  }
+  },
+  edit_with_instructions = {
+    diff = false,
+    keymaps = {
+      close = "<C-c>",
+      accept = "<C-y>",
+      toggle_diff = "<C-d>",
+      toggle_settings = "<C-o>",
+      cycle_windows = "<Tab>",
+      use_output_as_input = "<C-t>",
+    },
+  },
 }
 local from_shell_layout = {
   popup_layout = {

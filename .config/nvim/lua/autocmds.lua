@@ -17,27 +17,6 @@ autocmd("QuickfixCmdPost", {
   command = "cwindow",
 })
 
--- dduとの相性により無効化中
--- autocmd("WinEnter", {
---   pattern = "*",
---   command = "set cursorline",
--- })
---
--- autocmd("WinLeave", {
---   pattern = "*",
---   command = "set nocursorline",
--- })
-
--- autocmd("TermOpen", {
---   pattern = "term://*",
---   command = "startinsert | set nonumber",
--- })
-
--- autocmd("WinEnter", {
---   pattern = "term://*",
---   command = "startinsert",
--- })
-
 augroup("YankSetup", { clear = true })
 autocmd("VimEnter", {
   group = "YankSetup",
