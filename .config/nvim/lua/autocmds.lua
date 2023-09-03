@@ -14,7 +14,7 @@ autocmd("TextYankPost", {
 
 autocmd("QuickfixCmdPost", {
   pattern = "*",
-  command = "cwindow",
+  command = "copen",
 })
 
 augroup("YankSetup", { clear = true })

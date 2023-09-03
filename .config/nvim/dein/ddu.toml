@@ -43,6 +43,10 @@ repo = 'liquidz/ddu-source-custom-list'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'flow6852/ddu-source-qf'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'kamecha/ddu-source-jumplist'
 on_source = 'ddu.vim'
 

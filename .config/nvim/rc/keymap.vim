@@ -9,6 +9,8 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <silent> <Leader>n :nohlsearch<CR>
 
+inoremap <expr> <C-c> has_key(environ(), 'zenhan') ? "<Cmd>call system(\"${zenhan} 0\")<CR><C-c>" : '<C-c>'
+
 nnoremap J 5j
 nnoremap K 5k
 nnoremap L $

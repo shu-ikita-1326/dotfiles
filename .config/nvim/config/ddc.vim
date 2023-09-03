@@ -59,6 +59,17 @@ call ddc#custom#patch_global(#{
       \   autoCompleteEvents: ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'],
       \ })
 
+call ddc#custom#patch_filetype(['vim'], #{
+      \   cmdlineSources: {
+      \     ':': ['cmdline', 'file', 'around'],
+      \     '@': ['cmdline-history', 'input', 'file', 'around'],
+      \     '>': ['cmdline-history', 'input', 'file', 'around'],
+      \     '/': ['around'],
+      \     '?': ['around'],
+      \     '-': ['around'],
+      \     '=': ['input'],
+      \   },
+      \ })
 
 function! CommandlinePre() abort
   cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>

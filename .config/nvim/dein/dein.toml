@@ -25,6 +25,9 @@ let g:lexima_ctrlh_as_backspace=1
 '''
 
 [[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
 hook_done_update = '''
 !cd app && npm install
