@@ -59,6 +59,10 @@ repo = 'kamecha/ddu-source-window'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'kamecha/ddu-source-tab'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'kamecha/ddu-filter-converter_highlight'
 on_source = 'ddu.vim'
 
@@ -108,6 +112,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'shutils/ddu-source-go_task'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shutils/ddu-source-taskwarrior'
 on_source = 'ddu.vim'
 
 [[plugins]]

@@ -52,6 +52,10 @@ function! s:ddu_global_setting() abort
         \    file_external: #{
         \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-E', '.git', '-t', 'f'],
         \    },
+        \    taskwarrior: #{
+        \      cmdName: "taskw",
+        \      filter: ["status:completed", "or", "status:pending"],
+        \    },
         \  },
         \  sourceOptions: #{
         \    _: #{
@@ -82,6 +86,9 @@ function! s:ddu_global_setting() abort
         \    },
         \    file_external: #{
         \      converters: ['converter_relativepath', 'converter_devicon'],
+        \    },
+        \    taskwarrior: #{
+        \      converters: ['converter_taskwarrior'],
         \    },
         \  },
         \  kindOptions: #{
@@ -136,11 +143,17 @@ function! s:ddu_global_setting() abort
         \    window: #{
         \      defaultAction: 'open',
         \    },
+        \    tab: #{
+        \      defaultAction: 'open',
+        \    },
         \    custom-list: #{
         \      defaultAction: 'callback',
         \    },
         \    go_task: #{
         \      defaultAction: 'run',
+        \    },
+        \    taskwarrior: #{
+        \      defaultAction: 'done',
         \    },
         \  },
         \  actionOptions: #{
@@ -418,24 +431,12 @@ function! Ddu_gitsigns_actions() abort
     return s:result
   endfunction
 
-  function! s:get_key_max_len(dict) abort
-    let s:result = 0
-    if type(a:dict) != v:t_dict
-      return 0
-    endif
-    for s:key in keys(a:dict)
-      let s:result = [s:result, s:key->len()]->max()
-    endfor
-    return s:result
-  endfunction
-
-
   function! s:get_gitsigns_actions() abort
     return s:convert_dict_to_list("require('gitsigns.actions').get_actions()"->luaeval())
   endfunction
 
   function! s:get_gitsigns_actions_max_len() abort
-    return s:get_key_max_len("require('gitsigns.actions').get_actions()"->luaeval())
+    return rc#util#get_key_max_len("require('gitsigns.actions').get_actions()"->luaeval())
   endfunction
 
   let s:ddu_custom_list_id = denops#callback#register(
@@ -466,17 +467,6 @@ function! Ddu_gitsigns_actions() abort
 endfunction
 
 function! Ddu_chatgpt_run() abort
-  function! s:get_text_max_len(list) abort
-    let s:result = 0
-    if type(a:list) != v:t_list
-      return 0
-    endif
-    for s:text in a:list
-      let s:result = [s:result, s:text->len()]->max()
-    endfor
-    return s:result
-  endfunction
-
 
   function! s:get_chatgptrun_args() abort
     return getcompletion('ChatGPTRun ', 'cmdline')
@@ -500,10 +490,47 @@ function! Ddu_chatgpt_run() abort
         \     autoResize: v:true,
         \     winRow: screenrow() - 1,
         \     winCol: screencol(),
-        \     winWidth: s:get_text_max_len(s:get_chatgptrun_args()) + 3,
+        \     winWidth: rc#util#get_text_max_len(s:get_chatgptrun_args()) + 3,
         \     floatingTitle: 'ChatGPTRun actions',
         \     floatingTitlePos: 'left',
         \     ignoreEmpty: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
+function! Ddu_ssh() abort
+
+  let s:host_names = []
+  let s:ssh_lines = readfile(expand('~/.ssh/config'))
+  for s:line in s:ssh_lines
+    if s:line =~ '^Host\s'
+      let s:host_name = substitute(s:line, '^Host\s*', '', '')
+      call add(s:host_names, s:host_name)
+    endif
+  endfor
+
+  let s:ddu_custom_list_id = denops#callback#register(
+        \ { s -> execute(printf("tabnew | terminal ssh %s", s), '') },
+        \ { 'once': v:true },
+        \)
+
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   custom-list: #{
+        \     texts: s:host_names,
+        \     callbackId: s:ddu_custom_list_id,
+        \   },
+        \ },
+        \ sources: [#{ name: 'custom-list' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     autoResize: v:true,
+        \     winRow: screenrow() - 1,
+        \     winCol: screencol(),
+        \     winWidth: rc#util#get_text_max_len(s:host_names) + 3,
+        \     floatingTitle: 'ssh hosts',
+        \     floatingTitlePos: 'left',
         \   }
         \ },
         \})
@@ -532,7 +559,8 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
   nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
   nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
-  nnoremap <silent> <Leader>ft :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>ftt :Ddu -ui=ff tab -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fte :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
   nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('Pattern: ')`<CR>
@@ -545,6 +573,8 @@ function! s:ddu_key_mapping() abort
   vnoremap <silent> <Leader>cr <Esc><Cmd>call Ddu_chatgpt_run()<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
+  nnoremap <silent> <Leader>ta :Ddu -ui=ff taskwarrior -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
 endfunction
 call s:ddu_key_mapping()
 
