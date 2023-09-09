@@ -40,6 +40,10 @@
 !/.vim/*.toml
 !/.vim/rc/
 !/.vim/rc/**
+!/.vim/config/
+!/.vim/config/**
+!/.vim/dein/
+!/.vim/dein/**
 !/.vim/plugins/
 !/.vim/plugins/**
 !/.bash_aliases

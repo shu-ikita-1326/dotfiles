@@ -7,10 +7,8 @@ nnoremap <Leader>r diw"0P
 nnoremap <Leader>o <C-w><C-w>
 nnoremap <Leader>ss <C-w>s
 nnoremap <Leader>sv <C-w>v
-nnoremap <C-j>h <C-w>h
-nnoremap <C-j>k <C-w>k
-nnoremap <C-j>j <C-w>j
-nnoremap <C-j>l <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " 移動系
 inoremap <C-b> <LEFT>

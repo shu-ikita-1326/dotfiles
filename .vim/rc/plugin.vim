@@ -24,7 +24,9 @@ call dein#begin(s:dein_base)
 
 call dein#add(s:dein_src)
 
-call dein#load_toml(expand('~/.vim/dein.toml'))
+let $CONFIG = expand('~/.vim/config')
+call dein#load_toml(expand('~/.vim/dein/dein.toml'))
+call dein#load_toml(expand('~/.vim/dein/ddu.toml'))
 
 call dein#end()
 
