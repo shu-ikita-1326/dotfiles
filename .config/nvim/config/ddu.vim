@@ -503,15 +503,27 @@ function! Ddu_ssh() abort
 
   let s:host_names = []
   let s:ssh_lines = readfile(expand('~/.ssh/config'))
+  let s:host_dict = #{ host: "", host_name: "", user: "" }
   for s:line in s:ssh_lines
     if s:line =~ '^Host\s'
-      let s:host_name = substitute(s:line, '^Host\s*', '', '')
-      call add(s:host_names, s:host_name)
+      if s:host_dict != #{ host: "", host_name: "", user: "" }
+        call add(s:host_names, s:host_dict["host"]." ".s:host_dict["user"]."@".s:host_dict["host_name"])
+        let s:host_dict = #{ host: "", host_name: "", user: "" }
+      endif
+      let s:host_dict["host"] = substitute(s:line, '^Host\s*', '', '')
+    endif
+    if s:line =~ '^\s*User\s'
+      let s:host_dict["user"] = substitute(s:line, '^\s*User\s*', '', '')
+      echo "hello"
+    endif
+    if s:line =~ '^\s*Hostname\s'
+      let s:host_dict["host_name"] = substitute(s:line, '^\s*Hostname\s*', '', '')
     endif
   endfor
+  call add(s:host_names, s:host_dict["host"]." ".s:host_dict["user"]."@".s:host_dict["host_name"])
 
   let s:ddu_custom_list_id = denops#callback#register(
-        \ { s -> execute(printf("tabnew | terminal ssh %s", s), '') },
+        \ { s -> execute(printf("tabnew | terminal ssh %s", split(s, '\s')[0]), '') },
         \ { 'once': v:true },
         \)
 
