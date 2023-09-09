@@ -89,6 +89,7 @@ function! s:ddu_global_setting() abort
         \    },
         \    taskwarrior: #{
         \      converters: ['converter_taskwarrior'],
+        \      sorters: ['sorter_taskwarrior'],
         \    },
         \  },
         \  kindOptions: #{
