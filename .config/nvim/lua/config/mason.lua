@@ -15,16 +15,42 @@ mason_lspconfig.setup({
     "docker_compose_language_service",
     "dockerls",
     "denols",
+    "efm",
   },
 })
 mason_lspconfig.setup_handlers({
   function(server_name)
-    local opts = {}
-    opts.on_attach = function(_, bufnr)
-      local bufopts = { silent = true, buffer = bufnr, noremap = true }
-    end
-    nvim_lsp[server_name].setup(opts)
+    require("lspconfig")[server_name].setup({})
   end,
+  ["efm"] = function()
+    nvim_lsp.efm.setup({
+      init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+      },
+      settings = {
+        rootMarkers = {
+          ".git/",
+        },
+        languages = {
+          sh = {
+            {
+              lintCommand = "shellcheck -f gcc -x",
+              lintSource = "shellcheck",
+              lintFormats = {
+                "%f:%l:%c: %trror: %m",
+                "%f:%l:%c: %tarning: %m",
+                "%f:%l:%c: %tote: %m",
+              }
+            }
+          }
+        }
+      },
+      filetypes = {
+        "sh",
+      }
+    })
+  end
 })
 
 local opt = { silent = true, noremap = true }
@@ -32,12 +58,12 @@ local opt = { silent = true, noremap = true }
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, {
     -- Use a sharp border with `FloatBorder` highlights
-    border = "single",
+    border = "rounded",
     -- add the title in hover float window
     title = "hover"
   }
 )
 
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
-vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
-vim.keymap.set("n", "gn", ":lua vim.lsp.buf.rename()<CR>", opt)
+vim.keymap.set("n", "gh", vim.lsp.buf.hover, opt)
+vim.keymap.set("n", "gn", vim.lsp.buf.rename, opt)
