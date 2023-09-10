@@ -6,7 +6,7 @@ require("toggleterm").setup({
     }
   },
   auto_scroll = false,
-  start_in_insert = false,
+  start_in_insert = true,
   open_mapping = [[<C-\><C-\>]]
 })
 
@@ -15,7 +15,9 @@ local Terminal = require("toggleterm.terminal").Terminal
 if vim.fn.executable("lazygit") == 1 then
   local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
   function _lazygit_toggle()
-    if vim.env.TMUX then
+    local panes = vim.fn.system("tmux list-panes")
+    local rows = select(2, panes:gsub("\n", "\n"))
+    if vim.env.TMUX and rows >= 2 then
       local git_root = vim.fn.system("git rev-parse --show-toplevel")
       git_root = string.gsub(git_root, "\n", "")
       os.execute("tmux popup -d '" .. git_root:sub(1, -1) .. "' -w90% -h90% -E 'lazygit'")
