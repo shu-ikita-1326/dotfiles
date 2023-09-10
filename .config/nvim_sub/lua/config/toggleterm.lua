@@ -13,8 +13,8 @@ require("toggleterm").setup({
 local Terminal = require("toggleterm.terminal").Terminal
 
 if vim.fn.executable("lazygit") == 1 then
-  local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
   function _lazygit_toggle()
+    local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
     local panes = vim.fn.system("tmux list-panes")
     local rows = select(2, panes:gsub("\n", "\n"))
     if vim.env.TMUX and rows >= 2 then
@@ -42,10 +42,12 @@ if vim.fn.executable("lazydocker") == 1 then
   vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
 end
 
-local term = Terminal:new({ hidden = true, direction = "float" })
 
 function _term_toggle()
-  if vim.env.TMUX then
+  local term = Terminal:new({ hidden = true, direction = "float" })
+  local panes = vim.fn.system("tmux list-panes")
+  local rows = select(2, panes:gsub("\n", "\n"))
+  if vim.env.TMUX and rows >= 2 then
     os.execute('tmux popup -w90% -h90%')
   else
     term:toggle()
