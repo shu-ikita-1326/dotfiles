@@ -75,6 +75,9 @@ function! s:ddu_global_setting() abort
         \    git_status: #{
         \      converters: ['converter_git_status'],
         \    },
+        \    git_branch: #{
+        \      columns: ['git_branch_head', 'git_branch_remote', 'git_branch_name', 'git_branch_upstream', 'git_branch_author', ],
+        \    },
         \    file: #{
         \      converters: ['converter_relativepath', 'converter_devicon'],
         \    },
@@ -113,6 +116,9 @@ function! s:ddu_global_setting() abort
         \    },
         \    git_status: #{
         \      defaultAction: 'open',
+        \    },
+        \    git_branch: #{
+        \      defaultAction: 'switch',
         \    },
         \    ghq: #{
         \      defaultAction: 'open',
@@ -568,6 +574,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>gs :Ddu -ui=ff git_status -source-option-ff-path=`expand('%:p')` -source-option-ff-converter='converter_git_status' -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>gd :Ddu -ui=ff git_diff -source-option-ff-path=`expand('%:p')`<CR>
+  nnoremap <silent> <Leader>gb :Ddu -ui=ff git_branch -source-param-ff-remote=v:true<CR>
   nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
   nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
