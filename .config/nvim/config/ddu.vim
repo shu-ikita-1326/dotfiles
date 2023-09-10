@@ -568,7 +568,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
   nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
   nnoremap <silent> <Leader>co :Ddu -ui=ff_colorscheme colorscheme<CR>
-  nnoremap <silent> <Leader>fm :Ddu -ui=ff marks -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fm :Ddu -ui=ff markdown -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>
@@ -593,7 +593,6 @@ function! s:ddu_key_mapping() abort
   vnoremap <silent> <Leader>cr <Esc><Cmd>call Ddu_chatgpt_run()<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
-  nnoremap <silent> <Leader>ta :Ddu -ui=ff taskwarrior -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
 endfunction
 call s:ddu_key_mapping()

@@ -67,6 +67,10 @@ repo = 'kamecha/ddu-filter-converter_highlight'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'mikanIchinose/ddu-source-markdown'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'kuuote/ddu-source-mr'
 on_source = 'ddu.vim'
 
