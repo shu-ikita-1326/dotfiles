@@ -10,6 +10,9 @@ call s:ddu_highlight()
 " alias
 call ddu#custom#alias('ui', 'ff_ghq', 'ff')
 call ddu#custom#alias('ui', 'ff_colorscheme', 'ff')
+call ddu#custom#alias('source', 'ssh', 'rg')
+call ddu#custom#action('source', 'ssh', 'attach',
+        \ { args -> execute(printf("tabnew | terminal ssh %s", matchstr(args.items[0].action.text, '\s\(\S*\)$'))) })
 
 " global settings
 function! s:ddu_global_setting() abort
@@ -513,49 +516,26 @@ function! Ddu_chatgpt_run() abort
 endfunction
 
 function! Ddu_ssh() abort
-
-  let s:host_names = []
-  let s:ssh_lines = readfile(expand('~/.ssh/config'))
-  let s:host_dict = #{ host: "", host_name: "", user: "" }
-  for s:line in s:ssh_lines
-    if s:line =~ '^Host\s'
-      if s:host_dict != #{ host: "", host_name: "", user: "" }
-        call add(s:host_names, s:host_dict["host"]." ".s:host_dict["user"]."@".s:host_dict["host_name"])
-        let s:host_dict = #{ host: "", host_name: "", user: "" }
-      endif
-      let s:host_dict["host"] = substitute(s:line, '^Host\s*', '', '')
-    endif
-    if s:line =~ '^\s*User\s'
-      let s:host_dict["user"] = substitute(s:line, '^\s*User\s*', '', '')
-      echo "hello"
-    endif
-    if s:line =~ '^\s*Hostname\s'
-      let s:host_dict["host_name"] = substitute(s:line, '^\s*Hostname\s*', '', '')
-    endif
-  endfor
-  call add(s:host_names, s:host_dict["host"]." ".s:host_dict["user"]."@".s:host_dict["host_name"])
-
-  let s:ddu_custom_list_id = denops#callback#register(
-        \ { s -> execute(printf("tabnew | terminal ssh %s", split(s, '\s')[0]), '') },
-        \ { 'once': v:true },
-        \)
-
   call ddu#start(#{
-        \ sourceParams: #{
-        \   custom-list: #{
-        \     texts: s:host_names,
-        \     callbackId: s:ddu_custom_list_id,
+        \ sourceOptions: #{
+        \   ssh: #{
+        \     path: expand('~/.ssh'),
         \   },
         \ },
-        \ sources: [#{ name: 'custom-list' }],
+        \ sourceParams: #{
+        \   ssh: #{
+        \     input: 'Host ',
+        \   },
+        \ },
+        \ sources: [#{ name: 'ssh' }],
         \ uiParams: #{
         \   ff: #{
-        \     autoResize: v:true,
-        \     winRow: screenrow() - 1,
-        \     winCol: screencol(),
-        \     winWidth: rc#util#get_text_max_len(s:host_names) + 3,
-        \     floatingTitle: 'ssh hosts',
-        \     floatingTitlePos: 'left',
+        \     startAutoAction: v:true,
+        \   }
+        \ },
+        \ kindOptions: #{
+        \   file: #{
+        \     defaultAction: 'attach',
         \   }
         \ },
         \})
