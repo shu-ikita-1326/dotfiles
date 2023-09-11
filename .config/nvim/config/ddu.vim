@@ -22,6 +22,9 @@ function! s:ddu_global_setting() abort
         \    converter_dir_omit_middle: #{
         \      maxDirLength: 30,
         \    },
+        \    matcher_kensaku: #{
+        \      highlightMatched: 'Search',
+        \    },
         \    converter_devicon: #{
         \      specificFileIcons: #{
         \        devDockerfile: #{
@@ -93,6 +96,9 @@ function! s:ddu_global_setting() abort
         \    taskwarrior: #{
         \      converters: ['converter_taskwarrior'],
         \      sorters: ['sorter_taskwarrior'],
+        \    },
+        \    markdown: #{
+        \      matchers: ['matcher_kensaku'],
         \    },
         \  },
         \  kindOptions: #{
@@ -568,7 +574,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fh :Ddu -ui=ff help -ui-param-ff-startAutoAction -ui-param-ff-startFilter=v:true<CR>
   nnoremap <silent> <Leader>fc :Ddu -ui=ff command_history<CR>
   nnoremap <silent> <Leader>co :Ddu -ui=ff_colorscheme colorscheme<CR>
-  nnoremap <silent> <Leader>fm :Ddu -ui=ff markdown -ui-param-ff-startAutoAction<CR>
+  nnoremap <silent> <Leader>fm :Ddu -ui=ff markdown -ui-param-ff-startAutoAction -ui-param-ff-filterFloatingTitle='matcher: kensaku'<CR>
   nnoremap <silent> <Leader>fn :Ddu -ui=ff nvim-notify -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fj :Ddu -ui=ff jumplist -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fs :Ddu -ui=ff source -ui-param-ff-startAutoAction<CR>

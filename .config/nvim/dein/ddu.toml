@@ -190,6 +190,10 @@ repo = 'yuki-yano/ddu-source-nvim-notify'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'Milly/ddu-filter-kensaku'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'Shougo/ddu.vim'
 hook_add = '''
 source $BASE_DIR/config/ddu.vim
