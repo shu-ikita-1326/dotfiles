@@ -5,6 +5,9 @@ require("toggleterm").setup({
       link = 'Normal'
     }
   },
+  float_opts = {
+    border = 'rounded',
+  },
   auto_scroll = false,
   start_in_insert = true,
   open_mapping = [[<C-\><C-\>]]
@@ -32,7 +35,9 @@ end
 if vim.fn.executable("lazydocker") == 1 then
   local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
   function _lazydocker_toggle()
-    if vim.env.TMUX then
+    local panes = vim.fn.system("tmux list-panes")
+    local rows = select(2, panes:gsub("\n", "\n"))
+    if vim.env.TMUX and rows >= 2 then
       os.execute('tmux popup -w90% -h90% -E "lazydocker"')
     else
       lazydocker:toggle()
