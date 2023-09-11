@@ -561,6 +561,22 @@ function! Ddu_ssh() abort
         \})
 endfunction
 
+function! Ddu_note() abort
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   file_external: #{
+        \     cmd: ['fd', '.md', expand("~/note"), '-t', 'f'],
+        \   },
+        \ },
+        \ sources: [#{ name: 'file_external' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     startAutoAction: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
 " key mapping
 function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
@@ -600,6 +616,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
+  nnoremap <silent> <Leader>note :call Ddu_note()<CR>
 endfunction
 call s:ddu_key_mapping()
 
