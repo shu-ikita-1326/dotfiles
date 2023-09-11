@@ -43,11 +43,21 @@ mason_lspconfig.setup_handlers({
                 "%f:%l:%c: %tote: %m",
               }
             }
+          },
+          markdown = {
+            {
+              lintCommand = "markdownlint -s -c ~/.config/markdownlint/option.json",
+              lintStdin = true,
+              lintFormats = {
+                "%f:%l %m",
+              }
+            }
           }
         }
       },
       filetypes = {
         "sh",
+        "markdown",
       }
     })
   end
