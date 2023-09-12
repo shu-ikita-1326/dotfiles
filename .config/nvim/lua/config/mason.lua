@@ -52,12 +52,22 @@ mason_lspconfig.setup_handlers({
                 "%f:%l %m",
               }
             }
-          }
+          },
+          vim = {
+            {
+              lintCommand = "vint -",
+              lintStdin = true,
+              lintFormats = {
+                "%f:%l:%c: %m",
+              }
+            }
+          },
         }
       },
       filetypes = {
         "sh",
         "markdown",
+        "vim",
       }
     })
   end
