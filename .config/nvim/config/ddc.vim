@@ -1,30 +1,33 @@
+scriptencoding utf-8
 " ui settings
 highlight PumUiSBar guifg=yellow
 function! s:pum_set_option() abort
-  call pum#set_option(#{
-    \   auto_confirm_time: 0,
-    \   horizontal_menu: v:false,
-    \   max_width: [(&columns / 3), 50]->min(),
-    \   max_height: (&lines / 3),
-    \   use_setline: v:false,
-    \   border: 'rounded',
-    \   scrollbar_char: '┃',
-    \   highlight_scrollbar: 'PumUiSBar',
-    \   preview: v:true,
-    \   preview_border: "rounded",
-    \   preview_height: (&lines / 2),
-    \   preview_width: (&columns / 3),
+  call pum#set_option({
+    \   'auto_confirm_time': 0,
+    \   'horizontal_menu': v:false,
+    \   'max_width': min([(&columns / 3), 50]),
+    \   'max_height': (&lines / 3),
+    \   'use_setline': v:false,
+    \   'border': 'rounded',
+    \   'scrollbar_char': '┃',
+    \   'highlight_scrollbar': 'PumUiSBar',
+    \   'preview': v:true,
+    \   'preview_border': 'rounded',
+    \   'preview_height': (&lines / 2),
+    \   'preview_width': (&columns / 3),
     \ })
 endfunction
 
 call s:pum_set_option()
 
-autocmd VimResized * call s:pum_set_option()
+augroup MyAutoCmd
+  autocmd VimResized * call s:pum_set_option()
+augroup END
 
 " global settings
-call ddc#custom#patch_global(#{
-      \   ui: 'pum',
-      \   cmdlineSources: {
+call ddc#custom#patch_global({
+      \   'ui': 'pum',
+      \   'cmdlineSources': {
       \     ':': ['cmdline', 'cmdline-history', 'file', 'around'],
       \     '@': ['cmdline-history', 'input', 'file', 'around'],
       \     '>': ['cmdline-history', 'input', 'file', 'around'],
@@ -33,34 +36,34 @@ call ddc#custom#patch_global(#{
       \     '-': ['around'],
       \     '=': ['input'],
       \   },
-      \   sources: ['vsnip', 'nvim-lsp', 'around', 'cmdline'],
-      \   sourceOptions: #{
-		  \     _: #{
-		  \       matchers: ['matcher_fuzzy'],
-		  \       sorters: ['sorter_fuzzy'],
-		  \       converters: ['converter_fuzzy'],
-		  \       ignoreCase: v:true,
+      \   'sources': ['vsnip', 'nvim-lsp', 'around', 'cmdline'],
+      \   'sourceOptions': {
+		  \     '_': {
+		  \       'matchers': ['matcher_fuzzy'],
+		  \       'sorters': ['sorter_fuzzy'],
+		  \       'converters': ['converter_fuzzy'],
+		  \       'ignoreCase': v:true,
 		  \     },
-		  \     around: #{mark: '[around]'},
-		  \     nvim-lsp: #{mark: '[Lsp]'},
-		  \     cmdline: #{mark: '[cmdline]'},
-		  \     vsnip: #{mark: '[vsnip]'},
-		  \     file: #{
-		  \       mark: '[file]',
-		  \       isVolatile: v:true,
-		  \       minAutoCompleteLength: 1000,
-		  \       forceCompletionPattern: '\S/\S*',
+		  \     'around': {'mark': '[around]'},
+		  \     'nvim-lsp': {'mark': '[Lsp]'},
+		  \     'cmdline': {'mark': '[cmdline]'},
+		  \     'vsnip': {'mark': '[vsnip]'},
+		  \     'file': {
+		  \       'mark': '[file]',
+		  \       'isVolatile': v:true,
+		  \       'minAutoCompleteLength': 1000,
+		  \       'forceCompletionPattern': '\S/\S*',
 		  \     },
-		  \     cmdline-history: #{
-		  \       mark: '[history]',
-		  \       sorters: [],
+		  \     'cmdline-history': {
+		  \       'mark': '[history]',
+		  \       'sorters': [],
 		  \     },
       \   },
-      \   autoCompleteEvents: ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'],
+      \   'autoCompleteEvents': ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'],
       \ })
 
-call ddc#custom#patch_filetype(['vim'], #{
-      \   cmdlineSources: {
+call ddc#custom#patch_filetype(['vim'], {
+      \   'cmdlineSources': {
       \     ':': ['cmdline', 'file', 'around'],
       \     '@': ['cmdline-history', 'input', 'file', 'around'],
       \     '>': ['cmdline-history', 'input', 'file', 'around'],
@@ -85,7 +88,9 @@ function! CommandlinePre() abort
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
+augroup MyAutoCmd
   autocmd User DDCCmdlineLeave ++once call CommandlinePost()
+augroup END
 
   " Enable command line completion
 call ddc#enable_cmdline_completion()

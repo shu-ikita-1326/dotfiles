@@ -50,7 +50,7 @@ call ddu#custom#patch_global({
 		\  },
 		\})
 
-call ddu#custom#patch_local("files", {
+call ddu#custom#patch_local('files', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'file_rec', 'params': {}}],
 		\  'sourceOptions': {
@@ -77,7 +77,7 @@ call ddu#custom#patch_local("files", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("history", {
+call ddu#custom#patch_local('history', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'file_old', 'params': {}}],
 		\  'sourceOptions': {
@@ -104,7 +104,7 @@ call ddu#custom#patch_local("history", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("reg", {
+call ddu#custom#patch_local('reg', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'register', 'params': {}}],
 		\  'sourceOptions': {
@@ -119,7 +119,7 @@ call ddu#custom#patch_local("reg", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("buffer", {
+call ddu#custom#patch_local('buffer', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'buffer', 'params': {}}],
 		\  'sourceOptions': {
@@ -135,7 +135,7 @@ call ddu#custom#patch_local("buffer", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("help", {
+call ddu#custom#patch_local('help', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'help', 'params': {}}],
 		\  'sourceOptions': {
@@ -159,7 +159,7 @@ call ddu#custom#patch_local("help", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("command_history", {
+call ddu#custom#patch_local('command_history', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'command_history', 'params': {}}],
 		\  'sourceOptions': {
@@ -174,7 +174,7 @@ call ddu#custom#patch_local("command_history", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("markdown", {
+call ddu#custom#patch_local('markdown', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'markdown'}],
 		\  'sourceOptions': {
@@ -207,7 +207,7 @@ call ddu#custom#patch_local("markdown", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("git_diff", {
+call ddu#custom#patch_local('git_diff', {
 		\  'ui': 'ff',
 		\  'sources': [{'name': 'git_diff'}],
 		\  'sourceOptions': {
@@ -229,7 +229,7 @@ call ddu#custom#patch_local("git_diff", {
 		\  },
 		\})
 
-call ddu#custom#patch_local("live_rg", {
+call ddu#custom#patch_local('live_rg', {
 		\  'ui': 'ff',
 		\  'sources': [{
     \    'name': 'rg',
@@ -264,7 +264,10 @@ nnoremap <silent> <Leader>fh :call ddu#start({ 'name': 'help' })<CR>
 nnoremap <silent> <Leader>fc :call ddu#start({ 'name': 'command_history' })<CR>
 nnoremap <silent> <Leader>fm :call ddu#start({ 'name': 'markdown' })<CR>
 
-autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup END
+
 function! s:ddu_my_settings() abort
 setlocal cursorline
 nnoremap <buffer> <CR>
@@ -283,7 +286,10 @@ nnoremap <buffer> <C-p>
 \ <Cmd>call ddu#ui#multi_actions([['cursorPrevious'], ['preview']])<CR>
 endfunction
 
-autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup END
+
 function! s:ddu_filter_my_settings() abort
 inoremap <buffer> <CR>
 \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
@@ -303,7 +309,10 @@ nnoremap <buffer> p
 \ <Cmd>call ddu#ui#do_action('preview')<CR>
 endfunction
 
-autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+augroup END
+
 function! s:ddu_filer_my_settings() abort
 nnoremap <buffer> <CR>
 \ <Cmd>call ddu#ui#do_action('itemAction')<CR>

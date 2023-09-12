@@ -44,7 +44,10 @@ let historyOption = {
 nnoremap <Leader>fd :call ddu#start({})<CR>
 nnoremap <Leader>fh :call ddu#start(historyOption)<CR>
 
-autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup END
+
 function! s:ddu_my_settings() abort
 	setlocal cursorline
 	nnoremap <buffer> <CR>
@@ -57,7 +60,10 @@ function! s:ddu_my_settings() abort
 				\ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 endfunction
 
-autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup END
+
 function! s:ddu_filter_my_settings() abort
 	inoremap <buffer> <CR>
 				\ <Esc><Cmd>call ddu#ui#ff#do_action('itemAction')<CR>

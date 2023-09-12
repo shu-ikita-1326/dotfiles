@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " コピー系
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P

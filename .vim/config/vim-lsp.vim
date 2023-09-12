@@ -1,4 +1,4 @@
-let g:lsp_diagnostics_virtual_text_align = "after"
+let g:lsp_diagnostics_virtual_text_align = 'after'
 let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_highlights_enabled = 1
 

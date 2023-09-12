@@ -7,8 +7,8 @@ nnoremap ? <Cmd>call CommandlinePre()<CR>?
 
 function! CommandlinePre() abort
 	cnoremap <Nul> <Cmd>call ddc#map#manual_complete()<CR>
-	cnoremap <expr> <C-p> pum#visible() ? pum#map#insert_relative(-1) : "<Up>"
-	cnoremap <expr> <C-n> pum#visible() ? pum#map#select_relative(+1) : "<Down>"
+	cnoremap <expr> <C-p> pum#visible() ? pum#map#insert_relative(-1) : '<Up>'
+	cnoremap <expr> <C-n> pum#visible() ? pum#map#select_relative(+1) : '<Down>'
 	cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
 	cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 
@@ -19,8 +19,10 @@ function! CommandlinePre() abort
 	call ddc#custom#patch_buffer('sources',
 				\ ['cmdline', 'cmdline-history', 'around'])
 
-	autocmd User DDCCmdlineLeave ++once call CommandlinePost()
-	autocmd InsertEnter <buffer> ++once call CommandlinePost()
+  augroup MyAutoCmd
+    autocmd User DDCCmdlineLeave ++once call CommandlinePost()
+    autocmd InsertEnter <buffer> ++once call CommandlinePost()
+  augroup END
 
 	" Enable command line completion
 	call ddc#enable_cmdline_completion()
@@ -76,19 +78,19 @@ call ddc#custom#patch_global('sourceOptions', {
 call ddc#custom#patch_global('sourceParams', {
 			\ 'around': {'maxSize': 500},
 			\ })
-call ddc#custom#patch_global('sourceOptions', #{
-			\ cmdline: #{
-			\ mark: 'cmdline',
+call ddc#custom#patch_global('sourceOptions', {
+			\ 'cmdline': {
+			\ 'mark': 'cmdline',
 			\ },
-			\ file: #{
-			\   mark: 'F',
-			\   isVolatile: v:true,
-			\   minAutoCompleteLength: 1000,
-			\   forceCompletionPattern: '\S/\S*',
+			\ 'file': {
+			\   'mark': 'F',
+			\   'isVolatile': v:true,
+			\   'minAutoCompleteLength': 1000,
+			\   'forceCompletionPattern': '\S/\S*',
 			\ },
-			\ cmdline-history: #{
-			\   mark: 'history',
-			\   sorters: [],
+			\ 'cmdline-history': {
+			\   'mark': 'history',
+			\   'sorters': [],
 			\ },
 			\ })
 

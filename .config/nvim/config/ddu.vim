@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " for lsp
 function! s:ddu_highlight() abort
   highlight DduRed guifg=red
@@ -12,227 +13,227 @@ call ddu#custom#alias('ui', 'ff_ghq', 'ff')
 call ddu#custom#alias('ui', 'ff_colorscheme', 'ff')
 call ddu#custom#alias('source', 'ssh', 'rg')
 call ddu#custom#action('source', 'ssh', 'attach',
-        \ { args -> execute(printf("tabnew | terminal ssh %s", matchstr(args.items[0].action.text, '\s\(\S*\)$'))) })
+        \ { args -> execute(printf('tabnew | terminal ssh %s', matchstr(args.items[0].action.text, '\s\(\S*\)$'))) })
 
 " global settings
 function! s:ddu_global_setting() abort
-  call ddu#custom#patch_global(#{
-        \  ui: 'ff',
-        \  filterParams: #{
-        \    matcher_fzf: #{
-        \      highlightMatched: 'Search',
+  call ddu#custom#patch_global({
+        \  'ui': 'ff',
+        \  'filterParams': {
+        \    'matcher_fzf': {
+        \      'highlightMatched': 'Search',
         \    },
-        \    converter_dir_omit_middle: #{
-        \      maxDirLength: 30,
+        \    'converter_dir_omit_middle': {
+        \      'maxDirLength': 30,
         \    },
-        \    matcher_kensaku: #{
-        \      highlightMatched: 'Search',
+        \    'matcher_kensaku': {
+        \      'highlightMatched': 'Search',
         \    },
-        \    converter_devicon: #{
-        \      specificFileIcons: #{
-        \        devDockerfile: #{
-        \          icon: '',
+        \    'converter_devicon': {
+        \      'specificFileIcons': {
+        \        'devDockerfile': {
+        \          'icon': '',
         \        },
-        \        Dockerfile: #{
-        \          icon: '',
-        \        },
-        \      },
-        \      extentionIcons: #{
-        \        txt: #{
-        \          icon: '',
-        \        },
-        \        svg: #{
-        \          icon: '',
-        \        },
-        \        ps1: #{
-        \          icon: '',
-        \        },
-        \        log: #{
-        \          icon: '',
+        \        'Dockerfile': {
+        \          'icon': '',
         \        },
         \      },
+        \      'extentionIcons': {
+        \        'txt': {
+        \          'icon': '',
+        \        },
+        \        'svg': {
+        \          'icon': '',
+        \        },
+        \        'ps1': {
+        \          'icon': '',
+        \        },
+        \        'log': {
+        \          'icon': '',
+        \        },
+        \      },
         \    },
         \  },
-        \  sources: [{'name': 'file_rec', 'params': {}}],
-        \  sourceParams: #{
-        \    file_external: #{
-        \      cmd: ['fd', '.', '-H', '-E', '__pycache__', '-E', '.git', '-t', 'f'],
+        \  'sources': [{'name': 'file_rec', 'params': {}}],
+        \  'sourceParams': {
+        \    'file_external': {
+        \      'cmd': ['fd', '.', '-H', '-E', '__pycache__', '-E', '.git', '-t', 'f'],
         \    },
-        \    taskwarrior: #{
-        \      cmdName: "taskw",
-        \      filter: ["status:completed", "or", "status:pending"],
-        \    },
-        \  },
-        \  sourceOptions: #{
-        \    _: #{
-        \      matchers: ['matcher_fzf'],
-        \      sorters: ['sorter_fzf'],
-        \      ignoreCase: v:true,
-        \    },
-        \    lsp_diagnostic: #{
-        \      converters: ['converter_lsp_diagnostic'],
-        \    },
-        \    lsp_documentSymbol: #{
-        \      converters: ['converter_lsp_symbol'],
-        \    },
-        \    lsp_workspaceSymbol: #{
-        \      converters: ['converter_lsp_symbol'],
-        \    },
-        \    git_status: #{
-        \      converters: ['converter_git_status'],
-        \    },
-        \    git_branch: #{
-        \      columns: ['git_branch_head', 'git_branch_remote', 'git_branch_name', 'git_branch_upstream', 'git_branch_author', ],
-        \    },
-        \    file: #{
-        \      converters: ['converter_relativepath', 'converter_devicon'],
-        \    },
-        \    file_rec: #{
-        \      converters: ['converter_relativepath', 'converter_devicon'],
-        \    },
-        \    mr: #{
-        \      converters: ['converter_relativepath', 'converter_dir_omit_middle', 'converter_devicon'],
-        \    },
-        \    file_external: #{
-        \      converters: ['converter_relativepath', 'converter_devicon'],
-        \    },
-        \    taskwarrior: #{
-        \      converters: ['converter_taskwarrior'],
-        \      sorters: ['sorter_taskwarrior'],
-        \    },
-        \    markdown: #{
-        \      matchers: ['matcher_kensaku'],
+        \    'taskwarrior': {
+        \      'cmdName': 'taskw',
+        \      'filter': ['status:completed', 'or', 'status:pending'],
         \    },
         \  },
-        \  kindOptions: #{
-        \    file: #{
-        \      defaultAction: 'open',
+        \  'sourceOptions': {
+        \    '_': {
+        \      'matchers': ['matcher_fzf'],
+        \      'sorters': ['sorter_fzf'],
+        \      'ignoreCase': v:true,
         \    },
-        \    man: #{
-        \      defaultAction: 'open',
+        \    'lsp_diagnostic': {
+        \      'converters': ['converter_lsp_diagnostic'],
         \    },
-        \    word: #{
-        \      defaultAction: 'append',
+        \    'lsp_documentSymbol': {
+        \      'converters': ['converter_lsp_symbol'],
         \    },
-        \    command_history: #{
-        \      defaultAction: 'execute',
+        \    'lsp_workspaceSymbol': {
+        \      'converters': ['converter_lsp_symbol'],
         \    },
-        \    help: #{
-        \      defaultAction: 'open',
+        \    'git_status': {
+        \      'converters': ['converter_git_status'],
         \    },
-        \    readme_viewer: #{
-        \      defaultAction: 'open',
+        \    'git_branch': {
+        \      'columns': ['git_branch_head', 'git_branch_remote', 'git_branch_name', 'git_branch_upstream', 'git_branch_author', ],
         \    },
-        \    git_status: #{
-        \      defaultAction: 'open',
+        \    'file': {
+        \      'converters': ['converter_relativepath', 'converter_devicon'],
         \    },
-        \    git_branch: #{
-        \      defaultAction: 'switch',
+        \    'file_rec': {
+        \      'converters': ['converter_relativepath', 'converter_devicon'],
         \    },
-        \    ghq: #{
-        \      defaultAction: 'open',
+        \    'mr': {
+        \      'converters': ['converter_relativepath', 'converter_dir_omit_middle', 'converter_devicon'],
         \    },
-        \    lsp: #{
-        \      defaultAction: 'open',
+        \    'file_external': {
+        \      'converters': ['converter_relativepath', 'converter_devicon'],
         \    },
-        \    lsp_codeAction: #{
-        \      defaultAction: 'apply',
+        \    'taskwarrior': {
+        \      'converters': ['converter_taskwarrior'],
+        \      'sorters': ['sorter_taskwarrior'],
         \    },
-        \    action: #{
-        \      defaultAction: 'do',
-        \    },
-        \    nvim-notify: #{
-        \      defaultAction: 'open',
-        \    },
-        \    source: #{
-        \      defaultAction: 'execute',
-        \    },
-        \    colorscheme: #{
-        \      defaultAction: 'set',
-        \    },
-        \    dein_update: #{
-        \      defaultAction: 'viewDiff',
-        \    },
-        \    floaterm: #{
-        \      defaultAction: 'open',
-        \    },
-        \    window: #{
-        \      defaultAction: 'open',
-        \    },
-        \    tab: #{
-        \      defaultAction: 'open',
-        \    },
-        \    custom-list: #{
-        \      defaultAction: 'callback',
-        \    },
-        \    go_task: #{
-        \      defaultAction: 'run',
-        \    },
-        \    taskwarrior: #{
-        \      defaultAction: 'done',
+        \    'markdown': {
+        \      'matchers': ['matcher_kensaku'],
         \    },
         \  },
-        \  actionOptions: #{
-        \    echo: #{
-        \      quit: v:false,
+        \  'kindOptions': {
+        \    'file': {
+        \      'defaultAction': 'open',
         \    },
-        \    echoDiff: #{
-        \      quit: v:false,
+        \    'man': {
+        \      'defaultAction': 'open',
         \    },
-        \    set: #{
-        \      quit: v:false,
+        \    'word': {
+        \      'defaultAction': 'append',
+        \    },
+        \    'command_history': {
+        \      'defaultAction': 'execute',
+        \    },
+        \    'help': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'readme_viewer': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'git_status': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'git_branch': {
+        \      'defaultAction': 'switch',
+        \    },
+        \    'ghq': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'lsp': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'lsp_codeAction': {
+        \      'defaultAction': 'apply',
+        \    },
+        \    'action': {
+        \      'defaultAction': 'do',
+        \    },
+        \    'nvim-notify': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'source': {
+        \      'defaultAction': 'execute',
+        \    },
+        \    'colorscheme': {
+        \      'defaultAction': 'set',
+        \    },
+        \    'dein_update': {
+        \      'defaultAction': 'viewDiff',
+        \    },
+        \    'floaterm': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'window': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'tab': {
+        \      'defaultAction': 'open',
+        \    },
+        \    'custom-list': {
+        \      'defaultAction': 'callback',
+        \    },
+        \    'go_task': {
+        \      'defaultAction': 'run',
+        \    },
+        \    'taskwarrior': {
+        \      'defaultAction': 'done',
         \    },
         \  },
-        \  actionParams: #{
-        \    run: #{
-        \      prefix: "silent !tmux send -t 1 '",
-        \      suffix: "' Enter",
+        \  'actionOptions': {
+        \    'echo': {
+        \      'quit': v:false,
+        \    },
+        \    'echoDiff': {
+        \      'quit': v:false,
+        \    },
+        \    'set': {
+        \      'quit': v:false,
         \    },
         \  },
-        \  columnParams: #{
-        \    icon_filename: #{
-        \      customFileIcons: #{
-        \        lua: #{ icon: '' },
-        \        txt: #{ icon: '' },
-        \        vue: #{ icon: '' },
+        \  'actionParams': {
+        \    'run': {
+        \      'prefix': "silent !tmux send -t 1 '",
+        \      'suffix': "' Enter",
+        \    },
+        \  },
+        \  'columnParams': {
+        \    'icon_filename': {
+        \      'customFileIcons': {
+        \        'lua': { 'icon': '' },
+        \        'txt': { 'icon': '' },
+        \        'vue': { 'icon': '' },
         \       },
         \     },
         \  },
-        \  uiParams: #{
-        \    _: #{
-        \      filterSplitDirection: 'floating',
-        \      split: 'floating',
-        \      filterFloatingPosition: 'top',
-        \      floatingBorder: 'rounded',
-        \      previewFloating: v:true,
-        \      previewSplit: 'vertical',
-        \      previewFloatingBorder: 'rounded',
-        \      previewFloatingTitle: 'Preview',
-        \      previewFloatingTitlePos: 'center',
-        \      floatingTitle: 'Result',
-        \      floatingTitlePos: 'center',
-        \      filterFloatingTitle: 'matcher: fzf',
+        \  'uiParams': {
+        \    '_': {
+        \      'filterSplitDirection': 'floating',
+        \      'split': 'floating',
+        \      'filterFloatingPosition': 'top',
+        \      'floatingBorder': 'rounded',
+        \      'previewFloating': v:true,
+        \      'previewSplit': 'vertical',
+        \      'previewFloatingBorder': 'rounded',
+        \      'previewFloatingTitle': 'Preview',
+        \      'previewFloatingTitlePos': 'center',
+        \      'floatingTitle': 'Result',
+        \      'floatingTitlePos': 'center',
+        \      'filterFloatingTitle': 'matcher: fzf',
         \    },
-        \    ff: #{
-        \      autoAction: #{
-        \        name: 'preview',
+        \    'ff': {
+        \      'autoAction': {
+        \        'name': 'preview',
         \      },
         \    },
-        \    ff_colorscheme: #{
-        \      autoAction: #{
-        \        name: 'itemAction',
+        \    'ff_colorscheme': {
+        \      'autoAction': {
+        \        'name': 'itemAction',
         \      },
         \    },
-        \    ff_ghq: #{
-        \      autoAction: #{
-        \        name: 'preview',
-        \        params: #{
-        \          previewCmds: ['onefetch', '%s']
+        \    'ff_ghq': {
+        \      'autoAction': {
+        \        'name': 'preview',
+        \        'params': {
+        \          'previewCmds': ['onefetch', '%s']
         \        },
         \      },
         \    },
-        \    filer: #{
-        \      sortTreesFirst: v:true,
+        \    'filer': {
+        \      'sortTreesFirst': v:true,
         \    },
         \  },
         \})
@@ -263,16 +264,16 @@ function! s:set_size_narrow() abort
 endfunction
 
 function! s:set_layout() abort
-call ddu#custom#patch_global('uiParams', #{
-      \  _: #{
-      \    winCol: s:winCol,
-      \    winRow: s:winRow,
-      \    winWidth: s:winWidth,
-      \    winHeight: s:winHeight,
-      \    previewCol: s:previewCol,
-      \    previewWidth: s:previewWidth,
-      \    previewRow: s:previewRow,
-      \    previewHeight: s:previewHeight,
+call ddu#custom#patch_global('uiParams', {
+      \  '_': {
+      \    'winCol': s:winCol,
+      \    'winRow': s:winRow,
+      \    'winWidth': s:winWidth,
+      \    'winHeight': s:winHeight,
+      \    'previewCol': s:previewCol,
+      \    'previewWidth': s:previewWidth,
+      \    'previewRow': s:previewRow,
+      \    'previewHeight': s:previewHeight,
       \  },
       \ })
 endfunction
@@ -288,148 +289,150 @@ endfunction
 
 call s:layout()
 
-autocmd VimResized * call s:layout()
+augroup MyAutoCmd
+  autocmd VimResized * call s:layout()
+augroup END
 
 " local settings
-call ddu#custom#patch_local("lsp_def", #{
-      \  ui: 'ff',
-      \  uiParams: #{
-      \    ff: #{
-      \      startAutoAction: v:true,
-      \      autoAction: #{
-      \        name: 'preview'
+call ddu#custom#patch_local('lsp_def', {
+      \  'ui': 'ff',
+      \  'uiParams': {
+      \    'ff': {
+      \      'startAutoAction': v:true,
+      \      'autoAction': {
+      \        'name': 'preview'
       \      },
       \    },
       \  },
-      \  sources: [
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+      \  'sources': [
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduRed' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>Definition<<',
+      \      'params': {
+      \        'display': '>>Definition<<',
       \      }
       \    },
-      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/definition' }},
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+      \    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/definition' }},
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduLightBlue' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>typeDefinition<<',
+      \      'params': {
+      \        'display': '>>typeDefinition<<',
       \      },
       \    },
-      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/typeDefinition' }},
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+      \    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/typeDefinition' }},
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduYellow' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>declaration<<',
+      \      'params': {
+      \        'display': '>>declaration<<',
       \      }
       \    },
-      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/declaration' }},
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduGreen' } },
+      \    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/declaration' }},
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduGreen' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>Implementation<<',
+      \      'params': {
+      \        'display': '>>Implementation<<',
       \      }
       \    },
-      \    #{ name: 'lsp_definition', params: #{ method: 'textDocument/implementation' }},
+      \    { 'name': 'lsp_definition', 'params': { 'method': 'textDocument/implementation' }},
       \  ],
       \})
 
-call ddu#custom#patch_local("lsp_hie", #{
-      \  ui: 'ff',
-      \  uiParams: #{
-      \    ff: #{
-      \      startAutoAction: v:true,
-      \      autoAction: #{
-      \        name: 'preview'
+call ddu#custom#patch_local('lsp_hie', {
+      \  'ui': 'ff',
+      \  'uiParams': {
+      \    'ff': {
+      \      'startAutoAction': v:true,
+      \      'autoAction': {
+      \        'name': 'preview'
       \      },
       \    },
       \  },
-      \  sources: [
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduRed' } },
+      \  'sources': [
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduRed' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>incomingCalls<<',
+      \      'params': {
+      \        'display': '>>incomingCalls<<',
       \      }
       \    },
-      \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/incomingCalls' }},
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduLightBlue' } },
+      \    { 'name': 'lsp_callHierarchy', 'params': { 'method': 'callHierarchy/incomingCalls' }},
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduLightBlue' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>outgoingCalls<<',
+      \      'params': {
+      \        'display': '>>outgoingCalls<<',
       \      }
       \    },
-      \    #{ name: 'lsp_callHierarchy', params: #{ method: 'callHierarchy/outgoingCalls' }},
-      \    #{
-      \      name: 'dummy',
-      \      options: #{
-      \        converters: [
-      \          #{ name: 'converter_highlight', params: #{ hl_group: 'DduYellow' } },
+      \    { 'name': 'lsp_callHierarchy', 'params': { 'method': 'callHierarchy/outgoingCalls' }},
+      \    {
+      \      'name': 'dummy',
+      \      'options': {
+      \        'converters': [
+      \          { 'name': 'converter_highlight', 'params': { 'hl_group': 'DduYellow' } },
       \        ],
       \      },
-      \      params: #{
-      \        display: '>>Reference<<',
+      \      'params': {
+      \        'display': '>>Reference<<',
       \      }
       \    },
-      \    #{ name: 'lsp_references' },
+      \    { 'name': 'lsp_references' },
       \  ],
       \})
 
 function! Ddu_line_diagnostic() abort
-  let s:diagnostics = "vim.lsp.diagnostic.get_line_diagnostics(0)"->luaeval()
+  let s:diagnostics = luaeval('vim.lsp.diagnostic.get_line_diagnostics(0)')
   let s:texts = []
   for s:diagnostic in s:diagnostics
     call add(s:texts, s:diagnostic.message)
   endfor
   let s:len = 0
   for s:text in s:texts
-    let s:len = [s:len, s:text->len()]->max()
+    let s:len = max([s:len, len(s:text)])
   endfor
 
-  call ddu#start(#{
-        \ sourceParams: #{
-        \   custom-list: #{
-        \     texts: s:texts,
+  call ddu#start({
+        \ 'sourceParams': {
+        \   'custom-list': {
+        \     'texts': s:texts,
         \   },
         \ },
-        \ sources: [#{ name: 'custom-list' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     autoResize: v:true,
-        \     winRow: screenrow() - 1,
-        \     winCol: screencol(),
-        \     winWidth: s:len + 3,
-        \     floatingTitle: 'Diagnostics',
-        \     floatingTitlePos: 'left',
-        \     ignoreEmpty: v:true,
+        \ 'sources': [{ 'name': 'custom-list' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'autoResize': v:true,
+        \     'winRow': screenrow() - 1,
+        \     'winCol': screencol(),
+        \     'winWidth': s:len + 3,
+        \     'floatingTitle': 'Diagnostics',
+        \     'floatingTitlePos': 'left',
+        \     'ignoreEmpty': v:true,
         \   }
         \ },
         \})
@@ -448,11 +451,11 @@ function! Ddu_gitsigns_actions() abort
   endfunction
 
   function! s:get_gitsigns_actions() abort
-    return s:convert_dict_to_list("require('gitsigns.actions').get_actions()"->luaeval())
+    return s:convert_dict_to_list(luaeval("require('gitsigns.actions').get_actions()"))
   endfunction
 
   function! s:get_gitsigns_actions_max_len() abort
-    return rc#util#get_key_max_len("require('gitsigns.actions').get_actions()"->luaeval())
+    return rc#util#get_key_max_len(luaeval("require('gitsigns.actions').get_actions()"))
   endfunction
 
   let s:ddu_custom_list_id = denops#callback#register(
@@ -460,23 +463,23 @@ function! Ddu_gitsigns_actions() abort
         \ { 'once': v:true },
         \)
 
-  call ddu#start(#{
-        \ sourceParams: #{
-        \   custom-list: #{
-        \     texts: s:get_gitsigns_actions(),
-        \     callbackId: s:ddu_custom_list_id,
+  call ddu#start({
+        \ 'sourceParams': {
+        \   'custom-list': {
+        \     'texts': s:get_gitsigns_actions(),
+        \     'callbackId': s:ddu_custom_list_id,
         \   },
         \ },
-        \ sources: [#{ name: 'custom-list' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     autoResize: v:true,
-        \     winRow: screenrow() - 1,
-        \     winCol: screencol(),
-        \     winWidth: s:get_gitsigns_actions_max_len() + 3,
-        \     floatingTitle: 'Git actions',
-        \     floatingTitlePos: 'left',
-        \     ignoreEmpty: v:true,
+        \ 'sources': [{ 'name': 'custom-list' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'autoResize': v:true,
+        \     'winRow': screenrow() - 1,
+        \     'winCol': screencol(),
+        \     'winWidth': s:get_gitsigns_actions_max_len() + 3,
+        \     'floatingTitle': 'Git actions',
+        \     'floatingTitlePos': 'left',
+        \     'ignoreEmpty': v:true,
         \   }
         \ },
         \})
@@ -493,81 +496,81 @@ function! Ddu_chatgpt_run() abort
         \ { 'once': v:true },
         \)
 
-  call ddu#start(#{
-        \ sourceParams: #{
-        \   custom-list: #{
-        \     texts: s:get_chatgptrun_args(),
-        \     callbackId: s:ddu_custom_list_id,
+  call ddu#start({
+        \ 'sourceParams': {
+        \   'custom-list': {
+        \     'texts': s:get_chatgptrun_args(),
+        \     'callbackId': s:ddu_custom_list_id,
         \   },
         \ },
-        \ sources: [#{ name: 'custom-list' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     autoResize: v:true,
-        \     winRow: screenrow() - 1,
-        \     winCol: screencol(),
-        \     winWidth: rc#util#get_text_max_len(s:get_chatgptrun_args()) + 3,
-        \     floatingTitle: 'ChatGPTRun actions',
-        \     floatingTitlePos: 'left',
-        \     ignoreEmpty: v:true,
+        \ 'sources': [{ 'name': 'custom-list' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'autoResize': v:true,
+        \     'winRow': screenrow() - 1,
+        \     'winCol': screencol(),
+        \     'winWidth': rc#util#get_text_max_len(s:get_chatgptrun_args()) + 3,
+        \     'floatingTitle': 'ChatGPTRun actions',
+        \     'floatingTitlePos': 'left',
+        \     'ignoreEmpty': v:true,
         \   }
         \ },
         \})
 endfunction
 
 function! Ddu_ssh() abort
-  call ddu#start(#{
-        \ sourceOptions: #{
-        \   ssh: #{
-        \     path: expand('~/.ssh'),
+  call ddu#start({
+        \ 'sourceOptions': {
+        \   'ssh': {
+        \     'path': expand('~/.ssh'),
         \   },
         \ },
-        \ sourceParams: #{
-        \   ssh: #{
-        \     input: 'Host ',
+        \ 'sourceParams': {
+        \   'ssh': {
+        \     'input': 'Host ',
         \   },
         \ },
-        \ sources: [#{ name: 'ssh' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     startAutoAction: v:true,
+        \ 'sources': [{ 'name': 'ssh' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'startAutoAction': v:true,
         \   }
         \ },
-        \ kindOptions: #{
-        \   file: #{
-        \     defaultAction: 'attach',
+        \ 'kindOptions': {
+        \   'file': {
+        \     'defaultAction': 'attach',
         \   }
         \ },
         \})
 endfunction
 
 function! Ddu_note() abort
-  call ddu#start(#{
-        \ sourceParams: #{
-        \   file_external: #{
-        \     cmd: ['fd', '.md', expand("~/note"), '-t', 'f'],
+  call ddu#start({
+        \ 'sourceParams': {
+        \   'file_external': {
+        \     'cmd': ['fd', '.md', expand('~/note'), '-t', 'f'],
         \   },
         \ },
-        \ sources: [#{ name: 'file_external' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     startAutoAction: v:true,
+        \ 'sources': [{ 'name': 'file_external' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'startAutoAction': v:true,
         \   }
         \ },
         \})
 endfunction
 
 function! Ddu_minutes() abort
-  call ddu#start(#{
-        \ sourceParams: #{
-        \   file_external: #{
-        \     cmd: ['fd', '.md', expand("~/minutes"), '-t', 'f'],
+  call ddu#start({
+        \ 'sourceParams': {
+        \   'file_external': {
+        \     'cmd': ['fd', '.md', expand('~/minutes'), '-t', 'f'],
         \   },
         \ },
-        \ sources: [#{ name: 'file_external' }],
-        \ uiParams: #{
-        \   ff: #{
-        \     startAutoAction: v:true,
+        \ 'sources': [{ 'name': 'file_external' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'startAutoAction': v:true,
         \   }
         \ },
         \})
@@ -630,7 +633,10 @@ function! Ddu_multi_line_action(action, ...) abort
   endfor
 endfunction
 
-autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff call s:ddu_my_settings()
+augroup END
+
 function! s:ddu_my_settings() abort
   setlocal cursorline
   nnoremap <buffer> <CR>
@@ -642,7 +648,7 @@ function! s:ddu_my_settings() abort
   nnoremap <buffer> a
         \ <Cmd>call ddu#ui#do_action('chooseAction')<CR>
   nnoremap <buffer> d
-        \ <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'delete' })<CR>
+        \ <Cmd>call ddu#ui#do_action('itemAction', { 'name': 'delete' })<CR>
   nnoremap <buffer> <C-c>
         \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer> p
@@ -668,9 +674,9 @@ function! s:ddu_my_settings() abort
         \ <Esc><Cmd>call Ddu_multi_line_action('toggleSelectItem')<CR>
   nnoremap <buffer> A
         \ <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
-  if split(bufname(), '-')[-1] == 'floaterm'
+  if split(bufname(), '-')[-1] ==# 'floaterm'
     nnoremap <buffer> d
-          \ <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'close' })<CR>
+          \ <Cmd>call ddu#ui#do_action('itemAction', { 'name': 'close' })<CR>
   endif
 endfunction
 
@@ -678,39 +684,42 @@ endfunction
 function! g:Ddu_toggle_matchers(name) abort
   let s:current_options = ddu#custom#get_current(a:name)
   if s:current_options.sourceOptions._.matchers == ['matcher_fzf']
-    call ddu#ui#do_action('updateOptions', #{
-          \  sourceOptions: #{
-          \    _: #{
-          \      matchers: ['matcher_substring'],
-          \      sorters: [],
+    call ddu#ui#do_action('updateOptions', {
+          \  'sourceOptions': {
+          \    '_': {
+          \      'matchers': ['matcher_substring'],
+          \      'sorters': [],
           \    },
           \  },
-          \  uiParams: #{
-          \    _: #{
-          \      startFilter: v:true,
-          \      filterFloatingTitle: 'matcher: substring',
+          \  'uiParams': {
+          \    '_': {
+          \      'startFilter': v:true,
+          \      'filterFloatingTitle': 'matcher: substring',
           \    },
           \  },
           \ })
   else
-    call ddu#ui#do_action('updateOptions', #{
-          \  sourceOptions: #{
-          \    _: #{
-          \      matchers: ['matcher_fzf'],
-          \      sorters: [],
+    call ddu#ui#do_action('updateOptions', {
+          \  'sourceOptions': {
+          \    '_': {
+          \      'matchers': ['matcher_fzf'],
+          \      'sorters': [],
           \    },
           \  },
-          \  uiParams: #{
-          \    _: #{
-          \      startFilter: v:true,
-          \      filterFloatingTitle: 'matcher: fzf',
+          \  'uiParams': {
+          \    '_': {
+          \      'startFilter': v:true,
+          \      'filterFloatingTitle': 'matcher: fzf',
           \    },
           \  },
           \ })
   endif
 endfunction
 
-autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+augroup END
+
 function! s:ddu_filter_my_settings() abort
   inoremap <buffer> <CR>
         \ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR><Esc>
@@ -731,7 +740,10 @@ function! s:ddu_filter_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
 endfunction
 
-autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+augroup MyAutoCmd
+  autocmd FileType ddu-filer call s:ddu_filer_my_settings()
+augroup END
+
 function! s:ddu_filer_my_settings() abort
   nnoremap <buffer> <CR>
         \ <Cmd>call ddu#ui#do_action('itemAction')<CR>

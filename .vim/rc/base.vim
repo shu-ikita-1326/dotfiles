@@ -1,27 +1,26 @@
-" 行番号を表示
+set encoding=utf-8
+" show line numbers
 set number
 
-set encoding=utf-8
-
-" Leaderキーをスペースに変更
+" Change Leader key to space
 let mapleader = "\<Space>"
 
-" スワップファイルを作らない
+" don't create swap file
 set noswapfile
 
-" 別のバッファを開くときに自動でhideする
+" Automatically hide when opening another buffer
 set hidden
 
-" ビープ音を消す
+" mute beep
 set belloff=all
 
-" タブをスペース二つに変換
+" Convert tabs to two spaces
 set softtabstop=2
 set tabstop=2
 
 set shiftwidth=2
 
-" undoファイルを~/.vim/undo/に作成する
+" Create an undo file in ~/.vim/undo/
 set undofile
 
 let s:undodir='~/.cache/vim/undo/'
@@ -34,28 +33,28 @@ call s:init_undofile_dir()
 
 set undodir=~/.cache/vim/undo/ 
 
-" 検索系
-" 検索文字列が小文字の場合は大文字小文字を区別せず検索する
+" Search system
+" If the search string is a lowercase letter, search is performed without distinguishing between uppercase and lowercase letters.
 set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
+" If the search string contains uppercase letters, search separately.
 set smartcase
-" 検索時インクリメンタルに検索する
+" Search incrementally when searching
 set incsearch
-" 最後まで行ったら最初に戻る
+" When you reach the end, go back to the beginning
 set wrapscan
-" 検索文字列をハイライト
+" Highlight search string
 set hlsearch
-" Leader + nでハイライトを消す
+" Delete the highlight with Leader + n
 noremap <silent><Leader>n :noh<CR>
 
 filetype on
 
-" インサートモードのカーソル形状制御
+" Cursor shape control in insert mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-" インサートモードから抜けたときに半角入力に戻す
-" 環境変数zenhanにwindows側のzenhan実行ファイルのpathを記入しておく
+" Return to half-width input when exiting insert mode
+" Enter the path of the zenhan executable file on the windows side in the zenhan environment variable.
 if exists('$zenhan')
 	let &shell='/usr/bin/zsh --login'
 	augroup zenhan
@@ -65,6 +64,6 @@ if exists('$zenhan')
 	augroup END
 endif
 
-" ctrl + cでInsertLeaveがフックするようにキーマップ
+" Keymap so that InsertLeave hooks with ctrl + c
 inoremap <C-c> <C-[>
 inoremap <C-[> <C-c>

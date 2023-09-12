@@ -1,5 +1,5 @@
 let g:fern#default_hidden = 1
-let g:fern#renderer = "nerdfont"
+let g:fern#renderer = 'nerdfont'
 let g:fern#disable_default_mappings = 1
 
 nnoremap <silent><Leader>e :Fern . -drawer<CR>
