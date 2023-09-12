@@ -61,7 +61,7 @@ end
 
 vim.keymap.set("n", "<Leader>to", ":lua _term_toggle()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", ":ToggleTermToggleAll<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>t1", ":ToggleTerm<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>t1", ":1ToggleTerm<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>t2", ":2ToggleTerm<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>t3", ":3ToggleTerm<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tv", ":ToggleTerm size=80 direction=vertical<CR>", { noremap = true, silent = true })
