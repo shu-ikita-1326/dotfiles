@@ -557,6 +557,22 @@ function! Ddu_note() abort
         \})
 endfunction
 
+function! Ddu_minutes() abort
+  call ddu#start(#{
+        \ sourceParams: #{
+        \   file_external: #{
+        \     cmd: ['fd', '.md', expand("~/minutes"), '-t', 'f'],
+        \   },
+        \ },
+        \ sources: [#{ name: 'file_external' }],
+        \ uiParams: #{
+        \   ff: #{
+        \     startAutoAction: v:true,
+        \   }
+        \ },
+        \})
+endfunction
+
 " key mapping
 function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fe :Ddu -ui=filer file<CR>
@@ -597,6 +613,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
   nnoremap <silent> <Leader>note :call Ddu_note()<CR>
+  nnoremap <silent> <Leader>min :call Ddu_minutes()<CR>
 endfunction
 call s:ddu_key_mapping()
 

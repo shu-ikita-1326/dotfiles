@@ -29,6 +29,7 @@ bindkey '^Y' autosuggest-accept
 export SHELL=/usr/bin/zsh
 export LAB=~/lab
 export NOTEDIR=~/note
+export MINUTESDIR=~/minutes
 
 # labディレクトリが存在していなかったら作成する
 if [ ! -d ~/lab ]; then
@@ -52,6 +53,11 @@ fi
 # noteディレクトリが存在していなかったら作成する
 if [ ! -d "$NOTEDIR" ]; then
 	mkdir "$NOTEDIR" 
+fi
+
+# minutesディレクトリが存在していなかったら作成する
+if [ ! -d "$MINUTESDIR" ]; then
+	mkdir "$MINUTESDIR" 
 fi
 #---------------------------------------------------------------------#
 #                   base setting fin                                  #
