@@ -72,6 +72,8 @@ call ddc#custom#patch_filetype(['vim'], #{
       \ })
 
 function! CommandlinePre() abort
+  cnoremap <C-u>   <Up>
+  cnoremap <C-i>   <Down>
   cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
   cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
@@ -90,6 +92,8 @@ call ddc#enable_cmdline_completion()
 endfunction
 
 function! CommandlinePost() abort
+  silent! cunmap <C-u>
+  silent! cunmap <C-i>
   silent! cunmap <C-n>
   silent! cunmap <C-p>
   silent! cunmap <C-y>
