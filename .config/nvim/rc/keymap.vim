@@ -14,6 +14,9 @@ inoremap <expr> <C-c> has_key(environ(), 'zenhan') ? '<Cmd>call system("${zenhan
 nnoremap <silent> <Leader>no :e ~/note/note.md<CR>
 nnoremap <silent> <Leader>ta :e ~/note/task.md<CR>
 
+nnoremap <silent> <Leader>> :tabnext<CR>
+nnoremap <silent> <Leader>< :tabprevious<CR>
+
 nnoremap J 5j
 nnoremap K 5k
 nnoremap L $
