@@ -15,7 +15,7 @@ function! rc#util#get_key_max_len(dict) abort
       return 0
     endif
     for s:key in keys(a:dict)
-      let s:result = max([s:result, len(s:text)])
+      let s:result = max([s:result, len(s:key)])
     endfor
     return s:result
 endfunction
