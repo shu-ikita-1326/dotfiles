@@ -85,3 +85,8 @@ My dotfiles
       ```sh
       nvim
       ```
+
+## Trial
+
+You can try out my neovim environment using docker.  
+Please check the README in the trial directory for details.

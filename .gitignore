@@ -54,5 +54,7 @@
 !/installer/**
 !/.windows/
 !/.windows/**
+!/trial/
+!/trial/**
 
 !.gitignore
