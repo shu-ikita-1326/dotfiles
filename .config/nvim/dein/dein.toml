@@ -22,6 +22,14 @@ repo = 'EdenEast/nightfox.nvim'
 repo = 'cohama/lexima.vim'
 hook_source = '''
 let g:lexima_ctrlh_as_backspace=1
+function! s:toggle_lexima_space_rule() abort
+  if &filetype ==# 'markdown'
+    let g:lexima_enable_space_rules=0
+  else
+    let g:lexima_enable_space_rules=1
+  endif
+endfunction
+autocmd FileType * call s:toggle_lexima_space_rule()
 '''
 
 [[plugins]]
@@ -92,6 +100,7 @@ repo = 'nvim-telescope/telescope.nvim'
 repo = 'jackMort/ChatGPT.nvim'
 depends = ['nui.nvim', 'plenary.nvim', 'telescope.nvim']
 lua_add = 'require("config.ChatGPT")'
+if = 'has_key(environ(), "OPENAI_API_KEY")'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
