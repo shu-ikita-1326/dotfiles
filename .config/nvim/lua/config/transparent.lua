@@ -1,1 +1,13 @@
-../../../nvim_sub/lua/config/transparent.lua
+local transparent = require("transparent")
+transparent.setup({
+  extra_groups = {
+    "NeoTreeNormal",
+    "LspTroubleNormal",
+    "TroubleNormal",
+    "Normal",
+    "NormalFloat",
+  }
+})
+
+transparent.toggle(true)
+
