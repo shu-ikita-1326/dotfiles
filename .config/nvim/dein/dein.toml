@@ -99,8 +99,8 @@ repo = 'nvim-telescope/telescope.nvim'
 [[plugins]]
 repo = 'jackMort/ChatGPT.nvim'
 depends = ['nui.nvim', 'plenary.nvim', 'telescope.nvim']
-lua_add = 'require("config.ChatGPT")'
 if = 'has_key(environ(), "OPENAI_API_KEY")'
+lua_source = 'require("config.ChatGPT")'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
