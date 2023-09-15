@@ -1,4 +1,5 @@
 local nvim_lsp = require("lspconfig")
+local util = require("lspconfig.util")
 require("mason").setup({
   ui = {
     border = "rounded"
@@ -68,6 +69,26 @@ mason_lspconfig.setup_handlers({
         "sh",
         "markdown",
         "vim",
+      }
+    })
+  end,
+  ["pylsp"] = function()
+    nvim_lsp.pylsp.setup({
+      root_dir = function(fname)
+        return util.root_pattern(".git")(fname) or vim.fn.getcwd()
+      end,
+      settings = {
+        pylsp = {
+          plugins = {
+            flake8 = {
+              enabled = true
+            },
+            pycodestyle = {
+              enabled = false,
+              maxLineLength = 120
+            }
+          }
+        }
       }
     })
   end
