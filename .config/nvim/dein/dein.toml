@@ -252,3 +252,7 @@ hook_add = '''
 	      \ }
 call signature_help#enable()
 '''
+
+[[plugins]]
+repo = 'nvim-zh/colorful-winsep.nvim'
+lua_add = 'require("colorful-winsep").setup({})'
