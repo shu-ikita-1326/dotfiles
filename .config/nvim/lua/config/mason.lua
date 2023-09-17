@@ -108,3 +108,31 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, opt)
 vim.keymap.set("n", "gn", vim.lsp.buf.rename, opt)
+
+-- Install packages other than lsp
+local ensure_package = {
+  'flake8',
+  'vint',
+  'shellcheck',
+  'jq',
+  'jsonlint',
+  'prettier',
+  'markdownlint',
+}
+
+local installed_packages = require('mason-registry').get_installed_package_names()
+
+for _, package in ipairs(ensure_package) do
+  local package_installed = false
+
+  for _, installed_package in ipairs(installed_packages) do
+    if installed_package == package then
+      package_installed = true
+      break
+    end
+  end
+
+  if not package_installed then
+    vim.cmd('MasonInstall ' .. package)
+  end
+end
