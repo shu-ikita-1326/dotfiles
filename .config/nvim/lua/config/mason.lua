@@ -17,6 +17,7 @@ mason_lspconfig.setup({
     "dockerls",
     "denols",
     "efm",
+    "jsonls",
   },
 })
 mason_lspconfig.setup_handlers({
