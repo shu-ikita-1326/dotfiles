@@ -228,7 +228,7 @@ lua_add = 'require("config.translate")'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-on_source = 'ddu.vim'
+on_source = ['ddu.vim', 'ddc.vim']
 
 [[plugins]]
 repo = 'xiyaowong/nvim-cursorword'

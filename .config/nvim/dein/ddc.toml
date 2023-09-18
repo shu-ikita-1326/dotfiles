@@ -55,7 +55,7 @@ repo = 'Shougo/pum.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
-depends = ['denops.vim', 'pum.vim']
+depends = ['pum.vim']
 hook_add = '''
 source $BASE_DIR/config/ddc.vim
 '''
