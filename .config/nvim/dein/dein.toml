@@ -262,3 +262,11 @@ call signature_help#enable()
 [[plugins]]
 repo = 'nvim-zh/colorful-winsep.nvim'
 lua_add = 'require("colorful-winsep").setup({})'
+
+[[plugins]]
+repo = 'jmcantrell/vim-virtualenv'
+
+[[plugins]]
+repo = 'folke/todo-comments.nvim'
+depends = ['plenary.nvim']
+lua_add = 'require("todo-comments").setup({})'
