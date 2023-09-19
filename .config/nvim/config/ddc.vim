@@ -38,26 +38,38 @@ call ddc#custom#patch_global({
       \   },
       \   'sources': ['vsnip', 'nvim-lsp', 'around', 'cmdline'],
       \   'sourceOptions': {
-		  \     '_': {
-		  \       'matchers': ['matcher_fuzzy'],
-		  \       'sorters': ['sorter_fuzzy'],
-		  \       'converters': ['converter_fuzzy'],
-		  \       'ignoreCase': v:true,
-		  \     },
-		  \     'around': {'mark': '[around]'},
-		  \     'nvim-lsp': {'mark': '[Lsp]'},
-		  \     'cmdline': {'mark': '[cmdline]'},
-		  \     'vsnip': {'mark': '[vsnip]'},
-		  \     'file': {
-		  \       'mark': '[file]',
-		  \       'isVolatile': v:true,
-		  \       'minAutoCompleteLength': 1000,
-		  \       'forceCompletionPattern': '\S/\S*',
-		  \     },
-		  \     'cmdline-history': {
-		  \       'mark': '[history]',
-		  \       'sorters': [],
-		  \     },
+      \     '_': {
+      \       'matchers': ['matcher_fuzzy'],
+      \       'sorters': ['sorter_fuzzy'],
+      \       'converters': ['converter_fuzzy'],
+      \       'ignoreCase': v:true,
+      \     },
+      \     'around': {'mark': '[around]'},
+      \     'nvim-lsp': {
+      \       'mark': '[Lsp]',
+      \     },
+      \     'cmdline': {'mark': '[cmdline]'},
+      \     'vsnip': {'mark': '[vsnip]'},
+      \     'file': {
+      \       'mark': '[file]',
+      \       'isVolatile': v:true,
+      \       'minAutoCompleteLength': 1000,
+      \       'forceCompletionPattern': '\S/\S*',
+      \     },
+      \     'cmdline-history': {
+      \       'mark': '[history]',
+      \       'sorters': [],
+      \     },
+      \   },
+      \   'sourceParams': {
+      \     'nvim-lsp': {
+      \       'snippetEngine': denops#callback#register({
+      \         body -> vsnip#anonymous(body)
+      \       }),
+      \       'enableResolveItem': v:true,
+      \       'enableAdditionalTextEdit': v:true,
+      \       'confirmBehavior': 'replace',
+      \     },
       \   },
       \   'autoCompleteEvents': ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'],
       \ })
