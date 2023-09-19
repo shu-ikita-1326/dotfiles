@@ -92,6 +92,14 @@ mason_lspconfig.setup_handlers({
         }
       }
     })
+  end,
+  -- NOTE: Starts with file type because it does not work with file name specification
+  ["docker_compose_language_service"] = function()
+    nvim_lsp.docker_compose_language_service.setup({
+      filetypes = {
+        "yaml",
+      }
+    })
   end
 })
 
