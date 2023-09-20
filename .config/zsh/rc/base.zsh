@@ -30,6 +30,7 @@ export SHELL=/usr/bin/zsh
 export LAB=~/lab
 export NOTEDIR=~/note
 export MINUTESDIR=~/minutes
+export CHEATDIR=~/cheat
 
 # labディレクトリが存在していなかったら作成する
 if [ ! -d ~/lab ]; then
@@ -58,6 +59,11 @@ fi
 # minutesディレクトリが存在していなかったら作成する
 if [ ! -d "$MINUTESDIR" ]; then
 	mkdir "$MINUTESDIR" 
+fi
+
+# cheatディレクトリが存在していなかったら作成する
+if [ ! -d "$CHEATDIR" ]; then
+	mkdir "$CHEATDIR" 
 fi
 #---------------------------------------------------------------------#
 #                   base setting fin                                  #

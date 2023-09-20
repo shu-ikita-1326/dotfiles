@@ -544,6 +544,32 @@ function! Ddu_ssh() abort
         \})
 endfunction
 
+function! Ddu_cheat() abort
+  call ddu#start({
+        \ 'sourceOptions': {
+        \   'rg': {
+        \     'path': $CHEATDIR,
+        \   },
+        \ },
+        \ 'sourceParams': {
+        \   'rg': {
+        \     'input': '## ',
+        \   },
+        \ },
+        \ 'sources': [{ 'name': 'rg' }],
+        \ 'uiParams': {
+        \   'ff': {
+        \     'startAutoAction': v:true,
+        \   }
+        \ },
+        \ 'kindOptions': {
+        \   'file': {
+        \     'defaultAction': 'open',
+        \   }
+        \ },
+        \})
+endfunction
+
 function! Ddu_note() abort
   call ddu#start({
         \ 'sourceParams': {
@@ -617,6 +643,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
   nnoremap <silent> <Leader>note :call Ddu_note()<CR>
   nnoremap <silent> <Leader>min :call Ddu_minutes()<CR>
+  nnoremap <silent> <Leader>ch :call Ddu_cheat()<CR>
 endfunction
 call s:ddu_key_mapping()
 
