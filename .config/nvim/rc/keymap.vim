@@ -9,7 +9,7 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <silent> <Leader>n :nohlsearch<CR>
 
-inoremap <expr> <C-c> has_key(environ(), 'zenhan') ? '<Cmd>call system("${zenhan} 0")<CR><C-c>' : '<C-c>'
+inoremap <expr> <C-c> executable('zenhan') ? '<Cmd>call system("zenhan 0")<CR><C-c>' : '<C-c>'
 
 nnoremap <silent> <Leader>no :e ~/note/note.md<CR>
 nnoremap <silent> <Leader>ta :e ~/note/task.md<CR>

@@ -1,9 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-if vim.env.zenhan then
+if vim.fn.executable('zenhan') then
   autocmd("InsertLeave", {
     pattern = "*",
-    command = ":call system('${zenhan} 0')",
+    command = ":call system('zenhan 0')",
   })
 end
 
@@ -40,6 +40,10 @@ autocmd("VimEnter", {
       else
         vim.notify("Install win32yank.exe if you want to share yanked code to the Windows clipboard. win32yank HP:(https://github.com/equalsraf/win32yank)",
         vim.log.levels.INFO)
+      end
+    else
+      if vim.fn.has('win32') then
+        vim.api.nvim_command('set clipboard+=unnamedplus')
       end
     end
   end,
