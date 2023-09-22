@@ -270,3 +270,10 @@ repo = 'jmcantrell/vim-virtualenv'
 repo = 'folke/todo-comments.nvim'
 depends = ['plenary.nvim']
 lua_add = 'require("todo-comments").setup({})'
+
+[[plugins]]
+repo = 'NeogitOrg/neogit'
+lua_add = '''
+require("neogit").setup({})
+vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
+'''
