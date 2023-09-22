@@ -29,6 +29,25 @@ ts.setup({
   autotag = {
     enable = true,
   },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["as"] = "@scope",
+      },
+      selection_modes = {
+        ['@parameter.outer'] = 'v',
+        ['@function.outer'] = 'V',
+        ['@class.outer'] = '<c-v>',
+      },
+      include_surrounding_whitespace = true,
+    },
+  },
 })
 
 local paser_config = require("nvim-treesitter.parsers").get_parser_configs()

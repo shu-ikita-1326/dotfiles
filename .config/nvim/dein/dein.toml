@@ -147,6 +147,7 @@ lua_post_source = 'require("config.mason")'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+depends = ['nvim-treesitter-textobjects']
 lua_add = 'require("config.treesitter")'
 hook_done_update = '''
 TSUpdate
@@ -276,4 +277,13 @@ repo = 'NeogitOrg/neogit'
 lua_add = '''
 require("neogit").setup({})
 vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter-textobjects'
+
+[[plugins]]
+repo = 'folke/flash.nvim'
+lua_add = '''
+require("config.flash")
 '''
