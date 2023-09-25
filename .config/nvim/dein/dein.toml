@@ -245,22 +245,6 @@ repo = 'tyru/open-browser.vim'
 lua_add = 'require("config.open-browser")'
 
 [[plugins]]
-repo = 'matsui54/denops-signature_help'
-hook_add = '''
-	let g:signature_help_config = {
-	      \ 'border': v:true,
-	      \ 'maxWidth': 80,
-	      \ 'maxHeight': 30,
-	      \ 'contentsStyle': 'full',
-	      \ 'viewStyle': 'floating',
-	      \ 'onTriggerChar': v:false,
-	      \ 'multiLabel': v:false,
-	      \ 'fallbackToBelow': v:true,
-	      \ }
-call signature_help#enable()
-'''
-
-[[plugins]]
 repo = 'nvim-zh/colorful-winsep.nvim'
 lua_add = 'require("colorful-winsep").setup({})'
 

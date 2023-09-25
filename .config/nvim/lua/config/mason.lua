@@ -105,15 +105,6 @@ mason_lspconfig.setup_handlers({
 
 local opt = { silent = true, noremap = true }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "rounded",
-    -- add the title in hover float window
-    title = "hover"
-  }
-)
-
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, opt)
 vim.keymap.set("n", "gn", vim.lsp.buf.rename, opt)
