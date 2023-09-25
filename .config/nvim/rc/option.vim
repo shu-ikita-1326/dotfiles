@@ -24,3 +24,5 @@ set scrolloff=5
 
 set listchars=tab:»-,trail:･,eol:↲,extends:»,precedes:«,nbsp:%
 set list
+
+set laststatus=3
