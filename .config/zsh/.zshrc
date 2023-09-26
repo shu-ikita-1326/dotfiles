@@ -20,9 +20,6 @@ PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 # base
 source $ZRCDIR/base.zsh
 
-# path
-source $ZRCDIR/path.zsh
-
 # plugin
 eval "$(sheldon source)"
 
@@ -31,11 +28,6 @@ source $ZRCDIR/alias.zsh
 
 # function
 source $ZRCDIR/function.zsh
-
-# localenv
-if [ -f ~/.localenv.zsh ]; then
-	source ~/.localenv.zsh
-fi
 
 # localfunction
 if [ -f ~/.localfunction.zsh ]; then
