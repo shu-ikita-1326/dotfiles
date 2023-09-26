@@ -1,3 +1,12 @@
+local function runenv()
+  if vim.fn.executable('wslpath') == 1 then
+    return 'wsl'
+  end
+  if vim.fn.has('win32') == 1 then
+    return 'Windows'
+  end
+  return 'other'
+end
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -26,7 +35,7 @@ require("lualine").setup({
       } },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
-    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_x = { runenv, "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
