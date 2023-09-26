@@ -1,0 +1,10 @@
+{
+  "ifm": {
+    "prefix": "ifm",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "\t$0"
+    ],
+    "description": "if main"
+  }
+}
