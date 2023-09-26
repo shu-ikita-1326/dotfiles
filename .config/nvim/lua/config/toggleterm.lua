@@ -1,4 +1,10 @@
 local autocmd = vim.api.nvim_create_autocmd
+
+local shell = vim.o.shell
+if vim.fn.has('win32') == 1 and vim.fn.exists('g:neovide') == 1 then
+  shell = 'powershell'
+end
+
 require("toggleterm").setup({
   highlights = {
     Normal = {
@@ -10,7 +16,8 @@ require("toggleterm").setup({
   },
   auto_scroll = false,
   start_in_insert = true,
-  open_mapping = [[<C-\><C-\>]]
+  open_mapping = [[<C-\><C-\>]],
+  shell = shell
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
