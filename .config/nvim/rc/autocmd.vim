@@ -11,3 +11,9 @@ function! RotateYank(event) abort
 endfunction
 
 autocmd TextYankPost * call RotateYank(v:event)
+
+if exists("g:neovide")
+  augroup neovide_startup
+    autocmd! VimEnter * cd ~
+  augroup END
+endif

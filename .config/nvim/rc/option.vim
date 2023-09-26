@@ -26,3 +26,7 @@ set listchars=tab:»-,trail:･,eol:↲,extends:»,precedes:«,nbsp:%
 set list
 
 set laststatus=3
+
+if exists("g:neovide")
+  set guifont=HackGen\ Console\ NFJ:h12
+endif

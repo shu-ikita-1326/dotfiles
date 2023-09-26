@@ -7,3 +7,5 @@ export ZHOMEDIR=$HOME/.config/zsh
 export ZRCDIR=$ZHOMEDIR/rc
 export ZDATADIR=$XDG_DATA_HOME/zsh
 export ZCACHEDIR=$XDG_CACHE_HOME/zsh
+export PATH=~/.local/bin:$PATH
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
