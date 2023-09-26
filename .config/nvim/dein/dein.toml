@@ -271,3 +271,17 @@ repo = 'folke/flash.nvim'
 lua_add = '''
 require("config.flash")
 '''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+hook_add = '''
+source $BASE_DIR/config/skkeleton.vim
+'''
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+lua_add = '''
+require("skkeleton_indicator").setup({
+  zindex = 300,
+})
+'''

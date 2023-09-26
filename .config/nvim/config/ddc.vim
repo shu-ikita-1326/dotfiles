@@ -36,7 +36,7 @@ call ddc#custom#patch_global({
       \     '-': ['around'],
       \     '=': ['input'],
       \   },
-      \   'sources': ['vsnip', 'nvim-lsp', 'around', 'cmdline'],
+      \   'sources': ['vsnip', 'nvim-lsp', 'around', 'cmdline', 'skkeleton'],
       \   'sourceOptions': {
       \     '_': {
       \       'matchers': ['matcher_fuzzy'],
@@ -59,6 +59,12 @@ call ddc#custom#patch_global({
       \     'cmdline-history': {
       \       'mark': '[history]',
       \       'sorters': [],
+      \     },
+      \     'skkeleton': {
+      \       'mark': '[skk]',
+      \       'matchers': ['skkeleton'],
+      \       'sorters': [],
+      \       'isVolatile': v:true,
       \     },
       \   },
       \   'sourceParams': {
