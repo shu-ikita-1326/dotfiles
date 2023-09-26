@@ -574,7 +574,7 @@ function! Ddu_note() abort
   call ddu#start({
         \ 'sourceParams': {
         \   'file_external': {
-        \     'cmd': ['fd', '.md', expand('~/note'), '-t', 'f'],
+        \     'cmd': ['fd', '.md', $NOTEDIR, '-t', 'f'],
         \   },
         \ },
         \ 'sources': [{ 'name': 'file_external' }],
@@ -590,7 +590,7 @@ function! Ddu_minutes() abort
   call ddu#start({
         \ 'sourceParams': {
         \   'file_external': {
-        \     'cmd': ['fd', '.md', expand('~/minutes'), '-t', 'f'],
+        \     'cmd': ['fd', '.md', $MINUTESDIR, '-t', 'f'],
         \   },
         \ },
         \ 'sources': [{ 'name': 'file_external' }],

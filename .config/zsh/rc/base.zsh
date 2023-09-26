@@ -27,15 +27,6 @@ bindkey '^ ' autosuggest-execute
 bindkey '^Y' autosuggest-accept
 
 export SHELL=/usr/bin/zsh
-export LAB=~/lab
-export NOTEDIR=~/note
-export MINUTESDIR=~/minutes
-export CHEATDIR=~/cheat
-
-# labディレクトリが存在していなかったら作成する
-if [ ! -d ~/lab ]; then
-	mkdir ~/lab
-fi
 
 # zsh cdr履歴ディレクトリが存在していないかったら作成する
 if [ ! -d ~/.cache/shell ]; then
@@ -50,20 +41,6 @@ if [ ! -d ~/go/src ]; then
 	mkdir -p ~/go/src
 fi
 
-# noteディレクトリが存在していなかったら作成する
-if [ ! -d "$NOTEDIR" ]; then
-	mkdir "$NOTEDIR" 
-fi
-
-# minutesディレクトリが存在していなかったら作成する
-if [ ! -d "$MINUTESDIR" ]; then
-	mkdir "$MINUTESDIR" 
-fi
-
-# cheatディレクトリが存在していなかったら作成する
-if [ ! -d "$CHEATDIR" ]; then
-	mkdir "$CHEATDIR" 
-fi
 #---------------------------------------------------------------------#
 #                   base setting fin                                  #
 #---------------------------------------------------------------------#
