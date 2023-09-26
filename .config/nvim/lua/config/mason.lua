@@ -52,7 +52,8 @@ mason_lspconfig.setup_handlers({
               lintStdin = true,
               lintFormats = {
                 "%f:%l %m",
-              }
+              },
+              formatCommand = "prettier",
             }
           },
           vim = {
