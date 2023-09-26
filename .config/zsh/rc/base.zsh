@@ -43,7 +43,6 @@ if [ ! -d ~/.cache/shell ]; then
 fi
 
 # golang
-export PATH=$PATH:~/go/bin
 export GOPATH=~/go
 
 # go/srcディレクトリが存在していなかったら作成する
