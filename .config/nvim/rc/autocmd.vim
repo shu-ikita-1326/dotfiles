@@ -13,6 +13,6 @@ autocmd TextYankPost * call RotateYank(v:event)
 
 if exists("g:neovide")
   augroup neovide_startup
-    autocmd! VimEnter * cd ~
+    autocmd! VimEnter * cd ~/dotfiles
   augroup END
 endif
