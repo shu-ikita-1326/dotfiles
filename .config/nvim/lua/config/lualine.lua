@@ -7,6 +7,19 @@ local function runenv()
   end
   return 'other'
 end
+
+local function virtualenv()
+  if vim.env.VIRTUAL_ENV then
+    local parts = {}
+    for part in vim.env.VIRTUAL_ENV:gmatch("[^/]+") do
+      table.insert(parts, part)
+    end
+    local display = parts[#parts]
+    return '  ' .. display
+  end
+  return ""
+end
+
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -35,7 +48,7 @@ require("lualine").setup({
       } },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
-    lualine_x = { runenv, "encoding", "fileformat", "filetype" },
+    lualine_x = { virtualenv, runenv, "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
