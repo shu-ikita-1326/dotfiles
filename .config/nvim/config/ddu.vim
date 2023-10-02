@@ -624,7 +624,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>gb :Ddu -ui=ff git_branch -source-param-ff-remote=v:true<CR>
   nnoremap <silent> <Leader>gl :Ddu -ui=ff git_log -source-param-ff-showGraph -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>gh :Ddu -ui=ff ghq -ui='ff_ghq' -ui-param-ff_ghq-startAutoAction<CR>
-  nnoremap <silent> <Leader>fd :Ddu -ui=ff dein -ui-param-ff-startFilter=v:true<CR>
+  nnoremap <silent> <Leader>fd :Ddu -ui=ff lazy_nvim -ui-param-ff-startFilter=v:true<CR>
   nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ftt :Ddu -ui=ff tab -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fte :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
