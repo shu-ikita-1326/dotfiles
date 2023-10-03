@@ -76,6 +76,7 @@ vim.keymap.set("n", "<Leader>ts", ":ToggleTerm direction=horizontal<CR>", { nore
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
+  vim.opt.number = false
   vim.keymap.set('n', '<C-j>h', "i<Cmd>wincmd h<CR>", opts)
   vim.keymap.set('n', '<C-j>j', "i<Cmd>wincmd j<CR>", opts)
   vim.keymap.set('n', '<C-j>k', "i<Cmd>wincmd k<CR>", opts)

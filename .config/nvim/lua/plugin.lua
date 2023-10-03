@@ -16,6 +16,7 @@ local opt = { silent = true, noremap = true }
 require("lazy").setup({
   {
     "nvim-neo-tree/neo-tree.nvim",
+    event = "VimEnter",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -27,6 +28,7 @@ require("lazy").setup({
   },
   {
     "williamboman/mason.nvim",
+    event = "VimEnter",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
@@ -37,6 +39,7 @@ require("lazy").setup({
   },
   {
     "akinsho/toggleterm.nvim",
+    event = "VimEnter",
     config = function()
       require("config.toggleterm")
     end
@@ -91,6 +94,7 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
+    event = "VimEnter",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -177,7 +181,6 @@ require("lazy").setup({
   },
   {
     "uga-rosa/translate.nvim",
-    keys = { "<Leader>tl", "<Leader>tle", "<Leader>tlj" },
     config = function()
       require("config.translate")
     end
@@ -317,6 +320,7 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
+    event = "VimEnter",
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     },
@@ -352,6 +356,7 @@ require("lazy").setup({
   },
   {
     "hrsh7th/vim-vsnip",
+    event = "VimEnter",
     config = function()
       vim.g.vsnip_snippet_dir = vim.env.CONF_DIR .. "/vsnip"
       vim.keymap.set("i", "<Tab>", function()
@@ -377,4 +382,7 @@ require("lazy").setup({
     end
   },
   "dstein64/vim-startuptime",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+  },
 })
