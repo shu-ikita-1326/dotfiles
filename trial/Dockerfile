@@ -46,5 +46,3 @@ RUN echo 'export PATH=$HOME/.deno/bin:$PATH' >> $HOME/.bashrc && \
 COPY --chown=$USERNAME:$GROUPNAME ./.config $HOMEDIR/.config
 
 WORKDIR $HOMEDIR
-
-RUN nvim +:q
