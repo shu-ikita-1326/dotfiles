@@ -186,8 +186,8 @@ function! s:ddu_global_setting() abort
         \  },
         \  'actionParams': {
         \    'run': {
-        \      'prefix': "silent !tmux send -t 1 '",
-        \      'suffix': "' Enter",
+        \      'prefix': "TermExec cmd='",
+        \      'suffix': "'",
         \    },
         \  },
         \  'columnParams': {
@@ -628,7 +628,7 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>fl :Ddu -ui=ff line -ui-param-ff-startFilter=v:true -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>ftt :Ddu -ui=ff tab -ui-param-ff-startAutoAction<CR>
   nnoremap <silent> <Leader>fte :Ddu -name=floaterm -ui=ff floaterm -ui-param-ff-startAutoAction<CR>
-  nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
+  nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task -source-option-ff-defaultAction=run<CR>
   nnoremap <silent> <Leader>* :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`('<cword>'->expand())`<CR>
   nnoremap <silent> <Leader>? :Ddu -ui=ff rg -resume=v:false -ui-param-ff-startAutoAction -ui-param-ff-ignoreEmpty -source-param-ff-input=`input('Pattern: ')`<CR>
   nnoremap <silent> <Leader>ga :call Ddu_gitsigns_actions()<CR>
@@ -639,7 +639,6 @@ function! s:ddu_key_mapping() abort
   nnoremap <silent> <Leader>ca :Ddu -ui=ff lsp_codeAction -ui-param-ff-startAutoAction<CR>
   vnoremap <silent> <Leader>cr <Esc><Cmd>call Ddu_chatgpt_run()<CR>
   nnoremap <silent> ds :Ddu -ui=ff lsp_documentSymbol -ui-param-ff-startAutoAction<CR>
-  nnoremap <silent> <Leader>fta :Ddu -ui=ff go_task<CR>
   nnoremap <silent> <Leader>ssh :call Ddu_ssh()<CR>
   nnoremap <silent> <Leader>note :call Ddu_note()<CR>
   nnoremap <silent> <Leader>min :call Ddu_minutes()<CR>
