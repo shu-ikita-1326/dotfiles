@@ -393,5 +393,8 @@ require("lazy").setup({
   "dstein64/vim-startuptime",
   {
     "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup()
+    end
   },
 })
