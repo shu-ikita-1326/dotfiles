@@ -28,13 +28,13 @@ augroup END
 call ddc#custom#patch_global({
       \   'ui': 'pum',
       \   'cmdlineSources': {
-      \     ':': ['cmdline', 'cmdline-history', 'file', 'around'],
-      \     '@': ['cmdline-history', 'input', 'file', 'around'],
-      \     '>': ['cmdline-history', 'input', 'file', 'around'],
-      \     '/': ['around'],
-      \     '?': ['around'],
-      \     '-': ['around'],
-      \     '=': ['input'],
+      \     ':': ['skkeleton', 'cmdline', 'cmdline-history', 'file', 'around'],
+      \     '@': ['skkeleton', 'cmdline-history', 'input', 'file', 'around'],
+      \     '>': ['skkeleton', 'cmdline-history', 'input', 'file', 'around'],
+      \     '/': ['skkeleton', 'around'],
+      \     '?': ['skkeleton', 'around'],
+      \     '-': ['skkeleton', 'around'],
+      \     '=': ['skkeleton', 'input'],
       \   },
       \   'sources': ['vsnip', 'nvim-lsp', 'around', 'cmdline', 'skkeleton'],
       \   'sourceOptions': {
@@ -82,19 +82,17 @@ call ddc#custom#patch_global({
 
 call ddc#custom#patch_filetype(['vim'], {
       \   'cmdlineSources': {
-      \     ':': ['cmdline', 'file', 'around'],
-      \     '@': ['cmdline-history', 'input', 'file', 'around'],
-      \     '>': ['cmdline-history', 'input', 'file', 'around'],
-      \     '/': ['around'],
-      \     '?': ['around'],
-      \     '-': ['around'],
-      \     '=': ['input'],
+      \     ':': ['skkeleton', 'cmdline', 'file', 'around'],
+      \     '@': ['skkeleton', 'cmdline-history', 'input', 'file', 'around'],
+      \     '>': ['skkeleton', 'cmdline-history', 'input', 'file', 'around'],
+      \     '/': ['skkeleton', 'around'],
+      \     '?': ['skkeleton', 'around'],
+      \     '-': ['skkeleton', 'around'],
+      \     '=': ['skkeleton', 'input'],
       \   },
       \ })
 
 function! CommandlinePre() abort
-  cnoremap <C-i>   <Up>
-  cnoremap <C-k>   <Down>
   cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
   cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
@@ -115,8 +113,6 @@ call ddc#enable_cmdline_completion()
 endfunction
 
 function! CommandlinePost() abort
-  silent! cunmap <C-k>
-  silent! cunmap <C-i>
   silent! cunmap <C-n>
   silent! cunmap <C-p>
   silent! cunmap <C-y>
@@ -132,7 +128,9 @@ function! CommandlinePost() abort
   endif
 endfunction
 
-nnoremap : <Cmd>call CommandlinePre()<CR>:
+augroup MyDdcCmdPre
+  autocmd CmdlineEnter * call CommandlinePre()
+augroup END
 inoremap <silent> <C-Space> <Cmd>call ddc#map#manual_complete()<CR>
 call ddc#enable()
 
