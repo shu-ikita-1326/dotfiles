@@ -297,6 +297,7 @@ require("lazy").setup({
     event = { 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter' },
     dependencies = {
       "vim-denops/denops.vim",
+      "skk-dev/dict",
     },
     config = function()
       vim.cmd([[source $BASE_DIR/config/skkeleton.vim]])
@@ -339,7 +340,6 @@ require("lazy").setup({
   },
   {
     "NeogitOrg/neogit",
-    cmd = "Neogit",
     config = function()
       require("neogit").setup({})
       vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
