@@ -402,7 +402,7 @@ require("lazy").setup({
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("ibl").setup()
+      require("indent_blankline").setup()
     end
   },
 })
