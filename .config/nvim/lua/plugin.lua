@@ -308,7 +308,7 @@ require("lazy").setup({
       "skk-dev/dict",
     },
     config = function()
-      vim.cmd([[source $BASE_DIR/config/skkeleton.vim]])
+      require("config.skkeleton")
     end
   },
   {
