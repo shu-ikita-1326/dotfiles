@@ -20,6 +20,8 @@ RUN apt update && apt install -y --no-install-recommends \
     unzip \
     golang-go \
     npm \
+    ssh \
+    xz-utils \
     python3-pip \
     python3-venv \
     g++ && \
