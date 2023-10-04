@@ -291,7 +291,7 @@ require("lazy").setup({
       "vim-skk/skkeleton",
     },
     config = function()
-      vim.cmd([[source $BASE_DIR/config/ddc.vim]])
+      require("config.ddc")
     end
   },
   {
