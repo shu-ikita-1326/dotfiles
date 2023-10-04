@@ -104,7 +104,15 @@ require("lazy").setup({
     end
   },
   "lambdalisue/mr.vim",
-  "lambdalisue/kensaku.vim",
+  {
+    "lambdalisue/kensaku-search.vim",
+    dependencies = {
+      "lambdalisue/kensaku.vim",
+    },
+    config = function()
+      vim.keymap.set("c", "<CR>", "<Plug>(kensaku-search-replace)<CR>", opt)
+    end,
+  },
   {
     "lambdalisue/kensaku-search.vim",
     dependencies = {
