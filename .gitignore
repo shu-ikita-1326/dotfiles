@@ -57,5 +57,6 @@
 !/trial/
 !/trial/**
 !.stylua.toml
+!.luarc.json
 
 !.gitignore
