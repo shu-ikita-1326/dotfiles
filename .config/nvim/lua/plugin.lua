@@ -61,7 +61,7 @@ require("lazy").setup({
   {
     "cohama/lexima.vim",
     config = function()
-      vim.cmd([[let g:lexima_ctrlh_as_backspace=1]])
+      vim.g.lexima_ctrlh_as_backspace = 1
     end,
   },
   "machakann/vim-sandwich",

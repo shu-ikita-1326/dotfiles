@@ -25,7 +25,7 @@ local options = {
   laststatus = 3,
   termguicolors = true,
 
-  listchars = "tab:»-,trail:･,eol:↲,extends:»,precedes:«,nbsp:%",
+  listchars = "tab:»-,trail:･,eol:↲,nbsp:%",
   list = true,
 }
 
