@@ -56,16 +56,16 @@ end
 
 M.ff = function()
   local maps = {
-    { "n", "<CR>",  "itemAction" },
-    { "n", "i",     "openFilterWindow" },
-    { "n", "q",     "quit" },
+    { "n", "<CR>", "itemAction" },
+    { "n", "i", "openFilterWindow" },
+    { "n", "q", "quit" },
     { "n", "<C-c>", "quit" },
-    { "n", "a",     "chooseAction" },
-    { "n", "d",     "itemAction",      { name = "delete" } },
-    { "n", "p",     "togglePreview" },
+    { "n", "a", "chooseAction" },
+    { "n", "d", "itemAction", { name = "delete" } },
+    { "n", "p", "togglePreview" },
     { "n", "<C-t>", "toggleAutoAction" },
     { "n", "<Tab>", "toggleSelectItem" },
-    { "n", "A",     "toggleAllItems" },
+    { "n", "A", "toggleAllItems" },
   }
   for _, v in ipairs(maps) do
     util_ddu_key_mapper(v)

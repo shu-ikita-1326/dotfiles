@@ -281,7 +281,7 @@ M.grep_pattern = function()
     sources = { { name = "rg" } },
     sourceParams = {
       rg = {
-        input = vim.fn.input('Pattern: '),
+        input = vim.fn.input("Pattern: "),
       },
     },
     uiParams = {
@@ -323,7 +323,7 @@ M.colorscheme = function()
       ff = {
         autoAction = {
           name = "itemAction",
-        }
+        },
       },
     },
   })
@@ -369,7 +369,7 @@ M.git_status = function()
     sourceOptions = {
       git_status = {
         path = vim.fn.expand("%:p"),
-        converters = { 'converter_git_status' },
+        converters = { "converter_git_status" },
       },
     },
     uiParams = {
@@ -433,8 +433,8 @@ M.ghq = function()
           name = "preview",
           params = {
             previewCmds = { "onefetch", "%s" },
-          }
-        }
+          },
+        },
       },
     },
   })

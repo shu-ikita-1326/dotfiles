@@ -1,6 +1,6 @@
 local keymap = require("config.ddu.keymap")
 local param = require("config.ddu.param")
-local layout= require("config.ddu.layout")
+local layout = require("config.ddu.layout")
 local autocmd = vim.api.nvim_create_autocmd
 
 local function ddu_highlight_setting()

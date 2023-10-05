@@ -65,12 +65,19 @@ mason_lspconfig.setup_handlers({
               },
             },
           },
+          lua = {
+            {
+              formatStdin = true,
+              formatCommand = "stylua --color Never -",
+            },
+          },
         },
       },
       filetypes = {
         "sh",
         "markdown",
         "vim",
+        "lua",
       },
     })
   end,
@@ -89,6 +96,20 @@ mason_lspconfig.setup_handlers({
               enabled = false,
               maxLineLength = 120,
             },
+          },
+        },
+      },
+    })
+  end,
+  ["lua_ls"] = function()
+    nvim_lsp.lua_ls.setup({
+      root_dir = function(fname)
+        return util.root_pattern(".git")(fname) or vim.fn.getcwd()
+      end,
+      settings = {
+        Lua = {
+          format = {
+            enable = false,
           },
         },
       },
@@ -126,6 +147,7 @@ local ensure_package = {
   "jsonlint",
   "prettier",
   "markdownlint",
+  "stylua",
 }
 
 local installed_packages = require("mason-registry").get_installed_package_names()

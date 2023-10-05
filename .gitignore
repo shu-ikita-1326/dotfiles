@@ -56,5 +56,6 @@
 !/.windows/**
 !/trial/
 !/trial/**
+!.stylua.toml
 
 !.gitignore
