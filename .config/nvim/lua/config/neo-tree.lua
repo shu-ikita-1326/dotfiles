@@ -7,45 +7,45 @@ neotree.setup({
       ["h"] = { "close_node" },
       ["P"] = { "preview_img" },
       ["E"] = { "edit_drawio" },
-    }
+    },
   },
   filesystem = {
     filtered_items = {
       hide_dotfiles = false,
       hide_gitignored = true,
       hide_hidden = false,
-    }
+    },
   },
   commands = {
     -- Display image. depends on feh.
     preview_img = function(state)
       local node = state.tree:get_node()
       local path = node:get_id()
-      local cmd = '!feh ' .. path
+      local cmd = "!feh " .. path
       vim.cmd(cmd)
     end,
     -- Edit drawio file. It depends on draio.
     edit_drawio = function(state)
       local node = state.tree:get_node()
       local path = node:get_id()
-      local cmd = '!drawio ' .. path
+      local cmd = "!drawio " .. path
       vim.cmd(cmd)
-    end
+    end,
   },
   source_selector = {
     winbar = true,
-    sources = {                    -- table
+    sources = { -- table
       {
-        source = "filesystem",     -- string
-        display_name = "  Files " -- string | nil
+        source = "filesystem", -- string
+        display_name = "  Files ", -- string | nil
       },
       {
-        source = "buffers",          -- string
-        display_name = "  Buffers " -- string | nil
+        source = "buffers", -- string
+        display_name = "  Buffers ", -- string | nil
       },
       {
-        source = "git_status",   -- string
-        display_name = "  Git " -- string | nil
+        source = "git_status", -- string
+        display_name = "  Git ", -- string | nil
       },
     },
   },
@@ -53,16 +53,16 @@ neotree.setup({
     git_status = {
       symbols = {
         -- Change type
-        added     = "✚", -- NOTE: you can set any of these to an empty string to not show them
-        deleted   = "✖",
-        modified  = "",
-        renamed   = "",
+        added = "✚", -- NOTE: you can set any of these to an empty string to not show them
+        deleted = "✖",
+        modified = "",
+        renamed = "",
         -- Status type
         untracked = "",
-        ignored   = "",
-        unstaged  = "",
-        staged    = "",
-        conflict  = "",
+        ignored = "",
+        unstaged = "",
+        staged = "",
+        conflict = "",
       },
       align = "right",
     },

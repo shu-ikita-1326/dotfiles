@@ -2,8 +2,8 @@ local nvim_lsp = require("lspconfig")
 local util = require("lspconfig.util")
 require("mason").setup({
   ui = {
-    border = "rounded"
-  }
+    border = "rounded",
+  },
 })
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
@@ -43,8 +43,8 @@ mason_lspconfig.setup_handlers({
                 "%f:%l:%c: %trror: %m",
                 "%f:%l:%c: %tarning: %m",
                 "%f:%l:%c: %tote: %m",
-              }
-            }
+              },
+            },
           },
           markdown = {
             {
@@ -54,7 +54,7 @@ mason_lspconfig.setup_handlers({
                 "%f:%l %m",
               },
               formatCommand = "prettier",
-            }
+            },
           },
           vim = {
             {
@@ -62,16 +62,16 @@ mason_lspconfig.setup_handlers({
               lintStdin = true,
               lintFormats = {
                 "%f:%l:%c: %m",
-              }
-            }
+              },
+            },
           },
-        }
+        },
       },
       filetypes = {
         "sh",
         "markdown",
         "vim",
-      }
+      },
     })
   end,
   ["pylsp"] = function()
@@ -83,15 +83,15 @@ mason_lspconfig.setup_handlers({
         pylsp = {
           plugins = {
             flake8 = {
-              enabled = true
+              enabled = true,
             },
             pycodestyle = {
               enabled = false,
-              maxLineLength = 120
-            }
-          }
-        }
-      }
+              maxLineLength = 120,
+            },
+          },
+        },
+      },
     })
   end,
   -- NOTE: Starts with file type because it does not work with file name specification
@@ -99,21 +99,19 @@ mason_lspconfig.setup_handlers({
     nvim_lsp.docker_compose_language_service.setup({
       filetypes = {
         "yaml",
-      }
+      },
     })
-  end
+  end,
 })
 
 local opt = { silent = true, noremap = true }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "rounded",
-    -- add the title in hover float window
-    title = "hover"
-  }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  -- Use a sharp border with `FloatBorder` highlights
+  border = "rounded",
+  -- add the title in hover float window
+  title = "hover",
+})
 
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, opt)
@@ -121,16 +119,16 @@ vim.keymap.set("n", "gn", vim.lsp.buf.rename, opt)
 
 -- Install packages other than lsp
 local ensure_package = {
-  'flake8',
-  'vint',
-  'shellcheck',
-  'jq',
-  'jsonlint',
-  'prettier',
-  'markdownlint',
+  "flake8",
+  "vint",
+  "shellcheck",
+  "jq",
+  "jsonlint",
+  "prettier",
+  "markdownlint",
 }
 
-local installed_packages = require('mason-registry').get_installed_package_names()
+local installed_packages = require("mason-registry").get_installed_package_names()
 
 for _, package in ipairs(ensure_package) do
   local package_installed = false
@@ -143,6 +141,6 @@ for _, package in ipairs(ensure_package) do
   end
 
   if not package_installed then
-    vim.cmd('MasonInstall ' .. package)
+    vim.cmd("MasonInstall " .. package)
   end
 end

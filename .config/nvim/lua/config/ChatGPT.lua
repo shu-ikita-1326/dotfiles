@@ -4,7 +4,7 @@ local base_layout = {
     submit = "<C-s>",
   },
   actions_paths = {
-    "~/.config/ChatGPT/actions.json"
+    "~/.config/ChatGPT/actions.json",
   },
   edit_with_instructions = {
     diff = false,
@@ -24,10 +24,12 @@ local from_shell_layout = {
       width = "100%",
       height = "100%",
     },
-  }
+  },
 }
 
-if pcall(function() return vim.api.nvim_get_var('from_shell') end) then
+if pcall(function()
+  return vim.api.nvim_get_var("from_shell")
+end) then
   for k, v in pairs(from_shell_layout) do
     base_layout[k] = v
   end

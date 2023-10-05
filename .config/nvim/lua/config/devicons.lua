@@ -1,4 +1,4 @@
-require('nvim-web-devicons').setup({
+require("nvim-web-devicons").setup({
   strict = true,
   override_by_filename = {
     ["docker-compose.yml"] = {
@@ -45,5 +45,5 @@ require('nvim-web-devicons').setup({
       cterm_color = "22",
       name = "Txt",
     },
-  }
+  },
 })

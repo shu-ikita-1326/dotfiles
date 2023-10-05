@@ -1,13 +1,13 @@
 local noice = require("noice")
 
 local function runenv()
-  if vim.fn.executable('wslpath') == 1 then
-    return 'wsl'
+  if vim.fn.executable("wslpath") == 1 then
+    return "wsl"
   end
-  if vim.fn.has('win32') == 1 then
-    return 'Windows'
+  if vim.fn.has("win32") == 1 then
+    return "Windows"
   end
-  return 'other'
+  return "other"
 end
 
 local function virtualenv()
@@ -17,7 +17,7 @@ local function virtualenv()
       table.insert(parts, part)
     end
     local display = parts[#parts]
-    return '  ' .. display
+    return "  " .. display
   end
   return ""
 end
@@ -46,8 +46,9 @@ require("lualine").setup({
       "mode",
       {
         noice.api.statusline.mode.get,
-        cond = noice.api.statusline.mode.has
-      } },
+        cond = noice.api.statusline.mode.has,
+      },
+    },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
     lualine_x = { virtualenv, runenv, "encoding", "fileformat", "filetype" },

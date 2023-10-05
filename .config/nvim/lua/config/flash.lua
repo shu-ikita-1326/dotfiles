@@ -4,8 +4,8 @@ flash.setup({
   modes = {
     search = {
       enabled = false,
-    }
-  }
+    },
+  },
 })
 
 vim.keymap.set("n", "ss", "<Cmd>lua require('flash').jump()<CR>", opt)

@@ -1,23 +1,23 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 local shell = vim.o.shell
-if vim.fn.has('win32') == 1 and vim.fn.exists('g:neovide') == 1 then
-  shell = 'powershell'
+if vim.fn.has("win32") == 1 and vim.fn.exists("g:neovide") == 1 then
+  shell = "powershell"
 end
 
 require("toggleterm").setup({
   highlights = {
     Normal = {
-      link = 'Normal'
-    }
+      link = "Normal",
+    },
   },
   float_opts = {
-    border = 'rounded',
+    border = "rounded",
   },
   auto_scroll = false,
   start_in_insert = true,
   open_mapping = [[<C-\><C-\>]],
-  shell = shell
+  shell = shell,
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
@@ -54,13 +54,12 @@ if vim.fn.executable("lazydocker") == 1 then
   vim.keymap.set("n", "<Leader>ld", _lazydocker_toggle, { noremap = true, silent = true })
 end
 
-
 local function _term_toggle()
   local term = Terminal:new({ hidden = true, direction = "float" })
   local panes = vim.fn.system("tmux list-panes")
   local rows = select(2, panes:gsub("\n", "\n"))
   if vim.env.TMUX and rows >= 2 then
-    os.execute('tmux popup -w90% -h90%')
+    os.execute("tmux popup -w90% -h90%")
   else
     term:toggle()
   end
@@ -77,10 +76,10 @@ vim.keymap.set("n", "<Leader>ts", ":ToggleTerm direction=horizontal<CR>", { nore
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.opt.number = false
-  vim.keymap.set('n', '<C-j>h', "i<Cmd>wincmd h<CR>", opts)
-  vim.keymap.set('n', '<C-j>j', "i<Cmd>wincmd j<CR>", opts)
-  vim.keymap.set('n', '<C-j>k', "i<Cmd>wincmd k<CR>", opts)
-  vim.keymap.set('n', '<C-j>l', "i<Cmd>wincmd l<CR>", opts)
+  vim.keymap.set("n", "<C-j>h", "i<Cmd>wincmd h<CR>", opts)
+  vim.keymap.set("n", "<C-j>j", "i<Cmd>wincmd j<CR>", opts)
+  vim.keymap.set("n", "<C-j>k", "i<Cmd>wincmd k<CR>", opts)
+  vim.keymap.set("n", "<C-j>l", "i<Cmd>wincmd l<CR>", opts)
 end
 
 autocmd("TermOpen", {

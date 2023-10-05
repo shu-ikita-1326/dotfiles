@@ -2,10 +2,10 @@ require("translate").setup({
   preset = {
     output = {
       floating = {
-        zindex = 300
-      }
-    }
-  }
+        zindex = 300,
+      },
+    },
+  },
 })
 local opt = { silent = true, noremap = true }
 vim.keymap.set("v", "<Leader>tl", ":Translate ja<CR>", opt)

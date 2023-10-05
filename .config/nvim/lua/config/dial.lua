@@ -12,10 +12,10 @@ require("dial.config").augends:register_group({
     augend.date.alias["%m/%d"],
     augend.date.alias["%H:%M"],
     augend.date.alias["%H:%M:%S"],
-		augend.case.new{
-		  types = {"camelCase", "snake_case", "kebab-case", "PascalCase", "SCREAMING_SNAKE_CASE"},
-		  cyclic = true,
-		},
+    augend.case.new({
+      types = { "camelCase", "snake_case", "kebab-case", "PascalCase", "SCREAMING_SNAKE_CASE" },
+      cyclic = true,
+    }),
     augend.constant.new({
       elements = { "True", "False" },
       word = true,
@@ -23,7 +23,7 @@ require("dial.config").augends:register_group({
     }),
   },
 })
-require("dial.config").augends:on_filetype {
+require("dial.config").augends:on_filetype({
   markdown = {
     augend.integer.alias.decimal_int,
     augend.integer.alias.hex,
@@ -47,12 +47,12 @@ require("dial.config").augends:on_filetype {
       word = false,
       cyclic = true,
     }),
-		augend.case.new{
-		  types = {"camelCase", "snake_case", "kebab-case", "PascalCase", "SCREAMING_SNAKE_CASE"},
-		  cyclic = true,
-		},
-  }
-}
+    augend.case.new({
+      types = { "camelCase", "snake_case", "kebab-case", "PascalCase", "SCREAMING_SNAKE_CASE" },
+      cyclic = true,
+    }),
+  },
+})
 
 vim.keymap.set("n", "<C-n>", require("dial.map").inc_normal(), { noremap = true })
 vim.keymap.set("n", "<C-p>", require("dial.map").dec_normal(), { noremap = true })

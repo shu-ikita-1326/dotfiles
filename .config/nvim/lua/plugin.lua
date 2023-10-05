@@ -24,7 +24,7 @@ require("lazy").setup({
     },
     config = function()
       require("config.neo-tree")
-    end
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -35,14 +35,14 @@ require("lazy").setup({
     },
     config = function()
       require("config.mason")
-    end
+    end,
   },
   {
     "akinsho/toggleterm.nvim",
     event = "VimEnter",
     config = function()
       require("config.toggleterm")
-    end
+    end,
   },
   "rebelot/kanagawa.nvim",
   "catppuccin/nvim",
@@ -50,19 +50,19 @@ require("lazy").setup({
     "EdenEast/nightfox.nvim",
     config = function()
       vim.cmd([[colorscheme nightfox]])
-    end
+    end,
   },
   {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
-    end
+    end,
   },
   {
     "cohama/lexima.vim",
     config = function()
       vim.cmd([[let g:lexima_ctrlh_as_backspace=1]])
-    end
+    end,
   },
   "machakann/vim-sandwich",
   "simeji/winresizer",
@@ -71,26 +71,26 @@ require("lazy").setup({
     keys = { "<C-n>", "<C-p>" },
     config = function()
       require("config.dial")
-    end
+    end,
   },
   {
     "stevearc/aerial.nvim",
     config = function()
       require("config.aerial")
-    end
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("config.gitsigns")
-    end
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = function()
       require("config.lualine")
-    end
+    end,
   },
   {
     "folke/noice.nvim",
@@ -101,7 +101,7 @@ require("lazy").setup({
     },
     config = function()
       require("config.noice")
-    end
+    end,
   },
   "lambdalisue/mr.vim",
   {
@@ -133,12 +133,12 @@ require("lazy").setup({
     end,
     build = function()
       vim.cmd([[TSUpdate]])
-    end
+    end,
   },
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
-      require('nvim-web-devicons').setup({
+      require("nvim-web-devicons").setup({
         strict = true,
         override_by_filename = {
           ["docker-compose.yml"] = {
@@ -185,28 +185,28 @@ require("lazy").setup({
             cterm_color = "68",
             name = "Txt",
           },
-        }
+        },
       })
-    end
+    end,
   },
   {
     "akinsho/bufferline.nvim",
     event = "VimEnter",
     config = function()
       require("config.bufferline")
-    end
+    end,
   },
   {
     "uga-rosa/translate.nvim",
     config = function()
       require("config.translate")
-    end
+    end,
   },
   {
     "xiyaowong/nvim-cursorword",
     config = function()
       vim.api.nvim_command("hi default CursorWord cterm=underline gui=underline")
-    end
+    end,
   },
   {
     "Shougo/ddu.vim",
@@ -267,7 +267,7 @@ require("lazy").setup({
     },
     config = function()
       require("config.ddu")
-    end
+    end,
   },
   {
     "Shougo/ddc.vim",
@@ -292,24 +292,24 @@ require("lazy").setup({
     },
     config = function()
       require("config.ddc")
-    end
+    end,
   },
   {
     "iamcco/markdown-preview.nvim",
     build = function()
       vim.fn["mkdp#util#install"]()
-    end
+    end,
   },
   {
     "vim-skk/skkeleton",
-    event = { 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter' },
+    event = { "InsertEnter", "TextChangedI", "TextChangedP", "CmdlineChanged", "CmdlineEnter" },
     dependencies = {
       "vim-denops/denops.vim",
       "skk-dev/dict",
     },
     config = function()
       require("config.skkeleton")
-    end
+    end,
   },
   {
     "delphinus/skkeleton_indicator.nvim",
@@ -334,7 +334,7 @@ require("lazy").setup({
     },
     config = function()
       require("todo-comments").setup({})
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -344,32 +344,32 @@ require("lazy").setup({
     },
     config = function()
       require("config.trouble")
-    end
+    end,
   },
   {
     "NeogitOrg/neogit",
     config = function()
       require("neogit").setup({})
       vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
-    end
+    end,
   },
   {
     "folke/flash.nvim",
     config = function()
       require("config.flash")
-    end
+    end,
   },
   {
     "tyru/open-browser.vim",
     config = function()
       require("config.open-browser")
-    end
+    end,
   },
   {
     "nvim-zh/colorful-winsep.nvim",
     config = function()
       require("colorful-winsep").setup({})
-    end
+    end,
   },
   {
     "hrsh7th/vim-vsnip",
@@ -377,12 +377,12 @@ require("lazy").setup({
     config = function()
       vim.g.vsnip_snippet_dir = vim.env.CONF_DIR .. "/vsnip"
       vim.keymap.set("i", "<Tab>", function()
-        return vim.fn["vsnip#jumpable"](1) == 1 and '<Plug>(vsnip-jump-next)' or '<Tab>'
+        return vim.fn["vsnip#jumpable"](1) == 1 and "<Plug>(vsnip-jump-next)" or "<Tab>"
       end, { expr = true })
       vim.keymap.set("i", "<S-Tab>", function()
-        return vim.fn["vsnip#jumpable"](-1) == 1 and '<Plug>(vsnip-jump-prev)' or '<S-Tab>'
+        return vim.fn["vsnip#jumpable"](-1) == 1 and "<Plug>(vsnip-jump-prev)" or "<S-Tab>"
       end, { expr = true })
-    end
+    end,
   },
   {
     "jackMort/ChatGPT.nvim",
@@ -396,13 +396,13 @@ require("lazy").setup({
     },
     config = function()
       require("config.ChatGPT")
-    end
+    end,
   },
   "dstein64/vim-startuptime",
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("ibl").setup()
-    end
+    end,
   },
 })

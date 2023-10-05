@@ -41,9 +41,9 @@ ts.setup({
         ["as"] = "@scope",
       },
       selection_modes = {
-        ['@parameter.outer'] = 'v',
-        ['@function.outer'] = 'V',
-        ['@class.outer'] = '<c-v>',
+        ["@parameter.outer"] = "v",
+        ["@function.outer"] = "V",
+        ["@class.outer"] = "<c-v>",
       },
       include_surrounding_whitespace = true,
     },

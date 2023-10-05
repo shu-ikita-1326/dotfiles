@@ -1,10 +1,10 @@
-vim.env.BASE_DIR = vim.fn.expand('~/.config/nvim')
-vim.env.CONF_DIR = vim.fn.expand('~/.config')
+vim.env.BASE_DIR = vim.fn.expand("~/.config/nvim")
+vim.env.CONF_DIR = vim.fn.expand("~/.config")
 
-vim.env.CHEATDIR = vim.fn.expand('~/cheat')
-vim.env.NOTEDIR = vim.fn.expand('~/note')
-vim.env.LABDIR = vim.fn.expand('~/lab')
-vim.env.MINUTESDIR = vim.fn.expand('~/minutes')
+vim.env.CHEATDIR = vim.fn.expand("~/cheat")
+vim.env.NOTEDIR = vim.fn.expand("~/note")
+vim.env.LABDIR = vim.fn.expand("~/lab")
+vim.env.MINUTESDIR = vim.fn.expand("~/minutes")
 
 if vim.fn.isdirectory(vim.env.CHEATDIR) then
   vim.fn.mkdir(vim.env.CHEATDIR, "p")
