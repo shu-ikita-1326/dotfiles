@@ -112,12 +112,6 @@ end
 ddc_filetype_setting()
 
 local function cmdline_post()
-  vim.keymap.del("c", "<C-n>", opt)
-  vim.keymap.del("c", "<C-p>", opt)
-  vim.keymap.del("c", "<C-y>", opt)
-  vim.keymap.del("c", "<C-e>", opt)
-  vim.keymap.del("c", "<C-Space>", opt)
-
   if vim.b.prev_buffer_config ~= nil then
     vim.fn["ddc#custom#set_buffer"](vim.b.prev_buffer_config)
     vim.b.prev_buffer_config = nil
