@@ -22,8 +22,6 @@ if vim.fn.isdirectory(vim.env.MINUTESDIR) then
   vim.fn.mkdir(vim.env.MINUTESDIR, "p")
 end
 
-vim.cmd([[source $BASE_DIR/rc/util.vim]])
-
 require("keymap")
 require("option")
 require("plugin")
