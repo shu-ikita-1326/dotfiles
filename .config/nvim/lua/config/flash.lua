@@ -1,3 +1,4 @@
+local opt = { silent = true, noremap = true }
 local flash = require("flash")
 flash.setup({
   modes = {

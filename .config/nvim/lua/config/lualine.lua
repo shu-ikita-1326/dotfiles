@@ -1,3 +1,5 @@
+local noice = require("noice")
+
 local function runenv()
   if vim.fn.executable('wslpath') == 1 then
     return 'wsl'
@@ -43,8 +45,8 @@ require("lualine").setup({
     lualine_a = {
       "mode",
       {
-        require("noice").api.statusline.mode.get,
-        cond = require("noice").api.statusline.mode.has
+        noice.api.statusline.mode.get,
+        cond = noice.api.statusline.mode.has
       } },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
