@@ -266,7 +266,7 @@ require("lazy").setup({
       "Shougo/ddu.vim",
     },
     config = function()
-      vim.cmd([[source $BASE_DIR/config/ddu.vim]])
+      require("config.ddu")
     end
   },
   {
