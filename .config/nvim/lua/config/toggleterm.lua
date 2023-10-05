@@ -23,7 +23,7 @@ require("toggleterm").setup({
 local Terminal = require("toggleterm.terminal").Terminal
 
 if vim.fn.executable("lazygit") == 1 then
-  function _lazygit_toggle()
+  local function _lazygit_toggle()
     local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
     local panes = vim.fn.system("tmux list-panes")
     local rows = select(2, panes:gsub("\n", "\n"))
@@ -36,12 +36,12 @@ if vim.fn.executable("lazygit") == 1 then
     end
   end
 
-  vim.keymap.set("n", "<Leader>lg", ":lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<Leader>lg", _lazygit_toggle, { noremap = true, silent = true })
 end
 
 if vim.fn.executable("lazydocker") == 1 then
   local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
-  function _lazydocker_toggle()
+  local function _lazydocker_toggle()
     local panes = vim.fn.system("tmux list-panes")
     local rows = select(2, panes:gsub("\n", "\n"))
     if vim.env.TMUX and rows >= 2 then
@@ -51,11 +51,11 @@ if vim.fn.executable("lazydocker") == 1 then
     end
   end
 
-  vim.keymap.set("n", "<Leader>ld", ":lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<Leader>ld", _lazydocker_toggle, { noremap = true, silent = true })
 end
 
 
-function _term_toggle()
+local function _term_toggle()
   local term = Terminal:new({ hidden = true, direction = "float" })
   local panes = vim.fn.system("tmux list-panes")
   local rows = select(2, panes:gsub("\n", "\n"))
@@ -66,7 +66,7 @@ function _term_toggle()
   end
 end
 
-vim.keymap.set("n", "<Leader>to", ":lua _term_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>to", _term_toggle, { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", ":ToggleTermToggleAll<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>t1", ":1ToggleTerm<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>t2", ":2ToggleTerm<CR>", { noremap = true, silent = true })
