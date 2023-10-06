@@ -69,6 +69,6 @@ neotree.setup({
   },
 })
 
-vim.keymap.set("n", "<Leader>e", ":Neotree reveal=true<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<Leader>E", ":Neotree toggle<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "<Leader>b", ":Neotree close<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<Leader>e", "<Cmd>Neotree reveal=true<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<Leader>E", "<Cmd>Neotree toggle<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<Leader>b", "<Cmd>Neotree close<CR>", { silent = true, noremap = true })
