@@ -19,7 +19,7 @@ fi
 # neovim
 if ! (type "nvim" > /dev/null 2>&1); then
   echo 'Installing neovim...'
-  brew install neovim > /dev/null
+  brew install --HEAD neovim > /dev/null
 fi
 
 # ripgrepをインストール
@@ -94,4 +94,10 @@ fi
 if ! (type "deno" > /dev/null 2>&1); then
   echo 'Installing deno...'
   brew install deno > /dev/null
+fi
+
+# fd
+if ! (type "fd" > /dev/null 2>&1); then
+  echo 'Installing fd...'
+  brew install fd > /dev/null
 fi

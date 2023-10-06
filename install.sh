@@ -2,12 +2,12 @@
 
 set -eu
 
-IGNORE_PATTERN="^\.(git|windows)"
+IGNORE_PATTERN="^\.(git|windows|stylua.toml|luarc.json)"
 
 echo "Create dotfile links."
 for dotfile in .??*; do
     [[ $dotfile =~ $IGNORE_PATTERN ]] && continue
-    if [ -d "$dotfile" ]; then
+    if [ -d "$dotfile" ] || [ -f "$dotfile" ]; then
         mv -v "$HOME/$dotfile" "$HOME/${dotfile}.bak"
         ln -snfv "$(pwd)/$dotfile" "$HOME/$dotfile"
     else
