@@ -231,6 +231,12 @@ M.old_repos = function()
   })
 end
 
+M.old_command = function()
+  vim.fn["ddu#start"]({
+    sources = { { name = "command_history" } },
+  })
+end
+
 M.register = function()
   vim.fn["ddu#start"]({
     sources = { { name = "register" } },

@@ -6,6 +6,7 @@ M.main = function()
   vim.keymap.set("n", "<Leader>hh", start.old_files, opt)
   vim.keymap.set("n", "<Leader>ff", start.find_files, opt)
   vim.keymap.set("n", "<Leader>hp", start.old_repos, opt)
+  vim.keymap.set("n", "<Leader>hc", start.old_command, opt)
   vim.keymap.set("n", "<Leader>fr", start.register, opt)
   vim.keymap.set("n", "<Leader>/", start.live_grep, opt)
   vim.keymap.set("n", "<Leader>*", start.grep_string, opt)
@@ -57,6 +58,7 @@ end
 M.ff = function()
   local maps = {
     { "n", "<CR>", "itemAction" },
+    { "n", "t", "itemAction", { name = "open", params = { command = "tabedit" } } },
     { "n", "i", "openFilterWindow" },
     { "n", "q", "quit" },
     { "n", "<C-c>", "quit" },
