@@ -7,7 +7,7 @@ local function wide_layout(columns, lines)
     winRow = 5,
     winHeight = lines - 8,
     previewCol = math.floor(columns / 2),
-    previewWidth = math.floor((columns * 0.9) / 2 - 1),
+    previewWidth = math.floor((columns * 0.9) / 2 - 2),
     previewRow = 6,
     previewHeight = lines - 10,
   }

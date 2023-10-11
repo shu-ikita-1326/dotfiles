@@ -5,6 +5,11 @@ require("mason").setup({
     border = "rounded",
   },
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  update_in_insert = false,
+})
+
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
   ensure_installed = {
@@ -20,6 +25,7 @@ mason_lspconfig.setup({
     "jsonls",
   },
 })
+
 mason_lspconfig.setup_handlers({
   function(server_name)
     require("lspconfig")[server_name].setup({})
