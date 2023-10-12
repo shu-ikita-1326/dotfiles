@@ -247,6 +247,7 @@ require("lazy").setup({
       "shutils/ddu-source-go_task",
       "shutils/ddu-source-taskwarrior",
       "shutils/ddu-filter-converter_dir_omit_middle",
+      "shutils/ddu-filter-converter_remove_display",
       "shun/ddu-source-buffer",
       "shun/ddu-source-rg",
       "4513ECHO/vim-readme-viewer",

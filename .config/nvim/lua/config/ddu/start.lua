@@ -118,6 +118,7 @@ M.ssh = function()
     sourceOptions = {
       ssh = {
         path = vim.fn.expand("~/.ssh"),
+        converters = { "converter_remove_display" },
       },
     },
     sourceParams = {
@@ -144,6 +145,7 @@ M.cheat = function()
     sourceOptions = {
       rg = {
         path = vim.env.CHEATDIR,
+        converters = { "converter_remove_display" },
       },
     },
     sourceParams = {
