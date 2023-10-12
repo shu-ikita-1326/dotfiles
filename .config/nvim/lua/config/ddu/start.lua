@@ -474,6 +474,11 @@ end
 M.tab = function()
   vim.fn["ddu#start"]({
     sources = { { name = "tab" } },
+    sourceOptions = {
+      tab = {
+        converters = { "converter_tab" },
+      },
+    },
     uiParams = {
       ff = {
         startAutoAction = true,
