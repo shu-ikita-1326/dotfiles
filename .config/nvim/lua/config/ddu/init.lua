@@ -18,6 +18,10 @@ local function ddu_customs_setting()
     vim.fn.execute("tabnew | terminal ssh " .. vim.fn.matchstr(args["items"][1]["action"]["text"], "\\s\\(\\S*\\)$"))
     return 0
   end)
+  vim.fn["ddu#custom#action"]("source", "tab", "delete", function(args)
+    vim.fn.execute(args["items"][1]["action"]["tabnr"] .. "tabclose")
+    return 1
+  end)
 end
 
 ddu_customs_setting()
