@@ -22,6 +22,10 @@ local function virtualenv()
   return ""
 end
 
+local function cwd()
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+end
+
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -51,7 +55,7 @@ require("lualine").setup({
     },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
-    lualine_x = { virtualenv, runenv, "encoding", "fileformat", "filetype" },
+    lualine_x = { cwd, virtualenv, runenv, "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
