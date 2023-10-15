@@ -19,12 +19,14 @@ M.line_diagnostics = function()
   end
 
   vim.fn["ddu#start"]({
-    sourceParams = {
-      ["custom-list"] = {
-        texts = texts,
+    sources = {
+      {
+        name = "custom-list",
+        params = {
+          texts = texts,
+        },
       },
     },
-    sources = { { name = "custom-list" } },
     uiParams = {
       ff = {
         autoResize = true,
@@ -56,13 +58,15 @@ M.gitsigns_actions = function()
   end, { once = true })
 
   vim.fn["ddu#start"]({
-    sourceParams = {
-      ["custom-list"] = {
-        texts = texts,
-        callbackId = callbackId,
+    sources = {
+      {
+        name = "custom-list",
+        params = {
+          texts = texts,
+          callbackId = callbackId,
+        },
       },
     },
-    sources = { { name = "custom-list" } },
     uiParams = {
       ff = {
         autoResize = true,
@@ -92,13 +96,15 @@ M.chatgpt_run = function()
   end, { once = true })
 
   vim.fn["ddu#start"]({
-    sourceParams = {
-      ["custom-list"] = {
-        texts = completion,
-        callbackId = callbackId,
+    sources = {
+      {
+        name = "custom-list",
+        params = {
+          texts = completion,
+          callbackId = callbackId,
+        },
       },
     },
-    sources = { { name = "custom-list" } },
     uiParams = {
       ff = {
         autoResize = true,
@@ -115,18 +121,20 @@ end
 
 M.ssh = function()
   vim.fn["ddu#start"]({
-    sourceOptions = {
-      ssh = {
-        path = vim.fn.expand("~/.ssh"),
-        converters = { "converter_remove_display" },
+    sources = {
+      {
+        name = "ssh",
+        params = {
+          input = "Host ",
+        },
+        options = {
+          path = vim.fn.expand("~/.ssh"),
+          converters = {
+            "converter_remove_display",
+          },
+        },
       },
     },
-    sourceParams = {
-      ssh = {
-        input = "Host ",
-      },
-    },
-    sources = { { name = "ssh" } },
     uiParams = {
       ff = {
         startAutoAction = true,
@@ -142,18 +150,20 @@ end
 
 M.cheat = function()
   vim.fn["ddu#start"]({
-    sourceOptions = {
-      rg = {
-        path = vim.env.CHEATDIR,
-        converters = { "converter_remove_display" },
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = "## ",
+        },
+        options = {
+          path = vim.env.CHEATDIR,
+          converters = {
+            "converter_remove_display",
+          },
+        },
       },
     },
-    sourceParams = {
-      rg = {
-        input = "## ",
-      },
-    },
-    sources = { { name = "rg" } },
     uiParams = {
       ff = {
         startAutoAction = true,
@@ -169,12 +179,14 @@ end
 
 M.note = function()
   vim.fn["ddu#start"]({
-    sourceParams = {
-      file_external = {
-        cmd = { "fd", ".md", vim.env.NOTEDIR, "-t", "f" },
+    sources = {
+      {
+        name = "file_external",
+        params = {
+          cmd = { "fd", ".md", vim.env.NOTEDIR, "-t", "f" },
+        },
       },
     },
-    sources = { { name = "file_external" } },
     uiParams = {
       ff = {
         startAutoAction = true,
@@ -185,12 +197,14 @@ end
 
 M.minutes = function()
   vim.fn["ddu#start"]({
-    sourceParams = {
-      file_external = {
-        cmd = { "fd", ".md", vim.env.MINUTESDIR, "-t", "f" },
+    sources = {
+      {
+        name = "file_external",
+        params = {
+          cmd = { "fd", ".md", vim.env.MINUTESDIR, "-t", "f" },
+        },
       },
     },
-    sources = { { name = "file_external" } },
     uiParams = {
       ff = {
         startAutoAction = true,
@@ -224,12 +238,14 @@ end
 
 M.old_repos = function()
   vim.fn["ddu#start"]({
-    sourceParams = {
-      mr = {
-        kind = "mrr",
+    sources = {
+      {
+        name = "mr",
+        params = {
+          kind = "mrr",
+        },
       },
     },
-    sources = { { name = "mr" } },
   })
 end
 
@@ -252,10 +268,12 @@ end
 
 M.live_grep = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "rg" } },
-    sourceOptions = {
-      rg = {
-        volatile = true,
+    sources = {
+      {
+        name = "rg",
+        options = {
+          volatile = true,
+        },
       },
     },
     uiParams = {
@@ -269,10 +287,12 @@ end
 
 M.grep_string = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "rg" } },
-    sourceParams = {
-      rg = {
-        input = vim.fn.expand("<cword>"),
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = vim.fn.expand("<cword>"),
+        },
       },
     },
     uiParams = {
@@ -286,10 +306,12 @@ end
 
 M.grep_pattern = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "rg" } },
-    sourceParams = {
-      rg = {
-        input = vim.fn.input("Pattern: "),
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = vim.fn.input("Pattern: "),
+        },
       },
     },
     uiParams = {
@@ -373,11 +395,13 @@ end
 
 M.git_status = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "git_status" } },
-    sourceOptions = {
-      git_status = {
-        path = vim.fn.expand("%:p"),
-        converters = { "converter_git_status" },
+    sources = {
+      {
+        name = "git_status",
+        options = {
+          path = vim.fn.expand("%:p"),
+          converters = { "converter_git_status" },
+        },
       },
     },
     uiParams = {
@@ -390,10 +414,12 @@ end
 
 M.git_log = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "git_log" } },
-    sourceParams = {
-      git_log = {
-        showGraph = true,
+    sources = {
+      {
+        name = "git_log",
+        params = {
+          showGraph = true,
+        },
       },
     },
     uiParams = {
@@ -406,10 +432,12 @@ end
 
 M.git_diff = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "git_diff" } },
-    sourceOptions = {
-      git_diff = {
-        path = vim.fn.expand("%:p"),
+    sources = {
+      {
+        name = "git_diff",
+        options = {
+          path = vim.fn.expand("%:p"),
+        },
       },
     },
   })
@@ -417,10 +445,12 @@ end
 
 M.git_branch = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "git_branch" } },
-    sourceParams = {
-      git_branch = {
-        remote = true,
+    sources = {
+      {
+        name = "git_branch",
+        params = {
+          remote = true,
+        },
       },
     },
   })
@@ -428,10 +458,12 @@ end
 
 M.ghq = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "ghq" } },
-    sourceParams = {
-      git_log = {
-        showGraph = true,
+    sources = {
+      {
+        name = "ghq",
+        params = {
+          showGraph = true,
+        },
       },
     },
     uiParams = {
@@ -473,10 +505,12 @@ end
 
 M.tab = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "tab" } },
-    sourceOptions = {
-      tab = {
-        converters = { "converter_tab" },
+    sources = {
+      {
+        name = "tab",
+        options = {
+          converters = { "converter_tab" },
+        },
       },
     },
     uiParams = {
@@ -489,10 +523,12 @@ end
 
 M.go_task = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "go_task" } },
-    sourceOptions = {
-      go_task = {
-        defaultAction = "run",
+    sources = {
+      {
+        name = "go_task",
+        options = {
+          defaultAction = "run",
+        },
       },
     },
   })
