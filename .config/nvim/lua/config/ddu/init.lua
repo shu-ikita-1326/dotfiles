@@ -22,6 +22,13 @@ local function ddu_customs_setting()
     vim.fn.execute(args["items"][1]["action"]["tabnr"] .. "tabclose")
     return 1
   end)
+  vim.fn["ddu#custom#action"]("source", "buffer", "delete", function(args)
+    local items = args["items"]
+    for _, v in ipairs(items) do
+      vim.fn.execute("bd! " .. v["action"]["bufNr"])
+    end
+    return 1
+  end)
 end
 
 ddu_customs_setting()
