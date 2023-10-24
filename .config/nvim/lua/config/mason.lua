@@ -98,6 +98,12 @@ mason_lspconfig.setup_handlers({
             flake8 = {
               enabled = true,
             },
+            mccabe = {
+              enabled = false,
+            },
+            pyflakes = {
+              enabled = false,
+            },
             pycodestyle = {
               enabled = false,
               maxLineLength = 120,
