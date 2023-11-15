@@ -1,9 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 if vim.fn.executable("zenhan") then
-  autocmd("InsertLeave", {
-    pattern = "*",
-    command = ":call system('zenhan 0')",
+  autocmd("ModeChanged", {
+    pattern = "*:n",
+    command = "call system('zenhan 0')",
   })
 end
 

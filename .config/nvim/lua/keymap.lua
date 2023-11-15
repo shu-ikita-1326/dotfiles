@@ -6,10 +6,6 @@ vim.keymap.set("n", "<Leader>w", "<Cmd>w<CR>", opt)
 
 vim.keymap.set("n", "<Leader>nn", "<Cmd>nohlsearch<CR>", opt)
 
-vim.keymap.set("i", "<C-c>", function()
-  return vim.fn.executable("zenhan") == 1 and '<Cmd>call system("zenhan 0")<CR><C-c>' or "<C-c>"
-end, { expr = true })
-
 vim.keymap.set("n", "<Leader>o", "<Cmd>wincmd p<CR>", opt)
 vim.keymap.set("n", "<C-h>", "<C-w>h", opt)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opt)
