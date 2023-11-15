@@ -116,7 +116,7 @@ local function cmdline_post()
   end
 end
 
-local function cmdline_pre()
+function _G.ddc_cmdline_pre()
   vim.keymap.set("c", "<C-n>", function()
     vim.fn["pum#map#insert_relative"](1)
   end, opt)
@@ -150,11 +150,7 @@ local function cmdline_pre()
   vim.fn["ddc#enable_cmdline_completion"]()
 end
 
-autocmd("CmdlineEnter", {
-  group = "MyAutoCmd",
-  pattern = "*",
-  callback = cmdline_pre,
-})
+vim.keymap.set("n", ":", "<Cmd>lua ddc_cmdline_pre()<CR>:", { noremap = true })
 
 local function ddc_keymap()
   vim.keymap.set("i", "<C-n>", function()
