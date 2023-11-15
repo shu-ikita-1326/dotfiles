@@ -32,3 +32,5 @@ local options = {
 for key, value in pairs(options) do
   vim.opt[key] = value
 end
+
+vim.g.omni_sql_no_default_maps = true
