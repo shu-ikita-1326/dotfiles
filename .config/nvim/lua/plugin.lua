@@ -411,4 +411,6 @@ require("lazy").setup({
       })
     end,
   },
+  "thinca/vim-qfreplace",
+  "itchyny/vim-qfedit",
 })
