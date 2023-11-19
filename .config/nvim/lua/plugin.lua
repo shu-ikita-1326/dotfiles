@@ -390,7 +390,7 @@ require("lazy").setup({
     "jackMort/ChatGPT.nvim",
     cmd = { "ChatGPT", "ChatGPTRun" },
     keys = { "<Leader>tk", "<Leader>cr" },
-    enable = vim.env.OPENAI_API_KEY ~= nil,
+    enabled = vim.env.OPENAI_API_KEY ~= nil,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
