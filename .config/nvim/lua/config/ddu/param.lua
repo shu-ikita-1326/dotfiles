@@ -42,10 +42,6 @@ M.global = {
     file_external = {
       cmd = { "fd", ".", "-H", "-E", "__pycache__", "-E", ".git", "-t", "f" },
     },
-    taskwarrior = {
-      cmdName = "taskw",
-      filter = { "status:completed", "or", "status:pending" },
-    },
   },
   sourceOptions = {
     _ = {
@@ -62,18 +58,6 @@ M.global = {
     lsp_workspaceSymbol = {
       converters = { "converter_lsp_symbol" },
     },
-    git_status = {
-      converters = { "converter_git_status" },
-    },
-    git_branch = {
-      columns = {
-        "git_branch_head",
-        "git_branch_remote",
-        "git_branch_name",
-        "git_branch_upstream",
-        "git_branch_author",
-      },
-    },
     file = {
       converters = { "converter_relativepath", "converter_devicon" },
     },
@@ -86,19 +70,9 @@ M.global = {
     file_external = {
       converters = { "converter_relativepath", "converter_devicon" },
     },
-    taskwarrior = {
-      converters = { "converter_taskwarrior" },
-      sorters = { "sorter_taskwarrior" },
-    },
-    markdown = {
-      matchers = { "matcher_kensaku" },
-    },
   },
   kindOptions = {
     file = {
-      defaultAction = "open",
-    },
-    man = {
       defaultAction = "open",
     },
     word = {
@@ -112,12 +86,6 @@ M.global = {
     },
     readme_viewer = {
       defaultAction = "open",
-    },
-    git_status = {
-      defaultAction = "open",
-    },
-    git_branch = {
-      defaultAction = "switch",
     },
     ghq = {
       defaultAction = "open",
@@ -137,36 +105,18 @@ M.global = {
     source = {
       defaultAction = "execute",
     },
-    colorscheme = {
-      defaultAction = "set",
-    },
-    dein_update = {
-      defaultAction = "viewDiff",
-    },
-    floaterm = {
-      defaultAction = "open",
-    },
-    window = {
-      defaultAction = "open",
-    },
     tab = {
       defaultAction = "open",
     },
     ["custom-list"] = {
       defaultAction = "callback",
     },
-    taskwarrior = {
-      defaultAction = "done",
+    lazy_nvim_plugin = {
+      defaultAction = "open",
     },
   },
   actionOptions = {
     echo = {
-      quit = false,
-    },
-    echoDiff = {
-      quit = false,
-    },
-    set = {
       quit = false,
     },
   },
