@@ -215,7 +215,6 @@ require("lazy").setup({
       "vim-denops/denops.vim",
       "Shougo/ddu-commands.vim",
       "Shougo/ddu-ui-ff",
-      "Shougo/ddu-ui-filer",
       "Shougo/ddu-kind-file",
       "Shougo/ddu-kind-word",
       "Shougo/ddu-source-file",
@@ -225,37 +224,23 @@ require("lazy").setup({
       "Shougo/ddu-source-dummy",
       "liquidz/ddu-source-custom-list",
       "flow6852/ddu-source-qf",
-      "kamecha/ddu-source-jumplist",
-      "kamecha/ddu-source-floaterm",
-      "kamecha/ddu-source-window",
       "kamecha/ddu-source-tab",
       "kamecha/ddu-filter-converter_highlight",
-      "mikanIchinose/ddu-source-markdown",
       "kuuote/ddu-source-mr",
-      "kuuote/ddu-source-git_diff",
-      "kuuote/ddu-source-git_status",
-      "kyoh86/ddu-source-git_log",
-      "kyoh86/ddu-source-git_branch",
       "kyoh86/ddu-source-lazy_nvim",
       "Shougo/ddu-source-register",
       "Shougo/ddu-source-line",
       "matsui54/ddu-source-help",
-      "matsui54/ddu-source-dein_update",
-      "matsui54/ddu-source-man",
       "matsui54/ddu-source-file_external",
       "matsui54/ddu-source-command_history",
       "shutils/ddu-source-go_task",
-      "shutils/ddu-source-taskwarrior",
       "shutils/ddu-filter-converter_dir_omit_middle",
       "shutils/ddu-filter-converter_remove_display",
       "shutils/ddu-filter-converter_tab",
       "shun/ddu-source-buffer",
       "shun/ddu-source-rg",
-      "4513ECHO/vim-readme-viewer",
       "4513ECHO/ddu-source-ghq",
       "4513ECHO/ddu-source-source",
-      "4513ECHO/ddu-source-colorscheme",
-      "k-ota106/ddu-source-marks",
       "Shougo/ddu-column-filename",
       "ryota2357/ddu-column-icon_filename",
       "Shougo/ddu-filter-matcher_substring",
@@ -370,7 +355,11 @@ require("lazy").setup({
   {
     "nvim-zh/colorful-winsep.nvim",
     config = function()
-      require("colorful-winsep").setup({})
+      require("colorful-winsep").setup({
+        no_exec_files = {
+          "vim"
+        }
+      })
     end,
   },
   {

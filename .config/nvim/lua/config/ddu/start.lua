@@ -346,31 +346,6 @@ M.help = function()
   })
 end
 
-M.colorscheme = function()
-  vim.fn["ddu#start"]({
-    sources = { { name = "colorscheme" } },
-    uiParams = {
-      ff = {
-        autoAction = {
-          name = "itemAction",
-        },
-      },
-    },
-  })
-end
-
-M.markdown = function()
-  vim.fn["ddu#start"]({
-    sources = { { name = "markdown" } },
-    uiParams = {
-      ff = {
-        startAutoAction = true,
-        filterFloatingTitle = "matcher: kensaku",
-      },
-    },
-  })
-end
-
 M.nvim_notify = function()
   vim.fn["ddu#start"]({
     sources = { { name = "nvim-notify" } },
@@ -388,69 +363,6 @@ M.ddu_source = function()
     uiParams = {
       ff = {
         startAutoAction = true,
-      },
-    },
-  })
-end
-
-M.git_status = function()
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "git_status",
-        options = {
-          path = vim.fn.expand("%:p"),
-          converters = { "converter_git_status" },
-        },
-      },
-    },
-    uiParams = {
-      ff = {
-        startAutoAction = true,
-      },
-    },
-  })
-end
-
-M.git_log = function()
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "git_log",
-        params = {
-          showGraph = true,
-        },
-      },
-    },
-    uiParams = {
-      ff = {
-        startAutoAction = true,
-      },
-    },
-  })
-end
-
-M.git_diff = function()
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "git_diff",
-        options = {
-          path = vim.fn.expand("%:p"),
-        },
-      },
-    },
-  })
-end
-
-M.git_branch = function()
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "git_branch",
-        params = {
-          remote = true,
-        },
       },
     },
   })
