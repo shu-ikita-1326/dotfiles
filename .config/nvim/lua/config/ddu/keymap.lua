@@ -32,6 +32,7 @@ M.main = function()
   vim.keymap.set("n", "<Leader>ch", start.cheat, opt)
   vim.keymap.set("n", "<Leader>note", start.note, opt)
   vim.keymap.set("n", "<Leader>min", start.minutes, opt)
+  vim.keymap.set("n", "<Leader>fv", start.virtualenvs, opt)
 end
 
 local function util_ddu_key_mapper(params)

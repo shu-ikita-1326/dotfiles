@@ -1,4 +1,36 @@
 local param = require("config.ddu.param")
+local layout = require("config.ddu.layout")
+
+local function custom_completion(comp_cmd, exec_cmd, f_title)
+  local completion = vim.fn["getcompletion"](comp_cmd .. " ", "cmdline")
+  if completion == nil then
+    return
+  end
+  local width = 1
+  for _, v in pairs(completion) do
+    width = vim.fn.max({ width, vim.fn.len(v) })
+  end
+
+  local callbackId = vim.fn["denops#callback#register"](function(s)
+    vim.fn.execute(exec_cmd .. " " .. s)
+  end, { once = true })
+
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "custom-list",
+        params = {
+          texts = completion,
+          callbackId = callbackId,
+        },
+      },
+    },
+    uiParams = {
+      ff = layout.on_cursor(width, f_title),
+    },
+  })
+end
+
 local M = {}
 
 M.lsp_def = function()
@@ -82,41 +114,7 @@ M.gitsigns_actions = function()
 end
 
 M.chatgpt_run = function()
-  local completion = vim.fn["getcompletion"]("ChatGPTRun ", "cmdline")
-  if completion == nil then
-    return
-  end
-  local width = 1
-  for _, v in pairs(completion) do
-    width = vim.fn.max({ width, vim.fn.len(v) })
-  end
-
-  local callbackId = vim.fn["denops#callback#register"](function(s)
-    vim.fn.execute("'<,'>ChatGPTRun " .. s)
-  end, { once = true })
-
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "custom-list",
-        params = {
-          texts = completion,
-          callbackId = callbackId,
-        },
-      },
-    },
-    uiParams = {
-      ff = {
-        autoResize = true,
-        winRow = vim.fn.screenrow() - 1,
-        winCol = vim.fn.screencol(),
-        winWidth = width + 3,
-        floatingTitle = "ChatGPTRun actions",
-        floatingTitlePos = "left",
-        ignoreEmpty = true,
-      },
-    },
-  })
+  custom_completion("ChatGPTRun", "'<,'>ChatGPTRun ", "ChatGPTRun actions")
 end
 
 M.ssh = function()
@@ -477,6 +475,10 @@ M.lsp_documentSymbol = function()
       },
     },
   })
+end
+
+M.virtualenvs = function()
+  custom_completion("VirtualEnvActivate", "VirtualEnvActivate", "VirtualEnv activate")
 end
 
 return M

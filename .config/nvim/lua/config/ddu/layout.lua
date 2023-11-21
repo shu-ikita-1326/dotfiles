@@ -26,6 +26,18 @@ local function narrow_layout(columns, lines)
   }
 end
 
+M.on_cursor = function(width, f_title)
+  return {
+    autoResize = true,
+    winRow = vim.fn.screenrow() - 1,
+    winCol = vim.fn.screencol(),
+    winWidth = width + 3,
+    floatingTitle = f_title,
+    floatingTitlePos = "left",
+    ignoreEmpty = true,
+  }
+end
+
 M.setting = function()
   local columns = vim.api.nvim_get_option("columns")
   local lines = vim.api.nvim_get_option("lines")
