@@ -41,4 +41,6 @@ end) then
 end
 
 require("chatgpt").setup(base_layout)
-vim.keymap.set("n", "tk", ":ChatGPT<CR>")
+
+local opt = { silent = true, noremap = true }
+vim.keymap.set("n", "tk", ":ChatGPT<CR>", opt)
