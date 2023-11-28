@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local opt = { silent = true, noremap = true }
 
 require("lazy").setup({
+  -- filer
   {
     "nvim-neo-tree/neo-tree.nvim",
     event = "VimEnter",
@@ -26,6 +27,8 @@ require("lazy").setup({
       require("config.neo-tree")
     end,
   },
+
+  -- LSP manager
   {
     "williamboman/mason.nvim",
     event = "VimEnter",
@@ -37,6 +40,108 @@ require("lazy").setup({
       require("config.mason")
     end,
   },
+
+  -- Diagnostic enhansment
+  {
+    "folke/trouble.nvim",
+    event = "VimEnter",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    },
+    config = function()
+      require("config.trouble")
+    end,
+  },
+
+  -- Fuzzy finder
+  {
+    "Shougo/ddu.vim",
+    event = "VimEnter",
+    dependencies = {
+      "vim-denops/denops.vim",
+      "Shougo/ddu-commands.vim",
+      "Shougo/ddu-ui-ff",
+      "Shougo/ddu-kind-file",
+      "Shougo/ddu-kind-word",
+      "Shougo/ddu-source-file",
+      "Shougo/ddu-source-action",
+      "Shougo/ddu-source-file_rec",
+      "Shougo/ddu-source-file_old",
+      "Shougo/ddu-source-dummy",
+      "liquidz/ddu-source-custom-list",
+      "flow6852/ddu-source-qf",
+      "kamecha/ddu-source-tab",
+      "kamecha/ddu-filter-converter_highlight",
+      "kuuote/ddu-source-mr",
+      "kyoh86/ddu-source-lazy_nvim",
+      "Shougo/ddu-source-register",
+      "Shougo/ddu-source-line",
+      "matsui54/ddu-source-help",
+      "matsui54/ddu-source-file_external",
+      "matsui54/ddu-source-command_history",
+      "shutils/ddu-source-go_task",
+      "shutils/ddu-filter-converter_dir_omit_middle",
+      "shutils/ddu-filter-converter_remove_display",
+      "shutils/ddu-filter-converter_tab",
+      "shun/ddu-source-buffer",
+      "shun/ddu-source-rg",
+      "4513ECHO/ddu-source-ghq",
+      "4513ECHO/ddu-source-source",
+      "Shougo/ddu-column-filename",
+      "ryota2357/ddu-column-icon_filename",
+      "Shougo/ddu-filter-matcher_substring",
+      "uga-rosa/ddu-filter-converter_devicon",
+      "gamoutatsumi/ddu-filter-converter_relativepath",
+      "uga-rosa/ddu-source-lsp",
+      "yuki-yano/ddu-filter-fzf",
+      "yuki-yano/ddu-source-nvim-notify",
+      "Milly/ddu-filter-kensaku",
+      "Shougo/ddu.vim",
+    },
+    config = function()
+      require("config.ddu")
+    end,
+  },
+
+  -- Completion
+  {
+    "Shougo/ddc.vim",
+    event = "VimEnter",
+    dependencies = {
+      "vim-denops/denops.vim",
+      "Shougo/ddc-source-nvim-lsp",
+      "Shougo/ddc-around",
+      "Shougo/ddc-ui-native",
+      "Shougo/ddc-ui-pum",
+      "Shougo/ddc-source-around",
+      "Shougo/ddc-source-input",
+      "Shougo/ddc-matcher_head",
+      "Shougo/ddc-sorter_rank",
+      "Shougo/ddc-source-cmdline",
+      "Shougo/ddc-source-cmdline-history",
+      "uga-rosa/denippet.vim",
+      "LumaKernel/ddc-source-file",
+      "tani/ddc-fuzzy",
+      "Shougo/pum.vim",
+      "vim-skk/skkeleton",
+    },
+    config = function()
+      require("config.ddc")
+    end,
+  },
+
+  -- Snippet manager
+  {
+    "uga-rosa/denippet.vim",
+    event = "VimEnter",
+    config = function()
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/vsnip/markdown.json")
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/global.ts", "*")
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/python/test.toml", "python")
+    end,
+  },
+
+  -- Terminal manager
   {
     "akinsho/toggleterm.nvim",
     event = "VimEnter",
@@ -44,6 +149,8 @@ require("lazy").setup({
       require("config.toggleterm")
     end,
   },
+
+  -- colorscheme
   "rebelot/kanagawa.nvim",
   "catppuccin/nvim",
   {
@@ -79,6 +186,8 @@ require("lazy").setup({
       require("config.aerial")
     end,
   },
+
+  -- Git
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -86,10 +195,26 @@ require("lazy").setup({
     end,
   },
   {
+    "NeogitOrg/neogit",
+    config = function()
+      require("neogit").setup({})
+      vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
+    end,
+  },
+
+  -- Visual
+  {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = function()
       require("config.lualine")
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    event = "VimEnter",
+    config = function()
+      require("config.bufferline")
     end,
   },
   {
@@ -101,38 +226,6 @@ require("lazy").setup({
     },
     config = function()
       require("config.noice")
-    end,
-  },
-  "lambdalisue/mr.vim",
-  {
-    "lambdalisue/kensaku-search.vim",
-    dependencies = {
-      "lambdalisue/kensaku.vim",
-    },
-    config = function()
-      vim.keymap.set("c", "<CR>", "<Plug>(kensaku-search-replace)<CR>", opt)
-    end,
-  },
-  {
-    "lambdalisue/kensaku-search.vim",
-    dependencies = {
-      "lambdalisue/kensaku.vim",
-    },
-    config = function()
-      vim.keymap.set("c", "<CR>", "<Plug>(kensaku-search-replace)<CR>")
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = "VimEnter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    config = function()
-      require("config.treesitter")
-    end,
-    build = function()
-      vim.cmd([[TSUpdate]])
     end,
   },
   {
@@ -190,95 +283,66 @@ require("lazy").setup({
     end,
   },
   {
-    "akinsho/bufferline.nvim",
-    event = "VimEnter",
-    config = function()
-      require("config.bufferline")
-    end,
-  },
-  {
-    "uga-rosa/translate.nvim",
-    config = function()
-      require("config.translate")
-    end,
-  },
-  {
     "xiyaowong/nvim-cursorword",
     config = function()
       vim.api.nvim_command("hi default CursorWord cterm=underline gui=underline")
     end,
   },
   {
-    "Shougo/ddu.vim",
-    event = "VimEnter",
-    dependencies = {
-      "vim-denops/denops.vim",
-      "Shougo/ddu-commands.vim",
-      "Shougo/ddu-ui-ff",
-      "Shougo/ddu-kind-file",
-      "Shougo/ddu-kind-word",
-      "Shougo/ddu-source-file",
-      "Shougo/ddu-source-action",
-      "Shougo/ddu-source-file_rec",
-      "Shougo/ddu-source-file_old",
-      "Shougo/ddu-source-dummy",
-      "liquidz/ddu-source-custom-list",
-      "flow6852/ddu-source-qf",
-      "kamecha/ddu-source-tab",
-      "kamecha/ddu-filter-converter_highlight",
-      "kuuote/ddu-source-mr",
-      "kyoh86/ddu-source-lazy_nvim",
-      "Shougo/ddu-source-register",
-      "Shougo/ddu-source-line",
-      "matsui54/ddu-source-help",
-      "matsui54/ddu-source-file_external",
-      "matsui54/ddu-source-command_history",
-      "shutils/ddu-source-go_task",
-      "shutils/ddu-filter-converter_dir_omit_middle",
-      "shutils/ddu-filter-converter_remove_display",
-      "shutils/ddu-filter-converter_tab",
-      "shun/ddu-source-buffer",
-      "shun/ddu-source-rg",
-      "4513ECHO/ddu-source-ghq",
-      "4513ECHO/ddu-source-source",
-      "Shougo/ddu-column-filename",
-      "ryota2357/ddu-column-icon_filename",
-      "Shougo/ddu-filter-matcher_substring",
-      "uga-rosa/ddu-filter-converter_devicon",
-      "gamoutatsumi/ddu-filter-converter_relativepath",
-      "uga-rosa/ddu-source-lsp",
-      "yuki-yano/ddu-filter-fzf",
-      "yuki-yano/ddu-source-nvim-notify",
-      "Milly/ddu-filter-kensaku",
-      "Shougo/ddu.vim",
-    },
+    "nvim-zh/colorful-winsep.nvim",
     config = function()
-      require("config.ddu")
+      require("colorful-winsep").setup({
+        no_exec_files = {
+          "vim",
+        },
+      })
     end,
   },
   {
-    "Shougo/ddc.vim",
-    event = "VimEnter",
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup({
+        scope = {
+          enabled = false,
+        },
+      })
+    end,
+  },
+
+  -- File and directory access manager
+  "lambdalisue/mr.vim",
+
+  -- Search feature enhansment
+  {
+    "lambdalisue/kensaku-search.vim",
     dependencies = {
-      "vim-denops/denops.vim",
-      "Shougo/ddc-source-nvim-lsp",
-      "Shougo/ddc-around",
-      "Shougo/ddc-ui-native",
-      "Shougo/ddc-ui-pum",
-      "Shougo/ddc-source-around",
-      "Shougo/ddc-source-input",
-      "Shougo/ddc-matcher_head",
-      "Shougo/ddc-sorter_rank",
-      "Shougo/ddc-source-cmdline",
-      "Shougo/ddc-source-cmdline-history",
-      "uga-rosa/denippet.vim",
-      "LumaKernel/ddc-source-file",
-      "tani/ddc-fuzzy",
-      "Shougo/pum.vim",
-      "vim-skk/skkeleton",
+      "lambdalisue/kensaku.vim",
     },
     config = function()
-      require("config.ddc")
+      vim.keymap.set("c", "<CR>", "<Plug>(kensaku-search-replace)<CR>")
+    end,
+  },
+
+  -- Parsing
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = "VimEnter",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    config = function()
+      require("config.treesitter")
+    end,
+    build = function()
+      vim.cmd([[TSUpdate]])
+    end,
+  },
+
+  -- Utility
+  {
+    "uga-rosa/translate.nvim",
+    config = function()
+      require("config.translate")
     end,
   },
   {
@@ -287,6 +351,15 @@ require("lazy").setup({
       vim.fn["mkdp#util#install"]()
     end,
   },
+  {
+    "tyru/open-browser.vim",
+    config = function()
+      require("config.open-browser")
+    end,
+  },
+  "dstein64/vim-startuptime",
+
+  -- Japanese input feature
   {
     "vim-skk/skkeleton",
     event = { "InsertEnter", "TextChangedI", "TextChangedP", "CmdlineChanged", "CmdlineEnter" },
@@ -310,10 +383,14 @@ require("lazy").setup({
       })
     end,
   },
+
+  -- Virtual environment management
   {
     "jmcantrell/vim-virtualenv",
     cmd = { "VirtualEnvList", "VirtualEnvDeactivate", "VirtualEnvActivate" },
   },
+
+  -- Todo manager
   {
     "folke/todo-comments.nvim",
     dependencies = {
@@ -323,54 +400,16 @@ require("lazy").setup({
       require("todo-comments").setup({})
     end,
   },
-  {
-    "folke/trouble.nvim",
-    event = "VimEnter",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-    },
-    config = function()
-      require("config.trouble")
-    end,
-  },
-  {
-    "NeogitOrg/neogit",
-    config = function()
-      require("neogit").setup({})
-      vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
-    end,
-  },
+
+  -- Motion enhansment
   {
     "folke/flash.nvim",
     config = function()
       require("config.flash")
     end,
   },
-  {
-    "tyru/open-browser.vim",
-    config = function()
-      require("config.open-browser")
-    end,
-  },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    config = function()
-      require("colorful-winsep").setup({
-        no_exec_files = {
-          "vim"
-        }
-      })
-    end,
-  },
-  {
-    "uga-rosa/denippet.vim",
-    event = "VimEnter",
-    config = function()
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/vsnip/markdown.json")
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/global.ts", "*")
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/python/test.toml", "python")
-    end,
-  },
+
+  -- AI
   {
     "jackMort/ChatGPT.nvim",
     cmd = { "ChatGPT", "ChatGPTRun" },
@@ -385,17 +424,8 @@ require("lazy").setup({
       require("config.ChatGPT")
     end,
   },
-  "dstein64/vim-startuptime",
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup({
-        scope = {
-          enabled = false,
-        }
-      })
-    end,
-  },
+
+  -- Quickfix enhansment
   "thinca/vim-qfreplace",
   "itchyny/vim-qfedit",
 })
