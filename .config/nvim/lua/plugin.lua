@@ -271,7 +271,7 @@ require("lazy").setup({
       "Shougo/ddc-sorter_rank",
       "Shougo/ddc-source-cmdline",
       "Shougo/ddc-source-cmdline-history",
-      "uga-rosa/ddc-source-vsnip",
+      "uga-rosa/denippet.vim",
       "LumaKernel/ddc-source-file",
       "tani/ddc-fuzzy",
       "Shougo/pum.vim",
@@ -363,16 +363,12 @@ require("lazy").setup({
     end,
   },
   {
-    "hrsh7th/vim-vsnip",
+    "uga-rosa/denippet.vim",
     event = "VimEnter",
     config = function()
-      vim.g.vsnip_snippet_dir = vim.env.CONF_DIR .. "/vsnip"
-      vim.keymap.set("i", "<Tab>", function()
-        return vim.fn["vsnip#jumpable"](1) == 1 and "<Plug>(vsnip-jump-next)" or "<Tab>"
-      end, { expr = true })
-      vim.keymap.set("i", "<S-Tab>", function()
-        return vim.fn["vsnip#jumpable"](-1) == 1 and "<Plug>(vsnip-jump-prev)" or "<S-Tab>"
-      end, { expr = true })
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/vsnip/markdown.json")
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/global.ts", "*")
+      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/python/test.toml", "python")
     end,
   },
   {

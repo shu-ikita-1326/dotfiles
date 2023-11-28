@@ -36,15 +36,15 @@ local function ddc_global_setting()
   vim.fn["ddc#custom#patch_global"]({
     ui = "pum",
     cmdlineSources = {
-      [":"] = { "skkeleton", "cmdline", "cmdline-history", "file", "around" },
-      ["@"] = { "skkeleton", "cmdline-history", "input", "file", "around" },
+      [":"] = { "skkeleton", "denippet", "cmdline", "cmdline-history", "file", "around" },
+      ["@"] = { "skkeleton", "denippet", "cmdline-history", "input", "file", "around" },
       [">"] = { "skkeleton", "cmdline-history", "input", "file", "around" },
       ["/"] = { "skkeleton", "around" },
       ["?"] = { "skkeleton", "around" },
       ["-"] = { "skkeleton", "around" },
       ["="] = { "skkeleton", "input" },
     },
-    sources = { "vsnip", "nvim-lsp", "around", "cmdline", "skkeleton" },
+    sources = { "nvim-lsp", "denippet", "around", "cmdline", "skkeleton" },
     sourceOptions = {
       ["_"] = {
         matchers = { "matcher_fuzzy" },
@@ -124,8 +124,8 @@ function _G.ddc_cmdline_pre()
     vim.fn["pum#map#insert_relative"](-1)
   end, opt)
   vim.keymap.set("c", "<C-y>", function()
-    vim.fn["pum#map#confirm"]()
-  end, opt)
+    return vim.fn["denippet#expandable"]() and vim.fn["denippet#expand"]() or vim.fn["pum#map#confirm"]()
+  end, { expr = true })
   vim.keymap.set("c", "<C-o>", function()
     vim.fn["pum#map#confirm_word"]()
   end, opt)
@@ -171,6 +171,12 @@ local function ddc_keymap()
   vim.keymap.set("i", "<C-Space>", function()
     vim.fn["ddc#map#manual_complete"]()
   end, opt)
+  vim.keymap.set({"i", "s"}, "<Tab>", function()
+    return vim.fn["denippet#jumpable"](1) and "<Plug>(denippet-jump-next)" or "<Tab>"
+  end, { expr = true })
+  vim.keymap.set({"i", "s"}, "<S-Tab>", function()
+    return vim.fn["denippet#jumpable"](-1) and "<Plug>(denippet-jump-prev)" or "<S-Tab>"
+  end, { expr = true })
 end
 
 ddc_keymap()

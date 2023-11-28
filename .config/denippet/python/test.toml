@@ -1,0 +1,9 @@
+[def-test]
+prefix = ["deft"]
+body = '''
+def test_${CLIPBOARD}(${1:arg}):
+    """${CLIPBOARD} test
+    - ${3:spec}
+    """
+    ${0:pass}
+'''
