@@ -134,6 +134,9 @@ require("lazy").setup({
   {
     "uga-rosa/denippet.vim",
     event = "VimEnter",
+    dependencies = {
+      "vim-denops/denops.vim",
+    },
     config = function()
       vim.fn["denippet#load"](vim.env.CONF_DIR .. "/vsnip/markdown.json")
       vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/global.ts", "*")
