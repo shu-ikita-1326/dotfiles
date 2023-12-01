@@ -17,6 +17,7 @@ ts.setup({
     "regex",
     "bash",
     "org",
+    "http",
   },
   highlight = {
     enable = true,

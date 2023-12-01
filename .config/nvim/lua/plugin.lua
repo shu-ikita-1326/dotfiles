@@ -162,6 +162,8 @@ require("lazy").setup({
       vim.cmd([[colorscheme nightfox]])
     end,
   },
+
+  -- edit
   {
     "numToStr/Comment.nvim",
     config = function()
@@ -169,9 +171,9 @@ require("lazy").setup({
     end,
   },
   {
-    "cohama/lexima.vim",
+    "hrsh7th/nvim-insx",
     config = function()
-      vim.g.lexima_ctrlh_as_backspace = 1
+      require("config.insx")
     end,
   },
   "machakann/vim-sandwich",
@@ -431,4 +433,17 @@ require("lazy").setup({
   -- Quickfix enhansment
   "thinca/vim-qfreplace",
   "itchyny/vim-qfedit",
+
+  -- Rest client
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("rest-nvim").setup({
+        vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt),
+      })
+    end,
+  },
 })

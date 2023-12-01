@@ -213,7 +213,14 @@ end
 
 M.old_files = function()
   vim.fn["ddu#start"]({
-    sources = { { name = "mr" } },
+    sources = {
+      {
+        name = "mr",
+        params = {
+          kind = "mrw",
+        },
+      },
+    },
     uiParams = {
       ff = {
         startAutoAction = true,
