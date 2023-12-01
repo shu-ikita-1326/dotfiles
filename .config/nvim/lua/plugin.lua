@@ -138,9 +138,7 @@ require("lazy").setup({
       "vim-denops/denops.vim",
     },
     config = function()
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/vsnip/markdown.json")
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/global.ts", "*")
-      vim.fn["denippet#load"](vim.env.CONF_DIR .. "/denippet/python/test.toml", "python")
+      require("config.denippet")
     end,
   },
 

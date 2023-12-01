@@ -1,0 +1,6 @@
+[def-class]
+prefix = ["defc"]
+body = '''
+def ${1:fn_name}(self${2}):
+    ${0:pass}
+'''
