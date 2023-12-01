@@ -28,7 +28,7 @@ require("lazy").setup({
     end,
   },
   {
-    "steverarc/oil.nvim",
+    "stevearc/oil.nvim",
     event = "VimEnter",
     config = function()
       require("oil").setup({
