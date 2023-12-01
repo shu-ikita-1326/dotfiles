@@ -27,6 +27,20 @@ require("lazy").setup({
       require("config.neo-tree")
     end,
   },
+  {
+    "steverarc/oil.nvim",
+    event = "VimEnter",
+    config = function()
+      require("oil").setup({
+        default_file_explorer = false,
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-p>"] = false,
+          ["<C-l>"] = false,
+        }
+      })
+    end,
+  },
 
   -- LSP manager
   {
