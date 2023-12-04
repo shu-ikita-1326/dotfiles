@@ -25,7 +25,7 @@ mason_lspconfig.setup({
     "gopls",
     "docker_compose_language_service",
     "dockerls",
-    "denols",
+    -- "denols",
     "efm",
     "jsonls",
   },
@@ -154,6 +154,10 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.keymap.set({ "n", "v" }, "gf", vim.lsp.buf.format, opt)
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, opt)
 vim.keymap.set("n", "gn", vim.lsp.buf.rename, opt)
+
+vim.keymap.set("n", "<Leader>le", vim.diagnostic.open_float, opt)
+vim.keymap.set("n", "]e", vim.diagnostic.goto_next, opt)
+vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, opt)
 
 -- Install packages other than lsp
 local ensure_package = {

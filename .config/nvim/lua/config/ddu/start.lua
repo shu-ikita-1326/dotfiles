@@ -41,38 +41,6 @@ M.lsp_ref = function()
   vim.fn["ddu#start"](param.lsp_ref)
 end
 
-M.line_diagnostics = function()
-  local diagnostics = vim.lsp.diagnostic.get_line_diagnostics(0)
-  local texts = {}
-  local width = 1
-  for _, diagnostic in ipairs(diagnostics) do
-    table.insert(texts, diagnostic["message"])
-    width = vim.fn.max({ width, vim.fn.len(diagnostic["message"]) })
-  end
-
-  vim.fn["ddu#start"]({
-    sources = {
-      {
-        name = "custom-list",
-        params = {
-          texts = texts,
-        },
-      },
-    },
-    uiParams = {
-      ff = {
-        autoResize = true,
-        winRow = vim.fn.screenrow() - 1,
-        winCol = vim.fn.screencol(),
-        winWidth = width + 3,
-        floatingTitle = "Diagnostics",
-        floatingTitlePos = "left",
-        ignoreEmpty = true,
-      },
-    },
-  })
-end
-
 M.gitsigns_actions = function()
   local actions = require("gitsigns.actions").get_actions()
   if actions == nil then

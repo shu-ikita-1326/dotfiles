@@ -37,7 +37,7 @@ require("lazy").setup({
           ["<C-h>"] = false,
           ["<C-p>"] = false,
           ["<C-l>"] = false,
-        }
+        },
       })
     end,
   },
@@ -155,6 +155,7 @@ require("lazy").setup({
       require("config.denippet")
     end,
   },
+  "hrsh7th/vim-vsnip",
 
   -- Terminal manager
   {
@@ -454,8 +455,9 @@ require("lazy").setup({
     },
     config = function()
       require("rest-nvim").setup({
-        vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt),
+        result_split_horizontal = true,
       })
+      vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt)
     end,
   },
 })
