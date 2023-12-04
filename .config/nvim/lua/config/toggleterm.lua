@@ -66,24 +66,11 @@ local function _term_toggle()
 end
 
 vim.keymap.set("n", "<Leader>to", _term_toggle, { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>t1", "<Cmd>1ToggleTerm<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>t2", "<Cmd>2ToggleTerm<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>t3", "<Cmd>3ToggleTerm<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tv", "<Cmd>ToggleTerm size=80 direction=vertical<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>ts", "<Cmd>ToggleTerm direction=horizontal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tf", "<Cmd>ToggleTerm direction=float<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", "<Cmd>ToggleTerm direction=tab<CR>", { noremap = true, silent = true })
 
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  vim.opt.number = false
-  vim.keymap.set("n", "<C-j>h", "i<Cmd>wincmd h<CR>", opts)
-  vim.keymap.set("n", "<C-j>j", "i<Cmd>wincmd j<CR>", opts)
-  vim.keymap.set("n", "<C-j>k", "i<Cmd>wincmd k<CR>", opts)
-  vim.keymap.set("n", "<C-j>l", "i<Cmd>wincmd l<CR>", opts)
+for i = 1, 9 do
+  vim.keymap.set("n", "<Leader>t" .. i, "<Cmd>" .. i .. "ToggleTerm<CR>", { noremap = true, silent = true })
 end
-
-autocmd("TermOpen", {
-  pattern = "term://*",
-  command = "lua set_terminal_keymaps()",
-})
