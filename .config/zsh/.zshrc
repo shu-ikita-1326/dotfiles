@@ -10,18 +10,26 @@ fi
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # for wezterm
 # source $ZRCDIR/wezterm.sh
 
 PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
+if (type "rtx" > /dev/null 2>&1); then
+  eval "$(rtx activate zsh)"
+fi
+
 # base
 source $ZRCDIR/base.zsh
 
 # plugin
-eval "$(sheldon source)"
+if (type "sheldon" > /dev/null 2>&1); then
+  eval "$(sheldon source)"
+fi
 
 # alias
 source $ZRCDIR/alias.zsh

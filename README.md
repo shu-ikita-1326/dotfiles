@@ -49,8 +49,19 @@ My dotfiles
             may be installed, so we recommend installing the latest version.
 
       ```sh
-      ./install.sh
-      ./install_tools.sh
+      ./installer/install.sh
+      ```
+
+      for Ubuntu
+
+      ```sh
+      ./installer/ubuntu/install_tools.sh
+      ```
+
+      for arch
+
+      ```sh
+      ./installer/arch/install_tools.sh
       ```
 
 6. Change font  
