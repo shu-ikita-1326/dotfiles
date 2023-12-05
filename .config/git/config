@@ -26,3 +26,5 @@
 	autocrlf = false
 	ignorecase = false
 	quotepath = false
+[ghq]
+	root=~/go/src
