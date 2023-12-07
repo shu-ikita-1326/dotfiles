@@ -17,5 +17,5 @@ rm -rf yay
 If you add new packages, you can update packages.txt with the command below.
 
 ```sh
-pacman -Qet | awk '{print $1}' > packages.txt
+yay -Qe | awk '{print $1}' > ~/dotfiles/installer/arch/packages.txt
 ```

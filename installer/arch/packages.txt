@@ -9,6 +9,7 @@ dust
 fd
 fzf
 ghq
+git
 go
 go-task
 lazydocker
@@ -16,12 +17,17 @@ lazygit
 neovim-nightly-bin
 nodejs-live-server
 onefetch
+openssh
+python-isort
 python-pipenv
+python-pynvim
 reflector
 ripgrep
 rtx-bin
 sheldon
 unzip
+vim
 wget
 win32yank-bin
 yay
+zsh
