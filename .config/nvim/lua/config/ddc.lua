@@ -44,7 +44,7 @@ local function ddc_global_setting()
       ["-"] = { "skkeleton", "around" },
       ["="] = { "skkeleton", "input" },
     },
-    sources = { "nvim-lsp", "denippet", "around", "cmdline", "skkeleton" },
+    sources = { "lsp", "denippet", "around", "cmdline", "skkeleton" },
     sourceOptions = {
       ["_"] = {
         matchers = { "matcher_fuzzy" },
@@ -53,7 +53,7 @@ local function ddc_global_setting()
         ignoreCase = true,
       },
       around = { mark = "[around]" },
-      ["nvim-lsp"] = {
+      lsp = {
         mark = "[Lsp]",
       },
       cmdline = { mark = "[cmdline]" },
@@ -76,7 +76,7 @@ local function ddc_global_setting()
       },
     },
     sourceParams = {
-      ["nvim-lsp"] = {
+      lsp = {
         snippetEngine = vim.fn["denops#callback#register"](function(body)
           vim.fn["vsnip#anonymous"](body)
         end),

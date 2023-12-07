@@ -405,7 +405,6 @@ require("lazy").setup({
   -- Virtual environment management
   {
     "jmcantrell/vim-virtualenv",
-    cmd = { "VirtualEnvList", "VirtualEnvDeactivate", "VirtualEnvActivate" },
   },
 
   -- Todo manager
@@ -458,6 +457,15 @@ require("lazy").setup({
         result_split_horizontal = true,
       })
       vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt)
+    end,
+  },
+
+  -- Task runner
+  {
+    "shutils/go-task.vim",
+    config = function()
+      vim.g.go_task_direction = "right"
+      vim.keymap.set("n", "<Leader>ta", "<Cmd>GoTask<CR>", opt)
     end,
   },
 })
