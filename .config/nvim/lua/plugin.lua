@@ -219,6 +219,13 @@ require("lazy").setup({
       vim.keymap.set("n", "<Leader>gg", "<Cmd>Neogit<CR>", opt)
     end,
   },
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      vim.keymap.set("n", "<Leader>do", "<Cmd>DiffviewOpen<CR>", opt)
+      vim.keymap.set("n", "<Leader>dc", "<Cmd>DiffviewClose<CR>", opt)
+    end,
+  },
 
   -- Visual
   {
@@ -443,7 +450,12 @@ require("lazy").setup({
   },
 
   -- Quickfix enhansment
-  "thinca/vim-qfreplace",
+  {
+    "thinca/vim-qfreplace",
+    config = function()
+      vim.keymap.set("n", "<Leader>q", "<Cmd>Qfreplace<CR>", opt)
+    end,
+  },
   "itchyny/vim-qfedit",
 
   -- Rest client
