@@ -1,0 +1,26 @@
+[content-type]
+prefix = ["content-type"]
+body = """
+Content-Type: ${1|application/json,x-www-form-urlencoded,multipart/form-data|}${0}\
+"""
+description = """
+Add http content type
+"""
+
+[authorization]
+prefix = ["auth"]
+body = """
+Authorization: ${1:auth}${0}\
+"""
+description = """
+Add http auth
+"""
+
+[method]
+prefix = ["method"]
+body = """
+${1|GET,POST,PUT,DELETE|} ${0}\
+"""
+description = """
+Add http method
+"""
