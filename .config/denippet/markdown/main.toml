@@ -1,11 +1,70 @@
 [summary]
 prefix = ["summary"]
-body = '''
+body = """
 <details><summary>$1</summary><div>
 
 ```$2
 $0
 ```
 
-</div></details>
-'''
+</div></details>\
+"""
+description = """
+Add summary
+"""
+
+[link]
+prefix = ["link"]
+body = """
+[${1:text}](${2:url})${0}\
+"""
+description = """
+Add links
+"""
+
+[bold-text]
+prefix = ["bold"]
+body = """
+**${1:text}**${0}\
+"""
+description = """
+Insert bold text
+"""
+
+[strikethrough-text]
+prefix = ["strikethrough"]
+body = """
+~~${1:text}~~${0}\
+"""
+description = """
+Insert strikethrough text
+"""
+
+[code]
+prefix = ["code"]
+body = """
+`${1:code}`${0}\
+"""
+description = """
+Insert code
+"""
+
+[code-block]
+prefix = ["codeblock"]
+body = """
+```${1:lang}
+${2:code}
+```${0}\
+"""
+description = """
+Insert code block
+"""
+
+[task]
+prefix = ["task"]
+body = """
+- [ ] ${1:task}${0}\
+"""
+description = """
+Insert code block
+"""

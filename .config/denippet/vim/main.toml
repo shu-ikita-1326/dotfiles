@@ -1,0 +1,58 @@
+[function]
+prefix = ["function"]
+body = """
+function! ${1:func}(${2:args}) abort
+  ${0}
+endfunction
+"""
+description = """
+Add vim function
+"""
+
+[for]
+prefix = ["for"]
+body = """
+for ${1:item} in ${2:items}
+  ${0}
+endfor
+"""
+description = """
+Add vim for
+"""
+
+[if]
+prefix = ["if"]
+body = """
+if ${1} ${2|==,!=,>,>=,<,<=|} ${3}
+  ${0}
+endif
+"""
+description = """
+Add vim if
+"""
+
+[if-else]
+prefix = ["ifelse"]
+body = """
+if ${1} ${2|==,!=,>,>=,<,<=|} ${3}
+  ${4}
+else
+  ${0}
+endif
+"""
+description = """
+Add vim if else
+"""
+
+[if-else]
+prefix = ["ifelif"]
+body = """
+if ${1} ${2|==,!=,>,>=,<,<=|} ${3}
+  ${4}
+elseif ${5} ${6|==,!=,>,>=,<,<=|} ${7}
+  ${0}
+endif
+"""
+description = """
+Add vim if elif
+"""
