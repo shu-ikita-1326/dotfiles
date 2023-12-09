@@ -44,7 +44,7 @@ local function ddc_global_setting()
       ["-"] = { "skkeleton", "around" },
       ["="] = { "skkeleton", "input" },
     },
-    sources = { "lsp", "denippet", "around", "cmdline", "skkeleton" },
+    sources = { "denippet", "lsp", "around", "cmdline", "skkeleton" },
     sourceOptions = {
       ["_"] = {
         matchers = { "matcher_fuzzy" },
@@ -154,10 +154,18 @@ vim.keymap.set("n", ":", "<Cmd>lua ddc_cmdline_pre()<CR>:", { noremap = true })
 
 local function ddc_keymap()
   vim.keymap.set("i", "<C-n>", function()
-    vim.fn["pum#map#insert_relative"](1)
+    if vim.fn["denippet#choosable"]() then
+      vim.fn["denippet#choice"](1)
+    else
+      vim.fn["pum#map#insert_relative"](1)
+    end
   end, opt)
   vim.keymap.set("i", "<C-p>", function()
-    vim.fn["pum#map#insert_relative"](-1)
+    if vim.fn["denippet#choosable"]() then
+      vim.fn["denippet#choice"](-1)
+    else
+      vim.fn["pum#map#insert_relative"](-1)
+    end
   end, opt)
   vim.keymap.set("i", "<C-y>", function()
     vim.fn["pum#map#confirm"]()
@@ -171,10 +179,10 @@ local function ddc_keymap()
   vim.keymap.set("i", "<C-Space>", function()
     vim.fn["ddc#map#manual_complete"]()
   end, opt)
-  vim.keymap.set({"i", "s"}, "<Tab>", function()
+  vim.keymap.set({ "i", "s" }, "<Tab>", function()
     return vim.fn["denippet#jumpable"](1) and "<Plug>(denippet-jump-next)" or "<Tab>"
   end, { expr = true })
-  vim.keymap.set({"i", "s"}, "<S-Tab>", function()
+  vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
     return vim.fn["denippet#jumpable"](-1) and "<Plug>(denippet-jump-prev)" or "<S-Tab>"
   end, { expr = true })
 end
