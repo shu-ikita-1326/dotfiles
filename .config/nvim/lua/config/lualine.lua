@@ -23,7 +23,24 @@ local function virtualenv()
 end
 
 local function cwd()
-  return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+end
+
+-- For terminal mode
+local function skk()
+  local mode = vim.fn["skkeleton#mode"]()
+  local prev = "A"
+  if mode == "hira" then
+    prev = "あ"
+  elseif mode == "kata" then
+    prev = "ア"
+  elseif mode == "hankata" then
+    prev = "ｱ"
+  elseif mode == "zenkaku" then
+    prev = "全"
+  end
+
+  return "skk:" .. prev
 end
 
 require("lualine").setup({
@@ -55,7 +72,7 @@ require("lualine").setup({
     },
     lualine_b = { "branch", "diff" },
     lualine_c = { { "filename", path = 1 } },
-    lualine_x = { cwd, virtualenv, runenv, "encoding", "fileformat", "filetype" },
+    lualine_x = { skk, cwd, virtualenv, runenv, "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
