@@ -44,7 +44,7 @@ description = """
 Add vim if else
 """
 
-[if-else]
+[if-elif]
 prefix = ["ifelif"]
 body = """
 if ${1} ${2|==,!=,>,>=,<,<=|} ${3}
