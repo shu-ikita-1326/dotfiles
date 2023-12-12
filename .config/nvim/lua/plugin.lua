@@ -190,7 +190,6 @@ require("lazy").setup({
     end,
   },
   "machakann/vim-sandwich",
-  "simeji/winresizer",
   {
     "monaqa/dial.nvim",
     keys = { "<C-n>", "<C-p>" },
@@ -333,6 +332,7 @@ require("lazy").setup({
       })
     end,
   },
+  "psliwka/vim-smoothie",
 
   -- File and directory access manager
   "lambdalisue/mr.vim",
