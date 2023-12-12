@@ -8,6 +8,20 @@ if [ -n "$TMUX" ]; then
 	export FZF_TMUX_OPTS="-p 80%"
 fi
 
+# fzfを使用したglab mr
+function gmr() {
+  echo "Please input mr title"
+  read title
+  assignee=$(glab api projects/:id/users | jq -r '.[].name' | fzf --header=assignee)
+  reviewer=$(glab api projects/:id/users | jq -r '.[].name' | fzf --header=reviewer)
+  source_br=$(glab api projects/:id/repository/branches | jq -r '.[].name' | fzf --header=source_br)
+  target_br=$(glab api projects/:id/repository/branches | jq -r '.[].name' | fzf --header=target_br)
+
+  if [ -n "$assignee" ] && [ -n "$reviewer" ] && [ -n "$source_br" ] && [ -n "$target_br" ]; then
+    glab mr -b "$target_br" -s "$source_br" -a "$assignee" -reviewer "$reviewer" -f --remove-source-branch -t "$title"
+  fi
+}
+
 # fzfを使用したgit branchの切り替え
 function select-git-switch() {
 target_br=$(
