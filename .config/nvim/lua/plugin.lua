@@ -457,6 +457,7 @@ require("lazy").setup({
     end,
   },
   "itchyny/vim-qfedit",
+  "kevinhwang91/nvim-bqf",
 
   -- Rest client
   {
