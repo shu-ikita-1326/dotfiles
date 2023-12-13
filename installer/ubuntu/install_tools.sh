@@ -2,18 +2,18 @@
 
 # パッケージマネージャを最新に更新
 echo 'apt updating...'
-sudo apt update > /dev/null
+sudo -E apt update > /dev/null
 
 # gitをインストール
 if ! (type "git" > /dev/null 2>&1); then
   echo 'Installing git...'
-  sudo apt install git > /dev/null
+  sudo -E apt install git > /dev/null
 fi
 
 # zshをインストール
 if ! (type "zsh" > /dev/null 2>&1); then
   echo 'Installing zsh...'
-  sudo apt install zsh > /dev/null
+  sudo -E apt install zsh > /dev/null
 fi
 
 # neovim
@@ -49,7 +49,7 @@ fi
 # for Telescope in nvim
 if ! (type "sqlite" > /dev/null 2>&1); then
   echo 'Installing sqlite...'
-  sudo apt install sqlite3 libsqlite3-dev > /dev/null
+  sudo -E apt install sqlite3 libsqlite3-dev > /dev/null
 fi
 
 # lazygit
@@ -67,9 +67,9 @@ fi
 # go
 if ! (type "go" > /dev/null 2>&1); then
   echo 'Installing golang...'
-    sudo add-apt-repository -y ppa:longsleep/golang-backports
-    sudo apt update -y
-    sudo apt install -y golang-go
+    sudo -E add-apt-repository -y ppa:longsleep/golang-backports
+    sudo -E apt update -y
+    sudo -E apt install -y golang-go
 fi
 
 # ghq
