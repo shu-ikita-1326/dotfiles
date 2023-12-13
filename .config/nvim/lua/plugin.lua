@@ -123,7 +123,7 @@ require("lazy").setup({
     event = "VimEnter",
     dependencies = {
       "vim-denops/denops.vim",
-      "Shougo/ddc-source-nvim-lsp",
+      "Shougo/ddc-source-lsp",
       "Shougo/ddc-around",
       "Shougo/ddc-ui-native",
       "Shougo/ddc-ui-pum",
