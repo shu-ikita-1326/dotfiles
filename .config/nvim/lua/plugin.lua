@@ -225,6 +225,12 @@ require("lazy").setup({
       vim.keymap.set("n", "<Leader>dc", "<Cmd>DiffviewClose<CR>", opt)
     end,
   },
+  {
+    "shutils/gitlaber",
+    dependencies = {
+      "vim-denops/denops.vim",
+    },
+  },
 
   -- Visual
   {

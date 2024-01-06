@@ -20,12 +20,12 @@ mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",
     "pylsp",
-    "tsserver",
+    -- "tsserver",
     "html",
     "gopls",
     "docker_compose_language_service",
     "dockerls",
-    -- "denols",
+    "denols",
     "efm",
     "jsonls",
   },
@@ -33,7 +33,22 @@ mason_lspconfig.setup({
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    require("lspconfig")[server_name].setup({})
+    local node_root_dir = util.root_pattern("package.json")
+    local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+    local opts = {}
+    if server_name == "tsserver" then
+      if not is_node_repo then
+        return
+      end
+
+      opts.root_dir = node_root_dir
+    elseif server_name == "denols" then
+      if is_node_repo then
+        return
+      end
+      opts.root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+    end
+    require("lspconfig")[server_name].setup(opts)
   end,
   ["efm"] = function()
     nvim_lsp.efm.setup({

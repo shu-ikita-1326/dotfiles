@@ -5,7 +5,6 @@ neotree.setup({
     mappings = {
       ["l"] = { "open" },
       ["h"] = { "close_node" },
-      ["P"] = { "preview_img" },
       ["E"] = { "edit_drawio" },
     },
   },

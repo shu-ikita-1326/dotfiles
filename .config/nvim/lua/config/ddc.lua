@@ -57,7 +57,6 @@ local function ddc_global_setting()
         mark = "[Lsp]",
       },
       cmdline = { mark = "[cmdline]" },
-      vsnip = { mark = "[vsnip]" },
       file = {
         mark = "[file]",
         isVolatile = true,
