@@ -19,8 +19,8 @@ fi
 
 PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
-if (type "rtx" > /dev/null 2>&1); then
-  eval "$(rtx activate zsh)"
+if (type "mise" > /dev/null 2>&1); then
+  eval "$(mise activate zsh)"
 fi
 
 # base

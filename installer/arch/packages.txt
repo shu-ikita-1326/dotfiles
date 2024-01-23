@@ -23,7 +23,6 @@ python-pipenv
 python-pynvim
 reflector
 ripgrep
-rtx-bin
 sheldon
 unzip
 vim
