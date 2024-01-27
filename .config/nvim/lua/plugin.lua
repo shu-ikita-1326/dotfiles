@@ -231,7 +231,7 @@ require("lazy").setup({
       "vim-denops/denops.vim",
     },
     config = function()
-      vim.keymap.set("n", "<Leader>gl", "<Cmd>Gitlaber<CR>", opt)
+      require("config.gitlaber")
     end,
   },
 
