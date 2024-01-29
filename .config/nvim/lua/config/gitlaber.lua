@@ -58,10 +58,12 @@ end
 
 function _G.gitlaber_diff_new_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "D", "<Plug>(gitlaber-action-mr-discussion-new)", opt)
 end
 
 function _G.gitlaber_diff_old_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "D", "<Plug>(gitlaber-action-mr-discussion-new)", opt)
 end
 
 function _G.gitlaber_branch_list_keymap()
