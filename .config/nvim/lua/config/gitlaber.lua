@@ -143,87 +143,87 @@ function _G.gitlaber_mr_discussion_keymap()
   vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
-autocmd("FileType", {
-  pattern = "*gitlaber-project-status*",
+autocmd("BufEnter", {
+  pattern = "GitlaberProjectStatus*",
   command = "lua gitlaber_project_status_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-issue-list*",
+autocmd("BufEnter", {
+  pattern = "GitlaberIssueList*",
   command = "lua gitlaber_issue_list_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-mr-list*",
+autocmd("BufEnter", {
+  pattern = "GitlaberMrList*",
   command = "lua gitlaber_mr_list_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-mr-change-list*",
+autocmd("BufEnter", {
+  pattern = "GitlaberMrChangeList*",
   command = "lua gitlaber_mr_change_list_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-diff-new*",
+autocmd("BufEnter", {
+  pattern = "GitlaberDiffNewFile*",
   command = "lua gitlaber_diff_new_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-diff-old*",
+autocmd("BufEnter", {
+  pattern = "GitlaberDiffOldFile*",
   command = "lua gitlaber_diff_old_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-branch-list*",
+autocmd("BufEnter", {
+  pattern = "GitlaberBranchList*",
   command = "lua gitlaber_branch_list_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-wiki-list*",
+autocmd("BufEnter", {
+  pattern = "GitlaberWikiList*",
   command = "lua gitlaber_wiki_list_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-issue-preview*",
+autocmd("BufEnter", {
+  pattern = "GitlaberIssuePreview*",
   command = "lua gitlaber_issue_preview_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-issue-edit*",
+autocmd("BufEnter", {
+  pattern = "GitlaberIssueEdit*",
   command = "lua gitlaber_issue_edit_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-mr-preview*",
+autocmd("BufEnter", {
+  pattern = "GitlaberMrPreview*",
   command = "lua gitlaber_mr_preview_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-mr-edit*",
+autocmd("BufEnter", {
+  pattern = "GitlaberMrEdit*",
   command = "lua gitlaber_mr_edit_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-wiki-preview*",
+autocmd("BufEnter", {
+  pattern = "GitlaberWikiPreview*",
   command = "lua gitlaber_wiki_preview_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-wiki-edit*",
+autocmd("BufEnter", {
+  pattern = "GitlaberWikiEdit*",
   command = "lua gitlaber_wiki_edit_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-ui-select*",
+autocmd("BufEnter", {
+  pattern = "GitlaberUiSelect*",
   command = "lua gitlaber_ui_select_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-ui-input*",
+autocmd("BufEnter", {
+  pattern = "GitlaberUiInput*",
   command = "lua gitlaber_ui_input_keymap()",
 })
 
-autocmd("FileType", {
-  pattern = "*gitlaber-mr-discussion*",
+autocmd("BufEnter", {
+  pattern = "GitlaberMrDiscussion*",
   command = "lua gitlaber_mr_discussion_keymap()",
 })
