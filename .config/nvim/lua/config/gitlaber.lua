@@ -12,6 +12,8 @@ function _G.gitlaber_project_status_keymap()
   vim.keymap.set("n", "b", "<Plug>(gitlaber-action-branch-list)", opt)
   vim.keymap.set("n", "w", "<Plug>(gitlaber-action-wiki-list)", opt)
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "B", "<Plug>(gitlaber-action-project-browse)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_issue_list_keymap()
@@ -28,6 +30,7 @@ function _G.gitlaber_issue_list_keymap()
   vim.keymap.set("n", "B", "<Plug>(gitlaber-action-issue-browse)", opt)
   vim.keymap.set("n", "n", "<Plug>(gitlaber-action-issue-list-next)", opt)
   vim.keymap.set("n", "p", "<Plug>(gitlaber-action-issue-list-prev)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_mr_list_keymap()
@@ -49,26 +52,33 @@ function _G.gitlaber_mr_list_keymap()
   vim.keymap.set("n", "n", "<Plug>(gitlaber-action-mr-list-next)", opt)
   vim.keymap.set("n", "p", "<Plug>(gitlaber-action-mr-list-prev)", opt)
   vim.keymap.set("n", "d", "<Plug>(gitlaber-action-mr-change-list)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_mr_change_list_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "<CR>", "<Plug>(gitlaber-action-mr-change-diff)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_diff_new_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "D", "<Plug>(gitlaber-action-mr-discussion-new)", opt)
+  vim.keymap.set("n", "I", "<Plug>(gitlaber-action-mr-discussion-inspect)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_diff_old_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "D", "<Plug>(gitlaber-action-mr-discussion-new)", opt)
+  vim.keymap.set("n", "I", "<Plug>(gitlaber-action-mr-discussion-inspect)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_branch_list_keymap()
   vim.keymap.set("n", "N", "<Plug>(gitlaber-action-branch-new)", opt)
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_wiki_list_keymap()
@@ -80,42 +90,57 @@ function _G.gitlaber_wiki_list_keymap()
   vim.keymap.set("n", "P", "<Plug>(gitlaber-action-wiki-preview)", opt)
   vim.keymap.set("n", "n", "<Plug>(gitlaber-action-wiki-list-next)", opt)
   vim.keymap.set("n", "p", "<Plug>(gitlaber-action-wiki-list-prev)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_issue_preview_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_issue_edit_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "<C-s>", "<Plug>(gitlaber-action-issue-edit-submit)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_mr_preview_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_mr_edit_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "<C-s>", "<Plug>(gitlaber-action-mr-edit-submit)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_wiki_preview_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_wiki_edit_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "<C-s>", "<Plug>(gitlaber-action-wiki-edit-submit)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_ui_select_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
   vim.keymap.set("n", "<CR>", "<Plug>(gitlaber-action-ui-select)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
+end
+
+function _G.gitlaber_ui_input_keymap()
+  vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-s>", "<Plug>(gitlaber-action-ui-input)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 function _G.gitlaber_mr_discussion_keymap()
   vim.keymap.set("n", "q", "<Plug>(gitlaber-action-buffer-close)", opt)
+  vim.keymap.set("n", "<C-c>", "<Plug>(gitlaber-action-buffer-close-all)", opt)
 end
 
 autocmd("FileType", {
@@ -191,6 +216,11 @@ autocmd("FileType", {
 autocmd("FileType", {
   pattern = "*gitlaber-ui-select*",
   command = "lua gitlaber_ui_select_keymap()",
+})
+
+autocmd("FileType", {
+  pattern = "*gitlaber-ui-input*",
+  command = "lua gitlaber_ui_input_keymap()",
 })
 
 autocmd("FileType", {
