@@ -71,7 +71,8 @@ mason_lspconfig.setup_handlers({
               lintFormats = {
                 "%f:%l %m",
               },
-              formatCommand = "prettier",
+              formatStdin = true,
+              formatCommand = "prettier --parser markdown",
             },
           },
           vim = {
