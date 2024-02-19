@@ -82,6 +82,7 @@ require("lazy").setup({
       "Shougo/ddu-source-file_rec",
       "Shougo/ddu-source-file_old",
       "Shougo/ddu-source-dummy",
+      "Shougo/ddu-filter-sorter_alpha",
       "liquidz/ddu-source-custom-list",
       "flow6852/ddu-source-qf",
       "kamecha/ddu-source-tab",
@@ -489,5 +490,13 @@ require("lazy").setup({
       vim.g.go_task_direction = "right"
       vim.keymap.set("n", "<Leader>ta", "<Cmd>GoTask<CR>", opt)
     end,
+  },
+
+  -- note
+  {
+    "shutils/dpskasten.vim",
+    dependencies = {
+      "vim-denops/denops.vim",
+    },
   },
 })

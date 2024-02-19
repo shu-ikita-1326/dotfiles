@@ -9,4 +9,8 @@ export const snippets: Record<string, TSSnippet> = {
     prefix: "today",
     body: () => "${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}",
   },
+  now: {
+    prefix: "now",
+    body: () => "${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}",
+  },
 };

@@ -143,6 +143,42 @@ M.cheat = function()
   })
 end
 
+M.dpskasten_tag = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "dpskasten_tag",
+        options = {
+          defaultAction = "selectNote",
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+      },
+    },
+  })
+end
+
+M.dpskasten_note = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "dpskasten_note",
+        options = {
+          sorters = {"sorter_alpha"},
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+      },
+    },
+  })
+end
+
 M.note = function()
   vim.fn["ddu#start"]({
     sources = {
@@ -312,7 +348,7 @@ M.help = function()
     sources = { { name = "help" } },
     uiParams = {
       ff = {
-        startAutoAction = true,
+        -- startAutoAction = true,
         startFilter = true,
       },
     },

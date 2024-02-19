@@ -151,6 +151,11 @@ end
 
 vim.keymap.set("n", ":", "<Cmd>lua ddc_cmdline_pre()<CR>:", { noremap = true })
 
+autocmd("CmdWinEnter", {
+  group = "MyAutoCmd",
+  callback = ddc_cmdline_pre,
+})
+
 local function ddc_keymap()
   vim.keymap.set("i", "<C-n>", function()
     if vim.fn["denippet#choosable"]() then
