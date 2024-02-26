@@ -143,13 +143,19 @@ M.cheat = function()
   })
 end
 
-M.dpskasten_tag = function()
+M.obsidian_note = function(tag)
   vim.fn["ddu#start"]({
     sources = {
       {
-        name = "dpskasten_tag",
+        name = "obsidian_note",
+        params = {
+          vault = vim.fn.expand("~/zettelkasten"),
+          tag = tag,
+        },
         options = {
-          defaultAction = "selectNote",
+          matchers = { "converter_obsidian_title", "converter_display_word", "matcher_fzf" },
+          sorters = { "converter_obsidian_title", "converter_display_word", "sorter_fzf" },
+          converters = { "converter_obsidian_path" },
         },
       },
     },
@@ -161,13 +167,17 @@ M.dpskasten_tag = function()
   })
 end
 
-M.dpskasten_note = function()
+M.obsidian_tag = function()
   vim.fn["ddu#start"]({
     sources = {
       {
-        name = "dpskasten_note",
+        name = "obsidian_tag",
+        params = {
+          vault = vim.fn.expand("~/zettelkasten"),
+        },
         options = {
-          sorters = {"sorter_alpha"},
+          sorters = { "sorter_alpha" },
+          defaultAction = "findNotes",
         },
       },
     },

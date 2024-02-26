@@ -32,8 +32,8 @@ M.main = function()
   vim.keymap.set("n", "<Leader>note", start.note, opt)
   vim.keymap.set("n", "<Leader>min", start.minutes, opt)
   vim.keymap.set("n", "<Leader>fv", start.virtualenvs, opt)
-  vim.keymap.set("n", "<Leader>zt", start.dpskasten_tag, opt)
-  vim.keymap.set("n", "<Leader>zn", start.dpskasten_note, opt)
+  vim.keymap.set("n", "<Leader>zt", start.obsidian_tag, opt)
+  vim.keymap.set("n", "<Leader>zn", start.obsidian_note, opt)
 end
 
 local function util_ddu_key_mapper(params)

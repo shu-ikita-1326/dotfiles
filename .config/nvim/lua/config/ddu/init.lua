@@ -1,6 +1,7 @@
 local keymap = require("config.ddu.keymap")
 local param = require("config.ddu.param")
 local layout = require("config.ddu.layout")
+local start = require("config.ddu.start")
 local autocmd = vim.api.nvim_create_autocmd
 
 local function ddu_highlight_setting()
@@ -27,6 +28,10 @@ local function ddu_customs_setting()
     for _, v in ipairs(items) do
       vim.fn.execute("bd! " .. v["action"]["bufNr"])
     end
+    return 1
+  end)
+  vim.fn["ddu#custom#action"]("source", "obsidian_tag", "findNotes", function(args)
+    start.obsidian_note(args["items"][1]["action"]["tag"])
     return 1
   end)
 end
