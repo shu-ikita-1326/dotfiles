@@ -63,6 +63,11 @@ autocmd("FileType", {
   callback = keymap.ff_filter,
 })
 
+autocmd("FileType", {
+  pattern = "ddu-filer",
+  callback = keymap.filer,
+})
+
 vim.schedule(function()
   vim.fn["ddu#load"]("ui", { "ff" })
 end)

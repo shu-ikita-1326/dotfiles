@@ -153,15 +153,36 @@ M.obsidian_note = function(tag)
           tag = tag,
         },
         options = {
-          matchers = { "converter_obsidian_title", "converter_display_word", "matcher_fzf" },
-          sorters = { "converter_obsidian_title", "converter_display_word", "sorter_fzf" },
-          converters = { "converter_obsidian_path" },
+          matchers = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "matcher_fzf" },
+          sorters = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "sorter_fzf" },
         },
       },
     },
     uiParams = {
       ff = {
         startAutoAction = true,
+      },
+    },
+  })
+end
+
+M.obsidian_note_filer = function()
+  vim.fn["ddu#start"]({
+    ui = "filer",
+    sources = {
+      {
+        name = "obsidian_note",
+        params = {
+          vault = vim.fn.expand("~/zettelkasten"),
+        },
+        options = {
+          sorters = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "sorter_alpha" },
+        },
+      },
+    },
+    uiParams = {
+      filer = {
+        displayRoot = false,
       },
     },
   })
@@ -358,7 +379,7 @@ M.help = function()
     sources = { { name = "help" } },
     uiParams = {
       ff = {
-        -- startAutoAction = true,
+        startAutoAction = true,
         startFilter = true,
       },
     },

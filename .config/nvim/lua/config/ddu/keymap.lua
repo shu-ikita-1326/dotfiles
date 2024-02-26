@@ -34,6 +34,7 @@ M.main = function()
   vim.keymap.set("n", "<Leader>fv", start.virtualenvs, opt)
   vim.keymap.set("n", "<Leader>zt", start.obsidian_tag, opt)
   vim.keymap.set("n", "<Leader>zn", start.obsidian_note, opt)
+  vim.keymap.set("n", "<Leader>zf", start.obsidian_note_filer, opt)
 end
 
 local function util_ddu_key_mapper(params)
@@ -62,6 +63,23 @@ M.ff = function()
     { "n", "d", "itemAction", { name = "delete" } },
     { "n", "p", "togglePreview" },
     { "n", "<C-t>", "toggleAutoAction" },
+    { "n", "<Tab>", "toggleSelectItem" },
+    { "n", "A", "toggleAllItems" },
+  }
+  for _, v in ipairs(maps) do
+    util_ddu_key_mapper(v)
+  end
+end
+
+M.filer = function()
+  local maps = {
+    { "n", "<CR>", "itemAction" },
+    { "n", "t", "itemAction", { name = "open", params = { command = "tabedit" } } },
+    { "n", "q", "quit" },
+    { "n", "<C-c>", "quit" },
+    { "n", "a", "chooseAction" },
+    { "n", "d", "itemAction", { name = "delete" } },
+    { "n", "p", "togglePreview" },
     { "n", "<Tab>", "toggleSelectItem" },
     { "n", "A", "toggleAllItems" },
   }
