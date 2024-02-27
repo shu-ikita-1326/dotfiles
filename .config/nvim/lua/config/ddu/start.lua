@@ -153,8 +153,52 @@ M.obsidian_note = function(tag)
           tag = tag,
         },
         options = {
-          matchers = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "matcher_fzf" },
-          sorters = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "sorter_fzf" },
+          matchers = {
+            "converter_obsidian_rel_path",
+            "converter_obsidian_title",
+            "converter_display_word",
+            "matcher_substring",
+          },
+          sorters = {
+            "converter_obsidian_rel_path",
+            "converter_obsidian_title",
+            "converter_display_word",
+            "sorter_alpha",
+          },
+          converters = { "converter_obsidian_backlink" },
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+      },
+    },
+  })
+end
+
+M.obsidian_backlink = function(tag)
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "obsidian_backlink",
+        params = {
+          vault = vim.fn.expand("~/zettelkasten"),
+          notePath = vim.fn.expand("%"),
+        },
+        options = {
+          matchers = {
+            "converter_obsidian_rel_path",
+            "converter_obsidian_title",
+            "converter_display_word",
+            "matcher_substring",
+          },
+          sorters = {
+            "converter_obsidian_rel_path",
+            "converter_obsidian_title",
+            "converter_display_word",
+            "sorter_alpha",
+          },
         },
       },
     },
@@ -176,7 +220,12 @@ M.obsidian_note_filer = function()
           vault = vim.fn.expand("~/zettelkasten"),
         },
         options = {
-          sorters = { "converter_obsidian_rel_path", "converter_obsidian_title", "converter_display_word", "sorter_alpha" },
+          sorters = {
+            "converter_obsidian_rel_path",
+            "converter_obsidian_title",
+            "converter_display_word",
+            "sorter_alpha",
+          },
         },
       },
     },
