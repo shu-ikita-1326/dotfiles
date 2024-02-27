@@ -159,12 +159,6 @@ M.obsidian_note = function(tag)
             "converter_display_word",
             "matcher_substring",
           },
-          sorters = {
-            "converter_obsidian_rel_path",
-            "converter_obsidian_title",
-            "converter_display_word",
-            "sorter_alpha",
-          },
           converters = { "converter_obsidian_backlink" },
         },
       },
@@ -177,7 +171,7 @@ M.obsidian_note = function(tag)
   })
 end
 
-M.obsidian_backlink = function(tag)
+M.obsidian_backlink = function()
   vim.fn["ddu#start"]({
     sources = {
       {
@@ -192,12 +186,6 @@ M.obsidian_backlink = function(tag)
             "converter_obsidian_title",
             "converter_display_word",
             "matcher_substring",
-          },
-          sorters = {
-            "converter_obsidian_rel_path",
-            "converter_obsidian_title",
-            "converter_display_word",
-            "sorter_alpha",
           },
         },
       },
@@ -215,17 +203,13 @@ M.obsidian_note_filer = function()
     ui = "filer",
     sources = {
       {
-        name = "obsidian_note",
-        params = {
-          vault = vim.fn.expand("~/zettelkasten"),
-        },
+        name = "file",
         options = {
-          sorters = {
-            "converter_obsidian_rel_path",
-            "converter_obsidian_title",
-            "converter_display_word",
-            "sorter_alpha",
+          path = vim.fn.expand("~/zettelkasten"),
+          columns = {
+            "icon_filename",
           },
+          converters = { "converter_obsidian_title" },
         },
       },
     },

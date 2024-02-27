@@ -78,11 +78,20 @@ M.filer = function()
     { "n", "t", "itemAction", { name = "open", params = { command = "tabedit" } } },
     { "n", "q", "quit" },
     { "n", "<C-c>", "quit" },
-    { "n", "a", "chooseAction" },
+    -- { "n", "a", "chooseAction" },
+    { "n", "l", "expandItem" },
+    { "n", "h", "collapseItem" },
     { "n", "d", "itemAction", { name = "delete" } },
-    { "n", "p", "togglePreview" },
+    { "n", "a", "itemAction", { name = "newFile" } },
+    { "n", "x", "itemAction", { name = "move" } },
+    { "n", "y", "itemAction", { name = "copy" } },
+    { "n", "p", "itemAction", { name = "paste" } },
+    { "n", "r", "itemAction", { name = "rename" } },
+    { "n", "<BS>", "itemAction", { name = "narrow", params = { path = ".." } } },
+    { "n", ".", "itemAction", { name = "narrow" } },
+    { "n", "P", "togglePreview" },
     { "n", "<Tab>", "toggleSelectItem" },
-    { "n", "A", "toggleAllItems" },
+    -- { "n", "A", "toggleAllItems" },
   }
   for _, v in ipairs(maps) do
     util_ddu_key_mapper(v)
