@@ -137,6 +137,7 @@ require("lazy").setup({
       "Shougo/ddc-sorter_rank",
       "Shougo/ddc-source-cmdline",
       "Shougo/ddc-source-cmdline-history",
+      "shutils/ddc-source-obsidian",
       "uga-rosa/denippet.vim",
       "LumaKernel/ddc-source-file",
       "tani/ddc-fuzzy",
@@ -501,5 +502,15 @@ require("lazy").setup({
     dependencies = {
       "vim-denops/denops.vim",
     },
+  },
+  {
+    "shutils/denops-obsidian.vim",
+    dependencies = {
+      "vim-denops/denops.vim",
+    },
+    config = function()
+      require("config.denops-obsidian")
+      vim.g.denops_obsidian_vault = vim.fn.expand("~/zettelkasten")
+    end,
   },
 })

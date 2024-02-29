@@ -157,9 +157,10 @@ M.obsidian_note = function(tag)
             "converter_obsidian_rel_path",
             "converter_obsidian_title",
             "converter_display_word",
-            "matcher_substring",
+            "matcher_kensaku",
           },
           converters = { "converter_obsidian_backlink" },
+          sorters = { "sorter_alpha" },
         },
       },
     },
@@ -185,8 +186,9 @@ M.obsidian_backlink = function()
             "converter_obsidian_rel_path",
             "converter_obsidian_title",
             "converter_display_word",
-            "matcher_substring",
+            "matcher_kensaku",
           },
+          sorters = { "sorter_alpha" },
         },
       },
     },
@@ -216,6 +218,7 @@ M.obsidian_note_filer = function()
     uiParams = {
       filer = {
         displayRoot = false,
+        sortTreesFirst = true,
       },
     },
   })
@@ -231,6 +234,9 @@ M.obsidian_tag = function()
         },
         options = {
           sorters = { "sorter_alpha" },
+          matchers = {
+            "matcher_kensaku",
+          },
           defaultAction = "findNotes",
         },
       },

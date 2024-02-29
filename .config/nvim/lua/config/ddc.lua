@@ -102,6 +102,25 @@ local function ddc_filetype_setting()
       ["="] = { "skkeleton", "input" },
     },
   })
+  vim.fn["ddc#custom#patch_filetype"]({ "markdown" }, {
+    sources = { "obsidian_tag", "obsidian_link", "denippet", "lsp", "around", "cmdline", "skkeleton" },
+    sourceOptions = {
+      obsidian_tag = {
+        mark = "[obsidian_tag]",
+      },
+      obsidian_link = {
+        mark = "[obsidian_link]",
+      },
+    },
+    sourceParams = {
+      obsidian_tag = {
+        vault = vim.fn.expand("~/zettelkasten"),
+      },
+      obsidian_link = {
+        vault = vim.fn.expand("~/zettelkasten"),
+      },
+    },
+  })
 end
 
 ddc_filetype_setting()
