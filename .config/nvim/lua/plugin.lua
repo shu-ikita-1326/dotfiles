@@ -139,6 +139,7 @@ require("lazy").setup({
       "Shougo/ddc-source-cmdline-history",
       "shutils/ddc-source-obsidian",
       "uga-rosa/denippet.vim",
+      "uga-rosa/ddc-source-dictionary",
       "LumaKernel/ddc-source-file",
       "tani/ddc-fuzzy",
       "Shougo/pum.vim",

@@ -28,6 +28,8 @@
 !/.config/wezterm/**
 !/.config/denippet/
 !/.config/denippet/**
+!/.config/dict/
+!/.config/dict/**
 /.config/wezterm/localconf.lua
 /.config/wezterm/background/settings.lua
 /.config/wezterm/background/img/**

@@ -73,6 +73,9 @@ local function ddc_global_setting()
         sorters = {},
         isVolatile = true,
       },
+      dictionary = {
+        mark = "[dict]",
+      },
     },
     sourceParams = {
       lsp = {
@@ -103,7 +106,7 @@ local function ddc_filetype_setting()
     },
   })
   vim.fn["ddc#custom#patch_filetype"]({ "markdown" }, {
-    sources = { "obsidian_tag", "obsidian_link", "denippet", "lsp", "around", "cmdline", "skkeleton" },
+    sources = { "obsidian_tag", "obsidian_link", "dictionary", "denippet", "lsp", "around", "cmdline", "skkeleton" },
     sourceOptions = {
       obsidian_tag = {
         mark = "[obsidian_tag]",
@@ -118,6 +121,10 @@ local function ddc_filetype_setting()
       },
       obsidian_link = {
         vault = vim.fn.expand("~/zettelkasten"),
+      },
+      dictionary = {
+        paths = { vim.fn.expand("~/dotfiles/.config/dict/md-code-langs") },
+        firstCaseInsensitive = true,
       },
     },
   })
