@@ -1,9 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-augroup("OpenObsidian", { clear = true })
+augroup("ObsidianOpen", { clear = true })
 autocmd("FileType", {
-  group ="OpenObsidian",
+  group ="ObsidianOpen",
   pattern = "markdown",
-  command = "OpenObsidian",
+  command = "ObsidianOpen",
 })
