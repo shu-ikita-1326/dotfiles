@@ -95,3 +95,14 @@ update: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRE
 description = """
 Insert update date
 """
+
+[table]
+prefix = ["table"]
+body = """
+| Header | Header |
+| ------ | ------ |
+|  Body  |  Body  |
+"""
+description = """
+Insert table base
+"""

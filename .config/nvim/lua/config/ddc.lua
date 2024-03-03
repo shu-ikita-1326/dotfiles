@@ -123,7 +123,10 @@ local function ddc_filetype_setting()
         vault = vim.fn.expand("~/zettelkasten"),
       },
       dictionary = {
-        paths = { vim.fn.expand("~/dotfiles/.config/dict/md-code-langs") },
+        paths = {
+          vim.fn.expand("~/dotfiles/.config/dict/md-code-langs"),
+          vim.fn.stdpath("data") .. "/lazy/dict/SKK-JISYO.L",
+        },
         firstCaseInsensitive = true,
       },
     },

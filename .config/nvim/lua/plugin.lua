@@ -144,6 +144,9 @@ require("lazy").setup({
       "tani/ddc-fuzzy",
       "Shougo/pum.vim",
       "vim-skk/skkeleton",
+      "vim-skk/skkeleton",
+      -- For english dict
+      "dwyl/english-words",
     },
     config = function()
       require("config.ddc")
