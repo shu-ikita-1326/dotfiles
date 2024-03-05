@@ -4,100 +4,12 @@
 echo 'apt updating...'
 sudo -E apt update > /dev/null
 
-# gitをインストール
-if ! (type "git" > /dev/null 2>&1); then
-  echo 'Installing git...'
-  sudo -E apt install git > /dev/null
-fi
-
-# zshをインストール
-if ! (type "zsh" > /dev/null 2>&1); then
-  echo 'Installing zsh...'
-  sudo -E apt install zsh > /dev/null
-fi
-
-# neovim
-if ! (type "nvim" > /dev/null 2>&1); then
-  echo 'Installing neovim...'
-  brew install --HEAD neovim > /dev/null
-fi
-
-# ripgrepをインストール
-if ! (type "rg" > /dev/null 2>&1); then
-  echo 'Installing ripgrep...'
-  brew install ripgrep > /dev/null
-fi
-
-# tmuxをインストール
-if ! (type "tmux" > /dev/null 2>&1); then
-  echo 'Installing tmux...'
-  brew install tmux > /dev/null
-fi
-
-# fzfをインストール
-if ! (type "fzf" > /dev/null 2>&1); then
-  echo 'Installing fzf...'
-  brew install fzf > /dev/null
-fi
-
-# batをインストール
-if ! (type "bat" > /dev/null 2>&1); then
-  echo 'Installing bat...'
-  brew install bat > /dev/null
-fi
-
 # for Telescope in nvim
 if ! (type "sqlite" > /dev/null 2>&1); then
   echo 'Installing sqlite...'
   sudo -E apt install sqlite3 libsqlite3-dev > /dev/null
 fi
 
-# lazygit
-if ! (type "lazygit" > /dev/null 2>&1); then
-  echo 'Installing lazygit...'
-  brew install lazygit > /dev/null
-fi
+brew bundle --file ~/dotfiles/installer/ubuntu/Brewfile
 
-# lazydocker
-if ! (type "lazydocker" > /dev/null 2>&1); then
-  echo 'Installing lazydocker...'
-  brew install lazydocker > /dev/null
-fi
-
-# go
-if ! (type "go" > /dev/null 2>&1); then
-  echo 'Installing golang...'
-    sudo -E add-apt-repository -y ppa:longsleep/golang-backports
-    sudo -E apt update -y
-    sudo -E apt install -y golang-go
-fi
-
-# ghq
-if ! (type "ghq" > /dev/null 2>&1); then
-  echo 'Installing ghq...'
-  brew install ghq > /dev/null
-fi
-
-# onefetch
-if ! (type "onefetch" > /dev/null 2>&1); then
-  echo 'Installing onefetch...'
-  brew install onefetch > /dev/null
-fi
-
-# sheldon
-if ! (type "sheldon" > /dev/null 2>&1); then
-  echo 'Installing sheldon...'
-  brew install sheldon > /dev/null
-fi
-
-# deno
-if ! (type "deno" > /dev/null 2>&1); then
-  echo 'Installing deno...'
-  brew install deno > /dev/null
-fi
-
-# fd
-if ! (type "fd" > /dev/null 2>&1); then
-  echo 'Installing fd...'
-  brew install fd > /dev/null
-fi
+mise install

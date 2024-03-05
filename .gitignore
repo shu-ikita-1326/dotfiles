@@ -30,6 +30,8 @@
 !/.config/denippet/**
 !/.config/dict/
 !/.config/dict/**
+!/.config/mise/
+!/.config/mise/**
 /.config/wezterm/localconf.lua
 /.config/wezterm/background/settings.lua
 /.config/wezterm/background/img/**

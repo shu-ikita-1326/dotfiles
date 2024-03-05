@@ -42,6 +42,17 @@ My dotfiles
       exec zsh
       ```
 
+4. Install mise  
+
+      Check the mise homepage for details
+
+      ```sh
+      curl https://mise.run | sh
+      touch ~/.localenv.zsh
+      echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.localenv.zsh
+      source ~/.localenv.zsh
+      ```
+
 5. Install other  
 
       Note: install_tools.sh only installs tools that are not already installed.
