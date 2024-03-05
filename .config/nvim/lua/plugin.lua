@@ -514,7 +514,33 @@ require("lazy").setup({
     },
     config = function()
       require("config.denops-obsidian")
-      vim.g.denops_obsidian_vault = vim.fn.expand("~/zettelkasten")
+      local vaults = {}
+      if vim.env.OBSIDIAN_VAULT_REMOTE then
+        table.insert(vaults, {
+          path = vim.env.OBSIDIAN_VAULT_REMOTE,
+          name = "remote",
+          note = {
+            dir = "notes",
+            template = "standard.md",
+          },
+          daily_note = {
+            dir = "notes/daily",
+            template = "daily.md",
+          },
+          template_dir = "config/template",
+        })
+      end
+
+      if vim.env.OBSIDIAN_VAULT_LOCAL then
+        table.insert(vaults, {
+          path = vim.env.OBSIDIAN_VAULT_LOCAL,
+          name = "local",
+        })
+      end
+
+      vim.fn["dps_obsidian#setup"]({
+        vaults = vaults,
+      })
     end,
   },
 })

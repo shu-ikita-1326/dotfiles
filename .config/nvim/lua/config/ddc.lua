@@ -1,6 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local opt = { noremap = true }
+local helper = require("config.helper")
 
 vim.cmd([[highlight PumUiSBar guifg=yellow]])
 
@@ -44,7 +45,7 @@ local function ddc_global_setting()
       ["-"] = { "skkeleton", "around" },
       ["="] = { "skkeleton", "input" },
     },
-    sources = { "denippet", "lsp", "around", "cmdline", "skkeleton" },
+    sources = { "denippet", "lsp", "around", "dictionary", "cmdline", "skkeleton" },
     sourceOptions = {
       ["_"] = {
         matchers = { "matcher_fuzzy" },
@@ -86,6 +87,13 @@ local function ddc_global_setting()
         enableAdditionalTextEdit = true,
         confirmBehavior = "replace",
       },
+      dictionary = {
+        paths = {
+          vim.fn.stdpath("data") .. "/lazy/english-words/words.txt",
+          vim.fn.expand("~/dotfiles/.config/dict/md-code-langs"),
+        },
+        firstCaseInsensitive = true,
+      },
     },
     autoCompleteEvents = { "InsertEnter", "TextChangedI", "TextChangedP", "CmdlineChanged", "CmdlineEnter" },
   })
@@ -117,15 +125,14 @@ local function ddc_filetype_setting()
     },
     sourceParams = {
       obsidian_tag = {
-        vault = vim.fn.expand("~/zettelkasten"),
+        vaults = helper.get_vaults(),
       },
       obsidian_link = {
-        vault = vim.fn.expand("~/zettelkasten"),
+        vaults = helper.get_vaults(),
       },
       dictionary = {
         paths = {
           vim.fn.expand("~/dotfiles/.config/dict/md-code-langs"),
-          vim.fn.stdpath("data") .. "/lazy/dict/SKK-JISYO.L",
         },
         firstCaseInsensitive = true,
       },

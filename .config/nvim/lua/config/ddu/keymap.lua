@@ -36,6 +36,9 @@ M.main = function()
   vim.keymap.set("n", "<Leader>zn", start.obsidian_note, opt)
   vim.keymap.set("n", "<Leader>zf", start.obsidian_note_filer, opt)
   vim.keymap.set("n", "<Leader>zb", start.obsidian_backlink, opt)
+  vim.keymap.set("n", "<Leader>z/", start.obsidian_search, opt)
+  vim.keymap.set("n", "<Leader>z?", start.obsidian_grep_pattern, opt)
+  vim.keymap.set("n", "<Leader>zT", start.obsidian_search_task, opt)
 end
 
 local function util_ddu_key_mapper(params)

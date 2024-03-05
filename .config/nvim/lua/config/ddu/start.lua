@@ -1,5 +1,6 @@
 local param = require("config.ddu.param")
 local layout = require("config.ddu.layout")
+local helper = require("config.helper")
 
 local function custom_completion(comp_cmd, exec_cmd, f_title)
   local completion = vim.fn["getcompletion"](comp_cmd .. " ", "cmdline")
@@ -149,13 +150,14 @@ M.obsidian_note = function(tag)
       {
         name = "obsidian_note",
         params = {
-          vault = vim.fn.expand("~/zettelkasten"),
+          vaults = helper.get_vaults(),
           tag = tag,
         },
         options = {
           matchers = {
             "converter_obsidian_rel_path",
             "converter_obsidian_title",
+            "converter_obsidian_vault",
             "converter_display_word",
             "matcher_kensaku",
           },
@@ -178,17 +180,19 @@ M.obsidian_backlink = function()
       {
         name = "obsidian_backlink",
         params = {
-          vault = vim.fn.expand("~/zettelkasten"),
+          vaults = helper.get_vaults(),
           notePath = vim.fn.expand("%"),
         },
         options = {
           matchers = {
             "converter_obsidian_rel_path",
             "converter_obsidian_title",
+            "converter_obsidian_vault",
             "converter_display_word",
             "matcher_kensaku",
           },
           sorters = { "sorter_alpha" },
+          converters = {},
         },
       },
     },
@@ -230,7 +234,7 @@ M.obsidian_tag = function()
       {
         name = "obsidian_tag",
         params = {
-          vault = vim.fn.expand("~/zettelkasten"),
+          vaults = helper.get_vaults(),
         },
         options = {
           sorters = { "sorter_alpha" },
@@ -244,6 +248,74 @@ M.obsidian_tag = function()
     uiParams = {
       ff = {
         startAutoAction = true,
+      },
+    },
+  })
+end
+
+M.obsidian_search = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "rg",
+        options = {
+          volatile = true,
+        },
+        params = {
+          paths = vim.tbl_map(function(v)
+            return v.path
+          end, helper.get_vaults()),
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+        startFilter = true,
+      },
+    },
+  })
+end
+
+M.obsidian_grep_pattern = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = vim.fn.input("Pattern: "),
+          paths = vim.tbl_map(function(v)
+            return v.path
+          end, helper.get_vaults()),
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+        ignoreEmpty = true,
+      },
+    },
+  })
+end
+
+M.obsidian_search_task = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "rg",
+        params = {
+          input = "- \\[ ",
+          paths = vim.tbl_map(function(v)
+            return v.path
+          end, helper.get_vaults()),
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        startAutoAction = true,
+        ignoreEmpty = true,
       },
     },
   })
