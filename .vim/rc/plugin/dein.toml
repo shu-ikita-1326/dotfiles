@@ -1,0 +1,51 @@
+[[plugins]]
+repo = 'Shougo/dpp.vim'
+rtp = ''
+
+[[plugins]]
+repo = 'Shougo/dpp-ext-lazy'
+on_source = 'dpp.vim'
+rtp = ''
+
+[[plugins]]
+repo = 'Shougo/dpp-ext-toml'
+on_source = 'dpp.vim'
+
+[[plugins]]
+repo = 'Shougo/dpp-ext-local'
+on_source = 'dpp.vim'
+
+[[plugins]]
+repo = 'Shougo/dpp-ext-installer'
+on_source = 'dpp.vim'
+
+[[plugins]]
+repo = 'Shougo/dpp-ext-packspec'
+on_source = 'dpp.vim'
+
+[[plugins]]
+repo = 'Shougo/dpp-protocol-git'
+on_source = 'dpp.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+
+# filer
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/fern.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_source = 'ddu.vim'
