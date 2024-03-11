@@ -37,6 +37,9 @@ export class Config extends BaseConfig {
     for (
       const tomlFile of [
         "~/.vim/rc/plugin/dein.toml",
+        "~/.vim/rc/plugin/ddu.toml",
+        "~/.vim/rc/plugin/ddc.toml",
+        "~/.vim/rc/plugin/colorscheme.toml",
       ]
     ) {
       const toml = await args.dpp.extAction(

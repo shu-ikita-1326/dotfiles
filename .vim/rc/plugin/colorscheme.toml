@@ -1,0 +1,8 @@
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+hook_add = '''
+colorscheme onedark
+'''
+
+[[plugins]]
+repo = 'bluz71/vim-nightfly-colors'

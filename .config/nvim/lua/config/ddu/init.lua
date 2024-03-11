@@ -31,7 +31,7 @@ local function ddu_customs_setting()
     return 1
   end)
   vim.fn["ddu#custom#action"]("source", "obsidian_tag", "findNotes", function(args)
-    start.obsidian_note(args["items"][1]["action"]["tag"])
+    start.obsidian_note(args["items"][1]["action"]["text"])
     return 1
   end)
 end

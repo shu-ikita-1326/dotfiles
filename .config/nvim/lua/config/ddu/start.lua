@@ -241,6 +241,7 @@ M.obsidian_tag = function()
           matchers = {
             "matcher_kensaku",
           },
+          converters = { "converter_obsidian_tag" },
           defaultAction = "findNotes",
         },
       },

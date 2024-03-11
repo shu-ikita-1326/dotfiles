@@ -24,3 +24,5 @@ nnoremap <Leader>_ :source $MYVIMRC<CR>
 
 " ファイル操作
 nnoremap <Leader>w :w<CR>
+
+set clipboard=unnamedplus

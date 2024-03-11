@@ -49,3 +49,54 @@ repo = 'lambdalisue/mr.vim'
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shutils/denops-obsidian.vim'
+on_source = 'denops.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/obsidian.vim
+'''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+hook_add = '''
+source ~/.vim/rc/plugin/floaterm.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_source = 'denops.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/translate.vim
+'''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = 'denops.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/skkeleton.vim
+'''
+
+[[plugins]]
+repo = 'github/copilot.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+source ~/.vim/rc/plugin/lsp.vim
+'''
+
+[[plugins]]
+repo = 'uga-rosa/denippet.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/denippet.vim
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'

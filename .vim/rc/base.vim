@@ -67,3 +67,7 @@ endif
 " Keymap so that InsertLeave hooks with ctrl + c
 inoremap <C-c> <C-[>
 inoremap <C-[> <C-c>
+
+set backspace=indent,eol,start
+
+set signcolumn=yes

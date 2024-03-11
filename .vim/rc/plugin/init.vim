@@ -1,6 +1,6 @@
 set nocompatible
 
-const s:dpp_base = '~/.cache/dpp/'->expand()
+const s:dpp_base = '~/.cache/dpp'->expand()
 const s:dpp_repo_dir = '~/.cache/dpp/repos/github.com/'->expand()
 const s:plugin_host = 'https://github.com/'
 
@@ -16,6 +16,14 @@ endfunction
 
 function! DppMakeState() abort
   call dpp#make_state(s:dpp_base, '~/.vim/rc/plugin/dpp.ts'->expand())
+endfunction
+
+function! DppInstall() abort
+  call dpp#async_ext_action('installer', 'install')
+endfunction
+
+function! DppUpdate() abort
+  call dpp#async_ext_action('installer', 'update')
 endfunction
 
 call s:init_plugin('Shougo/dpp.vim')

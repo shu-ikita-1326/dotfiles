@@ -1,0 +1,53 @@
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+hook_add = '''
+source ~/.vim/rc/plugin/ddc.vim
+'''
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-input'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'shutils/ddc-source-obsidian'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'dwyl/english-words'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-dictionary'
+on_source = 'ddc.vim'
