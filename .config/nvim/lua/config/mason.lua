@@ -39,6 +39,11 @@ mason_lspconfig.setup_handlers({
       opts.single_file_support = false
     elseif server_name == "denols" then
       opts.root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+      opts.settings = {
+        deno = {
+          unstable = true,
+        },
+      }
     end
     require("lspconfig")[server_name].setup(opts)
   end,
@@ -66,7 +71,7 @@ mason_lspconfig.setup_handlers({
           },
           markdown = {
             {
-              lintCommand = "markdownlint -s -c ~/.config/markdownlint/option.json",
+              lintCommand = "markdownlint -s",
               lintStdin = true,
               lintFormats = {
                 "%f:%l %m",
@@ -101,9 +106,19 @@ mason_lspconfig.setup_handlers({
     })
   end,
   ["pylsp"] = function()
+    local root_files = {
+      ".flake8",
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "mypy.ini",
+      ".pylintrc",
+      ".isort.cfg",
+      ".git",
+    }
     nvim_lsp.pylsp.setup({
       root_dir = function(fname)
-        return util.root_pattern(".git")(fname) or vim.fn.getcwd()
+        return util.root_pattern(unpack(root_files))(fname) or vim.fn.getcwd()
       end,
       settings = {
         pylsp = {
