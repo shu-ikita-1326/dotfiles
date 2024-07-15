@@ -16,6 +16,7 @@ M.main = function()
   vim.keymap.set("n", "<Leader>fn", start.nvim_notify, opt)
   vim.keymap.set("n", "<Leader>fs", start.ddu_source, opt)
   vim.keymap.set("n", "<Leader>gh", start.ghq, opt)
+  vim.keymap.set("n", "<Leader>gs", start.git_status, opt)
   vim.keymap.set("n", "<Leader>fd", start.lazy_nvim, opt)
   vim.keymap.set("n", "<Leader>fl", start.line, opt)
   vim.keymap.set("n", "<Leader>ftt", start.tab, opt)
@@ -103,14 +104,7 @@ end
 
 M.ff_filter = function()
   local opt = { buffer = true }
-  vim.keymap.set({ "n", "i" }, "<CR>", function()
-    vim.fn["ddu#ui#do_action"]("closeFilterWindow")
-    vim.cmd([[:stopinsert]])
-  end, opt)
-  vim.keymap.set({ "n", "i" }, "<C-c>", function()
-    vim.fn["ddu#ui#do_action"]("quit")
-    vim.cmd([[:stopinsert]])
-  end, opt)
+  vim.keymap.set({ "c" }, "<C-c>", "<Esc>", opt)
 end
 
 return M

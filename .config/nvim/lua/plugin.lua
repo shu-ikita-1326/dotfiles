@@ -17,6 +17,7 @@ require("lazy").setup({
   -- filer
   {
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
     event = "VimEnter",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -90,6 +91,7 @@ require("lazy").setup({
       "kamecha/ddu-source-tab",
       "kamecha/ddu-filter-converter_highlight",
       "kuuote/ddu-source-mr",
+      "kuuote/ddu-source-git_status",
       "kyoh86/ddu-source-lazy_nvim",
       "Shougo/ddu-source-register",
       "Shougo/ddu-source-line",
@@ -340,16 +342,16 @@ require("lazy").setup({
       })
     end,
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup({
-        scope = {
-          enabled = false,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   config = function()
+  --     require("ibl").setup({
+  --       scope = {
+  --         enabled = false,
+  --       },
+  --     })
+  --   end,
+  -- },
   "psliwka/vim-smoothie",
 
   -- File and directory access manager
@@ -477,19 +479,19 @@ require("lazy").setup({
   "itchyny/vim-qfedit",
   "kevinhwang91/nvim-bqf",
 
-  -- Rest client
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("rest-nvim").setup({
-        result_split_horizontal = true,
-      })
-      vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt)
-    end,
-  },
+  -- -- Rest client
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require("rest-nvim").setup({
+  --       result_split_horizontal = true,
+  --     })
+  --     vim.keymap.set("n", "<Leader>R", "<Plug>RestNvim", opt)
+  --   end,
+  -- },
 
   -- Task runner
   {

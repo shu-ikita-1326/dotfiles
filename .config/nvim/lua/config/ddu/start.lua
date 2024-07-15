@@ -82,6 +82,24 @@ M.gitsigns_actions = function()
   })
 end
 
+M.git_status = function()
+  vim.fn["ddu#start"]({
+    sources = {
+      {
+        name = "git_status",
+        options = {
+          path = vim.fn.expand('%:p'),
+        },
+      },
+    },
+    kindOptions = {
+      git_status = {
+        defaultAction = "open",
+      },
+    },
+  })
+end
+
 M.chatgpt_run = function()
   custom_completion("ChatGPTRun", "'<,'>ChatGPTRun ", "ChatGPTRun actions")
 end

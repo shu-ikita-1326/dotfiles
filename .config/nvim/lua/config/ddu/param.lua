@@ -151,9 +151,9 @@ M.global = {
       filterFloatingTitle = "matcher: fzf",
     },
     ff = {
-      autoAction = {
-        name = "preview",
-      },
+      -- autoAction = {
+      --   name = "preview",
+      -- },
     },
   },
 }
@@ -163,9 +163,9 @@ M.lsp_def = {
   uiParams = {
     ff = {
       startAutoAction = true,
-      autoAction = {
-        name = "preview",
-      },
+      -- autoAction = {
+      --   name = "preview",
+      -- },
     },
   },
   sources = {
@@ -265,9 +265,9 @@ M.lsp_ref = {
   uiParams = {
     ff = {
       startAutoAction = true,
-      autoAction = {
-        name = "preview",
-      },
+      -- autoAction = {
+      --   name = "preview",
+      -- },
     },
   },
   sources = {

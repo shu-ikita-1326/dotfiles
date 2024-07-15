@@ -58,8 +58,8 @@ autocmd("FileType", {
   callback = keymap.ff,
 })
 
-autocmd("FileType", {
-  pattern = "ddu-ff-filter",
+autocmd("User", {
+  pattern = "Ddu:ui:ff:openFilterWindow",
   callback = keymap.ff_filter,
 })
 
