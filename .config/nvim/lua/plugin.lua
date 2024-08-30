@@ -515,7 +515,7 @@ require("lazy").setup({
       "vim-denops/denops.vim",
     },
     config = function()
-      require("config.denops-obsidian")
+      -- require("config.denops-obsidian")
       local vaults = {}
       if vim.env.OBSIDIAN_VAULT_REMOTE then
         table.insert(vaults, {
