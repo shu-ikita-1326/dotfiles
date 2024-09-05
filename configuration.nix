@@ -21,6 +21,13 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    docker
+    docker-compose
+  ];
+
+  virtualisation.docker.enable = true;
+
   programs = {
     git = {
       enable = true;

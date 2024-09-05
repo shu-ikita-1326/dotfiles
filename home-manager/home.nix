@@ -8,7 +8,17 @@
 
   home.packages = [
     pkgs.lazygit
+    pkgs.lazydocker
     pkgs.zsh
+    pkgs.ripgrep
+    pkgs.fzf
+    pkgs.fd
+    pkgs.tmux
+    pkgs.ghq
+    pkgs.gh
+    pkgs.bottom
+    pkgs.dust
+    pkgs.go-task
   ];
 
   home.file = {
@@ -26,9 +36,22 @@
 
     shellAliases = {
       ll = "ls -la";
+      n = "nvim";
+      lg = "lazygit";
+      dot = "cd ~/dotfiles";
     };
+
     history = {
       size = 10000;
     };
+
+    initExtra = "
+    bindkey '^Y' autosuggest-accept
+    bindkey '^ ' autosuggest-execute
+    bindkey '^R' history-incremental-search-backward
+    bindkey '^S' history-incremental-search-forward
+    bindkey '^P' history-beginning-search-backward
+    bindkey '^N' history-beginning-search-forward
+    ";
   };
 }
