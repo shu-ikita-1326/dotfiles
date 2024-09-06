@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  pkgsUnstable = import <nixpkgs-unstable> {};
+in
+
 {
   home.username = "nixos";
   home.homeDirectory = "/home/nixos";
@@ -19,6 +23,7 @@
     pkgs.bottom
     pkgs.dust
     pkgs.go-task
+    pkgsUnstable.neovim
   ];
 
   home.file = {
