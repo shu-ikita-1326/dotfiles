@@ -10,21 +10,7 @@ in
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = [
-    pkgs.lazygit
-    pkgs.lazydocker
-    pkgs.zsh
-    pkgs.ripgrep
-    pkgs.fzf
-    pkgs.fd
-    pkgs.tmux
-    pkgs.ghq
-    pkgs.gh
-    pkgs.bottom
-    pkgs.dust
-    pkgs.go-task
-    pkgsUnstable.neovim
-  ];
+  home.packages =  import /home/nixos/dotfiles/home-manager/pkgs.nix { inherit pkgs; };
 
   home.file = {
   };
