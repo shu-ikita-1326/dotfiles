@@ -41,9 +41,20 @@
       dot = "cd ~/dotfiles";
     };
 
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ];}
+      ];
+    };
+
     history = {
       size = 10000;
     };
+
+    initExtraFirst = "
+    source ~/dotfiles/home-manager/zsh/.p10k.zsh
+    ";
 
     initExtra = "
     bindkey '^Y' autosuggest-accept
