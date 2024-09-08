@@ -67,5 +67,7 @@
 !configuration.nix
 !flake.lock
 !flake.nix
+!/home-manager/
+!/home-manager/**
 
 !.gitignore
