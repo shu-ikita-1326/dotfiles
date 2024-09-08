@@ -8,6 +8,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
+  wsl.wslConf.interop.appendWindowsPath = false;
 
   users.users.nixos = {
     shell = pkgs.zsh;
