@@ -22,21 +22,12 @@ in
   programs.home-manager.enable = true;
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
 
     shellAliases = {
       ll = "ls -la";
       n = "nvim";
       lg = "lazygit";
       dot = "cd ~/dotfiles";
-    };
-
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ];}
-      ];
     };
 
     history = {
@@ -54,6 +45,12 @@ in
     bindkey '^S' history-incremental-search-forward
     bindkey '^P' history-beginning-search-backward
     bindkey '^N' history-beginning-search-forward
+    if (type \"sheldon\" > /dev/null 2>&1); then
+      eval \"$(sheldon source)\"
+    fi
     ";
+  };
+  programs.neovim = {
+    enable = true;
   };
 }
