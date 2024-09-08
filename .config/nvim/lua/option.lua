@@ -27,6 +27,8 @@ local options = {
 
   listchars = "tab:»-,trail:･,eol:↲,nbsp:%",
   list = true,
+
+  shell = "zsh"
 }
 
 for key, value in pairs(options) do

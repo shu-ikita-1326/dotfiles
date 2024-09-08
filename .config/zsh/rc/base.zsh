@@ -10,12 +10,12 @@ setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
 
-if [ ! -d "${ZDATADIR}" ]; then
-	mkdir "${ZDATADIR}"
-fi
-if [ ! -d "${ZCACHEDIR}" ]; then
-	mkdir "${ZCACHEDIR}"
-fi
+# if [ ! -d "${ZDATADIR}" ]; then
+# 	mkdir "${ZDATADIR}"
+# fi
+# if [ ! -d "${ZCACHEDIR}" ]; then
+# 	mkdir "${ZCACHEDIR}"
+# fi
 
 # キーバインド
 bindkey -e

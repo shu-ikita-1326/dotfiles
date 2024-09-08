@@ -64,5 +64,8 @@
 !/trial/**
 !.stylua.toml
 !.luarc.json
+!configuration.nix
+!flake.lock
+!flake.nix
 
 !.gitignore
