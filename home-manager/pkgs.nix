@@ -18,4 +18,11 @@ with pkgs; [
   go-task
   mise
   deno
+  gcc
+  cargo
+  # rustup
+  python3
+  go
+  unzip
+  sheldon
 ]
