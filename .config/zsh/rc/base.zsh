@@ -2,6 +2,8 @@
 #                   base setting                                      #
 #---------------------------------------------------------------------#
 
+export ZDATADIR=$HOME/.local/share/zsh
+
 # 履歴設定
 HISTFILE="${ZDATADIR}/zsh_history"
 HISTSIZE=10000
@@ -10,9 +12,9 @@ setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
 
-# if [ ! -d "${ZDATADIR}" ]; then
-# 	mkdir "${ZDATADIR}"
-# fi
+if [ ! -d "${ZDATADIR}" ]; then
+	mkdir "${ZDATADIR}"
+fi
 # if [ ! -d "${ZCACHEDIR}" ]; then
 # 	mkdir "${ZCACHEDIR}"
 # fi
