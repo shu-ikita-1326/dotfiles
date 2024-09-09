@@ -25,7 +25,7 @@ mason_lspconfig.setup({
     "gopls",
     "docker_compose_language_service",
     "dockerls",
-    "denols",
+    -- "denols",
     "efm",
     "jsonls",
   },
