@@ -1,7 +1,18 @@
 # Install and Setup NixOS
 
 1. Install git. use nix-shell.
+
+   ```sh
+   nix-shell git
+   ```
+
 2. Download dotfiles.
+
+   ```sh
+   cd ~
+   git clone https://github.com/shutils/dotfiles.git
+   ```
+
 3. Setup nix configuration.
 
    ```sh
@@ -13,8 +24,9 @@
    see: [home-manager](https://nix-community.github.io/home-manager/)
 
    ```sh
-   nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+   nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
    nix-channel --update
+   # Restart shell
    nix-shell '<home-manager>' -A install
    ```
 
