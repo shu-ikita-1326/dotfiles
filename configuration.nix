@@ -12,6 +12,7 @@
 
   users.users.nixos = {
     shell = pkgs.zsh;
+    extraGroups = [ "docker" ];
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?
@@ -33,7 +34,10 @@
     ZRCDIR = "$HOME/dotfiles/.config/zsh/rc";
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    # daemon.settings = import /home/nixos/dotfiles/.config/docker/daemon.nix;
+  };
 
   programs = {
     git = {
