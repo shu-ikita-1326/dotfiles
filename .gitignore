@@ -69,5 +69,7 @@
 !flake.nix
 !/home-manager/
 !/home-manager/**
+!/.nix/
+!/.nix/**
 
 !.gitignore
