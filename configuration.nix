@@ -29,7 +29,6 @@
   ];
 
   environment.sessionVariables = rec {
-    XDG_CONFIG_HOME = "$HOME/dotfiles/.config";
     ZDOTDIR = "$HOME/dotfiles/.config/zsh";
     ZRCDIR = "$HOME/dotfiles/.config/zsh/rc";
   };

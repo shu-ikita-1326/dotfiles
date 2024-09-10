@@ -13,6 +13,11 @@ in
   home.packages =  import /home/nixos/dotfiles/home-manager/pkgs.nix { inherit pkgs; };
 
   home.file = {
+    ".config/nvim".source = /home/nixos/dotfiles/.config/nvim;
+    ".config/dict".source = /home/nixos/dotfiles/.config/dict;
+    ".config/zsh".source = /home/nixos/dotfiles/.config/zsh;
+    ".config/sheldon".source = /home/nixos/dotfiles/.config/sheldon;
+    ".config/home-manager".source = /home/nixos/dotfiles/home-manager;
   };
 
   home.sessionVariables = {
