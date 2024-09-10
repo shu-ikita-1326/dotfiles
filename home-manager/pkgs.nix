@@ -14,6 +14,7 @@ with pkgs; [
   ghq
   gh
   bottom
+  onefetch
   dust
   go-task
   mise
