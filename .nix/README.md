@@ -36,3 +36,5 @@
    cd ~/dotfiles
    home-manager switch --file $HOME/dotfiles/home-manager/home.nix
    ```
+
+   The second migration is OK with `home-manager switch`
