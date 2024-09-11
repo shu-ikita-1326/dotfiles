@@ -20,7 +20,7 @@ mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",
     "pylsp",
-    "tsserver",
+    "ts_ls",
     "html",
     "gopls",
     "docker_compose_language_service",
@@ -34,7 +34,7 @@ mason_lspconfig.setup({
 mason_lspconfig.setup_handlers({
   function(server_name)
     local opts = {}
-    if server_name == "tsserver" then
+    if server_name == "ts_ls" then
       opts.root_dir = util.root_pattern("package.json")
       opts.single_file_support = false
     elseif server_name == "denols" then
