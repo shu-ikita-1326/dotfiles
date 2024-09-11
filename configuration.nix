@@ -46,4 +46,22 @@
       enable = true;
     };
   };
+
+  fonts = {
+    fonts = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-extra
+      noto-fonts-emoji
+    ];
+
+    fontconfig = {
+      enable = true;
+
+      defaultFonts = {
+        sansSerif = [ "Noto Sans CJK JP" "DejaVu Sans" ];
+        serif = [ "Noto Serif JP" "DejaVu Serif" ];
+      };
+    };
+  };
 }
