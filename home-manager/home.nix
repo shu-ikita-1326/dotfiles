@@ -1,10 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
+  nixpkgs.config.allowUnfree = true;
 
-let
-  pkgsUnstable = import <nixpkgs-unstable> {};
-in
-
-{
   home.username = "nixos";
   home.homeDirectory = "/home/nixos";
 
@@ -17,7 +13,10 @@ in
     ".config/dict".source = /home/nixos/dotfiles/.config/dict;
     ".config/zsh".source = /home/nixos/dotfiles/.config/zsh;
     ".config/sheldon".source = /home/nixos/dotfiles/.config/sheldon;
-    ".config/home-manager".source = /home/nixos/dotfiles/home-manager;
+    ".config/home-manager" = {
+      source = config.lib.file.mkOutOfStoreSymlink /home/nixos/dotfiles/home-manager;
+      recursive = true;
+    };
   };
 
   home.sessionVariables = {

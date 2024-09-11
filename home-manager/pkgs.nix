@@ -1,29 +1,34 @@
 {
   pkgs,
+  nixpkgs-stable ? import <nixpkgs> {
+    system = "x86_64-linux";
+    overlays = [];
+  },
   ...
 }:
 
-with pkgs; [
-  lazygit
-  lazydocker
-  zsh
-  ripgrep
-  fzf
-  fd
-  tmux
-  ghq
-  gh
-  bottom
-  onefetch
-  dust
-  go-task
-  mise
-  deno
-  gcc
-  cargo
+[
+  pkgs.lazygit
+  pkgs.lazydocker
+  pkgs.zsh
+  pkgs.ripgrep
+  pkgs.fzf
+  pkgs.fd
+  pkgs.tmux
+  pkgs.ghq
+  pkgs.gh
+  pkgs.bottom
+  pkgs.onefetch
+  pkgs.dust
+  pkgs.go-task
+  pkgs.mise
+  pkgs.deno
+  pkgs.gcc
+  pkgs.cargo
   # rustup
-  python3
-  go
-  unzip
-  sheldon
+  pkgs.python3
+  pkgs.go
+  pkgs.unzip
+  pkgs.sheldon
+  nixpkgs-stable.obsidian
 ]

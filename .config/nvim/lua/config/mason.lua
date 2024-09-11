@@ -20,7 +20,7 @@ mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",
     "pylsp",
-    "ts_ls",
+    -- "ts_ls",
     "html",
     "gopls",
     "docker_compose_language_service",
