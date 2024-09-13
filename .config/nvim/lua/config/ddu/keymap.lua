@@ -104,7 +104,9 @@ end
 
 M.ff_filter = function()
   local opt = { buffer = true }
-  vim.keymap.set({ "c" }, "<C-c>", "<Esc>", opt)
+  vim.keymap.set({ "c" }, "<CR>", "<Cmd>call pum#map#cancel()<CR><CR>", opt)
+  vim.keymap.set({ "c" }, "<C-c>", "<Cmd>call pum#map#cancel()<CR><C-c>", opt)
+  vim.keymap.set({ "c" }, "<Esc>", "<Cmd>call pum#map#cancel()<CR><Esc>", opt)
 end
 
 return M
