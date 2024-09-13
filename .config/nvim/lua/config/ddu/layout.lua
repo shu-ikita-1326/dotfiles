@@ -4,12 +4,12 @@ local function wide_layout(columns, lines)
   return {
     winCol = math.floor((columns - (columns * 0.9)) / 2),
     winWidth = math.floor(columns * 0.9),
-    winRow = 5,
-    winHeight = lines - 8,
+    winRow = 2,
+    winHeight = lines - 6,
     previewCol = math.floor(columns / 2),
     previewWidth = math.floor((columns * 0.9) / 2 - 2),
-    previewRow = 6,
-    previewHeight = lines - 10,
+    previewRow = 3,
+    previewHeight = lines - 8,
   }
 end
 
@@ -17,7 +17,7 @@ local function narrow_layout(columns, lines)
   return {
     winCol = math.floor((columns - (columns * 0.9)) / 2),
     winWidth = math.floor(columns * 0.9),
-    winRow = 5,
+    winRow = 2,
     winHeight = math.floor(lines * 0.4),
     previewCol = math.floor((columns - (columns * 0.9)) / 2),
     previewWidth = math.floor(columns * 0.9),
