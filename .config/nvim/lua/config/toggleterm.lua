@@ -54,6 +54,21 @@ if vim.fn.executable("lazydocker") == 1 then
   vim.keymap.set("n", "<Leader>ld", _lazydocker_toggle, { noremap = true, silent = true })
 end
 
+if vim.fn.executable("btm") == 1 then
+  local btm = Terminal:new({ cmd = "btm", hidden = true, direction = "float" })
+  local function _btm_toggle()
+    local panes = vim.fn.system("tmux list-panes")
+    local rows = select(2, panes:gsub("\n", "\n"))
+    if vim.env.TMUX and rows >= 2 then
+      os.execute('tmux popup -w90% -h90% -E "btm"')
+    else
+      btm:toggle()
+    end
+  end
+
+  vim.keymap.set("n", "<Leader>btm", _btm_toggle, { noremap = true, silent = true })
+end
+
 local function _term_toggle()
   local term = Terminal:new({ hidden = true, direction = "float" })
   local panes = vim.fn.system("tmux list-panes")
