@@ -22,21 +22,13 @@ autocmd("VimEnter", {
   group = "YankSetup",
   pattern = "*",
   callback = function()
-    -- Use win32yank.exe for yank if the execution environment is wsl
+    -- Use clip.exe for yank if the execution environment is wsl
     if vim.fn.executable("wslpath") == 1 then
-      if vim.fn.executable("win32yank.exe") == 1 then
-        vim.api.nvim_command("set clipboard+=unnamedplus")
-        vim.g.clipboard = {
-          name = "myClipboard",
-          copy = {
-            ["+"] = "win32yank.exe -i",
-            ["*"] = "win32yank.exe -i",
-          },
-          paste = {
-            ["+"] = "win32yank.exe -o",
-            ["*"] = "win32yank.exe -o",
-          },
-        }
+      if vim.fn.executable("clip.exe") == 1 and vim.fn.executable("powershell.exe") then
+        autocmd("TextYankPost", {
+          pattern = "*",
+          command = "silent! call system('iconv -t UTF-16LE | clip.exe', @0)",
+        })
       else
         vim.notify(
           "Install win32yank.exe if you want to share yanked code to the Windows clipboard. win32yank HP:(https://github.com/equalsraf/win32yank)",
