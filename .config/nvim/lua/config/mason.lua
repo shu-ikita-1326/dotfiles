@@ -163,6 +163,23 @@ mason_lspconfig.setup_handlers({
       },
     })
   end,
+  ["ts_ls"] = function()
+    local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+    nvim_lsp["ts_ls"].setup({
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vue_typescript_plugin,
+            languages = { "javascript", "typescript", "vue" },
+          },
+        },
+      },
+      filetypes = {
+        "ts", "tsx", "vue",
+      },
+    })
+  end,
 })
 
 local opt = { silent = true, noremap = true }
