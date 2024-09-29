@@ -1,0 +1,13 @@
+# config.yaml
+input_bindings:
+  up: [ k ]
+  down: [ j ]
+  left: [ '[' ]
+  right: [ ']' ]
+  previous_pane: [ h ]
+  next_pane: [ l ]
+  select_recipe_list: [ m ]
+  history: [ o ]
+  page_up: [ ctrl b ]
+  page_down: [ ctrl f ]
+editor: nvim

@@ -32,6 +32,8 @@
 !/.config/dict/**
 !/.config/mise/
 !/.config/mise/**
+!/.config/slumber/
+!/.config/slumber/**
 /.config/wezterm/localconf.lua
 /.config/wezterm/background/settings.lua
 /.config/wezterm/background/img/**
