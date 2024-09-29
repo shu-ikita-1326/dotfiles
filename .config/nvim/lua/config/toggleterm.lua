@@ -72,6 +72,10 @@ end
 if vim.fn.executable("slumber") == 1 then
   local btm = Terminal:new({ cmd = "slumber --file ./__dev/slumber.yml", hidden = true, direction = "float" })
   local function _btm_toggle()
+    if vim.fn.filereadable("./__dev/slumber.yml") == 0 then
+      vim.notify("slumber.yml file not found!")
+      return
+    end
     local panes = vim.fn.system("tmux list-panes")
     local rows = select(2, panes:gsub("\n", "\n"))
     if vim.env.TMUX and rows >= 2 then
